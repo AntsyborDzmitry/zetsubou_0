@@ -8,5 +8,14 @@
     <artifactId>test</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>aem-test</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+        </dependencies>
+    </dependencyManagement>
+
 
 </project>
