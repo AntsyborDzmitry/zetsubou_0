@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2011-10-18T16:28:57.807-07:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/libs/wcm/core/templates/designpage"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Client Center Site"
+        sling:resourceType="wcm/core/components/designer">
+        <page jcr:primaryType="nt:unstructured">
+            <par_main
+                jcr:lastModified="{Date}2011-10-13T15:28:42.014-07:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys"
+                components="[group:General,group:Client Center Content]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </par_main>
+        </page>
+        <defaultpage jcr:primaryType="nt:unstructured">
+            <par_main
+                jcr:lastModified="{Date}2011-10-18T16:28:57.779-07:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys"
+                components="[group:General,group:Calendar,group:Client Center Content,/libs/collab/commons/components/comments,group:Forum]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </par_main>
+            <par_sidebar
+                jcr:lastModified="{Date}2011-10-18T13:16:54.441-07:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys"
+                components="[group:General,group:Calendar,group:Client Center Content]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </par_sidebar>
+        </defaultpage>
+    </jcr:content>
+    <clientlibs/>
+    <images/>
+    <favicon.ico/>
+</jcr:root>
