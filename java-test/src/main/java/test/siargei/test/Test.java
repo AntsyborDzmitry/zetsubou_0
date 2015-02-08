@@ -1,6 +1,5 @@
-package com.zetsubou_0.test.siargei.test;
+package test.siargei.test;
 
-import com.zetsubou_0.test.siargei.test.p1.GoodbyeWorld;
 import com.zetsubou_0.test.siargei.test.p1.Human;
 
 /**

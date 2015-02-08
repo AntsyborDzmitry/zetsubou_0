@@ -1,4 +1,4 @@
-package com.zetsubou_0.test.dima.bean.item;
+package test.dima.bean.item;
 
 /**
  * Created by zetsubou_0 on 31.1.15.

@@ -1,4 +1,4 @@
-package com.zetsubou_0.test.dima.service;
+package test.dima.service;
 
 import com.zetsubou_0.test.dima.bean.item.Product;
 import com.zetsubou_0.test.dima.bean.people.Client;

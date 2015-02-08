@@ -1,4 +1,4 @@
-package com.zetsubou_0.test.dima.bean.people;
+package test.dima.bean.people;
 
 import com.zetsubou_0.test.dima.bean.item.Card;
 

@@ -1,4 +1,4 @@
-package com.zetsubou_0.test.dima;
+package test.dima;
 
 import com.zetsubou_0.test.dima.bean.item.Card;
 import com.zetsubou_0.test.dima.bean.item.Product;

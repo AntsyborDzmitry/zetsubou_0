@@ -1,4 +1,4 @@
-package com.zetsubou_0.test.dima.exception;
+package test.dima.exception;
 
 /**
  * Created by zetsubou_0 on 31.1.15.
