@@ -8,7 +8,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>aem</module>
         <module>java-test</module>
     </modules>
 
