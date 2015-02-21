@@ -9,6 +9,7 @@
 
     <modules>
         <module>java-test</module>
+        <module>framework-test</module>
     </modules>
 
     <dependencyManagement>
