@@ -12,7 +12,7 @@
     <artifactId>framework-test</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>aem-cq</module>
+        <module>aem</module>
     </modules>
 
 
