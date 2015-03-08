@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspaceFilter version="1.0">
+    <filter root="/content/aem-generated"/>
+    <filter root="/content/dam/aem-generated">
+        <!-- exclude pattern=".*/renditions.*"/ -->
+    </filter>
+    <filter root="/etc/designs/aem-generated/jcr:content">
+        <include pattern="/etc/designs/aem-generated/jcr:content(/.*)+"/>
+    </filter>
+</workspaceFilter>

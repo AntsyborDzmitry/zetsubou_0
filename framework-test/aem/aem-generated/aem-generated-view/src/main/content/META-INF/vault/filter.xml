@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspaceFilter version="1.0">
+    <filter root="/apps/aem-generated">
+        <exclude pattern="/apps/aem-generated/install.*"/>
+        <exclude pattern="/apps/aem-generated/runmodes.*"/>
+    </filter>
+    <filter root="/etc/clientlibs/aem-generated"/>
+	<filter root="/etc/designs/aem-generated">
+        <exclude pattern="/etc/designs/aem-generated/jcr:content.*"/>
+    </filter>
+</workspaceFilter>
