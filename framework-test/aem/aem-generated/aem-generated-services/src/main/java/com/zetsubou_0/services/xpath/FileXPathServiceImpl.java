@@ -63,7 +63,7 @@ public class FileXPathServiceImpl implements FileXPathService {
         return nodes;
     }
 
-    public void setParems(Map<String, String> params) {
+    public void setParams(Map<String, String> params) {
 
     }
 

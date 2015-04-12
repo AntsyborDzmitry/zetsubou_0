@@ -8,6 +8,6 @@ public interface FileXPathService {
     final String PATH_KEY = "path";
     final String WORD_KEY = "word";
 
-    void setParems(Map<String, String> params);
+    void setParams(Map<String, String> params);
     Set<Node> getResults();
 }
