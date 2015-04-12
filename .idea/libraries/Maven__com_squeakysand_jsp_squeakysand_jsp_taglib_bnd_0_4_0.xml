@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.squeakysand.jsp:squeakysand-jsp-taglib:bnd:0.4.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/squeakysand/jsp/squeakysand-jsp-taglib/0.4.0/squeakysand-jsp-taglib-0.4.0-bnd.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/squeakysand/jsp/squeakysand-jsp-taglib/0.4.0/squeakysand-jsp-taglib-0.4.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/squeakysand/jsp/squeakysand-jsp-taglib/0.4.0/squeakysand-jsp-taglib-0.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

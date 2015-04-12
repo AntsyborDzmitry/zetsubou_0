@@ -23,6 +23,5 @@
     <modules>
         <module>aem-made</module>
         <module>aem-generated</module>
-    <module>aem-generated</module>
-  </modules>
+    </modules>
 </project>
