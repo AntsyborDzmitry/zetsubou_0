@@ -15,7 +15,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>aem-made</artifactId>
-    <groupId>com.zestubou_0</groupId>
+    <groupId>com.zetsubou_0</groupId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -43,8 +43,18 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <!-- ====================================================================== -->
+    <!-- MODULES -->
+    <!-- ====================================================================== -->
+    <modules>
+        <module>content</module>
+        <module>bundle</module>
+    </modules>
+
+
     <dependencyManagement>
         <dependencies>
+            <!--OSGI-->
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.core</artifactId>
@@ -60,33 +70,48 @@
             <dependency>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.scr.annotations</artifactId>
-                <version>1.6.0</version>
+                <version>1.9.10</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!--?-->
             <dependency>
                 <groupId>biz.aQute</groupId>
                 <artifactId>bndlib</artifactId>
                 <version>1.43.0</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!--LOG-->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>1.5.10</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!--Servlet API-->
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
                 <version>2.5</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!--JCR-->
+            <!--<dependency>-->
+                <!--<groupId>javax.jcr</groupId>-->
+                <!--<artifactId>jcr</artifactId>-->
+                <!--<version>2.0</version>-->
+                <!--<scope>provided</scope>-->
+            <!--</dependency>-->
             <dependency>
-                <groupId>javax.jcr</groupId>
-                <artifactId>jcr</artifactId>
-                <version>2.0</version>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>org.apache.sling.jcr.jcr-wrapper</artifactId>
+                <version>2.0.0</version>
                 <scope>provided</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.api</artifactId>
@@ -136,12 +161,32 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-scr-plugin</artifactId>
-                    <version>1.7.4</version>
+                    <version>1.15.0</version>
+                    <executions>
+                        <execution>
+                            <id>generate-scr-descriptor</id>
+                            <goals>
+                                <goal>scr</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.3.7</version>
+                    <version>2.5.3</version>
+                    <configuration>
+                        <instructions>
+                            <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+                            <Embed-Directory>OSGI-INF/lib</Embed-Directory>
+                            <Embed-Transitive>true</Embed-Transitive>
+                        </instructions>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.4.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -188,9 +233,7 @@
                     <version>0.0.20</version>
                     <extensions>true</extensions>
                     <configuration>
-                        <failOnError>true</failOnError>
-                        <username>${crx.username}</username>
-                        <password>${crx.password}</password>
+                        <verbose>true</verbose>
                     </configuration>
                 </plugin>
                 <!--This plugin's configuration is used to store Eclipse
@@ -250,8 +293,4 @@
             </build>
         </profile>
     </profiles>
-    <modules>
-        <module>bundle</module>
-        <module>content</module>
-    </modules>
 </project>

@@ -29,6 +29,8 @@
         <cq.port>4502</cq.port>
         <cq.user>admin</cq.user>
         <cq.password>admin</cq.password>
+        <!--<org.apache.felix-maven-scr-plugin>1.15.0</org.apache.felix-maven-scr-plugin>-->
+        <org.apache.felix-maven-scr-plugin>1.7.4</org.apache.felix-maven-scr-plugin>
     </properties>
 
     <scm>
@@ -73,7 +75,7 @@
             <dependency>
                 <groupId>com.squeakysand.osgi</groupId>
                 <artifactId>squeakysand-osgi</artifactId>
-                <version>0.4.0</version>
+                <version>0.5.0</version>
             </dependency>
             <dependency>
                 <groupId>com.squeakysand.sling</groupId>
@@ -82,12 +84,15 @@
                 <scope>provided</scope>
             </dependency>
 
+            <!--JCR-->
             <dependency>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.jcr.jcr-wrapper</artifactId>
                 <version>2.0.0</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!--Sling-->
             <dependency>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.api</artifactId>
@@ -126,7 +131,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.3.7</version>
+                    <version>2.5.3</version>
                     <configuration>
                         <instructions>
                             <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
@@ -138,7 +143,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-scr-plugin</artifactId>
-                    <version>1.7.4</version>
+                    <version>${org.apache.felix-maven-scr-plugin}</version>
                     <executions>
                         <execution>
                             <id>generate-scr-descriptor</id>
@@ -231,7 +236,7 @@
                                             <pluginExecutionFilter>
                                                 <groupId>org.apache.felix</groupId>
                                                 <artifactId>maven-scr-plugin</artifactId>
-                                                <versionRange>[1.7.4,)</versionRange>
+                                                <versionRange>[${org.apache.felix-maven-scr-plugin}},)</versionRange>
                                                 <goals>
                                                     <goal>scr</goal>
                                                 </goals>
