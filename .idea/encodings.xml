@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-generated" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-generated/aem-generated-all" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-generated/aem-generated-config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-generated/aem-generated-content" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-generated/aem-generated-services" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-generated/aem-generated-taglib" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-generated/aem-generated-view" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-made" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-made/bundle" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework-test/aem/aem-made/content" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/bean/Anime.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/bean/Rating.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/bean/Seiyuu.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/bean/Series.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/enums/AnimeType.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/exception/AnimeTypeException.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/exception/RequestSendException.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/helper/AnimeTypeService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/helper/AnimeTypeServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/helper/RequestHelper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/helper/RequestHelperImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/service/metadata/AnimeAnilist.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/service/metadata/AnimeData.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-test/zetsubou_0-test/application/animeList/src/main/java/com/zetsubou_0/anime/service/migration/Migration.java" charset="UTF-8" />
+  </component>
 </project>
-
