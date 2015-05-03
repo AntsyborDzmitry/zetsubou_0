@@ -11,6 +11,7 @@ import com.zetsubou_0.anime.exception.ActionException;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by zetsubou_0 on 01.05.15.
@@ -45,8 +46,9 @@ public class WriteJsonFile implements Action {
 
     @Override
     public void perform() throws ActionException {
-        String path = (String) params.get(ActionConstant.File.PATH_TO);
-        Series<Anime> series = (Series<Anime>) params.get(ActionConstant.Anilist.ANIME_SERIES);
+        Map<String, Object> source = (Map<String, Object>) params.get(ActionConstant.Source.FILE);
+        String path = (String) source.get(ActionConstant.Source.RESOURCE_PATH);
+        Series<Anime> seriesSet = (Series<Anime>) params.get(ActionConstant.Anilist.ANIME_SERIES);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> fileParams = new HashMap<>();
 
@@ -60,8 +62,10 @@ public class WriteJsonFile implements Action {
             }
 
             try {
-                file.write(gson.toJson(series).getBytes());
-                fileParams.put(ActionConstant.File.FILE_REF, file);
+                Map<String, Object> streamParams = new HashMap<>();
+                streamParams.put(ActionConstant.Source.RESOURCE, file);
+                fileParams.put(ActionConstant.Source.STREAM, streamParams);
+                file.write(gson.toJson(seriesSet).getBytes());
                 addParams(fileParams);
             } catch (IOException e) {
                 throw new ActionException(e);

@@ -19,7 +19,9 @@ public class AnimeFileSystem implements AnimeData {
     @Override
     public void pullData(Action action) {
         Map<String, Object> params = new HashMap<>();
-        params.put(ActionConstant.File.ROOT_PATH, FileSystemConstant.PATH);
+        Map<String, Object> source = new HashMap<>();
+        source.put(ActionConstant.Source.RESOURCE_PATH, FileSystemConstant.PATH);
+        params.put(ActionConstant.Source.DIRECTORY, source);
 
         try {
             action.setParams(params);

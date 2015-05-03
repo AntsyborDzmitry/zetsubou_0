@@ -3,8 +3,8 @@ package com.zetsubou_0.anime.action;
 import com.zetsubou_0.anime.constant.ActionConstant;
 import com.zetsubou_0.anime.exception.ActionException;
 
+import java.io.Closeable;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +40,8 @@ public class FileClose implements Action {
 
     @Override
     public void perform() throws ActionException {
-        RandomAccessFile file = (RandomAccessFile) params.get(ActionConstant.File.FILE_REF);
+        Map<String, Object> source = (Map<String, Object>) params.get(ActionConstant.Source.STREAM);
+        Closeable file = (Closeable) source.get(ActionConstant.Source.RESOURCE);
         if(file != null) {
             try {
                 file.close();

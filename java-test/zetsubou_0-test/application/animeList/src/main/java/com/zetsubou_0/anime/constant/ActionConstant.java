@@ -4,10 +4,16 @@ package com.zetsubou_0.anime.constant;
  * Created by zetsubou_0 on 01.05.15.
  */
 public class ActionConstant {
-    public class File {
-        public static final String ROOT_PATH = "rootPath";
-        public static final String PATH_TO = "pathTo";
-        public static final String FILE_REF = "fileReference";
+    public class Source {
+        public static final String FILE = "file";
+        public static final String DIRECTORY = "directory";
+        public static final String STREAM = "stream";
+        public static final String JCR = "jcr";
+
+        public static final String RESOURCE = "resource";
+        public static final String RESOURCE_TYPE = "resourceType";
+        public static final String RESOURCE_CLASS = "resourceClass";
+        public static final String RESOURCE_PATH = "resourcePath";
     }
 
     public class Anilist {

@@ -30,7 +30,9 @@ public class AnimeAnilist implements AnimeData {
             params.putAll(action.getParams());
             params.remove(ActionConstant.Anilist.ANIME_SERIES_SET);
 
-            params.put(ActionConstant.File.PATH_TO, FileSystemConstant.RESULTS + FileSystemConstant.JSON);
+            Map<String, Object> source = new HashMap<>();
+            source.put(ActionConstant.Source.RESOURCE_PATH, FileSystemConstant.RESULTS + FileSystemConstant.JSON);
+            params.put(ActionConstant.Source.FILE, source);
             params.put(ActionConstant.Anilist.JOB_LIST, jobs);
             action.addParams(params);
 
@@ -50,8 +52,6 @@ public class AnimeAnilist implements AnimeData {
         } catch (ActionException e) {
             LOG.error(e.getMessage(), e);
         }
-
-
 
     }
 }

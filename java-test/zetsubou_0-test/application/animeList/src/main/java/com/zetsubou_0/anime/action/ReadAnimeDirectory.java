@@ -20,14 +20,14 @@ import java.util.regex.Pattern;
 /**
  * Created by zetsubou_0 on 01.05.15.
  */
-public class ReadFileSystem implements Action {
+public class ReadAnimeDirectory implements Action {
     private Map<String, Object> params = new HashMap<>();
     private String path;
 
-    public ReadFileSystem() {
+    public ReadAnimeDirectory() {
     }
 
-    public ReadFileSystem(Action action) throws ActionException {
+    public ReadAnimeDirectory(Action action) throws ActionException {
         params.putAll(action.getParams());
     }
 
@@ -48,7 +48,8 @@ public class ReadFileSystem implements Action {
 
     @Override
     public void perform() throws ActionException {
-        path = (String) params.get(ActionConstant.File.ROOT_PATH);
+        Map<String, Object> source = (Map<String, Object>) params.get(ActionConstant.Source.DIRECTORY);
+        path = (String) source.get(ActionConstant.Source.RESOURCE_PATH);
         params.put(ActionConstant.Anilist.ANIME_SERIES_SET, readDisk());
     }
 

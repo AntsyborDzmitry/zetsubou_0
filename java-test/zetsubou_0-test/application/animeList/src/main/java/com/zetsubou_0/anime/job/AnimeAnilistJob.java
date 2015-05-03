@@ -79,6 +79,9 @@ public class AnimeAnilistJob implements Runnable, Handler {
                 List<AnimeAnilistJob> jobs = (List<AnimeAnilistJob>) action.getParams().get(ActionConstant.Anilist.JOB_LIST);
                 jobs.remove(this);
 
+                // debug
+                System.out.println("Working threads: " + jobs.size());
+
                 // wake up waiting thread(s)
                 if(jobs.size() == 0) {
                     new FileClose(action).perform();
@@ -145,9 +148,6 @@ public class AnimeAnilistJob implements Runnable, Handler {
             initParams.put(RequestHelper.KEY_QUERY, query);
             initParams.put(RequestHelper.KEY_URL, AnilistConstant.BASE_URL + AnilistConstant.ANIME_SEARCH + correctQueryString(queryString));
             initParams.put(RequestHelper.KEY_METHOD, RestMethods.GET);
-
-            // debug
-            System.out.println(AnilistConstant.BASE_URL + AnilistConstant.ANIME_SEARCH + correctQueryString(queryString));
 
             helper.init(initParams);
             String response = helper.send();
