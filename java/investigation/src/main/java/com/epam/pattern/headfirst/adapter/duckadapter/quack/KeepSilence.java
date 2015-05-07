@@ -1,0 +1,10 @@
+package com.epam.pattern.headfirst.adapter.duckadapter.quack;
+
+/**
+ * Created by Kiryl_Lutsyk on 1/9/2015.
+ */
+public class KeepSilence implements Quackable {
+    @Override public void quack() {
+        System.out.println("I can't quack ...");
+    }
+}
