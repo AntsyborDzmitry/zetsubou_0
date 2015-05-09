@@ -1,0 +1,18 @@
+package com.epam.pattern.headfirst.strategy.simuduck.duck;
+
+import com.epam.pattern.headfirst.strategy.simuduck.fly.WingsFly;
+import com.epam.pattern.headfirst.strategy.simuduck.quack.Quack;
+
+/**
+ * Created by Kiryl_Lutsyk on 1/9/2015.
+ */
+public class DefaultDuck extends Duck {
+    public DefaultDuck() {
+        quackBehaviour = new Quack();
+        flyBehaviour = new WingsFly();
+    }
+
+    @Override public void print() {
+        System.out.println("I am default duck.");
+    }
+}
