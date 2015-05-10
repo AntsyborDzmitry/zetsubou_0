@@ -9,5 +9,6 @@ import com.zetsubou_0.wallpaper.core.WallpaperChangerWindows;
 public class Main {
     public static void main(String[] args) {
         WallpaperChanger wc = new WallpaperChangerWindows();
+        wc.changeWallpaper("http://i.ytimg.com/vi/pHKZccQy_cg/maxresdefault.jpg");
     }
 }
