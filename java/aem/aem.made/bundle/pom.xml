@@ -92,11 +92,10 @@
             <artifactId>org.apache.sling.jcr.api</artifactId>
         </dependency>
 
-        <!--Anime List-->
+        <!--String Utils-->
         <dependency>
-            <groupId>com.zetsubou_0</groupId>
-            <artifactId>animeList</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
     </dependencies>
 
