@@ -26,8 +26,8 @@ urlListJsonObject="{\"objects\":[$urlsList]}"
 echo "urls list json object - $urlListJsonObject"
 
 echo "sending request for purging to akamai..." 
-akamaiResponse=$(curl https://api.ccu.akamai.com/ccu/v2/queues/default -H "Content-Type:application/json" -d $urlListJsonObject -u $credentials)
-#akamaiResponse="{\"estimatedSeconds\": 420, \"progressUri\": \"/ccu/v2/purges/ee72318c-2d05-11e4-8abe-55b4f8f0cc4d\", \"purgeId\": \"ee72318c-2d05-11e4-8abe-55b4f8f0cc4d\", \"supportId\": \"17PY1409046422625103-322720864\", \"httpStatus\": 201, \"detail\": \"Request accepted
+akamaiResponse=$(curl url -H "Content-Type:application/json" -d $urlListJsonObject -u $credentials)
+#akamaiResponse="{\"estimatedSeconds\": 420, \"progressUri\": \"url\", \"purgeId\": \"ee72318c-2d05-11e4-8abe-55b4f8f0cc4d\", \"supportId\": \"17PY1409046422625103-322720864\", \"httpStatus\": 201, \"detail\": \"Request accepted
 #.\", \"pingAfterSeconds\": 420}"
 echo "akamai response: "
 echo $'\n'
@@ -41,7 +41,7 @@ echo ping after seconds - $pingAfter
 if [[ $statusCode == '201' ]]
 then
 	echo "waiting for cache clearing $pingAfter seconds. Will check purge status every minute."
-	purgeCheckUrl="https://api.ccu.akamai.com$progressUri"
+	purgeCheckUrl="URL$progressUri"
 	let "timeout = 2 * $pingAfter"
 	echo timeout - $timeout
 	progressTime=0
