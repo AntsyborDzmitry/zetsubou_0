@@ -1,8 +1,6 @@
 package com.zetsubou_0.animelist.anime.action;
 
 import com.zetsubou_0.animelist.anime.bean.Anime;
-import com.zetsubou_0.animelist.anime.bean.Series;
-import com.zetsubou_0.animelist.anime.constant.ActionConstant;
 import com.zetsubou_0.animelist.anime.constant.FileSystemConstant;
 import com.zetsubou_0.animelist.anime.enums.AnimeType;
 import com.zetsubou_0.animelist.anime.exception.ActionException;
@@ -20,69 +18,52 @@ import java.util.regex.Pattern;
 /**
  * Created by zetsubou_0 on 01.05.15.
  */
-public class ReadAnimeDirectory implements Action {
-    private Map<String, Object> params = new HashMap<>();
-    private String path;
+public class ReadAnimeDirectory extends AbstractAction {
 
     public ReadAnimeDirectory() {
     }
 
     public ReadAnimeDirectory(Action action) throws ActionException {
-        params.putAll(action.getParams());
-    }
-
-    @Override
-    public Map<String, Object> getParams() throws ActionException {
-        return params;
-    }
-
-    @Override
-    public void setParams(Map<String, Object> params) throws ActionException {
-        this.params = params;
-    }
-
-    @Override
-    public void addParams(Map<String, Object> params) throws ActionException {
-        this.params.putAll(params);
+        super(action);
     }
 
     @Override
     public void perform() throws ActionException {
-        Map<String, Object> source = (Map<String, Object>) params.get(ActionConstant.Source.DIRECTORY);
-        path = (String) source.get(ActionConstant.Source.RESOURCE_PATH);
-        params.put(ActionConstant.Anilist.ANIME_SERIES_SET, readDisk());
+        Map<String, Object> source = (Map<String, Object>) params.get(SourceContainer.DIRECTORY);
+        String path = (String) source.get(SourceContainer.RESOURCE_OUT);
+
+        // results
+        Map<String, Map<String, Set<Anime>>> res = new HashMap<>();
+        res.put(AnimeContainer.ANIME_SET, new HashMap<String, Set<Anime>>());
+        res.put(AnimeContainer.ANIME_SET_ERROR, new HashMap<String, Set<Anime>>());
+        params.put(AnimeContainer.ANIME, res);
+
+        readDisk(path);
     }
 
-    private Set<Series<Anime>> readDisk() {
-        Set<Series<Anime>> animeSeriesSet = new HashSet<>();
-
+    private void readDisk(String path) {
         File root = new File(path);
         for(File directory : root.listFiles()) {
             if(directory.isDirectory()) {
-                Series<Anime> series = new Series<>();
-                series.setId(directory.getName());
-
                 // sub directory
                 Set<Anime> animeSet = new HashSet<>();
-                for(File subDirectory : directory.listFiles()) {
+                for(final File subDirectory : directory.listFiles()) {
                     if(subDirectory.isDirectory()) {
-                        animeSet.add(animeFromDirectory(subDirectory));
+                        Anime anime = new Anime();
+                        anime.setTitles(new HashSet<String>() {{add(subDirectory.getName());}});
+                        animeSet.add(anime);
                     }
                 }
-
-                series.setSeriesSet(animeSet);
-
-                animeSeriesSet.add(series);
+                Map<String, Map<String, Set<Anime>>> res = (Map<String, Map<String, Set<Anime>>>) params.get(AnimeContainer.ANIME);
+                res.get(AnimeContainer.ANIME_SET).put(directory.getName(), animeSet);
             }
         }
-
-        return animeSeriesSet;
     }
 
     private Anime animeFromDirectory(File file) {
         final int YEAR = 1, SECOND = 3, TITLE = 4, TYPE = 6;
         Anime anime = new Anime();
-        String name = file.getName();
+        final String name = file.getName();
 
         Pattern p = Pattern.compile(FileSystemConstant.ANIME_PATH_PATTERN);
         Matcher m = p.matcher(name);
@@ -130,7 +111,11 @@ public class ReadAnimeDirectory implements Action {
             anime.setEndDate(date);
 
         } else {
-            System.err.println("Not found - " + file.getAbsolutePath());
+            // save anime with error (only title)
+            final Anime errorAnime = new Anime();
+            errorAnime.setTitles(new HashSet<String>() {{add(name);}});
+            Map<String, Map<String, Set<Anime>>> res = (Map<String, Map<String, Set<Anime>>>) params.get(AnimeContainer.ANIME);
+            res.get(AnimeContainer.ANIME_SET_ERROR).put(name, new HashSet<Anime>() {{add(errorAnime);}});
         }
 
         return anime;

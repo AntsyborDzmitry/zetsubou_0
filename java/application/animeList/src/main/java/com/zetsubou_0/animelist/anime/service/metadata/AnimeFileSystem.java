@@ -1,7 +1,6 @@
 package com.zetsubou_0.animelist.anime.service.metadata;
 
 import com.zetsubou_0.animelist.anime.action.Action;
-import com.zetsubou_0.animelist.anime.constant.ActionConstant;
 import com.zetsubou_0.animelist.anime.constant.FileSystemConstant;
 import com.zetsubou_0.animelist.anime.exception.ActionException;
 import org.slf4j.Logger;
@@ -18,17 +17,17 @@ public class AnimeFileSystem implements AnimeData {
 
     @Override
     public void pullData(Action action) {
-        Map<String, Object> params = new HashMap<>();
-        Map<String, Object> source = new HashMap<>();
-        source.put(ActionConstant.Source.RESOURCE_PATH, FileSystemConstant.PATH);
-        params.put(ActionConstant.Source.DIRECTORY, source);
-
-        try {
-            action.setParams(params);
-            action.perform();
-        } catch (ActionException e) {
-            LOG.error(e.getMessage(), e);
-        }
+//        Map<String, Object> params = new HashMap<>();
+//        Map<String, Object> source = new HashMap<>();
+//        source.put(ActionConstant.Source.RESOURCE_PATH, FileSystemConstant.PATH);
+//        params.put(ActionConstant.Source.DIRECTORY, source);
+//
+//        try {
+//            action.setParams(params);
+//            action.perform();
+//        } catch (ActionException e) {
+//            LOG.error(e.getMessage(), e);
+//        }
     }
 
 }

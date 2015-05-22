@@ -5,8 +5,6 @@ import com.zetsubou_0.animelist.anime.action.Action;
 import com.zetsubou_0.animelist.anime.action.FileClose;
 import com.zetsubou_0.animelist.anime.bean.Anime;
 import com.zetsubou_0.animelist.anime.bean.Rating;
-import com.zetsubou_0.animelist.anime.bean.Series;
-import com.zetsubou_0.animelist.anime.constant.ActionConstant;
 import com.zetsubou_0.animelist.anime.constant.AnilistConstant;
 import com.zetsubou_0.animelist.anime.enums.AnimeService;
 import com.zetsubou_0.animelist.anime.enums.RestMethods;
@@ -34,7 +32,7 @@ import java.util.Date;
 /**
  * Created by zetsubou_0 on 01.05.15.
  */
-public class AnimeAnilistJob implements Runnable, Handler {
+public class AnimeAnilistJob extends AbstractJob implements Handler {
     private static final Logger LOG = LoggerFactory.getLogger(AnimeAnilistJob.class);
 
     private final Action action;
@@ -57,42 +55,42 @@ public class AnimeAnilistJob implements Runnable, Handler {
 
     @Override
     public void run() {
-        try {
-            Map<String, Object> params = action.getParams();
-
-            Listener listener = (Listener) params.get(ActionConstant.Observer.LISTENER);
-            listeners.add(listener);
-
-            Series<Anime> series = new Series<>();
-            String title = (String) params.get(ActionConstant.Anilist.TITLE);
-            series.setId(title);
-            series.setSeriesSet(searchAnime(title));
-
-            params.put(ActionConstant.Anilist.ANIME_SERIES, series);
-
-            action.addParams(params);
-            action.perform();
-        } catch (ActionException e) {
-            LOG.error(e.getMessage(), e);
-        } finally {
-            try {
-                List<AnimeAnilistJob> jobs = (List<AnimeAnilistJob>) action.getParams().get(ActionConstant.Anilist.JOB_LIST);
-                jobs.remove(this);
-
-                // debug
-                System.out.println("Working threads: " + jobs.size());
-
-                // wake up waiting thread(s)
-                if(jobs.size() == 0) {
-                    new FileClose(action).perform();
-                    for(Listener listener : listeners) {
-                        listener.performAction();
-                    }
-                }
-            } catch (ActionException e) {
-                LOG.error(e.getMessage(), e);
-            }
-        }
+//        try {
+//            Map<String, Object> params = action.getParams();
+//
+//            Listener listener = (Listener) params.get(ActionConstant.Observer.LISTENER);
+//            listeners.add(listener);
+//
+//            Series<Anime> series = new Series<>();
+//            String title = (String) params.get(ActionConstant.Anilist.TITLE);
+//            series.setId(title);
+//            series.setSeriesSet(searchAnime(title));
+//
+//            params.put(ActionConstant.Anilist.ANIME_SERIES, series);
+//
+//            action.addParams(params);
+//            action.perform();
+//        } catch (ActionException e) {
+//            LOG.error(e.getMessage(), e);
+//        } finally {
+//            try {
+//                List<AnimeAnilistJob> jobs = (List<AnimeAnilistJob>) action.getParams().get(ActionConstant.Anilist.JOB_LIST);
+//                jobs.remove(this);
+//
+//                // debug
+//                System.out.println("Working threads: " + jobs.size());
+//
+//                // wake up waiting thread(s)
+//                if(jobs.size() == 0) {
+//                    new FileClose(action).perform();
+//                    for(Listener listener : listeners) {
+//                        listener.performAction();
+//                    }
+//                }
+//            } catch (ActionException e) {
+//                LOG.error(e.getMessage(), e);
+//            }
+//        }
     }
 
     /**
