@@ -17,6 +17,10 @@ public class ReadFileSystemJob extends AbstractJob {
     private Logger LOG = LoggerFactory.getLogger(ReadFileSystemJob.class);
     private String path;
 
+    public ReadFileSystemJob() {
+        super();
+    }
+
     public ReadFileSystemJob(String path) {
         this.path = path;
     }

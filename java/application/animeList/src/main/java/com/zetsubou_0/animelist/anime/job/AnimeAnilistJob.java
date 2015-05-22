@@ -2,21 +2,18 @@ package com.zetsubou_0.animelist.anime.job;
 
 import com.google.gson.*;
 import com.zetsubou_0.animelist.anime.action.Action;
-import com.zetsubou_0.animelist.anime.action.FileClose;
 import com.zetsubou_0.animelist.anime.bean.Anime;
 import com.zetsubou_0.animelist.anime.bean.Rating;
 import com.zetsubou_0.animelist.anime.constant.AnilistConstant;
 import com.zetsubou_0.animelist.anime.enums.AnimeService;
 import com.zetsubou_0.animelist.anime.enums.RestMethods;
-import com.zetsubou_0.animelist.anime.exception.ActionException;
 import com.zetsubou_0.animelist.anime.exception.AnimeTypeException;
 import com.zetsubou_0.animelist.anime.exception.RequestInitConnectionException;
 import com.zetsubou_0.animelist.anime.exception.RequestSendException;
 import com.zetsubou_0.animelist.anime.helper.RequestHelper;
 import com.zetsubou_0.animelist.anime.helper.RequestHelperImpl;
 import com.zetsubou_0.animelist.anime.helper.AnimeTypeServiceImpl;
-import com.zetsubou_0.animelist.anime.helper.anilist.bean.Token;
-import com.zetsubou_0.animelist.anime.observer.Handler;
+import com.zetsubou_0.animelist.anime.bean.anilist.Token;
 import com.zetsubou_0.animelist.anime.observer.Listener;
 import com.zetsubou_0.animelist.anime.service.metadata.AnimeAnilist;
 import org.apache.commons.lang3.StringUtils;
@@ -32,12 +29,16 @@ import java.util.Date;
 /**
  * Created by zetsubou_0 on 01.05.15.
  */
-public class AnimeAnilistJob extends AbstractJob implements Handler {
+public class AnimeAnilistJob extends AbstractJob {
     private static final Logger LOG = LoggerFactory.getLogger(AnimeAnilistJob.class);
 
-    private final Action action;
+    private Action action;
     private Token token;
     private List<Listener> listeners = new ArrayList<>();
+
+    public AnimeAnilistJob() {
+        super();
+    }
 
     public AnimeAnilistJob(final Action action) {
         this.action = action;

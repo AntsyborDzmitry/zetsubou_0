@@ -1,4 +1,4 @@
-package com.zetsubou_0.animelist.anime.helper.anilist.bean;
+package com.zetsubou_0.animelist.anime.bean.anilist;
 
 import com.google.gson.annotations.SerializedName;
 
