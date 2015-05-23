@@ -17,6 +17,8 @@ public class Anime {
     private Date startDate;
     private Date endDate;
 
+    private Set<String> images;
+
     private String directedBy;
     private String author;
 
@@ -137,6 +139,7 @@ public class Anime {
         if (directedBy != null ? !directedBy.equals(anime.directedBy) : anime.directedBy != null) return false;
         if (endDate != null ? !endDate.equals(anime.endDate) : anime.endDate != null) return false;
         if (genres != null ? !genres.equals(anime.genres) : anime.genres != null) return false;
+        if (images != null ? !images.equals(anime.images) : anime.images != null) return false;
         if (rating != null ? !rating.equals(anime.rating) : anime.rating != null) return false;
         if (startDate != null ? !startDate.equals(anime.startDate) : anime.startDate != null) return false;
         if (titles != null ? !titles.equals(anime.titles) : anime.titles != null) return false;
@@ -153,6 +156,7 @@ public class Anime {
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
+        result = 31 * result + (images != null ? images.hashCode() : 0);
         result = 31 * result + (directedBy != null ? directedBy.hashCode() : 0);
         result = 31 * result + (author != null ? author.hashCode() : 0);
         result = 31 * result + (int) (episodesCount ^ (episodesCount >>> 32));

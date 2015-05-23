@@ -1,9 +1,6 @@
 package com.zetsubou_0.animelist.test;
 
-import com.zetsubou_0.animelist.anime.action.Action;
-import com.zetsubou_0.animelist.anime.action.JcrRead;
-import com.zetsubou_0.animelist.anime.action.ReadAnimeDirectory;
-import com.zetsubou_0.animelist.anime.action.WriteJsonFile;
+import com.zetsubou_0.animelist.anime.action.*;
 import com.zetsubou_0.animelist.anime.bean.Anime;
 import com.zetsubou_0.animelist.anime.constant.FileSystemConstant;
 import com.zetsubou_0.animelist.anime.exception.ActionException;
@@ -36,17 +33,22 @@ public class AnimeListRunner implements Listener {
     public void process() {
         try {
             JobLinker jobLinker = new JobLinkerImpl();
+
+            // read from file system
             Job readFileSystemJob = new ReadFileSystemJob(FileSystemConstant.PATH);
 
-            List<Job> jobs = jobLinker.chainFromGenerator(readFileSystemJob, ReadFileSystemJob.class, new ArrayList<String>() {{
-                add(Action.AnimeContainer.ANIME);
-                add(Action.AnimeContainer.ANIME_SET);
-            }});
+            // read from anilist
+            List<String> keyChain = new ArrayList<>();
+            keyChain.add(Action.AnimeContainer.ANIME);
+            keyChain.add(Action.AnimeContainer.ANIME_SET);
+            List<Job> jobs = jobLinker.chainFromGenerator(readFileSystemJob, ReadAnilist.class, keyChain);
 
-            int i = 0;
+
             for (Job j : jobs) {
-                System.out.println("" + ++i + " - " + j);
+                // todo redirect to write to file
+
             }
+
         } catch (IllegalAccessException | InstantiationException | ActionException | InterruptedException e) {
             e.printStackTrace();
         }

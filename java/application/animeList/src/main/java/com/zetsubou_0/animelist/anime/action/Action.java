@@ -18,6 +18,7 @@ public interface Action {
         public static final String STREAM = "stream";
         public static final String JSON = "json";
         public static final String JCR = "jcr";
+        public static final String QUERY = "query";
 
         public static final String RESOURCE = "resource";
         public static final String RESOURCE_OUT = "resourceOut";
