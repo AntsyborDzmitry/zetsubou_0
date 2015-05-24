@@ -22,17 +22,8 @@ public class AnimeAnilistJob extends AbstractJob {
     }
 
     @Override
-    public void addlistener(Listener listener) {
-        listeners.add(listener);
-    }
-
-    @Override
-    public void removeListener(Listener listener) {
-        listeners.remove(listener);
-    }
-
-    @Override
-    public void run() {
+    public void actionInit() throws ActionException {
+        // todo implement method
         if(getAction() == null) {
             action = new ReadAnilist();
         } else {
@@ -43,5 +34,4 @@ public class AnimeAnilistJob extends AbstractJob {
             }
         }
     }
-
 }
