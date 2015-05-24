@@ -16,6 +16,7 @@ public interface Action {
         public static final String FILE = "file";
         public static final String DIRECTORY = "directory";
         public static final String STREAM = "stream";
+        public static final String PLAIN_TEXT = "plainText";
         public static final String JSON = "json";
         public static final String JCR = "jcr";
         public static final String QUERY = "query";
