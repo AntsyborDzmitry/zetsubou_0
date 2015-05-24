@@ -3,8 +3,6 @@ package com.zetsubou_0.animelist.anime.job;
 import com.zetsubou_0.animelist.anime.action.Action;
 import com.zetsubou_0.animelist.anime.action.WriteJsonFile;
 import com.zetsubou_0.animelist.anime.exception.ActionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +11,6 @@ import java.util.Map;
  * Created by zetsubou_0 on 24.05.15.
  */
 public class WriteJsonFileJob extends AbstractJob {
-    private Logger LOG = LoggerFactory.getLogger(WriteJsonFileJob.class);
     private String path = "";
 
     public WriteJsonFileJob() {
