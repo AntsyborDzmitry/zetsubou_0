@@ -2,6 +2,7 @@ package com.zetsubou_0.animelist.anime.job.util;
 
 import com.zetsubou_0.animelist.anime.action.Action;
 import com.zetsubou_0.animelist.anime.exception.ActionException;
+import com.zetsubou_0.animelist.anime.helper.ChainUtil;
 import com.zetsubou_0.animelist.anime.job.Job;
 
 import java.util.*;
@@ -68,7 +69,7 @@ public class JobFactoryImpl implements JobFactory {
         Action action = job.getAction();
         Map<String, Object> params = action.getParams();
 
-        Object key = getInnerParam(countKey, params);
+        Object key = ChainUtil.getInnerParam(countKey, params);
         int count = 0;
         if(key instanceof String) {
             count = Integer.parseInt((String) key);
@@ -79,15 +80,5 @@ public class JobFactoryImpl implements JobFactory {
         }
 
         return generate(jobClass, action, count, additionalParams);
-    }
-
-    private Object getInnerParam(List<String> keys, Map<String, Object> params) {
-        if(keys.size() > 1) {
-            String key = keys.get(0);
-            Map<String, Object> p = (Map<String, Object>) params.get(key);
-            keys.remove(key);
-            return getInnerParam(keys, p);
-        }
-        return params.get(keys.get(0));
     }
 }

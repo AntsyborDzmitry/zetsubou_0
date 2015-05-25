@@ -3,6 +3,7 @@ package com.zetsubou_0.animelist.anime.job;
 import com.zetsubou_0.animelist.anime.action.Action;
 import com.zetsubou_0.animelist.anime.action.ReadAnimeDirectory;
 import com.zetsubou_0.animelist.anime.exception.ActionException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,11 +30,13 @@ public class ReadFileSystemJob extends AbstractJob {
             action = new ReadAnimeDirectory(action);
         }
 
-        Map<String, Object> source = new HashMap<>();
-        source.put(Action.SourceContainer.RESOURCE_OUT, path);
+        if(StringUtils.isNotBlank(path)) {
+            Map<String, Object> source = new HashMap<>();
+            source.put(Action.SourceContainer.RESOURCE_OUT, path);
 
-        Map<String, Object> params = action.getParams();
-        params.put(Action.SourceContainer.DIRECTORY, source);
-        action.addParams(params);
+            Map<String, Object> params = action.getParams();
+            params.put(Action.SourceContainer.DIRECTORY, source);
+            action.addParams(params);
+        }
     }
 }

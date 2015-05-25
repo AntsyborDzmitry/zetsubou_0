@@ -3,6 +3,7 @@ package com.zetsubou_0.animelist.test;
 import com.zetsubou_0.animelist.anime.action.*;
 import com.zetsubou_0.animelist.anime.constant.FileSystemConstant;
 import com.zetsubou_0.animelist.anime.exception.ActionException;
+import com.zetsubou_0.animelist.anime.helper.ActionHelper;
 import com.zetsubou_0.animelist.anime.job.*;
 import com.zetsubou_0.animelist.anime.job.util.JobLinker;
 import com.zetsubou_0.animelist.anime.job.util.JobLinkerImpl;
@@ -18,28 +19,42 @@ public class AnimeListRunner implements Listener {
 
     public static void main(String[] args) {
         new AnimeListRunner().process();
+//        new AnimeListRunner().test();
 
         System.out.println("Complete");
+    }
+
+    public void test() {
     }
 
     public void process() {
         try {
             JobLinker jobLinker = new JobLinkerImpl();
+            List<String> animeKeyChain = new ArrayList<>();
+            animeKeyChain.add(Action.AnimeContainer.ANIME);
+            animeKeyChain.add(Action.AnimeContainer.ANIME_SET);
+            List<String> queryKeyChain = new ArrayList<>();
+            queryKeyChain.add(Action.SourceContainer.QUERY);
 
-            // read from file system
+            // create read file system job
             Job readFileSystemJob = new ReadFileSystemJob(FileSystemConstant.PATH);
 
-            // read from anilist
-            List<String> keyChain = new ArrayList<>();
-            keyChain.add(Action.AnimeContainer.ANIME);
-            keyChain.add(Action.AnimeContainer.ANIME_SET);
-            List<Job> jobs = jobLinker.chainFromGenerator(readFileSystemJob, ReadAnilist.class, keyChain);
+            // read from file system & create read from anilist
+            List<Job> jobs = jobLinker.chainFromGenerator(readFileSystemJob, AnimeAnilistJob.class, animeKeyChain);
 
-            // write file
-            Job writeJsonFile = new WriteJsonFileJob(FileSystemConstant.RESULTS + FileSystemConstant.JSON);
+            // read from anilist & create write file job
+            Job writeJsonFileJob = new WriteJsonFileJob(FileSystemConstant.RESULTS);
             for (Job j : jobs) {
-                jobLinker.chain(j, writeJsonFile);
+                ActionHelper.transformAnimeStringParams(animeKeyChain, queryKeyChain, j.getAction().getParams());
+                jobLinker.chain(j, writeJsonFileJob);
             }
+
+            // create notifier job
+            List<Listener> listeners = new ArrayList<>();
+            listeners.add(this);
+            Job notifierJob = new NotifierJob(listeners);
+            // write file job and notify this class
+            jobLinker.chain(writeJsonFileJob, notifierJob, true);
 
         } catch (IllegalAccessException | InstantiationException | ActionException | InterruptedException e) {
             e.printStackTrace();

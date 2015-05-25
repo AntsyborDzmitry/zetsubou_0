@@ -24,6 +24,9 @@ public interface Action {
         public static final String RESOURCE = "resource";
         public static final String RESOURCE_OUT = "resourceOut";
         public static final String RESOURCE_IN = "resourceIn";
+
+        public static final String DATA = "data";
+        public static final String DATA_ERROR = "dataError";
     }
 
     public class AnimeContainer {

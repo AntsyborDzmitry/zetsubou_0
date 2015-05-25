@@ -12,8 +12,12 @@ import java.util.Map;
  */
 public interface JobLinker extends Listener {
     void chain(Job from, Job to);
+    void chain(Job from, Job to, boolean isStart);
     void chain(Job from, List<Job> to);
+    void chain(Job from, List<Job> to, boolean isStart);
 
     List<Job> chainFromGenerator(Job from, Class job, List<String> keyCain) throws IllegalAccessException, ActionException, InstantiationException, InterruptedException;
-    List<Job> chainFromGenerator(Job from, Class job, List<String> keyCain, Map<String, Object> params) throws IllegalAccessException, ActionException, InstantiationException, InterruptedException;
+    List<Job> chainFromGenerator(Job from, Class job, List<String> keyCain, Map<String, Object> additionalParams) throws IllegalAccessException, ActionException, InstantiationException, InterruptedException;
+    List<Job> chainFromGenerator(Job from, Class job, List<String> keyCain, boolean isStart) throws IllegalAccessException, ActionException, InstantiationException, InterruptedException;
+    List<Job> chainFromGenerator(Job from, Class job, List<String> keyCain, Map<String, Object> additionalParams, boolean isStart) throws IllegalAccessException, ActionException, InstantiationException, InterruptedException;
 }

@@ -10,6 +10,8 @@ public class FileSystemConstant {
     public static final String READ = "r";
     public static final String READ_WRITE = "rw";
 
+    public static final String ERROR = ".error";
+
     public static final String JSON = ".json";
     public static final String XML = ".xml";
 

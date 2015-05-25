@@ -18,16 +18,29 @@ public class JobLinkerImpl implements JobLinker {
     private Map<String, Object> additionalParams = new HashMap<>();
     private List<String> keyCain = new ArrayList<>();
     private Class generatedJob;
+    private boolean isStart = false;
 
     @Override
     public void chain(final Job from, final Job to) {
-        chain(from, new ArrayList<Job>() {{add(to);}});
+        chain(from, to, false);
+    }
+
+    @Override
+    public void chain(final Job from, final Job to, boolean isStart) {
+        chain(from, new ArrayList<Job>() {{add(to);}}, isStart);
     }
 
     @Override
     public void chain(final Job from, final  List<Job> to) {
+        chain(from, to, false);
+    }
+
+    @Override
+    public void chain(Job from, List<Job> to, boolean isStart) {
+        isGenerator = false;
         this.from = from;
         this.to = to;
+        this.isStart = isStart;
 
         // add this as listener
         from.addlistener(this);
@@ -37,16 +50,31 @@ public class JobLinkerImpl implements JobLinker {
 
     @Override
     public List<Job> chainFromGenerator(Job from, Class job, List<String> keyCain) throws IllegalAccessException, ActionException, InstantiationException, InterruptedException {
-        return chainFromGenerator(from, job, keyCain, new HashMap<String, Object>());
+        return chainFromGenerator(from, job, keyCain, false);
     }
 
     @Override
     public List<Job> chainFromGenerator(Job from, Class job, List<String> keyCain, Map<String, Object> additionalParams) throws IllegalAccessException, ActionException, InstantiationException, InterruptedException {
+        return chainFromGenerator(from,job,keyCain,additionalParams, false);
+    }
+
+    @Override
+    public List<Job> chainFromGenerator(Job from, Class job, List<String> keyCain, boolean isStart) throws IllegalAccessException, ActionException, InstantiationException, InterruptedException {
+        return chainFromGenerator(from,job,keyCain, new HashMap<String, Object>(), isStart);
+    }
+
+    @Override
+    public List<Job> chainFromGenerator(Job from, Class job, List<String> keyCain, Map<String, Object> additionalParams, boolean isStart) throws IllegalAccessException, ActionException, InstantiationException, InterruptedException {
         isGenerator = true;
         this.from = from;
         this.generatedJob = job;
         this.keyCain = keyCain;
-        this.additionalParams = additionalParams;
+        this.isStart = isStart;
+        if(additionalParams != null) {
+            this.additionalParams = additionalParams;
+        } else {
+            this.additionalParams = new HashMap<>();
+        }
 
         synchronized (JobLinkerImpl.class) {
             // add this as listener
@@ -80,6 +108,12 @@ public class JobLinkerImpl implements JobLinker {
 
         synchronized (JobLinkerImpl.class) {
             JobLinkerImpl.class.notifyAll();
+        }
+
+        if(isStart) {
+            for (Job job : to) {
+                new Thread(job).start();
+            }
         }
     }
 }

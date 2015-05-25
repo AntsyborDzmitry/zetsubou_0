@@ -3,6 +3,7 @@ package com.zetsubou_0.animelist.anime.job;
 import com.zetsubou_0.animelist.anime.action.Action;
 import com.zetsubou_0.animelist.anime.action.WriteJsonFile;
 import com.zetsubou_0.animelist.anime.exception.ActionException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,11 +29,13 @@ public class WriteJsonFileJob extends AbstractJob {
             action = new WriteJsonFile(action);
         }
 
-        Map<String, Object> source = new HashMap<>();
-        source.put(Action.SourceContainer.RESOURCE_IN, path);
+        if(StringUtils.isNotBlank(path)) {
+            Map<String, Object> source = new HashMap<>();
+            source.put(Action.SourceContainer.RESOURCE_IN, path);
 
-        Map<String, Object> params = action.getParams();
-        params.put(Action.SourceContainer.FILE, source);
-        action.addParams(params);
+            Map<String, Object> params = action.getParams();
+            params.put(Action.SourceContainer.FILE, source);
+            action.addParams(params);
+        }
     }
 }
