@@ -33,6 +33,13 @@ public class AnimeListRunner implements Listener {
             List<String> animeKeyChain = new ArrayList<>();
             animeKeyChain.add(Action.AnimeContainer.ANIME);
             animeKeyChain.add(Action.AnimeContainer.ANIME_SET);
+            List<String> animeErrorKeyChain = new ArrayList<>();
+            animeErrorKeyChain.add(Action.AnimeContainer.ANIME);
+            animeErrorKeyChain.add(Action.AnimeContainer.ANIME_SET_ERROR);
+            List<String> dataKeyChain = new ArrayList<>();
+            dataKeyChain.add(Action.SourceContainer.DATA);
+            List<String> dataErrorKeyChain = new ArrayList<>();
+            dataErrorKeyChain.add(Action.SourceContainer.DATA_ERROR);
             List<String> queryKeyChain = new ArrayList<>();
             queryKeyChain.add(Action.SourceContainer.QUERY);
 
@@ -42,11 +49,13 @@ public class AnimeListRunner implements Listener {
             // read from file system & create read from anilist
             List<Job> jobs = jobLinker.chainFromGenerator(readFileSystemJob, AnimeAnilistJob.class, animeKeyChain);
 
-            // read from anilist & create write file job
+            // read from anilist, create json & create write file job
             Job writeJsonFileJob = new WriteJsonFileJob(FileSystemConstant.RESULTS);
             for (Job j : jobs) {
+                Job jsonWrapperJob = new JsonWrapperJob();
                 ActionHelper.transformAnimeStringParams(animeKeyChain, queryKeyChain, j.getAction().getParams());
-                jobLinker.chain(j, writeJsonFileJob);
+                jobLinker.chain(j, jsonWrapperJob);
+                jobLinker.chain(jsonWrapperJob, writeJsonFileJob);
             }
 
             // create notifier job
