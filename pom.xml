@@ -24,6 +24,7 @@
         <module>java/application/animeList</module>
         <module>java/application/mouseMover</module>
         <module>java/application/wallpaper</module>
+        <!--<module>java/application/converter</module>-->
     </modules>
 
 </project>
