@@ -27,4 +27,5 @@ public class AnilistConstant {
     public static final String ISO_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ssX";
     public static final String SIMPLE_PATTERN = "yyyy-MM-dd";
     public static final String YEAR_PATTERN = "yyyy";
+    public static final String SPECIAL_SYMBOLS = "[!@#\\$%\\^&\\*\\)\\(]";
 }

@@ -4,7 +4,8 @@ package com.zetsubou_0.animelist.anime.constant;
  * Created by zetsubou_0 on 01.05.15.
  */
 public class FileSystemConstant {
-    public static final String PATH = "/home/zetsubou_0/Anime";
+//    public static final String PATH = "/home/zetsubou_0/Anime";
+    public static final String PATH = "/home/zetsubou_0/TempDC/anilist_test";
     public static final String RESULTS = "/home/zetsubou_0/results";
 
     public static final String READ = "r";

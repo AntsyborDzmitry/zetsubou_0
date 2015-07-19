@@ -1,12 +1,9 @@
 package com.zetsubou_0.animelist.test;
 
-import com.zetsubou_0.animelist.anime.action.*;
+import com.zetsubou_0.animelist.anime.bean.Anime;
 import com.zetsubou_0.animelist.anime.constant.FileSystemConstant;
-import com.zetsubou_0.animelist.anime.exception.ActionException;
-import com.zetsubou_0.animelist.anime.helper.ActionHelper;
+import com.zetsubou_0.animelist.anime.exception.JobException;
 import com.zetsubou_0.animelist.anime.job.*;
-import com.zetsubou_0.animelist.anime.job.util.JobLinker;
-import com.zetsubou_0.animelist.anime.job.util.JobLinkerImpl;
 import com.zetsubou_0.animelist.anime.observer.Listener;
 
 import java.util.*;
@@ -18,7 +15,11 @@ public class AnimeListRunner implements Listener {
     private Job job;
 
     public static void main(String[] args) {
-        new AnimeListRunner().process();
+        try {
+            new AnimeListRunner().process();
+        } catch (InterruptedException | JobException e) {
+            e.printStackTrace();
+        }
 //        new AnimeListRunner().test();
 
         System.out.println("Complete");
@@ -27,46 +28,48 @@ public class AnimeListRunner implements Listener {
     public void test() {
     }
 
-    public void process() {
-        try {
-            JobLinker jobLinker = new JobLinkerImpl();
-            List<String> animeKeyChain = new ArrayList<>();
-            animeKeyChain.add(Action.AnimeContainer.ANIME);
-            animeKeyChain.add(Action.AnimeContainer.ANIME_SET);
-            List<String> animeErrorKeyChain = new ArrayList<>();
-            animeErrorKeyChain.add(Action.AnimeContainer.ANIME);
-            animeErrorKeyChain.add(Action.AnimeContainer.ANIME_SET_ERROR);
-            List<String> dataKeyChain = new ArrayList<>();
-            dataKeyChain.add(Action.SourceContainer.DATA);
-            List<String> dataErrorKeyChain = new ArrayList<>();
-            dataErrorKeyChain.add(Action.SourceContainer.DATA_ERROR);
-            List<String> queryKeyChain = new ArrayList<>();
-            queryKeyChain.add(Action.SourceContainer.QUERY);
+    public void process() throws InterruptedException, JobException {
+        // read anime from disk
+        Map<String, Object> params = new HashMap<>();
+        params.put(Job.SourceContainer.RESOURCE_OUT, FileSystemConstant.PATH);
+        Job readDisk = new ReadFileSystemJob();
+        readDisk.initParams(params);
+        readDisk.performAction();
+        readDisk.getThread().join();
 
-            // create read file system job
-            Job readFileSystemJob = new ReadFileSystemJob(FileSystemConstant.PATH);
+        // get read list
+        Map<String, Set<Anime>> animeSeries = (Map<String, Set<Anime>>) readDisk.getParams().get(Job.AnimeContainer.ANIME_SERIES);
+        List<Job> jobs = new ArrayList<>(animeSeries.size());
 
-            // read from file system & create read from anilist
-            List<Job> jobs = jobLinker.chainFromGenerator(readFileSystemJob, AnimeAnilistJob.class, animeKeyChain);
+        // create file close job
+        Job fileCloseJob = new FileCloseJob();
+        params = new HashMap<>();
+        params.put(Job.JobContainer.JOB_LIST, jobs);
+        fileCloseJob.initParams(params);
 
-            // read from anilist, create json & create write file job
-            Job writeJsonFileJob = new WriteJsonFileJob(FileSystemConstant.RESULTS);
-            for (Job j : jobs) {
-                Job jsonWrapperJob = new JsonWrapperJob();
-                ActionHelper.transformAnimeStringParams(animeKeyChain, queryKeyChain, j.getAction().getParams());
-                jobLinker.chain(j, jsonWrapperJob);
-                jobLinker.chain(jsonWrapperJob, writeJsonFileJob);
-            }
+        // write job is created
+        Job fileWriterJob = new WriteJsonFileJob();
+        params = new HashMap<>();
+        params.put(Job.SourceContainer.RESOURCE_IN, FileSystemConstant.RESULTS);
+        fileWriterJob.initParams(params);
+        fileWriterJob.chain(fileCloseJob);
 
-            // create notifier job
-            List<Listener> listeners = new ArrayList<>();
-            listeners.add(this);
-            Job notifierJob = new NotifierJob(listeners);
-            // write file job and notify this class
-            jobLinker.chain(writeJsonFileJob, notifierJob, true);
+        for(String key : animeSeries.keySet()) {
+            // read from anilist.co job
+            Job anilistJob = new AnimeAnilistJob();
+            params = new HashMap<>();
+            Map<String, Set<Anime>> anime = new HashMap<>();
+            anime.put(key, animeSeries.get(key));
+            params.put(Job.AnimeContainer.ANIME, anime);
+            params.put(Job.JobContainer.JOB_LIST, jobs);
+            anilistJob.initParams(params);
+            anilistJob.chain(fileWriterJob);
+            jobs.add(anilistJob);
+        }
 
-        } catch (IllegalAccessException | InstantiationException | ActionException | InterruptedException e) {
-            e.printStackTrace();
+        // start all anilist jobs
+        for(Job anilistJob : jobs) {
+            anilistJob.performAction();
         }
     }
 
