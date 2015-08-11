@@ -1,20 +1,38 @@
 package com.zetsubou_0.animelist.anime.bean;
 
-import java.util.HashSet;
-import java.util.Set;
+import org.apache.jackrabbit.ocm.mapper.impl.annotation.Field;
+import org.apache.jackrabbit.ocm.mapper.impl.annotation.Node;
 
 /**
  * Created by zetsubou_0 on 21.04.15.
  */
+@Node
 public class Seiyuu {
+    @Field
     private String firstName;
+    @Field
     private String lastName;
+    @Field
     private String originFirstName;
+    @Field
     private String originLastName;
 
+    @Field
     private String city;
 
-    private Set<Anime> anime;
+    @Field(path = true)
+    private String jcrPath;
+
+    public String getName() throws Exception {
+        if(lastName == null || firstName == null) {
+            throw new Exception("Empty name. First name or last name is NULL");
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(lastName);
+        sb.append(" ");
+        sb.append(firstName);
+        return sb.toString();
+    }
 
     public String getFirstName() {
         return firstName;
@@ -56,25 +74,12 @@ public class Seiyuu {
         this.city = city;
     }
 
-    public Set<Anime> getAnime() {
-        return anime;
+    public String getJcrPath() {
+        return jcrPath;
     }
 
-    public void setAnime(Set<Anime> anime) {
-        this.anime = anime;
-    }
-
-    public void addAnime(Anime anime) {
-        if(this.anime == null) {
-            this.anime = new HashSet<Anime>();
-        }
-        this.anime.add(anime);
-    }
-
-    public void removeAnime(Anime anime) {
-        if(this.anime != null) {
-            this.anime.remove(anime);
-        }
+    public void setJcrPath(String jcrPath) {
+        this.jcrPath = jcrPath;
     }
 
     @Override
@@ -84,7 +89,6 @@ public class Seiyuu {
 
         Seiyuu seiyuu = (Seiyuu) o;
 
-        if (anime != null ? !anime.equals(seiyuu.anime) : seiyuu.anime != null) return false;
         if (city != null ? !city.equals(seiyuu.city) : seiyuu.city != null) return false;
         if (firstName != null ? !firstName.equals(seiyuu.firstName) : seiyuu.firstName != null) return false;
         if (lastName != null ? !lastName.equals(seiyuu.lastName) : seiyuu.lastName != null) return false;
@@ -103,7 +107,6 @@ public class Seiyuu {
         result = 31 * result + (originFirstName != null ? originFirstName.hashCode() : 0);
         result = 31 * result + (originLastName != null ? originLastName.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (anime != null ? anime.hashCode() : 0);
         return result;
     }
 }

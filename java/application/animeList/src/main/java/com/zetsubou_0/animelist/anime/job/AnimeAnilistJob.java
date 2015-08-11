@@ -26,7 +26,6 @@ import java.util.*;
  */
 public class AnimeAnilistJob extends AbstractJob {
     private Token token;
-    private static int count;
 
     @Override
     public void action() throws JobException {

@@ -1,14 +1,21 @@
 package com.zetsubou_0.animelist.anime.bean;
 
 import com.zetsubou_0.animelist.anime.enums.AnimeService;
+import org.apache.jackrabbit.ocm.mapper.impl.annotation.Field;
+import org.apache.jackrabbit.ocm.mapper.impl.annotation.Node;
 
 /**
  * Created by zetsubou_0 on 21.04.15.
  */
+@Node
 public class Rating {
+//    @Field
     private AnimeService source;
+    @Field
     private double score;
+    @Field
     private long voiceCount;
+    @Field
     private long position;
 
     public AnimeService getSource() {

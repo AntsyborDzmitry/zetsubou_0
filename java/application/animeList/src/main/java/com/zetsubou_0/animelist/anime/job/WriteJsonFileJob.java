@@ -64,7 +64,6 @@ public class WriteJsonFileJob extends AbstractJob {
                             throw new JobException(e);
                         }
                     }
-
                 }
             }
         }
