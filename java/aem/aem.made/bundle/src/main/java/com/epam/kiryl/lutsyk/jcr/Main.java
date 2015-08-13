@@ -4,7 +4,6 @@ import com.epam.kiryl.lutsyk.jcr.bean.Entity;
 import com.epam.kiryl.lutsyk.jcr.dao.JcrDao;
 import com.epam.kiryl.lutsyk.jcr.dao.JcrDaoImpl;
 import com.epam.kiryl.lutsyk.jcr.exception.DaoException;
-import org.apache.jackrabbit.commons.JcrUtils;
 import org.apache.jackrabbit.core.TransientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +20,9 @@ public class Main {
     private static final String REP_WORKSPACE = "aem-training";
     private static final String DIR_SEPARATOR = "/";
     private static final String TABULATION = "\t";
+    public static final String ADMIN = "admin";
     private static final String[] REP_DEFAULT_DIRECTORIES = {"content", JcrDao.DEFAULT_PATH};
-    private static final Credentials REP_CREDENTIALS = new SimpleCredentials("admin","admin".toCharArray());
+    private static final Credentials REP_CREDENTIALS = new SimpleCredentials(ADMIN, ADMIN.toCharArray());
     // CQ 5.3 instance
     private static final String AEM_REPOSITORY = "http://localhost:4504/crx/server";
 
@@ -32,13 +32,13 @@ public class Main {
 
 
     public static void main(String[] args)  {
-//        repository = new TransientRepository(getRepositoryDir());
+        repository = new TransientRepository(getRepositoryDir());
 
         try{
-            repository = JcrUtils.getRepository(AEM_REPOSITORY);
-            session = repository.login(REP_CREDENTIALS);
-            fillWorkspace();
-//            initWorkspace();
+//            repository = JcrUtils.getRepository(AEM_REPOSITORY);
+//            session = repository.login(REP_CREDENTIALS);
+//            fillWorkspace();
+            initWorkspace();
             Node node = session.getRootNode();
 
             JcrDao dao = new JcrDaoImpl();
@@ -151,7 +151,6 @@ public class Main {
             sb.append(DIR_SEPARATOR);
         }
         LOG.info(sb.toString());
-//        System.out.println(sb.toString());
         while(iterator.hasNext()) {
             printNodes(iterator.nextNode());
         }
