@@ -1,0 +1,9 @@
+Find as much as possible information about observation in JCR. You can start from this link http://www.onjava.com/pub/a/onjava/2006/11/08/advanced-java-content-repository.html?page=2
+
+The task will be next:
+
+As we all know JCR works not so good with flat data (a lot nodes on the same level). To decrease performance issue for this problem I propose you implement jcr listener that will separate our node entities by some rule (creation date for example) and inbox them to folder with particular month. I mean if we added employee in our repository it should be moved under node folder with name August.
+Separation rule is all up to you and will depends on business logic of your entity.
+Don’t forget to change your dao implementation according this rule.
+
+I decide do not assign question personally at this time. You can choose whatever you like and don’t forget about your previous tasks that you didn’t finish.

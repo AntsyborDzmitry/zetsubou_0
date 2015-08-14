@@ -1,0 +1,20 @@
+Let’s start something more interesting. We are gonna talk about JCR in more details.
+
+1.	What is a content repository? What is JCR?
+2.	How to add / delete property from Node?
+3.	Explain Node class methods?
+4.	What is workspace?
+5.	How many workspaces repository can have?
+6.	How many workspaces client can work with in a single session?
+
+For this questions please read the next documentation about JCR (1-5, 10, 13) http://www.day.com/specs/jcr/2.0/1_Preface.html
+
+Also I want that you prepare a home work task (you can use this code as starting point https://github.com/Vedzmar/jcr_training ):
+
+1.	Write a recursive function for print jcr tree for particular node.
+2.	Create your personal workspace in repository and work with it.
+3.	Write Entity class with at least 3 fields (int, String, Date/Calendar)
+4.	Write DAO class for saving, reading, editing and deleting your entities from JCR repository
+5.	Rewrite your program for working with already existing AEM repository (connect via http to AEM instance)
+
+Feel free to ask me personal or in chant in case any questions/issues.

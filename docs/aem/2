@@ -1,0 +1,8 @@
+1.	For your Entity class from previous task prepare nodeType definition file and register it in the repository. Keep in mind that It may already be registered. You have to check it in you program. Definition should be as much as possible restricted by rules of your entity class. Also for education propose make one field with default value.
+2.	Add two methods to your DAO class that will use query engine (any you like)
+a.	First one that takes String variable and return entities that have field that starts with this string.
+b.	Second method takes two variables Data/Calendar and return entities that have Data/Calendar field that lying  between this this dates.
+
+On this time there is no questions. I plan to ask it after our session. The questions will be assign personally.
+
+P. S. I know some of you on your project use query language rather that xpath. I ask you to find out the reason for this choice and share it with us.
