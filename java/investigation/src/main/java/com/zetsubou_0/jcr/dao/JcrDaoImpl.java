@@ -3,7 +3,6 @@ package com.zetsubou_0.jcr.dao;
 import com.zetsubou_0.jcr.bean.Entity;
 import com.zetsubou_0.jcr.exception.DaoException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.jackrabbit.JcrConstants;
 
 import javax.jcr.Node;
 import javax.jcr.Property;
@@ -23,10 +22,9 @@ public class JcrDaoImpl implements JcrDao {
         try {
             Node store = getStore(session.getRootNode());
             if(StringUtils.isBlank(entity.getName()) || store.hasNode(entity.getName())) {
-                throw new DaoException(entity.getName() + " present in repository");
+                throw new DaoException("Add exception. " + entity.getName() + " present in repository");
             } else {
                 Node added = store.addNode(entity.getName());
-                added.setProperty(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED);
                 added.setProperty(COUNT, entity.getCount());
                 Calendar date = Calendar.getInstance();
                 date.setTime(entity.getDate());
@@ -43,7 +41,7 @@ public class JcrDaoImpl implements JcrDao {
         try {
             Node store = getStore(session.getRootNode());
             if(StringUtils.isBlank(entity.getName()) || !store.hasNode(entity.getName())) {
-                throw new DaoException(entity.getName() + " doesn't present in repository");
+                throw new DaoException("Update exception. " + entity.getName() + " doesn't present in repository");
             } else {
                 Node updated = store.getNode(entity.getName());
                 updated.setProperty(COUNT, entity.getCount());
@@ -62,8 +60,8 @@ public class JcrDaoImpl implements JcrDao {
         Entity entity = null;
         try {
             Node store = getStore(session.getRootNode());
-            if(StringUtils.isBlank(name)) {
-                throw new DaoException(name + " doesn't present in repository");
+            if(StringUtils.isBlank(name) || !store.hasNode(name)) {
+                throw new DaoException("Get exception. " + name + " doesn't present in repository");
             } else {
                 Node found = store.getNode(name);
                 if(found == null) {
@@ -91,7 +89,7 @@ public class JcrDaoImpl implements JcrDao {
         try {
             Node store = getStore(session.getRootNode());
             if(StringUtils.isBlank(name) || !store.hasNode(name)) {
-                throw new DaoException(name + " doesn't present in repository");
+                throw new DaoException("Remove exception. " + name + " doesn't present in repository");
             } else {
                 Node removed = store.getNode(name);
                 removed.remove();

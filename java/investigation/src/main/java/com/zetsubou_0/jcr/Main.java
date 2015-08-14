@@ -102,6 +102,7 @@ public class Main {
 
         try {
             dao.add(entity, session);
+            LOG.info(entity.getName() + " was added");
         } catch (DaoException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -112,6 +113,7 @@ public class Main {
             e.setName("" + getRandom());
             e.setDate(new Date());
             dao.update(entity, session);
+            LOG.info(entity.getName() + " was updated");
         } catch (DaoException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -119,7 +121,7 @@ public class Main {
         try {
             String num = "" + getRandom();
             dao.remove(num, session);
-            LOG.error(num + " was removed");
+            LOG.info(num + " was removed");
         } catch (DaoException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -127,7 +129,7 @@ public class Main {
         try {
             Entity e = dao.get("" + getRandom(), session);
             if(e != null) {
-                LOG.info(e.getName());
+                LOG.info(e.getName() + " was GET from repository.");
             }
         } catch (DaoException e) {
             LOG.error(e.getMessage(), e);
