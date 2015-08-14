@@ -1,14 +1,13 @@
-package com.epam.kiryl.lutsyk.jcr;
+package com.zetsubou_0.jcr;
 
-import com.epam.kiryl.lutsyk.jcr.bean.Entity;
-import com.epam.kiryl.lutsyk.jcr.dao.JcrDao;
-import com.epam.kiryl.lutsyk.jcr.dao.JcrDaoImpl;
-import com.epam.kiryl.lutsyk.jcr.exception.DaoException;
+import com.zetsubou_0.jcr.bean.Entity;
+import com.zetsubou_0.jcr.dao.JcrDao;
+import com.zetsubou_0.jcr.dao.JcrDaoImpl;
+import com.zetsubou_0.jcr.exception.DaoException;
 import org.apache.jackrabbit.core.TransientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Date;

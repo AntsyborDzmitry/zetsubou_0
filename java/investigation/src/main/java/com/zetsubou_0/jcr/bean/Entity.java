@@ -1,4 +1,4 @@
-package com.epam.kiryl.lutsyk.jcr.bean;
+package com.zetsubou_0.jcr.bean;
 
 import java.util.Date;
 

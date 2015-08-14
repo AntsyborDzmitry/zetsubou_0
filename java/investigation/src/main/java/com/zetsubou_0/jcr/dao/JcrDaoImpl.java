@@ -1,7 +1,7 @@
-package com.epam.kiryl.lutsyk.jcr.dao;
+package com.zetsubou_0.jcr.dao;
 
-import com.epam.kiryl.lutsyk.jcr.bean.Entity;
-import com.epam.kiryl.lutsyk.jcr.exception.DaoException;
+import com.zetsubou_0.jcr.bean.Entity;
+import com.zetsubou_0.jcr.exception.DaoException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.JcrConstants;
 
@@ -104,10 +104,10 @@ public class JcrDaoImpl implements JcrDao {
 
     private Node getStore(Node root) throws DaoException {
         try {
-            if(root.hasNode(JcrDao.DEFAULT_PATH)) {
-                return root.getNode(JcrDao.DEFAULT_PATH);
+            if(root.hasNode(DEFAULT_PATH)) {
+                return root.getNode(DEFAULT_PATH);
             } else {
-                throw new DaoException(JcrDao.DEFAULT_PATH + " not found.");
+                throw new DaoException(DEFAULT_PATH + " not found.");
             }
         } catch (RepositoryException e) {
             throw new DaoException(e);

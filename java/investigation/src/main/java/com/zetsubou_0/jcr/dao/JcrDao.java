@@ -1,7 +1,7 @@
-package com.epam.kiryl.lutsyk.jcr.dao;
+package com.zetsubou_0.jcr.dao;
 
-import com.epam.kiryl.lutsyk.jcr.bean.Entity;
-import com.epam.kiryl.lutsyk.jcr.exception.DaoException;
+import com.zetsubou_0.jcr.bean.Entity;
+import com.zetsubou_0.jcr.exception.DaoException;
 
 import javax.jcr.Session;
 

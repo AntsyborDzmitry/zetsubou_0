@@ -1,4 +1,4 @@
-package com.epam.kiryl.lutsyk.jcr.exception;
+package com.zetsubou_0.jcr.exception;
 
 /**
  * Created by Kiryl_Lutsyk on 8/7/2015.
