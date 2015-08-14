@@ -8,6 +8,7 @@ import org.apache.jackrabbit.core.TransientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
@@ -32,11 +33,9 @@ public class Main {
 
     public static void main(String[] args)  {
         repository = new TransientRepository(getRepositoryDir());
+//            repository = JcrUtils.getRepository(AEM_REPOSITORY);
 
         try{
-//            repository = JcrUtils.getRepository(AEM_REPOSITORY);
-//            session = repository.login(REP_CREDENTIALS);
-//            fillWorkspace();
             initWorkspace();
             Node node = session.getRootNode();
 

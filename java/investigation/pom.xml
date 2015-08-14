@@ -7,7 +7,6 @@
     <groupId>com.zetsubou_0</groupId>
     <artifactId>investigation</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
 
     <name>Investigation</name>
     <description>Investigation</description>
@@ -17,28 +16,32 @@
         <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!--LOG-->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.12</version>
-            </dependency>
+    <dependencies>
+        <!--LOG-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.12</version>
+        </dependency>
 
-            <!--JCR-->
-            <dependency>
-                <groupId>javax.jcr</groupId>
-                <artifactId>jcr</artifactId>
-                <version>2.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.jackrabbit</groupId>
-                <artifactId>jackrabbit-core</artifactId>
-                <version>2.6.2</version>
-            </dependency>
+        <!--JCR-->
+        <dependency>
+            <groupId>javax.jcr</groupId>
+            <artifactId>jcr</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.jackrabbit</groupId>
+            <artifactId>jackrabbit-core</artifactId>
+            <version>2.6.2</version>
+        </dependency>
 
-        </dependencies>
-    </dependencyManagement>
+        <!--String Utils-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.0</version>
+        </dependency>
+    </dependencies>
 
 </project>
