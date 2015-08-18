@@ -4,21 +4,30 @@ import com.zetsubou_0.jcr.bean.Entity;
 import com.zetsubou_0.jcr.dao.JcrDao;
 import com.zetsubou_0.jcr.dao.JcrDaoImpl;
 import com.zetsubou_0.jcr.exception.DaoException;
+import com.zetsubou_0.jcr.listeners.JcrListener;
+import org.apache.jackrabbit.commons.cnd.CndImporter;
+import org.apache.jackrabbit.commons.cnd.ParseException;
 import org.apache.jackrabbit.core.TransientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jcr.*;
+import javax.jcr.observation.Event;
 import java.io.File;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Random;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Main {
+    private static final String NAME = "name";
+    private static final String COUNT = "count";
+    private static final String DATE = "date";
     private static final Logger LOG = LoggerFactory.getLogger(Main.class);
     private static final String REP_DEFAULT_DIRECTORY = "C:/jcr_dir";
     private static final String REP_WORKSPACE = "aem-training";
     private static final String DIR_SEPARATOR = "/";
+    private static final String STORE_PATH = "/content/store";
     private static final String TABULATION = "\t";
     public static final String ADMIN = "admin";
     private static final String[] REP_DEFAULT_DIRECTORIES = {"content", JcrDao.DEFAULT_PATH};
@@ -37,6 +46,11 @@ public class Main {
 
         try{
             initWorkspace();
+            registerNodeType();
+            registerEvent();
+
+//            cleanStore();
+
             Node node = session.getRootNode();
 
             JcrDao dao = new JcrDaoImpl();
@@ -47,7 +61,14 @@ public class Main {
             // print nodes
             printNodes(node);
 
-        } catch (RepositoryException e) {
+            LOG.info(String.valueOf(dao.startWith("5", session)));
+
+            SimpleDateFormat sdf = new SimpleDateFormat(JcrDaoImpl.PATTERN);
+            Date d1 = sdf.parse("2015-08-10");
+            Date d2 = sdf.parse("2015-08-30");
+            LOG.info(String.valueOf(dao.betweenDate(d1, d2, session)));
+
+        } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         } finally {
             if (session != null && session.isLive()) session.logout();
@@ -55,7 +76,7 @@ public class Main {
     }
 
     private static int getRandom() {
-        return random.nextInt(10) + 1;
+        return random.nextInt(100) + 1;
     }
 
     private static File getRepositoryDir(){
@@ -130,10 +151,38 @@ public class Main {
             Entity e = dao.get("" + getRandom(), session);
             if(e != null) {
                 LOG.info(e.getName() + " was GET from repository.");
+                LOG.info("\t" + e.getDate());
+                LOG.info("\t" + e.getCount());
             }
         } catch (DaoException e) {
             LOG.error(e.getMessage(), e);
         }
+    }
+
+    private static void registerNodeType() throws IOException, RepositoryException, ParseException {
+        CndImporter.registerNodeTypes(new FileReader("d:\\projects\\java\\zetsubou_0\\java\\investigation\\src\\main\\resources\\testEntity.cnd"), session);
+    }
+
+    private static void registerEvent() throws RepositoryException {
+        JcrListener listener = new JcrListener(session);
+        session.getWorkspace().getObservationManager().addEventListener(
+                listener, // handler
+                Event.NODE_ADDED, // event types
+                JcrListener.PATH, // path
+                true, // is Deep?
+                null, // uuids filter
+                null, // nodetypes filter
+                false);
+    }
+
+    private static void cleanStore() throws RepositoryException {
+        Node store = session.getNode(STORE_PATH);
+        NodeIterator iterator = store.getNodes();
+        while(iterator.hasNext()) {
+            Node node = iterator.nextNode();
+            node.remove();
+        }
+        session.save();
     }
 
     public static void printNodes(Node root) throws RepositoryException {
@@ -147,6 +196,38 @@ public class Main {
             }
             sb.append(DIR_SEPARATOR);
             sb.append(path[path.length - 1]);
+            Property property = null;
+            sb.append(TABULATION);
+            sb.append(TABULATION);
+            sb.append("[");
+            if(root.hasProperty(NAME)) {
+                property = root.getProperty(NAME);
+                if(property != null) {
+                    sb.append(NAME);
+                    sb.append(":");
+                    sb.append(property.getString());
+                    sb.append(TABULATION);
+                }
+            }
+            if(root.hasProperty(DATE)) {
+                property = root.getProperty(DATE);
+                if(property != null) {
+                    sb.append(DATE);
+                    sb.append(":");
+                    sb.append(property.getDate().getTime());
+                    sb.append(TABULATION);
+                }
+            }
+            if(root.hasProperty(COUNT)) {
+                property = root.getProperty(COUNT);
+                if(property != null) {
+                    sb.append(COUNT);
+                    sb.append(":");
+                    sb.append(property.getLong());
+                    sb.append(TABULATION);
+                }
+            }
+            sb.append("]");
         } else {
             sb.append(DIR_SEPARATOR);
         }

@@ -8,7 +8,7 @@ import javax.jcr.Session;
 /**
  * Created by Kiryl_Lutsyk on 8/7/2015.
  */
-public interface JcrDao {
+public interface JcrDao extends DaoSearch {
     public static final String DEFAULT_PATH = "content/store";
 
     void add(Entity entity, Session session) throws DaoException;
