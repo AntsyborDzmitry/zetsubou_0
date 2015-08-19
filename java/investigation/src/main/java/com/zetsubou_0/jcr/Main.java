@@ -158,15 +158,18 @@ public class Main {
     }
 
     private static void registerEvent() throws RepositoryException {
-        JcrListener listener = new JcrListener(session);
-        session.getWorkspace().getObservationManager().addEventListener(
-                listener, // handler
-                Event.NODE_ADDED, // event types
-                JcrListener.PATH, // path
-                true, // is Deep?
-                null, // uuids filter
-                null, // nodetypes filter
-                false);
+        Boolean isObservationSupported = Boolean.parseBoolean(repository.getDescriptor(Repository.OPTION_OBSERVATION_SUPPORTED));
+        if(isObservationSupported) {
+            JcrListener listener = new JcrListener(session);
+            session.getWorkspace().getObservationManager().addEventListener(
+                    listener, // handler
+                    Event.NODE_ADDED, // event types
+                    JcrListener.PATH, // path
+                    true, // is Deep?
+                    null, // uuids filter
+                    null, // nodetypes filter
+                    false);
+        }
     }
 
     private static void cleanStore() throws RepositoryException {
