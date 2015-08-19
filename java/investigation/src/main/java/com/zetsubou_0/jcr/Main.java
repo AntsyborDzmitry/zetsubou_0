@@ -64,9 +64,9 @@ public class Main {
             LOG.info(String.valueOf(dao.startWith("5", session)));
 
             SimpleDateFormat sdf = new SimpleDateFormat(JcrDaoImpl.PATTERN);
-            Date d1 = sdf.parse("2015-08-10");
-            Date d2 = sdf.parse("2015-08-30");
-            LOG.info(String.valueOf(dao.betweenDate(d1, d2, session)));
+            Date start = sdf.parse("2015-08-10");
+            Date end = sdf.parse("2015-08-30");
+            LOG.info(String.valueOf(dao.betweenDate(start, end, session)));
 
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);

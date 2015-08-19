@@ -3,12 +3,12 @@ package com.zetsubou_0.jcr.dao;
 import com.zetsubou_0.jcr.bean.Entity;
 import com.zetsubou_0.jcr.exception.DaoException;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.jackrabbit.value.ValueFactoryImpl;
 
 import javax.jcr.*;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,8 +21,8 @@ public class JcrDaoImpl implements JcrDao {
     public static final String NAME = "name";
     public static final String COUNT = "count";
     public static final String DATE = "date";
-    public static final String PATTERN = "yyyy-MM-dd";
     public static final String NODE_TYPE = "jte:testEntity";
+    public static final String PATTERN = "yyyy-MM-dd";
 
     @Override
     public void add(Entity entity, Session session) throws DaoException {
@@ -160,8 +160,7 @@ public class JcrDaoImpl implements JcrDao {
     public Set<Entity> betweenDate(Date start, Date end, Session session) throws DaoException {
         Set<Entity> set = new HashSet<Entity>();
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat(PATTERN);
-            NodeIterator iterator = executeQuery(String.format(DATE_QUERY, sdf.format(start), sdf.format(end)), session);
+            NodeIterator iterator = executeQuery(String.format(DATE_QUERY, getJcrDate(start), getJcrDate(end)), session);
             while (iterator.hasNext()) {
                 Node currentNode = iterator.nextNode();
                 Entity entity = new Entity();
@@ -197,5 +196,11 @@ public class JcrDaoImpl implements JcrDao {
         Query query = qm.createQuery(queryString, Query.XPATH);
         QueryResult results = query.execute();
         return results.getNodes();
+    }
+
+    private String getJcrDate(Date date) throws RepositoryException {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return ValueFactoryImpl.getInstance().createValue(cal).getString();
     }
 }

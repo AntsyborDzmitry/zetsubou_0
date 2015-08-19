@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public interface DaoSearch {
     public static final String START_QUERY = "/jcr:root/content/store//* [jcr:like(@name, '%s%%')]";
-    public static final String DATE_QUERY = "/jcr:root/content/store//* [@date>=xs:date('%s') and @date<=xs:date('%s')]";
+    public static final String DATE_QUERY = "/jcr:root/content/store//* [@date >= xs:dateTime('%s') and @date <= xs:dateTime('%s')]";
 
     Set<Entity> startWith(String query, Session session) throws DaoException;
     Set<Entity> betweenDate(Date start, Date end, Session session) throws DaoException;
