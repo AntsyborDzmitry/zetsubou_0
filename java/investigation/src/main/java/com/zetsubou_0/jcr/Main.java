@@ -196,38 +196,35 @@ public class Main {
             }
             sb.append(DIR_SEPARATOR);
             sb.append(path[path.length - 1]);
-            Property property = null;
+
+            PropertyIterator propertyIterator = root.getProperties();
             sb.append(TABULATION);
             sb.append(TABULATION);
-            sb.append("[");
-            if(root.hasProperty(NAME)) {
-                property = root.getProperty(NAME);
-                if(property != null) {
-                    sb.append(NAME);
-                    sb.append(":");
+            sb.append("{");
+            while(propertyIterator.hasNext()) {
+                Property property = propertyIterator.nextProperty();
+                if(property.isMultiple()) {
+                    sb.append(property.getName());
+                    sb.append(" : ");
+                    Value[] values = property.getValues();
+                    sb.append("[");
+                    for(Value v : values) {
+                        sb.append(v.getString());
+                        sb.append(TABULATION);
+                        sb.append(TABULATION);
+                    }
+                    sb.append("]");
+                    sb.append(TABULATION);
+                    sb.append(TABULATION);
+                } else {
+                    sb.append(property.getName());
+                    sb.append(" : ");
                     sb.append(property.getString());
                     sb.append(TABULATION);
-                }
-            }
-            if(root.hasProperty(DATE)) {
-                property = root.getProperty(DATE);
-                if(property != null) {
-                    sb.append(DATE);
-                    sb.append(":");
-                    sb.append(property.getDate().getTime());
                     sb.append(TABULATION);
                 }
             }
-            if(root.hasProperty(COUNT)) {
-                property = root.getProperty(COUNT);
-                if(property != null) {
-                    sb.append(COUNT);
-                    sb.append(":");
-                    sb.append(property.getLong());
-                    sb.append(TABULATION);
-                }
-            }
-            sb.append("]");
+            sb.append("}");
         } else {
             sb.append(DIR_SEPARATOR);
         }

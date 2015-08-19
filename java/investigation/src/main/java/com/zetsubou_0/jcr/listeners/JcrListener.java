@@ -1,5 +1,8 @@
 package com.zetsubou_0.jcr.listeners;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.jcr.Node;
 import javax.jcr.Property;
 import javax.jcr.RepositoryException;
@@ -13,11 +16,15 @@ import java.text.SimpleDateFormat;
  * Created by Kiryl_Lutsyk on 8/17/2015.
  */
 public class JcrListener implements EventListener {
+    private static final Logger LOG = LoggerFactory.getLogger(EventListener.class);
+
     public static final String PATH = "/content/store";
     public static final String NAME = "name";
     public static final String COUNT = "count";
     public static final String DATE = "date";
     public static final String PATTERN = "MMMM";
+    public static final String NODE_TYPE = "jte:testEntity";
+    public static final String NODE_NAME_PATTERN = "/[0-9]*";
 
     private Session session;
 
@@ -29,12 +36,16 @@ public class JcrListener implements EventListener {
     public void onEvent(EventIterator eventIterator) {
         while(eventIterator.hasNext()) {
             Event event = eventIterator.nextEvent();
-            try {
-                String path = event.getPath();
-                Node node = session.getNode(path);
-                moveNode(node);
-            } catch (RepositoryException e) {
-                e.printStackTrace();
+            if(event.getType() == Event.NODE_ADDED) {
+                try {
+                    String path = event.getPath();
+                    Node node = session.getNode(path);
+                    if(path.split(PATH + NODE_NAME_PATTERN).length == 0) {
+                        moveNode(node);
+                    }
+                } catch (RepositoryException e) {
+                    LOG.error(e.getMessage(), e);
+                }
             }
         }
     }
@@ -53,7 +64,7 @@ public class JcrListener implements EventListener {
                 Node store = root.getNode(newPath);
                 String path = node.getName();
                 if(!store.hasNode(path)) {
-                    Node newNode = store.addNode(path);
+                    Node newNode = store.addNode(path, NODE_TYPE);
                     if(node.hasProperty(NAME)) {
                         property = node.getProperty(NAME);
                         if(property != null) {
@@ -72,7 +83,6 @@ public class JcrListener implements EventListener {
                             newNode.setProperty(COUNT, property.getLong());
                         }
                     }
-                    session.save();
                 }
 
                 node.remove();

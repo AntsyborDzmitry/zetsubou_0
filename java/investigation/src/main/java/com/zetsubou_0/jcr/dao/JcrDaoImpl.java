@@ -22,6 +22,7 @@ public class JcrDaoImpl implements JcrDao {
     public static final String COUNT = "count";
     public static final String DATE = "date";
     public static final String PATTERN = "yyyy-MM-dd";
+    public static final String NODE_TYPE = "jte:testEntity";
 
     @Override
     public void add(Entity entity, Session session) throws DaoException {
@@ -30,7 +31,7 @@ public class JcrDaoImpl implements JcrDao {
             if(StringUtils.isBlank(entity.getName()) || store.hasNode(entity.getName())) {
                 throw new DaoException("Add exception. " + entity.getName() + " present in repository");
             } else {
-                Node added = store.addNode(entity.getName());
+                Node added = store.addNode(entity.getName(), NODE_TYPE);
                 added.setProperty(NAME, entity.getName());
                 added.setProperty(COUNT, entity.getCount());
                 Calendar date = Calendar.getInstance();
@@ -124,7 +125,7 @@ public class JcrDaoImpl implements JcrDao {
     public Set<Entity> startWith(String query, Session session) throws DaoException {
         Set<Entity> set = new HashSet<Entity>();
         try {
-            NodeIterator iterator = executeQuery(String.format(START_QUERY, query + "%"), session);
+            NodeIterator iterator = executeQuery(String.format(START_QUERY, query), session);
             while (iterator.hasNext()) {
                 Node currentNode = iterator.nextNode();
                 Entity entity = new Entity();

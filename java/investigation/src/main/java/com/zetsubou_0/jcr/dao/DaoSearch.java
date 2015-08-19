@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by Kiryl_Lutsyk on 8/17/2015.
  */
 public interface DaoSearch {
-    public static final String START_QUERY = "/jcr:root/content/store//* [jcr:like(@name, '%s')]";
+    public static final String START_QUERY = "/jcr:root/content/store//* [jcr:like(@name, '%s%%')]";
     public static final String DATE_QUERY = "/jcr:root/content/store//* [@date>=xs:date('%s') and @date<=xs:date('%s')]";
 
     Set<Entity> startWith(String query, Session session) throws DaoException;
