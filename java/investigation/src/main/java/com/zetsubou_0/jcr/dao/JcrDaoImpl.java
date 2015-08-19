@@ -125,8 +125,7 @@ public class JcrDaoImpl implements JcrDao {
     public Set<Entity> startWith(String query, Session session) throws DaoException {
         Set<Entity> set = new HashSet<Entity>();
         try {
-//            NodeIterator iterator = executeQuery(String.format(START_QUERY, query), session);
-            NodeIterator iterator = executeSql2Query(String.format(START_QUERY_SQL2, query), session);
+            NodeIterator iterator = executeQuery(String.format(START_QUERY, query), session);
             while (iterator.hasNext()) {
                 Node currentNode = iterator.nextNode();
                 Entity entity = new Entity();
@@ -161,8 +160,7 @@ public class JcrDaoImpl implements JcrDao {
     public Set<Entity> betweenDate(Date start, Date end, Session session) throws DaoException {
         Set<Entity> set = new HashSet<Entity>();
         try {
-//            NodeIterator iterator = executeQuery(String.format(DATE_QUERY, getJcrDate(start), getJcrDate(end)), session);
-            NodeIterator iterator = executeSql2Query(String.format(DATE_QUERY_SQL2, getJcrDate(start), getJcrDate(end)), session);
+            NodeIterator iterator = executeQuery(String.format(DATE_QUERY, getJcrDate(start), getJcrDate(end)), session);
             while (iterator.hasNext()) {
                 Node currentNode = iterator.nextNode();
                 Entity entity = new Entity();
@@ -192,24 +190,16 @@ public class JcrDaoImpl implements JcrDao {
         }
         return set;
     }
+    protected String getJcrDate(Date date) throws RepositoryException {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return ValueFactoryImpl.getInstance().createValue(cal).getString();
+    }
 
     private NodeIterator executeQuery(String queryString, Session session) throws RepositoryException {
         QueryManager qm = session.getWorkspace().getQueryManager();
         Query query = qm.createQuery(queryString, Query.XPATH);
         QueryResult results = query.execute();
         return results.getNodes();
-    }
-
-    private NodeIterator executeSql2Query(String queryString, Session session) throws RepositoryException {
-        QueryManager qm = session.getWorkspace().getQueryManager();
-        Query query = qm.createQuery(queryString, Query.JCR_SQL2);
-        QueryResult results = query.execute();
-        return results.getNodes();
-    }
-
-    private String getJcrDate(Date date) throws RepositoryException {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        return ValueFactoryImpl.getInstance().createValue(cal).getString();
     }
 }

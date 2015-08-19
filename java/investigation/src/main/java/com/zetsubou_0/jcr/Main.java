@@ -3,6 +3,7 @@ package com.zetsubou_0.jcr;
 import com.zetsubou_0.jcr.bean.Entity;
 import com.zetsubou_0.jcr.dao.JcrDao;
 import com.zetsubou_0.jcr.dao.JcrDaoImpl;
+import com.zetsubou_0.jcr.dao.JcrSql2Dao;
 import com.zetsubou_0.jcr.exception.DaoException;
 import com.zetsubou_0.jcr.listeners.JcrListener;
 import org.apache.jackrabbit.commons.cnd.CndImporter;
@@ -50,6 +51,7 @@ public class Main {
             Node node = session.getRootNode();
 
             JcrDao dao = new JcrDaoImpl();
+            dao = new JcrSql2Dao();
 
             // crud operations
             crud(dao);
