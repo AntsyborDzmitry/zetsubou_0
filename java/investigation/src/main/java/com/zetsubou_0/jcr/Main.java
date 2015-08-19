@@ -16,13 +16,9 @@ import javax.jcr.observation.Event;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
-    private static final String NAME = "name";
-    private static final String COUNT = "count";
-    private static final String DATE = "date";
     private static final Logger LOG = LoggerFactory.getLogger(Main.class);
     private static final String REP_DEFAULT_DIRECTORY = "C:/jcr_dir";
     private static final String REP_WORKSPACE = "aem-training";
@@ -63,11 +59,7 @@ public class Main {
 
             LOG.info(String.valueOf(dao.startWith("5", session)));
 
-            SimpleDateFormat sdf = new SimpleDateFormat(JcrDaoImpl.PATTERN);
-            Date start = sdf.parse("2015-08-10");
-            Date end = sdf.parse("2015-08-30");
-            LOG.info(String.valueOf(dao.betweenDate(start, end, session)));
-
+            LOG.info(String.valueOf(dao.betweenDate(shiftDayDate(-1), shiftDayDate(1), session)));
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         } finally {
@@ -185,6 +177,11 @@ public class Main {
         session.save();
     }
 
+    private static Date shiftDayDate(int day) {
+        final int MILLISECONDS = 1000, HOUR = 3600, DAY = 24;
+        return new Date(new Date().getTime() + day * MILLISECONDS * HOUR * DAY);
+    }
+
     public static void printNodes(Node root) throws RepositoryException {
         NodeIterator iterator = root.getNodes();
         String[] path = root.getPath().split(DIR_SEPARATOR);
@@ -219,7 +216,11 @@ public class Main {
                 } else {
                     sb.append(property.getName());
                     sb.append(" : ");
-                    sb.append(property.getString());
+                    if("date".equals(property.getName())) {
+                        sb.append(property.getDate().getTime());
+                    } else {
+                        sb.append(property.getString());
+                    }
                     sb.append(TABULATION);
                     sb.append(TABULATION);
                 }
