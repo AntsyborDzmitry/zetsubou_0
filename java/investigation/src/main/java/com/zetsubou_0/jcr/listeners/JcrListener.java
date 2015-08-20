@@ -24,7 +24,6 @@ public class JcrListener implements EventListener {
     public static final String DATE = "date";
     public static final String PATTERN = "MMMM";
     public static final String NODE_TYPE = "jte:testEntity";
-    public static final String NODE_NAME_PATTERN = "/[0-9]*";
 
     private Session session;
 
@@ -40,9 +39,7 @@ public class JcrListener implements EventListener {
                 try {
                     String path = event.getPath();
                     Node node = session.getNode(path);
-                    if(path.split(PATH + NODE_NAME_PATTERN).length == 0) {
-                        moveNode(node);
-                    }
+                    moveNode(node);
                 } catch (RepositoryException e) {
                     LOG.error(e.getMessage(), e);
                 }

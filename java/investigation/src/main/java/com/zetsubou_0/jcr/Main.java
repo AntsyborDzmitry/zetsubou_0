@@ -51,7 +51,7 @@ public class Main {
             Node node = session.getRootNode();
 
             JcrDao dao = new JcrDaoImpl();
-            dao = new JcrSqlDaoImpl();
+//            dao = new JcrSqlDaoImpl();
 
             // crud operations
             crud(dao);
@@ -165,7 +165,7 @@ public class Main {
                     listener, // handler
                     Event.NODE_ADDED, // event types
                     JcrListener.PATH, // path
-                    true, // is Deep?
+                    false, // is Deep?
                     null, // uuids filter
                     null, // nodetypes filter
                     false);
