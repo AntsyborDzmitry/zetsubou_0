@@ -6,6 +6,7 @@ import com.zetsubou_0.jcr.dao.JcrDaoImpl;
 import com.zetsubou_0.jcr.dao.JcrSqlDaoImpl;
 import com.zetsubou_0.jcr.exception.DaoException;
 import com.zetsubou_0.jcr.listeners.JcrListener;
+import org.apache.jackrabbit.commons.JcrUtils;
 import org.apache.jackrabbit.commons.cnd.CndImporter;
 import org.apache.jackrabbit.commons.cnd.ParseException;
 import org.apache.jackrabbit.core.TransientRepository;
@@ -29,8 +30,9 @@ public class Main {
     public static final String ADMIN = "admin";
     private static final String[] REP_DEFAULT_DIRECTORIES = {"content", JcrDao.DEFAULT_PATH};
     private static final Credentials REP_CREDENTIALS = new SimpleCredentials(ADMIN, ADMIN.toCharArray());
-    // CQ 5.3 instance
-    private static final String AEM_REPOSITORY = "http://localhost:4504/crx/server";
+    // CQ instances
+    private static final String AEM_REPOSITORY_5_3 = "http://localhost:4504/crx/server";
+    private static final String AEM_REPOSITORY_5_6_1 = "http://localhost:4502/crx/server";
 
     private static Session session = null;
     private static Repository repository;
@@ -38,10 +40,10 @@ public class Main {
 
 
     public static void main(String[] args)  {
-        repository = new TransientRepository(getRepositoryDir());
-//            repository = JcrUtils.getRepository(AEM_REPOSITORY);
-
         try{
+            repository = new TransientRepository(getRepositoryDir());
+//            repository = JcrUtils.getRepository(AEM_REPOSITORY_5_6_1);
+
             initWorkspace();
             registerNodeType();
             registerEvent();
