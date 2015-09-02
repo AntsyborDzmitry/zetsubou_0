@@ -15,6 +15,7 @@ public class BundleHelper {
         sb.append(bundle.getVersion());
         sb.append(") was ");
         sb.append(action);
+        sb.append("\n");
         System.out.printf(sb.toString());
     }
 
