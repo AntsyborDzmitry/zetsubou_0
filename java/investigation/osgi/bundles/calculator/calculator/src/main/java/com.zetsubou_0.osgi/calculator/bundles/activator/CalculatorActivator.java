@@ -4,8 +4,12 @@ import com.zetsubou_0.osgi.calculator.core.CalculatorShell;
 import com.zetsubou_0.osgi.calculator.helper.BundleHelper;
 import com.zetsubou_0.osgi.calculator.observer.BundleTracker;
 import com.zetsubou_0.osgi.calculator.observer.BundleTrackerFactory;
+import com.zetsubou_0.osgi.calculator.ui.TextAreaOutputStream;
+import com.zetsubou_0.osgi.calculator.ui.Window;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+
+import java.io.PrintStream;
 
 /**
  * Created by Kiryl_Lutsyk on 9/2/2015.
@@ -17,7 +21,10 @@ public class CalculatorActivator implements BundleActivator {
     public void start(BundleContext bundleContext) throws Exception {
         BundleHelper.printInformation(bundleContext, "added to container");
         BundleTracker bundleTracker = BundleTrackerFactory.getInstance(bundleContext);
+//        Window window = new Window();
+//        PrintStream out = new PrintStream(new TextAreaOutputStream(window.getTextArea()));
         calculator = new CalculatorShell(bundleTracker);
+//        calculator.setOut(out);
         calculator.setOut(System.out);
         new Thread(calculator).start();
         System.out.println("Calculator started");

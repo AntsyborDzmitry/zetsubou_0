@@ -34,7 +34,7 @@ public class CalculatorShell implements Runnable {
 
     public void exit() {
         synchronized (CalculatorShell.class) {
-            calculator.calculate("10 + (3 + 10.5)");
+            System.out.println(calculator.calculate("10 + 3 + 10.5"));
             bundleTracker.stopTracking();
             CalculatorShell.class.notifyAll();
         }

@@ -6,21 +6,30 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.SynchronousBundleListener;
 
-import java.util.Dictionary;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Kiryl_Lutsyk on 9/3/2015.
  */
 public class BundleTracker {
-    private final Set<Bundle> cache = new HashSet<>();
     private final BundleContext bundleContext;
     private SynchronousBundleListener listener;
     private boolean isTracked;
+    private Set<Bundle> cache;
 
     public BundleTracker(final BundleContext bundleContext) {
         this.bundleContext = bundleContext;
+        this.cache = new TreeSet<>(new Comparator<Bundle>() {
+            @Override
+            public int compare(Bundle o1, Bundle o2) {
+                Dictionary<String, String> headers = null;
+                headers = o2.getHeaders();
+                int r2 = Integer.parseInt(headers.get(Operation.OPERATION_RANK));
+                headers = o1.getHeaders();
+                int r1 = Integer.parseInt(headers.get(Operation.OPERATION_RANK));
+                return r2 - r1;
+            }
+        });
         listener = new SynchronousBundleListener() {
             @Override
             public void bundleChanged(BundleEvent bundleEvent) {

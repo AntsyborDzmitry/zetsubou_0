@@ -3,7 +3,9 @@ package com.zetsubou_0.osgi.calculator.core;
 import com.zetsubou_0.osgi.api.Operation;
 import org.osgi.framework.Bundle;
 
+import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +28,8 @@ public class Calculator {
             throw new IllegalArgumentException("Wrong input string or unknown command present in string.\n" + input);
         }
         Double result = 10.3;
+        List<Bundle> bundles = new ArrayList<>(cache);
+
 
         return result;
     }

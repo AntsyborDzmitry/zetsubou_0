@@ -11,5 +11,5 @@ public interface Operation {
     public static String OPERATION_CLASS = "Operation-class";
     public static String OPERATION_RANK = "Operation-rank";
 
-    void execute() throws OperationException;
+    double execute(double left, double right) throws OperationException;
 }
