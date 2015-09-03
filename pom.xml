@@ -18,6 +18,8 @@
             <!--OSGI-->
             <module>java/investigation/osgi/bundles/calculator/api</module>
             <module>java/investigation/osgi/bundles/calculator/calculator</module>
+            <!--Operations-->
+            <module>java/investigation/osgi/bundles/calculator/operations/add</module>
 
         <!--public-->
 
