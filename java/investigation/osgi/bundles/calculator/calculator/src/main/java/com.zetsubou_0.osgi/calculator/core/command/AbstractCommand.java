@@ -1,6 +1,6 @@
 package com.zetsubou_0.osgi.calculator.core.command;
 
-import com.zetsubou_0.osgi.calculator.api.ShellCommand;
+import com.zetsubou_0.osgi.api.ShellCommand;
 
 import java.io.PrintStream;
 

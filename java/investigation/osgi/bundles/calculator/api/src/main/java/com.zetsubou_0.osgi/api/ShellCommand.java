@@ -1,6 +1,6 @@
-package com.zetsubou_0.osgi.calculator.api;
+package com.zetsubou_0.osgi.api;
 
-import com.zetsubou_0.osgi.calculator.api.exception.CommandExxeption;
+import com.zetsubou_0.osgi.api.exception.CommandExxeption;
 
 import java.io.PrintStream;
 

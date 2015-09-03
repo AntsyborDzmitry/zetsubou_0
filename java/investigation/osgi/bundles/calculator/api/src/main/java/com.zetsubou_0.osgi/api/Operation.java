@@ -1,6 +1,6 @@
-package com.zetsubou_0.osgi.calculator.api;
+package com.zetsubou_0.osgi.api;
 
-import com.zetsubou_0.osgi.calculator.api.exception.OperationException;
+import com.zetsubou_0.osgi.api.exception.OperationException;
 
 /**
  * Created by Kiryl_Lutsyk on 9/2/2015.

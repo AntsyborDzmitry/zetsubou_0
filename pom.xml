@@ -15,6 +15,9 @@
 
         <!--investigation-->
         <module>java/investigation</module>
+            <!--OSGI-->
+            <module>java/investigation/osgi/bundles/calculator/api</module>
+            <module>java/investigation/osgi/bundles/calculator/calculator</module>
 
         <!--public-->
 
