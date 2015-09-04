@@ -39,4 +39,13 @@ public class BundleHelper {
         }
         return headers;
     }
+
+    public static Bundle getBundleByHeader(Set<Bundle> bundles, String key, String value) {
+        for(Bundle bundle : bundles) {
+            if(value != null && value.equals(getHeader(bundle, key))) {
+                return bundle;
+            }
+        }
+        return null;
+    }
 }

@@ -5,7 +5,9 @@ import com.zetsubou_0.osgi.api.exception.OperationException;
 import com.zetsubou_0.osgi.calculator.helper.BundleHelper;
 import com.zetsubou_0.osgi.calculator.observer.BundleTracker;
 import com.zetsubou_0.osgi.calculator.ui.Window;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 
 import java.util.List;
 
@@ -51,6 +53,21 @@ public class CalculatorThread implements Runnable {
             System.out.println("Calculator closing...");
             bundleTracker.stopTracking();
             CalculatorThread.class.notifyAll();
+        }
+    }
+
+    public void uploadBundle(String path) throws BundleException {
+        Bundle bundle = bundleContext.installBundle("file:" + path);
+        bundle.start();
+    }
+
+    public void uninstallBundle(List<String> operations) throws BundleException {
+        for(Bundle bundle : bundleTracker.getCache()) {
+            for(String operation : operations) {
+                if(operation.equals(BundleHelper.getHeader(bundle, Operation.OPERATION_NAME))) {
+                    bundle.uninstall();
+                }
+            }
         }
     }
 

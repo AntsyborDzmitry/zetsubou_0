@@ -64,10 +64,18 @@ public class Calculator {
 
     private double executeCommand(String command, double right, double left) throws OperationException {
         Operation operation = null;
-        if("+".equals(command)) {
-            operation = new Add();
-        } else if("-".equals(command)) {
-            operation = new Minus();
+        Bundle operationBundle = BundleHelper.getBundleByHeader(cache, Operation.OPERATION_NAME, command);
+        if(operationBundle != null) {
+            try {
+                Class operationClass = operationBundle.loadClass(BundleHelper.getHeader(operationBundle, Operation.OPERATION_CLASS));
+                operation = (Operation) operationClass.newInstance();
+            } catch (ClassNotFoundException e) {
+                throw new OperationException(e);
+            } catch (InstantiationException e) {
+                throw new OperationException(e);
+            } catch (IllegalAccessException e) {
+                throw new OperationException(e);
+            }
         }
         if(operation == null) {
             return left;

@@ -1,7 +1,7 @@
 package com.zetsubou_0.osgi.calculator.observer;
 
 import com.zetsubou_0.osgi.api.Operation;
-import com.zetsubou_0.osgi.api.observer.Handler;
+import com.zetsubou_0.osgi.api.observer.BundleUpdateHandler;
 import com.zetsubou_0.osgi.api.observer.Listener;
 import com.zetsubou_0.osgi.calculator.helper.BundleHelper;
 import org.osgi.framework.Bundle;
@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * Created by Kiryl_Lutsyk on 9/3/2015.
  */
-public class BundleTracker implements Handler {
+public class BundleTracker implements BundleUpdateHandler {
     private BundleContext bundleContext;
     private SynchronousBundleListener listener;
     private boolean isTracked;

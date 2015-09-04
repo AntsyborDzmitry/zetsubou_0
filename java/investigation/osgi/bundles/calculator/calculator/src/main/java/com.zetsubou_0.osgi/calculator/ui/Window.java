@@ -1,18 +1,21 @@
 package com.zetsubou_0.osgi.calculator.ui;
 
 import com.zetsubou_0.osgi.api.exception.OperationException;
+import com.zetsubou_0.osgi.api.observer.BundleUpdateListener;
 import com.zetsubou_0.osgi.calculator.core.CalculatorThread;
-import com.zetsubou_0.osgi.api.observer.Listener;
+import org.osgi.framework.BundleException;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.List;
 
 /**
  * Created by Kiryl_Lutsyk on 9/3/2015.
  */
-public class Window extends JFrame implements Listener, Runnable {
+public class Window extends JFrame implements BundleUpdateListener, Runnable {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
 
@@ -42,17 +45,22 @@ public class Window extends JFrame implements Listener, Runnable {
         window.setVisible(true);
     }
 
-    public void updateBundles() {
+    private void updateBundles() {
         List<String> bundlesTempList = calculatorThread.getOperations();
         String[] bundles = new String[bundlesTempList.size()];
         bundles = bundlesTempList.toArray(bundles);
         bundlesList.setListData(bundles);
+        refreshWindow();
     }
 
     private void init() {
         window = this;
         setResizable(false);
         createFrame();
+        refreshWindow();
+    }
+
+    private void refreshWindow() {
         pack();
         centredWindow();
     }
@@ -93,7 +101,9 @@ public class Window extends JFrame implements Listener, Runnable {
         resultPanel.add(resultValue);
 
         // fill bundle panel
+        JLabel operationLabel = new JLabel("Operations in system: ");
         bundlesList = new JList<>();
+        bundlePanel.add(operationLabel);
         bundlePanel.add(bundlesList);
         updateBundles();
 
@@ -140,13 +150,54 @@ public class Window extends JFrame implements Listener, Runnable {
                     resultValue.setText(result.toString());
                 } catch (OperationException ex) {
                     resultValue.setText(ex.getMessage());
-                    window.pack();
                 }
+                refreshWindow();
             }
         };
         calculateButton.addActionListener(calculateListener);
 
         // upload bundle
+        ActionListener addBundle = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Java archives", "jar");
+                fileChooser.setFileFilter(filter);
+                int returnVal = fileChooser.showOpenDialog(Window.this);
+                if(returnVal == JFileChooser.APPROVE_OPTION) {
+                    StringBuilder errors = new StringBuilder();
+                    for(File file : fileChooser.getSelectedFiles()) {
+                        String path = file.getAbsolutePath();
+                        try {
+                            calculatorThread.uploadBundle(path);
+                            updateBundles();
+                        } catch (BundleException ex) {
+                            errors.append(ex.getMessage());
+                            errors.append("\n");
+                        }
+                    }
+                    if(errors.length() > 0) {
+                        resultValue.setText(errors.toString());
+                    }
+                    refreshWindow();
+                }
+            }
+        };
+        addButton.addActionListener(addBundle);
 
+        // remove bundle
+        ActionListener removeBundle = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    calculatorThread.uninstallBundle(bundlesList.getSelectedValuesList());
+                    updateBundles();
+                } catch (BundleException ex) {
+                    resultValue.setText(ex.getMessage());
+                }
+                refreshWindow();
+            }
+        };
+        removeButton.addActionListener(removeBundle);
     }
 }
