@@ -13,16 +13,20 @@ import java.util.List;
  */
 public class Runner {
     private static final String REG_EXP = "(\\s*[0-9.]\\s*)+";
+    private static List<String> validOperations = Arrays.asList(new String[]{"+", "-"});
 
     public static void main(String[] args) {
         String[] operations = {"+", "-"};
         String input = "10 + 3 - 7 - 4 + 100";
-        List<String> op = Arrays.asList(operations);
         try {
-            System.out.println(execute(input, 0, null));
+            System.out.println(calculate(input));
         } catch (OperationException e) {
             e.printStackTrace();
         }
+    }
+
+    private static double calculate(String input) throws OperationException {
+        return execute(input, 0, null);
     }
 
     private static double execute(String str, double initValue, String lastOperation) throws OperationException {
@@ -32,6 +36,9 @@ public class Runner {
         for(String operation : operations) {
             if(StringUtils.isBlank(operation)) {
                 continue;
+            }
+            if(!validOperations.contains(operation)) {
+                throw new OperationException("Operation not found.");
             }
             String val = str.substring(str.lastIndexOf(operation) + 1, str.length());
             StringBuilder commandWithDigit = new StringBuilder();
@@ -58,7 +65,7 @@ public class Runner {
             operation = new Minus();
         }
         if(operation == null) {
-            return right;
+            return left;
         }
         return operation.execute(left, right);
     }

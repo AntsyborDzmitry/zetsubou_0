@@ -1,6 +1,8 @@
 package com.zetsubou_0.osgi.calculator.core;
 
+import com.zetsubou_0.osgi.api.exception.OperationException;
 import com.zetsubou_0.osgi.calculator.observer.BundleTracker;
+import org.osgi.framework.BundleContext;
 
 import java.io.PrintStream;
 
@@ -10,13 +12,11 @@ import java.io.PrintStream;
 public class CalculatorShell implements Runnable {
     private PrintStream out;
     private BundleTracker bundleTracker;
-    private Calculator calculator;
 
     private CalculatorShell() {}
 
-    public CalculatorShell(BundleTracker bundleTracker) {
-        this.bundleTracker = bundleTracker;
-        calculator = new Calculator(bundleTracker.getCache());
+    public CalculatorShell(BundleContext bundleContext) {
+        this.bundleTracker = new BundleTracker(bundleContext);
     }
 
     @Override
@@ -34,7 +34,12 @@ public class CalculatorShell implements Runnable {
 
     public void exit() {
         synchronized (CalculatorShell.class) {
-            System.out.println(calculator.calculate("10 + 3 + 10.5"));
+            try {
+                Calculator calculator = new Calculator(bundleTracker.getCache());
+                System.out.println(calculator.calculate("10 + 3 + 10.5 - 7"));
+            } catch (OperationException e) {
+                e.printStackTrace();
+            }
             bundleTracker.stopTracking();
             CalculatorShell.class.notifyAll();
         }
