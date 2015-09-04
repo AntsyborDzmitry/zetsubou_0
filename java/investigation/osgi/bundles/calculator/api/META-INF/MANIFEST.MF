@@ -4,5 +4,5 @@ Build-Jdk: 1.7.0_60
 Bundle-ManifestVersion: 2
 Bundle-Name: Calculator API
 Bundle-SymbolicName: com.zetsubou_0.osgi.api
-Bundle-Version: 1.0.9
+Bundle-Version: 1.0.10
 Export-package: com.zetsubou_0.osgi.api,com.zetsubou_0.osgi.api.exception
