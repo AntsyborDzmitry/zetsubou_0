@@ -1,6 +1,8 @@
 package com.zetsubou_0.osgi.calculator.observer;
 
 import com.zetsubou_0.osgi.api.Operation;
+import com.zetsubou_0.osgi.api.observer.Handler;
+import com.zetsubou_0.osgi.api.observer.Listener;
 import com.zetsubou_0.osgi.calculator.helper.BundleHelper;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -12,11 +14,12 @@ import java.util.*;
 /**
  * Created by Kiryl_Lutsyk on 9/3/2015.
  */
-public class BundleTracker {
+public class BundleTracker implements Handler {
     private BundleContext bundleContext;
     private SynchronousBundleListener listener;
     private boolean isTracked;
     private Set<Bundle> cache;
+    private Set<Listener> listeners = new HashSet<>();
 
     public BundleTracker(BundleContext bundleContext) {
         this.bundleContext = bundleContext;
@@ -69,6 +72,23 @@ public class BundleTracker {
 
     public Set<Bundle> getCache() {
         return cache;
+    }
+
+    @Override
+    public void addListenr(Listener listener) {
+        listeners.add(listener);
+    }
+
+    @Override
+    public void removeListener(Listener listener) {
+        listeners.remove(listener);
+    }
+
+    @Override
+    public void notifyAllListeners() {
+        for(Listener lister : listeners) {
+            lister.perform();
+        }
     }
 
     private boolean isValid(Bundle bundle) {

@@ -1,33 +1,36 @@
 package com.zetsubou_0.osgi.calculator.core;
 
+import com.zetsubou_0.osgi.api.Operation;
 import com.zetsubou_0.osgi.api.exception.OperationException;
+import com.zetsubou_0.osgi.calculator.helper.BundleHelper;
 import com.zetsubou_0.osgi.calculator.observer.BundleTracker;
 import com.zetsubou_0.osgi.calculator.ui.Window;
 import org.osgi.framework.BundleContext;
 
-import java.io.PrintStream;
+import java.util.List;
 
 /**
  * Created by Kiryl_Lutsyk on 9/2/2015.
  */
-public class CalculatorAction implements Runnable {
-    private PrintStream out;
+public class CalculatorThread implements Runnable {
+    private BundleContext bundleContext;
     private BundleTracker bundleTracker;
     private Window window;
 
-    private CalculatorAction() {}
+    private CalculatorThread() {}
 
-    public CalculatorAction(BundleContext bundleContext) {
+    public CalculatorThread(BundleContext bundleContext) {
+        this.bundleContext = bundleContext;
         this.bundleTracker = new BundleTracker(bundleContext);
     }
 
     @Override
     public void run() {
         init();
-        synchronized (CalculatorAction.class) {
+        synchronized (CalculatorThread.class) {
             try {
-                CalculatorAction.class.wait();
-                out.println("Process stopped.");
+                CalculatorThread.class.wait();
+                new Thread(new CalculatorThreadKiller(bundleContext)).run();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -39,19 +42,22 @@ public class CalculatorAction implements Runnable {
         return calculator.calculate(input);
     }
 
-    public void exit() {
-        synchronized (CalculatorAction.class) {
-            bundleTracker.stopTracking();
-            CalculatorAction.class.notifyAll();
-        }
+    public List<String> getOperations() {
+        return BundleHelper.getHeader(bundleTracker.getCache(), Operation.OPERATION_NAME);
     }
 
-    public void setOut(PrintStream out) {
-        this.out = out;
+    public void exit() {
+        synchronized (CalculatorThread.class) {
+            System.out.println("Calculator closing...");
+            bundleTracker.stopTracking();
+            CalculatorThread.class.notifyAll();
+        }
     }
 
     private void init() {
         bundleTracker.startTracking();
         window = new Window(this);
+        bundleTracker.addListenr(window);
+        new Thread(window).start();
     }
 }
