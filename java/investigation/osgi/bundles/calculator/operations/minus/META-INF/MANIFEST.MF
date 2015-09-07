@@ -8,5 +8,5 @@ Operation-rank: 10
 Bundle-ManifestVersion: 2
 Bundle-Name: Minus command
 Bundle-SymbolicName: com.zetsubou_0.osgi.operation.minus
-Bundle-Version: 1.0.3
+Bundle-Version: 1.0.5
 Import-Package: com.zetsubou_0.osgi.api

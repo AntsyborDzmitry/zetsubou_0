@@ -1,6 +1,2 @@
-Hi guys, I have a Task for you. It should help you systematize your OSGi lifecycle knowledge.
-
 Develop an OSGi console application calculator, that take a string that represent a mathematical expression (digits and operations).
 Application should be extensible. It means that in any moment operation may be added or removed from the application context. Application should not use Service layer of the framework. Registration and Unregistration of every operation should be done using FrameworkListener. Operation is the class that implements Operation interface. Every operation goes in a single bundle, there is an additional meta information in every bundle that mark this bundle as module that holds an operation. Also bundle has information about operation name, ranking and class name of operation from this bundle. Expression may have a parenthesis that define operation ordering, if there is a several operations use operation ranking to define ordering, if ranking the same ordering defines by way of appearance of operation in the given expression.
-
-Discussion of the task in our chat is encouraged!

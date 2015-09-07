@@ -3,8 +3,6 @@ package com.zetsubou_0.osgi.calculator.core;
 import com.zetsubou_0.osgi.api.Operation;
 import com.zetsubou_0.osgi.api.exception.OperationException;
 import com.zetsubou_0.osgi.calculator.helper.BundleHelper;
-import com.zetsubou_0.osgi.calculator.test.Add;
-import com.zetsubou_0.osgi.calculator.test.Minus;
 import org.osgi.framework.Bundle;
 
 import java.util.*;

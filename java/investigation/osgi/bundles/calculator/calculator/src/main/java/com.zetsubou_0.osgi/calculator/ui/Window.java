@@ -18,6 +18,7 @@ import java.util.List;
 public class Window extends JFrame implements BundleUpdateListener, Runnable {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
+    private static final String[] EMPTY_OPERATIONS = new String[]{"Operations not found"};
 
     public CalculatorThread calculatorThread;
     private JFrame window;
@@ -49,7 +50,11 @@ public class Window extends JFrame implements BundleUpdateListener, Runnable {
         List<String> bundlesTempList = calculatorThread.getOperations();
         String[] bundles = new String[bundlesTempList.size()];
         bundles = bundlesTempList.toArray(bundles);
-        bundlesList.setListData(bundles);
+        if(bundles.length == 0) {
+            bundlesList.setListData(EMPTY_OPERATIONS);
+        } else {
+            bundlesList.setListData(bundles);
+        }
         refreshWindow();
     }
 
@@ -161,6 +166,7 @@ public class Window extends JFrame implements BundleUpdateListener, Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setMultiSelectionEnabled(true);
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("Java archives", "jar");
                 fileChooser.setFileFilter(filter);
                 int returnVal = fileChooser.showOpenDialog(Window.this);
@@ -168,6 +174,10 @@ public class Window extends JFrame implements BundleUpdateListener, Runnable {
                     StringBuilder errors = new StringBuilder();
                     for(File file : fileChooser.getSelectedFiles()) {
                         String path = file.getAbsolutePath();
+                        if(!path.endsWith(".jar")) {
+                            // skip if not jar file
+                            continue;
+                        }
                         try {
                             calculatorThread.uploadBundle(path);
                             updateBundles();

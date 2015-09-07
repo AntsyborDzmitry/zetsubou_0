@@ -7,7 +7,6 @@
     <groupId>com.zetsubou_0</groupId>
     <artifactId>calculatorminus</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <name>calculatorminus</name>
     <description>calculatorminus</description>

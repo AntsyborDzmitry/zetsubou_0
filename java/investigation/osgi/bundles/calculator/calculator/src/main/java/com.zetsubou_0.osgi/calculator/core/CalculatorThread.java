@@ -10,6 +10,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Kiryl_Lutsyk on 9/2/2015.
@@ -62,11 +63,11 @@ public class CalculatorThread implements Runnable {
     }
 
     public void uninstallBundle(List<String> operations) throws BundleException {
-        for(Bundle bundle : bundleTracker.getCache()) {
-            for(String operation : operations) {
-                if(operation.equals(BundleHelper.getHeader(bundle, Operation.OPERATION_NAME))) {
-                    bundle.uninstall();
-                }
+        Set<Bundle> cache = bundleTracker.getCache();
+        for(String operation : operations) {
+            Bundle bundle = BundleHelper.getBundleByHeader(cache, Operation.OPERATION_NAME, operation);
+            if(bundle != null) {
+                bundle.uninstall();
             }
         }
     }

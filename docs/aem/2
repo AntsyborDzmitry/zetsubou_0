@@ -3,6 +3,3 @@
 a.	First one that takes String variable and return entities that have field that starts with this string.
 b.	Second method takes two variables Data/Calendar and return entities that have Data/Calendar field that lying  between this this dates.
 
-On this time there is no questions. I plan to ask it after our session. The questions will be assign personally.
-
-P. S. I know some of you on your project use query language rather that xpath. I ask you to find out the reason for this choice and share it with us.
