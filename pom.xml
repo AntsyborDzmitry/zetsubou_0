@@ -20,7 +20,7 @@
             <module>java/investigation/osgi/bundles/calculator/calculator</module>
             <!--Operations-->
             <module>java/investigation/osgi/bundles/calculator/operations/add</module>
-            <module>java/investigation/osgi/bundles/calculator/operations/minus</module>
+            <module>java/investigation/osgi/bundles/calculator/operations/substitute</module>
 
         <!--public-->
 

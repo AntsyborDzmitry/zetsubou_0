@@ -2,6 +2,8 @@ package com.zetsubou_0.osgi.calculator.core;
 
 import com.zetsubou_0.osgi.api.Operation;
 import com.zetsubou_0.osgi.api.exception.OperationException;
+import com.zetsubou_0.osgi.calculator.bean.OperationBean;
+import com.zetsubou_0.osgi.calculator.bean.OperationGroupBean;
 import com.zetsubou_0.osgi.calculator.helper.BundleHelper;
 import org.osgi.framework.Bundle;
 
@@ -13,8 +15,17 @@ import java.util.regex.Pattern;
  * Created by Kiryl_Lutsyk on 9/3/2015.
  */
 public class Calculator {
-    private static final String REG_EXP = "(\\s*[0-9.]\\s*)+";
-    private List<String> validOperations;
+    private static final String PARENTHESIS_PATTERN = "([(\\s%s0-9.]|#group([0-9.]+)#)+[)]";
+    private static final String PARENTHESIS_PATTERN_2 = "[(]([\\s%s0-9.]|#group([0-9.]+)#)+[)]";
+    private static final String PARENTHESIS_PATTERN_3 = "^[(](.*)[)]$";
+    private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*([\\%s])[\\s]*([0-9.]+|#group([0-9.]+)#)";
+    private static final String REGEX_GROUP = "^[\\s(]#group[0-9]+#[\\s)]$";
+    private static final String OPERATION = "#group%s#";
+
+    private Set<OperationBean> presentedOperations;
+    private Map<Integer, OperationGroupBean> groups = new HashMap<>();
+    private int operationNumber = 0;
+    private OperationGroupBean last = new OperationGroupBean();
     private Set<Bundle> cache;
 
     private Calculator() {}
@@ -24,61 +35,110 @@ public class Calculator {
     }
 
     public double calculate(String input) throws OperationException {
-        updateValidOperations();
-        return execute(input, 0, null);
+        if(!validate(input)) {
+            throw new OperationException("Not valid input string");
+        }
+        initPresentedOperation();
+        parseInput(removeFirstParenthesis(input));
+        return last.getValue();
     }
 
-    private void updateValidOperations() {
-        validOperations = BundleHelper.getHeader(cache, Operation.OPERATION_NAME);
+    private void parseInput(String input) throws OperationException {
+        if(input == null || "".equals(input)) {
+            return;
+        }
+        Pattern pattern = Pattern.compile(String.format(PARENTHESIS_PATTERN, compileOperationRegExp()));
+        Matcher matcher = pattern.matcher(input);
+        if(matcher.find()) {
+            String foundString = matcher.group();
+            if(foundString != null || !"".equals(foundString)) {
+                pattern = Pattern.compile(String.format(PARENTHESIS_PATTERN_2, compileOperationRegExp()));
+                matcher = pattern.matcher(foundString);
+                if(matcher.find()) {
+                    String groupString = matcher.group();
+                    if(groupString != null && !"".equals(groupString)) {
+                        input = input.replace(groupString, String.format(OPERATION, operationNumber));
+                        parseGroup(groupString, input);
+                        parseInput(input);
+                    }
+                }
+            }
+        } else {
+            last = parsePriorityGroup(input);
+        }
     }
 
-    private double execute(String str, double initValue, String lastOperation) throws OperationException {
-        String[] operationsArray = str.split(REG_EXP);
-        List<String> operations = Arrays.asList(operationsArray);
-        Collections.reverse(operations);
-        for(String operation : operations) {
-            if("".equals(operation)) {
-                continue;
-            }
-            if(!validOperations.contains(operation)) {
-                throw new OperationException("Operation not found. \"" + operation + "\"");
-            }
-            String val = str.substring(str.lastIndexOf(operation) + 1, str.length());
-            StringBuilder commandWithDigit = new StringBuilder();
-            commandWithDigit.append("[");
-            commandWithDigit.append(operation);
-            commandWithDigit.append("]");
-            commandWithDigit.append(val.replace(".", "[.]"));
-            commandWithDigit.append("$");
-            return executeCommand(lastOperation, initValue, execute(str.replaceAll(commandWithDigit.toString(), ""), Double.parseDouble(val.trim()), operation));
-        }
-        if(operations.size() == 0) {
-            try{
-                return executeCommand(lastOperation, initValue, Double.parseDouble(str.trim()));
-            } catch (Exception e) {}
-        }
-        return initValue;
+    private OperationGroupBean parseGroup(String group, String input) throws OperationException {
+        OperationGroupBean operationGroup = new OperationGroupBean();
+        int operationNum = operationNumber;
+        groups.put(operationNumber++, operationGroup);
+        operationGroup = parsePriorityGroup(group);
+        groups.put(operationNum, operationGroup);
+
+        return operationGroup;
     }
 
-    private double executeCommand(String command, double right, double left) throws OperationException {
-        Operation operation = null;
-        Bundle operationBundle = BundleHelper.getBundleByHeader(cache, Operation.OPERATION_NAME, command);
-        if(operationBundle != null) {
-            try {
-                Class operationClass = operationBundle.loadClass(BundleHelper.getHeader(operationBundle, Operation.OPERATION_CLASS));
-                operation = (Operation) operationClass.newInstance();
-            } catch (ClassNotFoundException e) {
-                throw new OperationException(e);
-            } catch (InstantiationException e) {
-                throw new OperationException(e);
-            } catch (IllegalAccessException e) {
-                throw new OperationException(e);
+    private OperationGroupBean parsePriorityGroup(String group) throws OperationException {
+        OperationGroupBean operationGroup = new OperationGroupBean();
+
+        try {
+            for(OperationBean operationBean : presentedOperations) {
+                Pattern pattern = Pattern.compile(String.format(GROUP_PATTERN, operationBean.getOperation()));
+                Matcher matcher = pattern.matcher(group);
+                while(matcher.find()) {
+                    operationGroup = new OperationGroupBean();
+                    String left = matcher.group(1);
+                    String right = matcher.group(4);
+                    if(matcher.group(2) == null) {
+                        operationGroup.setLeft(Double.parseDouble(left));
+                    } else {
+                        operationGroup.setLeftComplicated(true);
+                        operationGroup.setLeftGroup(groups.get(Integer.parseInt(matcher.group(2))));
+                    }
+                    if(matcher.group(5) == null) {
+                        operationGroup.setRight(Double.parseDouble(right));
+                    } else {
+                        operationGroup.setRightComplicated(true);
+                        operationGroup.setRightGroup(groups.get(Integer.parseInt(matcher.group(5))));
+                    }
+                    Operation op = (Operation) Class.forName(operationBean.getClassName()).newInstance();
+                    operationGroup.setOperation(op);
+                    groups.put(operationNumber, operationGroup);
+                    if(!group.matches(REGEX_GROUP)) {
+                        group = group.replace(matcher.group(), String.format(OPERATION, operationNumber++));
+                    }
+                }
+            }
+        } catch(Exception e) {
+            throw new OperationException(e);
+        }
+
+        return operationGroup;
+    }
+
+    private void createSet() {
+        presentedOperations = new TreeSet(new Comparator<OperationBean>() {
+            @Override
+            public int compare(OperationBean o1, OperationBean o2) {
+                int rank1 = o1.getRank();
+                int rank2 = o2.getRank();
+                if(rank1 == rank2) {
+                    return o2.getOperation().hashCode() - o1.getOperation().hashCode();
+                }
+                return rank2 - rank1;
+            }
+        });
+    }
+
+    private String removeFirstParenthesis(String input) {
+        if(input.matches(PARENTHESIS_PATTERN_3)) {
+            Pattern pattern = Pattern.compile(PARENTHESIS_PATTERN_3);
+            Matcher matcher = pattern.matcher(input);
+            if(matcher.find()) {
+                return matcher.group(1);
             }
         }
-        if(operation == null) {
-            return left;
-        }
-        return operation.execute(left, right);
+        return input;
     }
 
     private boolean validate(String str) throws OperationException {
@@ -89,12 +149,24 @@ public class Calculator {
 
     private String compileOperationRegExp() throws OperationException {
         StringBuilder sb = new StringBuilder();
-        for(Bundle bundle : cache) {
-            sb.append(BundleHelper.getHeader(bundle, Operation.OPERATION_NAME));
+        List<String> operations = BundleHelper.getHeader(cache, Operation.OPERATION_NAME);
+        for(String operation : operations) {
+            sb.append(operation);
         }
         if(sb.length() == 0) {
             throw new OperationException("Operations weren't present in system");
         }
-        return String.format(REG_EXP, sb.toString());
+        return Pattern.quote(sb.toString());
+    }
+
+    private void initPresentedOperation() {
+        createSet();
+        for(Bundle operationBundle : cache) {
+            OperationBean operationBean = new OperationBean();
+            operationBean.setClassName(BundleHelper.getHeader(operationBundle, Operation.OPERATION_BASE_CLASS));
+            operationBean.setOperation(BundleHelper.getHeader(operationBundle, Operation.OPERATION_NAME));
+            operationBean.setRank(Integer.parseInt(BundleHelper.getHeader(operationBundle, Operation.OPERATION_RANK)));
+            presentedOperations.add(operationBean);
+        }
     }
 }

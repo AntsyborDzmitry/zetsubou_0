@@ -1,4 +1,4 @@
-package com.zetsubou_0.osgi.operation.add;
+package com.zetsubou_0.osgi.operation.substitute;
 
 import com.zetsubou_0.osgi.api.Operation;
 import com.zetsubou_0.osgi.api.exception.OperationException;

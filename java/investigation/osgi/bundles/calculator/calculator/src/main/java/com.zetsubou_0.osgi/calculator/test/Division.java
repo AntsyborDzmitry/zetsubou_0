@@ -6,9 +6,9 @@ import com.zetsubou_0.osgi.api.exception.OperationException;
 /**
  * Created by Kiryl_Lutsyk on 9/7/2015.
  */
-public class Add implements Operation {
+public class Division implements Operation {
     @Override
     public double execute(double left, double right) throws OperationException {
-        return left + right;
+        return left / right;
     }
 }

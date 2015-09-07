@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zetsubou_0</groupId>
-    <artifactId>calculatorminus</artifactId>
+    <artifactId>calculatorsubstitute</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>calculatorminus</name>
-    <description>calculatorminus</description>
+    <name>calculatorsubstitute</name>
+    <description>calculatorsubstitute</description>
 
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>

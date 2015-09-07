@@ -1,9 +1,8 @@
 package com.zetsubou_0.osgi.calculator.ui;
 
+import com.zetsubou_0.osgi.api.exception.CommandException;
 import com.zetsubou_0.osgi.api.exception.OperationException;
-import com.zetsubou_0.osgi.api.observer.BundleUpdateListener;
 import com.zetsubou_0.osgi.calculator.core.CalculatorThread;
-import org.osgi.framework.BundleException;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -15,12 +14,11 @@ import java.util.List;
 /**
  * Created by Kiryl_Lutsyk on 9/3/2015.
  */
-public class Window extends JFrame implements BundleUpdateListener, Runnable {
+public class Window extends AbstractUI {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private static final String[] EMPTY_OPERATIONS = new String[]{"Operations not found"};
 
-    public CalculatorThread calculatorThread;
     private JFrame window;
     private JTextField inputText;
     private JButton calculateButton;
@@ -29,10 +27,8 @@ public class Window extends JFrame implements BundleUpdateListener, Runnable {
     private JButton addButton;
     private JButton removeButton;
 
-    private Window() {}
-
     public Window(CalculatorThread calculatorThread) {
-        this.calculatorThread = calculatorThread;
+        super(calculatorThread);
         init();
     }
 
@@ -181,7 +177,7 @@ public class Window extends JFrame implements BundleUpdateListener, Runnable {
                         try {
                             calculatorThread.uploadBundle(path);
                             updateBundles();
-                        } catch (BundleException ex) {
+                        } catch (CommandException ex) {
                             errors.append(ex.getMessage());
                             errors.append("\n");
                         }
@@ -202,7 +198,7 @@ public class Window extends JFrame implements BundleUpdateListener, Runnable {
                 try {
                     calculatorThread.uninstallBundle(bundlesList.getSelectedValuesList());
                     updateBundles();
-                } catch (BundleException ex) {
+                } catch (CommandException ex) {
                     resultValue.setText(ex.getMessage());
                 }
                 refreshWindow();
