@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * Created by Kiryl_Lutsyk on 9/7/2015.
  */
 public class Runner {
-    private static final String PARENTHESIS_PATTERN = "([(\\s%s/0-9.]|#group([0-9.]+)#)+[)]";
+    private static final String PARENTHESIS_PATTERN = "([(\\s/0-9.]|[%s]|#group([0-9.]+)#)+[)]";
     private static final String PARENTHESIS_PATTERN_2 = "[(]([\\s%s0-9.]|#group([0-9.]+)#)+[)]";
     private static final String PARENTHESIS_PATTERN_3 = "^[(](.*)[)]$";
     private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*([\\%s])[\\s]*([0-9.]+|#group([0-9.]+)#)";
@@ -28,20 +28,26 @@ public class Runner {
     public static void main(String[] args) {
         String input = "(2 - ((3 + 2 * 7) * 2 + 3))";
 
-        createSet();
-        fillOperations();
+//        createSet();
+//        fillOperations();
+//
+//        try {
+//            parseInput(removeFirstParenthesis(input));
+//            System.out.println(last.getValue());
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        } catch (OperationException e) {
+//            e.printStackTrace();
+//        }
 
-        try {
-            parseInput(removeFirstParenthesis(input));
-            System.out.println(last.getValue());
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (OperationException e) {
-            e.printStackTrace();
+        Pattern pattern = Pattern.compile(PARENTHESIS_PATTERN);
+        Matcher matcher = pattern.matcher(input);
+        while(matcher.find()) {
+            System.out.println(matcher.group());
         }
     }
 

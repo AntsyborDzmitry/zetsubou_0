@@ -8,5 +8,5 @@ Operation-rank: 20
 Bundle-ManifestVersion: 2
 Bundle-Name: Multiplication command
 Bundle-SymbolicName: com.zetsubou_0.osgi.operation.multiplication
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.1
 Import-Package: com.zetsubou_0.osgi.api

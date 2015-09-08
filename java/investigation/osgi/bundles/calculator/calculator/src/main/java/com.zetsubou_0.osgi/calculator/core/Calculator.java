@@ -15,11 +15,12 @@ import java.util.regex.Pattern;
  * Created by Kiryl_Lutsyk on 9/3/2015.
  */
 public class Calculator {
-    private static final String PARENTHESIS_PATTERN = "([(\\s%s0-9.]|#group([0-9.]+)#)+[)]";
-    private static final String PARENTHESIS_PATTERN_2 = "[(]([\\s%s0-9.]|#group([0-9.]+)#)+[)]";
+    private static final String PARENTHESIS_PATTERN = "([(\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
+    private static final String PARENTHESIS_PATTERN_2 = "[(]([\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
     private static final String PARENTHESIS_PATTERN_3 = "^[(](.*)[)]$";
     private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*([\\%s])[\\s]*([0-9.]+|#group([0-9.]+)#)";
     private static final String REGEX_GROUP = "^[\\s(]#group[0-9]+#[\\s)]$";
+    private static final String REGEX_VALIDATION = "^[\\s()0-9%s]+$";
     private static final String OPERATION = "#group%s#";
 
     private Set<OperationBean> presentedOperations;
@@ -101,7 +102,8 @@ public class Calculator {
                         operationGroup.setRightComplicated(true);
                         operationGroup.setRightGroup(groups.get(Integer.parseInt(matcher.group(5))));
                     }
-                    Operation op = (Operation) Class.forName(operationBean.getClassName()).newInstance();
+                    Bundle operationBundle = BundleHelper.getBundleByHeader(cache, Operation.OPERATION_NAME, operationBean.getOperation());
+                    Operation op = (Operation) operationBundle.loadClass(operationBean.getClassName()).newInstance();
                     operationGroup.setOperation(op);
                     groups.put(operationNumber, operationGroup);
                     if(!group.matches(REGEX_GROUP)) {
@@ -142,28 +144,44 @@ public class Calculator {
     }
 
     private boolean validate(String str) throws OperationException {
-        Pattern p = Pattern.compile(compileOperationRegExp());
+        Pattern p = Pattern.compile(String.format(REGEX_VALIDATION,compileOperationRegExp()));
         Matcher matcher = p.matcher(str);
         return matcher.find();
     }
 
     private String compileOperationRegExp() throws OperationException {
         StringBuilder sb = new StringBuilder();
+        StringBuilder sbSimple = new StringBuilder();
         List<String> operations = BundleHelper.getHeader(cache, Operation.OPERATION_NAME);
+        sbSimple.append("[");
         for(String operation : operations) {
-            sb.append(operation);
+            if(operation.length() == 1) {
+                sbSimple.append(operation);
+            } else {
+                sb.append("|");
+                sb.append(operation);
+            }
         }
-        if(sb.length() == 0) {
+        sbSimple.append("]");
+        if(sb.length() == 0 && sbSimple.length() < 2) {
             throw new OperationException("Operations weren't present in system");
         }
-        return Pattern.quote(sb.toString());
+        if(sbSimple.length() > 2 && sb.length() > 0) {
+            sbSimple.append(sb.toString());
+            return sbSimple.toString();
+        } else if(sbSimple.length() > 2) {
+            return sbSimple.toString();
+        } else {
+            sb.replace(0, 1, "");
+            return sb.toString();
+        }
     }
 
     private void initPresentedOperation() {
         createSet();
         for(Bundle operationBundle : cache) {
             OperationBean operationBean = new OperationBean();
-            operationBean.setClassName(BundleHelper.getHeader(operationBundle, Operation.OPERATION_BASE_CLASS));
+            operationBean.setClassName(BundleHelper.getHeader(operationBundle, Operation.OPERATION_CLASS));
             operationBean.setOperation(BundleHelper.getHeader(operationBundle, Operation.OPERATION_NAME));
             operationBean.setRank(Integer.parseInt(BundleHelper.getHeader(operationBundle, Operation.OPERATION_RANK)));
             presentedOperations.add(operationBean);
