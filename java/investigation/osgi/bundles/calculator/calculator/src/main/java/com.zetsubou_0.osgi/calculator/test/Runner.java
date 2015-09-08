@@ -26,7 +26,7 @@ public class Runner {
     private static OperationGroupBean last = new OperationGroupBean();
 
     public static void main(String[] args) {
-        String input = "(2 - ((3 + 2 * 7) * 2 + 3))";
+        String input = "(2 / 4 - ((3 + 2 * 7) * 2 + 3 pow 4)) pow 2";
 
 //        createSet();
 //        fillOperations();

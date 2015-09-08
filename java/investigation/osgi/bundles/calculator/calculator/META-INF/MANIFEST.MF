@@ -4,6 +4,6 @@ Build-Jdk: 1.7.0_60
 Bundle-ManifestVersion: 2
 Bundle-Name: Calculator
 Bundle-SymbolicName: com.zetsubou_0.osgi.calculator
-Bundle-Version: 1.0.70
+Bundle-Version: 1.0.75
 Bundle-Activator: com.zetsubou_0.osgi.calculator.bundles.activator.CalculatorActivator
 Import-Package: org.osgi.framework,com.zetsubou_0.osgi.api,com.zetsubou_0.osgi.api.exception,com.zetsubou_0.osgi.api.observer,javax.swing,javax.swing.filechooser

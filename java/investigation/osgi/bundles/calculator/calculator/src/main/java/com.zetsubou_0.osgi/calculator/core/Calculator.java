@@ -18,9 +18,9 @@ public class Calculator {
     private static final String PARENTHESIS_PATTERN = "([(\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
     private static final String PARENTHESIS_PATTERN_2 = "[(]([\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
     private static final String PARENTHESIS_PATTERN_3 = "^[(](.*)[)]$";
-    private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*([\\%s])[\\s]*([0-9.]+|#group([0-9.]+)#)";
+    private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*(%s)[\\s]*([0-9.]+|#group([0-9.]+)#)";
     private static final String REGEX_GROUP = "^[\\s(]#group[0-9]+#[\\s)]$";
-    private static final String REGEX_VALIDATION = "^[\\s()0-9%s]+$";
+    private static final String REGEX_VALIDATION = "^([\\s()0-9]|%s)+$";
     private static final String OPERATION = "#group%s#";
 
     private Set<OperationBean> presentedOperations;
@@ -84,7 +84,8 @@ public class Calculator {
 
         try {
             for(OperationBean operationBean : presentedOperations) {
-                Pattern pattern = Pattern.compile(String.format(GROUP_PATTERN, operationBean.getOperation()));
+                String operationName = (operationBean.getOperation().length() > 1) ? operationBean.getOperation() : ("[" + Pattern.quote(operationBean.getOperation()) + "]");
+                Pattern pattern = Pattern.compile(String.format(GROUP_PATTERN, operationName));
                 Matcher matcher = pattern.matcher(group);
                 while(matcher.find()) {
                     operationGroup = new OperationGroupBean();
@@ -150,26 +151,29 @@ public class Calculator {
     }
 
     private String compileOperationRegExp() throws OperationException {
+        final int SIMPLE_MIN = 4, MIN = 0;
         StringBuilder sb = new StringBuilder();
         StringBuilder sbSimple = new StringBuilder();
+        StringBuilder sbTemp = new StringBuilder();
         List<String> operations = BundleHelper.getHeader(cache, Operation.OPERATION_NAME);
         sbSimple.append("[");
         for(String operation : operations) {
             if(operation.length() == 1) {
-                sbSimple.append(operation);
+                sbTemp.append(operation);
             } else {
                 sb.append("|");
                 sb.append(operation);
             }
         }
+        sbSimple.append(Pattern.quote(sbTemp.toString()));
         sbSimple.append("]");
-        if(sb.length() == 0 && sbSimple.length() < 2) {
+        if(sb.length() == MIN && sbSimple.length() < SIMPLE_MIN) {
             throw new OperationException("Operations weren't present in system");
         }
-        if(sbSimple.length() > 2 && sb.length() > 0) {
+        if(sbSimple.length() > SIMPLE_MIN && sb.length() > MIN) {
             sbSimple.append(sb.toString());
             return sbSimple.toString();
-        } else if(sbSimple.length() > 2) {
+        } else if(sbSimple.length() > SIMPLE_MIN) {
             return sbSimple.toString();
         } else {
             sb.replace(0, 1, "");

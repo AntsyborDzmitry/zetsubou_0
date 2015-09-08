@@ -9,6 +9,6 @@ import com.zetsubou_0.osgi.api.exception.OperationException;
 public class Pow implements Operation {
     @Override
     public double execute(double left, double right) throws OperationException {
-        return left * right;
+        return Math.pow(left, right);
     }
 }
