@@ -10,9 +10,8 @@ import java.util.Map;
 public interface ShellCommand {
     public static final String PATH = "path";
     public static final String PROTOCOL = "protocol";
-    public static final String CACHE = "cache";
-    public static final String BUNDLE_CONTEXT = "bundleContext";
     public static final String OPERATIONS = "operations";
+    public static final String CALCULATOR_THREAD = "calculatorThread";
 
     void execute(Map<String, Object> params) throws CommandException;
 }

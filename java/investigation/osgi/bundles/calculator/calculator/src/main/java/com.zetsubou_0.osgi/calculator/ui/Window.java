@@ -1,15 +1,22 @@
 package com.zetsubou_0.osgi.calculator.ui;
 
+import com.zetsubou_0.osgi.api.ShellCommand;
 import com.zetsubou_0.osgi.api.exception.CommandException;
 import com.zetsubou_0.osgi.api.exception.OperationException;
 import com.zetsubou_0.osgi.calculator.core.CalculatorThread;
+import com.zetsubou_0.osgi.calculator.core.command.Add;
+import com.zetsubou_0.osgi.calculator.core.command.Exit;
+import com.zetsubou_0.osgi.calculator.core.command.Remove;
+import com.zetsubou_0.osgi.calculator.core.command.UpdateOperationList;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Kiryl_Lutsyk on 9/3/2015.
@@ -43,15 +50,23 @@ public class Window extends AbstractUI {
     }
 
     private void updateBundles() {
-        List<String> bundlesTempList = calculatorThread.getOperations();
-        String[] bundles = new String[bundlesTempList.size()];
-        bundles = bundlesTempList.toArray(bundles);
-        if(bundles.length == 0) {
-            bundlesList.setListData(EMPTY_OPERATIONS);
-        } else {
-            bundlesList.setListData(bundles);
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put(ShellCommand.CALCULATOR_THREAD, calculatorThread);
+            ShellCommand update = new UpdateOperationList();
+            update.execute(params);
+            List<String> bundlesTempList = (List<String>) params.get(ShellCommand.OPERATIONS);
+            String[] bundles = new String[bundlesTempList.size()];
+            bundles = bundlesTempList.toArray(bundles);
+            if(bundles.length == 0) {
+                bundlesList.setListData(EMPTY_OPERATIONS);
+            } else {
+                bundlesList.setListData(bundles);
+            }
+            refreshWindow();
+        } catch (CommandException ex) {
+            resultValue.setText(ex.getMessage());
         }
-        refreshWindow();
     }
 
     private void init() {
@@ -135,8 +150,15 @@ public class Window extends AbstractUI {
                         "Exit Confirmation", JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if (confirm == 0) {
-                    calculatorThread.exit();
-                    window.dispose();
+                    try {
+                        Map<String, Object> params = new HashMap<>();
+                        params.put(ShellCommand.CALCULATOR_THREAD, calculatorThread);
+                        ShellCommand exit = new Exit();
+                        exit.execute(params);
+                        window.dispose();
+                    } catch (CommandException ex) {
+                        resultValue.setText(ex.getMessage());
+                    }
                 }
             }
         };
@@ -175,7 +197,12 @@ public class Window extends AbstractUI {
                             continue;
                         }
                         try {
-                            calculatorThread.uploadBundle(path);
+                            Map<String, Object> params = new HashMap<>();
+                            params.put(ShellCommand.CALCULATOR_THREAD, calculatorThread);
+                            params.put(ShellCommand.PATH, path);
+                            params.put(ShellCommand.PROTOCOL, "file:");
+                            ShellCommand command = new Add();
+                            command.execute(params);
                             updateBundles();
                         } catch (CommandException ex) {
                             errors.append(ex.getMessage());
@@ -196,7 +223,11 @@ public class Window extends AbstractUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    calculatorThread.uninstallBundle(bundlesList.getSelectedValuesList());
+                    Map<String, Object> params = new HashMap<>();
+                    params.put(ShellCommand.CALCULATOR_THREAD, calculatorThread);
+                    params.put(ShellCommand.OPERATIONS, bundlesList.getSelectedValuesList());
+                    ShellCommand command = new Remove();
+                    command.execute(params);
                     updateBundles();
                 } catch (CommandException ex) {
                     resultValue.setText(ex.getMessage());
