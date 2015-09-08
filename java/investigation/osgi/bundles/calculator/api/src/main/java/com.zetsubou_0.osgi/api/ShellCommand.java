@@ -12,6 +12,8 @@ public interface ShellCommand {
     public static final String PROTOCOL = "protocol";
     public static final String OPERATIONS = "operations";
     public static final String CALCULATOR_THREAD = "calculatorThread";
+    public static final String RESULT = "result";
+    public static final String INPUT_STRING = "inputString";
 
     void execute(Map<String, Object> params) throws CommandException;
 }

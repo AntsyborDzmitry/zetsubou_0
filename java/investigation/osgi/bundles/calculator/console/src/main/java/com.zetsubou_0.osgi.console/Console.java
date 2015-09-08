@@ -1,6 +1,7 @@
 package com.zetsubou_0.osgi.console;
 
 import java.io.*;
+import java.util.Scanner;
 
 /**
  * Created by Kiryl_Lutsyk on 9/8/2015.
@@ -8,7 +9,6 @@ import java.io.*;
 public class Console implements Runnable {
     private BufferedReader in;
     private PrintStream out;
-    private boolean isWorking;
 
     public Console(PrintStream out, InputStream in) {
         this.out = out;
@@ -19,22 +19,19 @@ public class Console implements Runnable {
     public void run() {
         synchronized (Console.class) {
             try {
-                isWorking = true;
-                while (isWorking) {
+                while (true) {
                     String str = in.readLine();
-                    out.println(str.toUpperCase());
+                    if(str.startsWith("calculator:")) {
+                        out.println(str.toUpperCase());
+                    } else {
+                        out.println(str);
+                    }
+                    out.flush();
                 }
-            } catch (IOException e) {
+            } catch(Exception e) {
                 out.println(e);
             }
         }
     }
 
-    public boolean isWorking() {
-        return isWorking;
-    }
-
-    public void setWorking(boolean isWorking) {
-        this.isWorking = isWorking;
-    }
 }

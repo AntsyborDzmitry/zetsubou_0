@@ -13,13 +13,12 @@ public class ConsoleActivator implements BundleActivator {
     @Override
     public void start(BundleContext bundleContext) throws Exception {
         console = new Thread(new Console(System.out, System.in));
+        console.setDaemon(true);
         console.start();
     }
 
     @Override
     public void stop(BundleContext bundleContext) throws Exception {
-        synchronized (Console.class) {
-            Console.class.notifyAll();
-        }
+
     }
 }

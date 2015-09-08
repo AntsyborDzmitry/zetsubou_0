@@ -33,9 +33,14 @@ public class CalculatorThread implements Runnable {
         }
     }
 
-    public double calculate(String input) throws OperationException {
+    public double calculate(String input) {
         Calculator calculator = new Calculator(bundleTracker.getCache());
-        return calculator.calculate(input);
+        try {
+            return calculator.calculate(input);
+        } catch (OperationException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public BundleContext getBundleContext() {
