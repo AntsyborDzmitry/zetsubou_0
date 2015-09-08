@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Operation-name: /
+Operation-base-class: com.zetsubou_0.osgi.api.Operation
+Operation-class: com.zetsubou_0.osgi.operation.division.Division
+Operation-rank: 20
+Bundle-ManifestVersion: 2
+Bundle-Name: Division command
+Bundle-SymbolicName: com.zetsubou_0.osgi.operation.division
+Bundle-Version: 1.0.2
+Import-Package: com.zetsubou_0.osgi.api

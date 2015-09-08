@@ -22,6 +22,8 @@
             <module>java/investigation/osgi/bundles/calculator/operations/add</module>
             <module>java/investigation/osgi/bundles/calculator/operations/substitute</module>
             <module>java/investigation/osgi/bundles/calculator/operations/multiplication</module>
+            <module>java/investigation/osgi/bundles/calculator/operations/div</module>
+            <module>java/investigation/osgi/bundles/calculator/operations/pow</module>
 
         <!--public-->
 
