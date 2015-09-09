@@ -21,6 +21,7 @@ public class Calculator {
     private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*(%s)[\\s]*([0-9.]+|#group([0-9.]+)#)";
     private static final String REGEX_GROUP = "^[\\s(]#group[0-9]+#[\\s)]$";
     private static final String REGEX_VALIDATION = "^([\\s()0-9.]|%s)+$";
+    private static final String REGEX_WITHOUT_OPERATION = "[0-9.]+[\\s]+[0-9.]+";
     private static final String OPERATION = "#group%s#";
 
     private Set<OperationBean> presentedOperations;
@@ -36,6 +37,7 @@ public class Calculator {
     }
 
     public double calculate(String input) throws OperationException {
+        input = input.trim();
         initPresentedOperation();
         validateOperations(input);
         if(!validate(input)) {
@@ -146,9 +148,14 @@ public class Calculator {
     }
 
     private boolean validate(String str) throws OperationException {
+        boolean isValid = true;
         Pattern p = Pattern.compile(String.format(REGEX_VALIDATION,compileOperationRegExp()));
         Matcher matcher = p.matcher(str);
-        return matcher.find();
+        isValid &=  matcher.find();
+        p = Pattern.compile(REGEX_WITHOUT_OPERATION);
+        matcher = p.matcher(str);
+        isValid &= !matcher.find();
+        return isValid;
     }
 
     private String compileOperationRegExp() throws OperationException {

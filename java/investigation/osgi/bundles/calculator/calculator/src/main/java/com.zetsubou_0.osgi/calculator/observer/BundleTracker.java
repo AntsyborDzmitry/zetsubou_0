@@ -35,9 +35,11 @@ public class BundleTracker implements BundleUpdateHandler {
                     if(bundleEvent.getType() == BundleEvent.STARTED) {
                         if(isValid(bundle)) {
                             cache.add(bundleEvent.getBundle());
+                            notifyAllListeners();
                         }
                     } else if(bundleEvent.getType() == BundleEvent.STOPPING) {
                         cache.remove(bundleEvent.getBundle());
+                        notifyAllListeners();
                     }
                 }
             }

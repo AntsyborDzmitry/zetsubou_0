@@ -227,7 +227,6 @@ public class Window extends AbstractUI {
                         }
                         try {
                             Window.this.addOperation(path, "file:");
-                            updateBundles();
                         } catch (CommandException ex) {
                             resultValue.setText(ex.getMessage());
                         }
@@ -247,11 +246,9 @@ public class Window extends AbstractUI {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Window.this.removeOperation(bundlesList.getSelectedValuesList());
-                    updateBundles();
                 } catch (CommandException ex) {
                     resultValue.setText(ex.getMessage());
                 }
-                refreshWindow();
             }
         };
         removeButton.addActionListener(removeBundle);
