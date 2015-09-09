@@ -2,6 +2,7 @@ package com.zetsubou_0.osgi.calculator.core.command;
 
 import com.zetsubou_0.osgi.api.ShellCommand;
 import com.zetsubou_0.osgi.api.exception.CommandException;
+import com.zetsubou_0.osgi.api.exception.OperationException;
 import com.zetsubou_0.osgi.calculator.core.CalculatorThread;
 
 import java.util.Map;
@@ -14,6 +15,10 @@ public class Calculate implements ShellCommand {
     public void execute(Map<String, Object> params) throws CommandException {
         CalculatorThread calculatorThread = (CalculatorThread) params.get(ShellCommand.CALCULATOR_THREAD);
         String input = (String) params.get(ShellCommand.INPUT_STRING);
-        params.put(ShellCommand.RESULT, calculatorThread.calculate(input));
+        try {
+            params.put(ShellCommand.RESULT, calculatorThread.calculate(input));
+        } catch (OperationException e) {
+            throw new CommandException(e);
+        }
     }
 }

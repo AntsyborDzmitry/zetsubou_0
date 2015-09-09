@@ -184,17 +184,11 @@ public class Window extends AbstractUI {
         WindowListener exitListener = new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int confirm = JOptionPane.showOptionDialog(
-                        null, "Are You Sure to Close Application?",
-                        "Exit Confirmation", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE, null, null, null);
-                if (confirm == 0) {
-                    try {
-                        Window.this.exitCalculator();
-                        window.dispose();
-                    } catch (CommandException ex) {
-                        resultValue.setText(ex.getMessage());
-                    }
+                try {
+                    Window.this.exitCalculator();
+                    window.dispose();
+                } catch (CommandException ex) {
+                    resultValue.setText(ex.getMessage());
                 }
             }
         };
