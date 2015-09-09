@@ -23,17 +23,6 @@ public class BundleTracker implements BundleUpdateHandler {
 
     public BundleTracker(BundleContext bundleContext) {
         this.bundleContext = bundleContext;
-//        this.cache = new TreeSet<>(new Comparator<Bundle>() {
-//            @Override
-//            public int compare(Bundle o1, Bundle o2) {
-//                Dictionary<String, String> headers = null;
-//                headers = o2.getHeaders();
-//                int r2 = Integer.parseInt(headers.get(Operation.OPERATION_RANK));
-//                headers = o1.getHeaders();
-//                int r1 = Integer.parseInt(headers.get(Operation.OPERATION_RANK));
-//                return r2 - r1;
-//            }
-//        });
         this.cache = new HashSet<>();
         listener = new SynchronousBundleListener() {
             @Override

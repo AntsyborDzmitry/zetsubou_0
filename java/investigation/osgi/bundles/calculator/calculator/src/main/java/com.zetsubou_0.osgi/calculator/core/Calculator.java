@@ -20,7 +20,7 @@ public class Calculator {
     private static final String PARENTHESIS_PATTERN_3 = "^[(](.*)[)]$";
     private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*(%s)[\\s]*([0-9.]+|#group([0-9.]+)#)";
     private static final String REGEX_GROUP = "^[\\s(]#group[0-9]+#[\\s)]$";
-    private static final String REGEX_VALIDATION = "^([\\s()0-9]|%s)+$";
+    private static final String REGEX_VALIDATION = "^([\\s()0-9.]|%s)+$";
     private static final String OPERATION = "#group%s#";
 
     private Set<OperationBean> presentedOperations;
@@ -36,10 +36,11 @@ public class Calculator {
     }
 
     public double calculate(String input) throws OperationException {
+        initPresentedOperation();
+        validateOperations(input);
         if(!validate(input)) {
             throw new OperationException("Not valid input string");
         }
-        initPresentedOperation();
         parseInput(removeFirstParenthesis(input));
         return last.getValue();
     }
@@ -189,6 +190,18 @@ public class Calculator {
             operationBean.setOperation(BundleHelper.getHeader(operationBundle, Operation.OPERATION_NAME));
             operationBean.setRank(Integer.parseInt(BundleHelper.getHeader(operationBundle, Operation.OPERATION_RANK)));
             presentedOperations.add(operationBean);
+        }
+    }
+
+    private void validateOperations(String input) throws OperationException {
+        Set<String> operationNames = new HashSet<>();
+        for(OperationBean operation : presentedOperations) {
+            operationNames.add(operation.getOperation());
+        }
+        for(String inputOperation : input.split("[()\\s0-9.]")) {
+            if(!"".equals(inputOperation) && !operationNames.contains(inputOperation)) {
+                throw new OperationException("Operation doesn't present in system \"" + inputOperation + "\"");
+            }
         }
     }
 }
