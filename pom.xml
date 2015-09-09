@@ -15,7 +15,8 @@
 
         <!--investigation-->
         <module>java/investigation</module>
-            <!--OSGI-->
+        <!--OSGI-->
+            <!--Calculator-->
             <module>java/investigation/osgi/bundles/calculator/api</module>
             <module>java/investigation/osgi/bundles/calculator/calculator</module>
             <!--Operations-->
@@ -26,6 +27,10 @@
             <module>java/investigation/osgi/bundles/calculator/operations/pow</module>
             <!--test console-->
             <module>java/investigation/osgi/bundles/calculator/console</module>
+            <!--Animal-->
+            <module>java/investigation/osgi/bundles/export/test1/animal</module>
+            <module>java/investigation/osgi/bundles/export/test1/cat</module>
+            <module>java/investigation/osgi/bundles/export/test1/dog</module>
 
         <!--public-->
 
