@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
 public class Calculator {
     private static final String PARENTHESIS_PATTERN = "([(\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
     private static final String PARENTHESIS_PATTERN_2 = "[(]([\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
-    private static final String PARENTHESIS_PATTERN_3 = "^[(](.*)[)]$";
     private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*(%s)[\\s]*([0-9.]+|#group([0-9.]+)#)";
     private static final String REGEX_GROUP = "^[\\s(]#group[0-9]+#[\\s)]$";
     private static final String REGEX_VALIDATION = "^([\\s()0-9.]|%s)+$";
@@ -43,7 +42,7 @@ public class Calculator {
         if(!validate(input)) {
             throw new OperationException("Not valid input string");
         }
-        parseInput(removeFirstParenthesis(input));
+        parseInput(input);
         return last.getValue();
     }
 
@@ -53,6 +52,10 @@ public class Calculator {
         }
         Pattern pattern = Pattern.compile(String.format(PARENTHESIS_PATTERN, compileOperationRegExp()));
         Matcher matcher = pattern.matcher(input);
+        if(input.matches(REGEX_GROUP)) {
+            last = groups.get(Integer.parseInt(input.replaceAll("[\\D]+", "")));
+            return;
+        }
         if(matcher.find()) {
             String foundString = matcher.group();
             if(foundString != null || !"".equals(foundString)) {
@@ -134,17 +137,6 @@ public class Calculator {
                 return rank2 - rank1;
             }
         });
-    }
-
-    private String removeFirstParenthesis(String input) {
-        if(input.matches(PARENTHESIS_PATTERN_3)) {
-            Pattern pattern = Pattern.compile(PARENTHESIS_PATTERN_3);
-            Matcher matcher = pattern.matcher(input);
-            if(matcher.find()) {
-                return matcher.group(1);
-            }
-        }
-        return input;
     }
 
     private boolean validate(String str) throws OperationException {
