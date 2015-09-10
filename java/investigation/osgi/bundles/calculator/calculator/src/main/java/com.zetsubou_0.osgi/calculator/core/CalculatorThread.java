@@ -26,6 +26,7 @@ public class CalculatorThread implements Runnable {
         synchronized (CalculatorThread.class) {
             try {
                 CalculatorThread.class.wait();
+                bundleTracker.stopTracking();
                 new Thread(new CalculatorThreadKiller(bundleContext)).run();
             } catch (InterruptedException e) {
                 e.printStackTrace();
