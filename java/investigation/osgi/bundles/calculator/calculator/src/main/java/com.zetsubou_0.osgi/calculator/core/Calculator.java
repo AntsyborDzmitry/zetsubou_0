@@ -18,7 +18,7 @@ public class Calculator {
     private static final String PARENTHESIS_PATTERN = "([(\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
     private static final String PARENTHESIS_PATTERN_2 = "[(]([\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
     private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*(%s)[\\s]*([0-9.]+|#group([0-9.]+)#)";
-    private static final String REGEX_GROUP = "^[\\s(]#group[0-9]+#[\\s)]$";
+    private static final String REGEX_GROUP = "^[\\s(]*#group([0-9])+#[\\s)]*$";
     private static final String REGEX_VALIDATION = "^([\\s()0-9.]|%s)+$";
     private static final String REGEX_WITHOUT_OPERATION = "[0-9.]+[\\s]+[0-9.]+";
     private static final String OPERATION = "#group%s#";
@@ -52,10 +52,6 @@ public class Calculator {
         }
         Pattern pattern = Pattern.compile(String.format(PARENTHESIS_PATTERN, compileOperationRegExp()));
         Matcher matcher = pattern.matcher(input);
-        if(input.matches(REGEX_GROUP)) {
-            last = groups.get(Integer.parseInt(input.replaceAll("[\\D]+", "")));
-            return;
-        }
         if(matcher.find()) {
             String foundString = matcher.group();
             if(foundString != null || !"".equals(foundString)) {
@@ -71,7 +67,13 @@ public class Calculator {
                 }
             }
         } else {
-            last = parsePriorityGroup(input);
+            pattern = Pattern.compile(REGEX_GROUP);
+            matcher = pattern.matcher(input);
+            if(matcher.find()) {
+                last = groups.get(Integer.parseInt(matcher.group(1)));
+            } else {
+                last = parsePriorityGroup(input);
+            }
         }
     }
 
