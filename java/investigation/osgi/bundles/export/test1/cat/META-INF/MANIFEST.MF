@@ -4,5 +4,5 @@ Build-Jdk: 1.7.0_60
 Bundle-ManifestVersion: 2
 Bundle-Name: Cat
 Bundle-SymbolicName: com.zetsubou_0.osgi.animal.Cat
-Bundle-Version: 1.0.1
-Export-package: com.zetsubou_0.osgi.animal; animal="cat"
+Bundle-Version: 1.0.2
+Export-package: com.zetsubou_0.osgi.animal

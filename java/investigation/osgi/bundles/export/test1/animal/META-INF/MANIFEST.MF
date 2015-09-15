@@ -5,5 +5,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Animal
 Bundle-Activator: com.zetsubou_0.osgi.animal.Activator
 Bundle-SymbolicName: com.zetsubou_0.osgi.animal
-Bundle-Version: 1.0.3
-Import-package: com.zetsubou_0.osgi.animal;version="1.0.0",com.zetsubou_0.osgi.animal;version="1.0.1"
+Bundle-Version: 1.0.8
+Import-package: org.osgi.framework
+Require-Bundle: com.zetsubou_0.osgi.animal.Cat; com.zetsubou_0.osgi.animal.Dog

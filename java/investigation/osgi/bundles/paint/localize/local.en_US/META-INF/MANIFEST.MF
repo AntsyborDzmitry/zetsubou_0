@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Bundle-ManifestVersion: 2
+Bundle-Name: Figure local (en_US)
+Bundle-SymbolicName: com.zetsubou_0.osgi.figure.localize.en
+Bundle-Version: 1.0.0
+Fragment-Host: com.zetsubou_0.osgi.figure.Shape

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Bundle-ManifestVersion: 2
+Bundle-Name: Paint API
+Bundle-SymbolicName: com.zetsubou_0.osgi.api.paint
+Bundle-Version: 1.0.2
+Export-package: com.zetsubou_0.osgi.api.paint
