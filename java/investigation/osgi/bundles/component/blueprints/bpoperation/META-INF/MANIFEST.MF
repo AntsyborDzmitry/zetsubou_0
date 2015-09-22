@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Bundle-ManifestVersion: 2
+Bundle-Name: Blue Print Operation
+Bundle-SymbolicName: com.zetsubou_0.osgi.operation.bpoperation
+Bundle-Version: 1.0.0
+Import-Package: org.osgi.framework,com.zetsubou_0.osgi.api.paint
+Component-Model: OSGI-INF/OSGI-INF\com.zetsubou_0.osgi.operation.bpoperation.BPOperation.xml
