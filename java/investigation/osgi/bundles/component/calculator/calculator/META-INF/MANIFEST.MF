@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Bundle-ManifestVersion: 2
+Bundle-Name: Calculator Component
+Bundle-SymbolicName: com.zetsubou_0.osgi.calculator.component
+Bundle-Version: 1.0.39
+Import-Package: org.osgi.framework,
+ org.osgi.service.component,
+ com.zetsubou_0.osgi.api,
+ com.zetsubou_0.osgi.api.exception,
+ com.zetsubou_0.osgi.api.observer,
+ com.zetsubou_0.osgi.api.ui,
+ javax.swing,javax.swing.filechooser
+Service-Component: OSGI-INF/com.zetsubou_0.osgi.calculator.component.CalculatorComponent.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.CalculatorThread.xml
+

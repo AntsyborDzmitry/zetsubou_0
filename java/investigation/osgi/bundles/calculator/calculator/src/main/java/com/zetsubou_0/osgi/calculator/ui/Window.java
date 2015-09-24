@@ -2,9 +2,7 @@ package com.zetsubou_0.osgi.calculator.ui;
 
 import com.zetsubou_0.osgi.api.ShellCommand;
 import com.zetsubou_0.osgi.api.exception.CommandException;
-import com.zetsubou_0.osgi.api.exception.OperationException;
 import com.zetsubou_0.osgi.calculator.core.CalculatorThread;
-import com.zetsubou_0.osgi.calculator.core.command.*;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

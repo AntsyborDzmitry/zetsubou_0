@@ -1,10 +1,10 @@
-package com.zetsubou_0.osgi.calculator.core.command;
+package com.zetsubou_0.osgi.calculator.component.core.command;
 
 import com.zetsubou_0.osgi.api.Operation;
 import com.zetsubou_0.osgi.api.ShellCommand;
 import com.zetsubou_0.osgi.api.exception.CommandException;
-import com.zetsubou_0.osgi.calculator.core.CalculatorThread;
-import com.zetsubou_0.osgi.calculator.helper.BundleHelper;
+import com.zetsubou_0.osgi.calculator.component.core.CalculatorThread;
+import com.zetsubou_0.osgi.calculator.component.helper.BundleHelper;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 
