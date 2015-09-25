@@ -18,6 +18,7 @@
         <!--OSGI-->
             <!--Calculator-->
             <module>java/investigation/osgi/bundles/calculator/api</module>
+            <module>java/investigation/osgi/bundles/calculator/calculator</module>
             <module>java/investigation/osgi/bundles/component/calculator/calculator</module>
             <!--Paint-->
             <module>java/investigation/osgi/bundles/paint/api</module>
