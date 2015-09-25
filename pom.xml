@@ -30,6 +30,7 @@
             <module>java/investigation/osgi/bundles/calculator/operations/multiplication</module>
             <module>java/investigation/osgi/bundles/calculator/operations/div</module>
             <module>java/investigation/osgi/bundles/calculator/operations/pow</module>
+            <module>java/investigation/osgi/bundles/component/calculator/operations/pow</module>
             <!--BP Operation-->
             <module>java/investigation/osgi/bundles/component/blueprints/bpoperation</module>
             <!--Animal-->

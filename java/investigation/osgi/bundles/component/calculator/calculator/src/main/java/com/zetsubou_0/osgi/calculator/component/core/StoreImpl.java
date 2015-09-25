@@ -1,9 +1,13 @@
 package com.zetsubou_0.osgi.calculator.component.core;
 
 import com.zetsubou_0.osgi.api.exception.OperationException;
-import com.zetsubou_0.osgi.calculator.component.api.CalculatorThreadStore;
+import com.zetsubou_0.osgi.api.observer.Handler;
+import com.zetsubou_0.osgi.api.observer.Listener;
+import com.zetsubou_0.osgi.calculator.component.api.Store;
+import com.zetsubou_0.osgi.calculator.component.api.Tracking;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.ComponentContext;
@@ -12,15 +16,17 @@ import org.osgi.service.component.ComponentContext;
  * Created by Kiryl_Lutsyk on 9/25/2015.
  */
 @Component
-@Service(value = CalculatorThreadStore.class)
-public class CalculatorThreadStoreImpl implements CalculatorThreadStore {
+@Service(value = Store.class)
+public class StoreImpl implements Store {
     private BundleContext bundleContext;
-    private Tracker tracker;
+    @Reference
+    private Tracking tracker;
+    @Reference
+    private Handler handler;
 
     @Activate
     protected void activate(ComponentContext componentContext) {
         this.bundleContext = componentContext.getBundleContext();
-        this.tracker = new Tracker();
     }
 
     @Override
@@ -35,7 +41,12 @@ public class CalculatorThreadStoreImpl implements CalculatorThreadStore {
     }
 
     @Override
-    public Tracker getTracker() {
+    public Tracking getTracker() {
         return tracker;
+    }
+
+    @Override
+    public void addListener(Listener listener) {
+        handler.addListenr(listener);
     }
 }

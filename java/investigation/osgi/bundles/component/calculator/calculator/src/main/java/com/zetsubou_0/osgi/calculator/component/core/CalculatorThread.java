@@ -2,7 +2,8 @@ package com.zetsubou_0.osgi.calculator.component.core;
 
 import com.zetsubou_0.osgi.api.observer.Listener;
 import com.zetsubou_0.osgi.api.ui.CalculatorUI;
-import com.zetsubou_0.osgi.calculator.component.api.CalculatorThreadStore;
+import com.zetsubou_0.osgi.calculator.component.api.Store;
+import com.zetsubou_0.osgi.calculator.component.api.ThreadKiller;
 import org.apache.felix.scr.annotations.*;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.ComponentContext;
@@ -22,7 +23,9 @@ public class CalculatorThread implements Runnable {
     @Reference
     private Listener listener;
     @Reference
-    private CalculatorThreadStore calculatorThreadStore;
+    private Store store;
+    @Reference
+    private ThreadKiller threadKiller;
     private BundleContext bundleContext;
 
     public CalculatorThread() {
@@ -46,8 +49,9 @@ public class CalculatorThread implements Runnable {
         synchronized (CalculatorThread.class) {
             try {
                 CalculatorThread.class.wait();
-                calculatorThreadStore.getTracker().stopTracking();
-                new Thread(new CalculatorThreadKiller(bundleContext)).run();
+                store.getTracker().stopTracking();
+                threadKiller.setBundle(bundleContext.getBundle());
+                new Thread(threadKiller).start();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -55,8 +59,8 @@ public class CalculatorThread implements Runnable {
     }
 
     private void init() {
-        calculatorThreadStore.getTracker().startTracking();
-        calculatorThreadStore.getTracker().addListenr(listener);
+        store.getTracker().startTracking();
+        store.addListener(listener);
         new Thread(window).start();
     }
 }

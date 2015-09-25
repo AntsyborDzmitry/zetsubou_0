@@ -4,14 +4,11 @@ import com.zetsubou_0.osgi.api.Operation;
 import com.zetsubou_0.osgi.api.observer.Handler;
 import com.zetsubou_0.osgi.api.observer.Listener;
 import com.zetsubou_0.osgi.calculator.component.api.Tracking;
-import com.zetsubou_0.osgi.calculator.component.helper.BundleHelper;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleEvent;
-import org.osgi.framework.SynchronousBundleListener;
 import org.osgi.service.component.ComponentContext;
 
 import java.util.*;
@@ -25,6 +22,8 @@ public class Tracker implements Handler, Tracking {
     private boolean isTracked = false;
     private Set<Bundle> cache = new HashSet<>();
     private Set<Listener> listeners = new HashSet<>();
+    @Reference
+    private Operation operation;
 
     public Tracker() {
 //        listener = new SynchronousBundleListener() {
@@ -49,6 +48,11 @@ public class Tracker implements Handler, Tracking {
 //        };
     }
 
+    @Activate
+    protected void activate(ComponentContext componentContext) {
+
+    }
+
     @Override
     public void startTracking() {
         isTracked = true;
@@ -61,6 +65,12 @@ public class Tracker implements Handler, Tracking {
 
     @Override
     public Set<Bundle> getCache() {
+        if(!isTracked) {
+            return new HashSet<>();
+        }
+
+
+
         return cache;
     }
 
@@ -81,8 +91,4 @@ public class Tracker implements Handler, Tracking {
         }
     }
 
-    private boolean isValid(Bundle bundle) {
-        String baseClass = BundleHelper.getHeader(bundle, Operation.OPERATION_BASE_CLASS);
-        return baseClass != null && Operation.class.getCanonicalName().equals(baseClass) && !cache.contains(bundle);
-    }
 }

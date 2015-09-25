@@ -34,8 +34,6 @@
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.scr.annotations</artifactId>
             <version>1.9.6</version>
-            <!--<artifactId>org.apache.felix.scr.ds-annotations</artifactId>-->
-            <!--<version>1.2.8</version>-->
         </dependency>
 
         <!--API-->
@@ -68,24 +66,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.felix</groupId>-->
-                <!--<artifactId>maven-bundle-plugin</artifactId>-->
-                <!--<version>2.5.4</version>-->
-                <!--<extensions>true</extensions>-->
-                <!--<configuration>-->
-                    <!--<instructions>-->
-                        <!--<Export-Package>org.osgi.framework,-->
-                            <!--com.zetsubou_0.osgi.api,-->
-                            <!--com.zetsubou_0.osgi.api.exception,-->
-                            <!--com.zetsubou_0.osgi.api.observer,-->
-                            <!--com.zetsubou_0.osgi.api.ui,-->
-                            <!--javax.swing,javax.swing.filechooser</Export-Package>-->
-                        <!--<Bundle-SymbolicName>com.zetsubou_0.osgi.calculator.component</Bundle-SymbolicName>-->
-                        <!--<Service-Component>OSGI-INF/com.zetsubou_0.osgi.calculator.component.CalculatorComponent.xml</Service-Component>-->
-                    <!--</instructions>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>

@@ -4,7 +4,7 @@ import com.zetsubou_0.osgi.api.ShellCommand;
 import com.zetsubou_0.osgi.api.exception.CommandException;
 import com.zetsubou_0.osgi.api.observer.Listener;
 import com.zetsubou_0.osgi.api.ui.CalculatorUI;
-import com.zetsubou_0.osgi.calculator.component.api.CalculatorThreadStore;
+import com.zetsubou_0.osgi.calculator.component.api.Store;
 import org.apache.felix.scr.annotations.*;
 import org.apache.felix.scr.annotations.Properties;
 
@@ -31,7 +31,7 @@ public class Window extends JFrame implements Listener, CalculatorUI {
     private static final String[] EMPTY_OPERATIONS = new String[]{"Operations not found"};
 
     @Reference
-    private CalculatorThreadStore calculatorThread;
+    private Store calculatorThread;
 
     /* UI commands */
     @Reference(target = "(" + ShellCommand.SHELL_COMMAND + "=calculate)")

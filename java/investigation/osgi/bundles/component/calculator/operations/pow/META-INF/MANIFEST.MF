@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Bundle-ManifestVersion: 2
+Operation-name: pow
+Operation-base-class: com.zetsubou_0.osgi.api.Operation
+Operation-class: com.zetsubou_0.osgi.operation.pow.Pow
+Operation-rank: 30
+Bundle-Name: Involution command (component)
+Bundle-SymbolicName: com.zetsubou_0.osgi.operation.pow.component
+Bundle-Version: 1.0.0
+Import-Package: com.zetsubou_0.osgi.api
+Service-Component: OSGI-INF/com.zetsubou_0.osgi.operation.pow.Pow.xml
