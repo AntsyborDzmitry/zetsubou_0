@@ -4,6 +4,7 @@ import com.zetsubou_0.osgi.api.ShellCommand;
 import com.zetsubou_0.osgi.api.exception.CommandException;
 import com.zetsubou_0.osgi.api.observer.Listener;
 import com.zetsubou_0.osgi.api.ui.CalculatorUI;
+import com.zetsubou_0.osgi.calculator.component.api.DisableListeners;
 import com.zetsubou_0.osgi.calculator.component.api.Store;
 import org.apache.felix.scr.annotations.*;
 import org.apache.felix.scr.annotations.Properties;
@@ -32,6 +33,8 @@ public class Window extends JFrame implements Listener, CalculatorUI {
 
     @Reference
     private Store calculatorThread;
+    @Reference
+    private DisableListeners disableListeners;
 
     /* UI commands */
     @Reference(target = "(" + ShellCommand.SHELL_COMMAND + "=calculate)")
@@ -203,6 +206,7 @@ public class Window extends JFrame implements Listener, CalculatorUI {
             public void windowClosing(WindowEvent e) {
                 try {
                     Window.this.exitCalculator();
+                    disableListeners.disable();
                     window.dispose();
                 } catch (CommandException ex) {
                     resultValue.setText(ex.getMessage());

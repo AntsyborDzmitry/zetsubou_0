@@ -14,6 +14,7 @@ Import-Package: org.osgi.framework,
  javax.swing,javax.swing.filechooser
 Service-Component: OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.CalculatorThread.xml,
  OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.CalculatorThreadKiller.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.BundleContextProviderImpl.xml,
  OSGI-INF/com.zetsubou_0.osgi.calculator.component.ui.Window.xml,
  OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.command.Add.xml,
  OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.command.Calculate.xml,

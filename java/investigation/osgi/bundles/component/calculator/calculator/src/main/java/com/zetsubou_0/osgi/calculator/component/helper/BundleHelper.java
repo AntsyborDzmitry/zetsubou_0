@@ -1,12 +1,10 @@
 package com.zetsubou_0.osgi.calculator.component.helper;
 
+import com.zetsubou_0.osgi.api.Operation;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Kiryl_Lutsyk on 9/2/2015.
@@ -47,5 +45,10 @@ public class BundleHelper {
             }
         }
         return null;
+    }
+
+    public static Bundle getOperationBundle(BundleContext bundleContext, Operation operation) {
+        Set<Bundle> bundles = new HashSet<>(Arrays.asList(bundleContext.getBundles()));
+        return getBundleByHeader(bundles, Operation.OPERATION_CLASS, operation.getClass().getName());
     }
 }
