@@ -8,6 +8,7 @@ import java.util.Map;
  * Created by Kiryl_Lutsyk on 9/2/2015.
  */
 public interface ShellCommand {
+    public static final String SHELL_COMMAND = "shellCommand";
     public static final String PATH = "path";
     public static final String PROTOCOL = "protocol";
     public static final String OPERATIONS = "operations";

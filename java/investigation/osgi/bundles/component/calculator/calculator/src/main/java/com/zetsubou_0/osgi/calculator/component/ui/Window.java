@@ -2,8 +2,11 @@ package com.zetsubou_0.osgi.calculator.component.ui;
 
 import com.zetsubou_0.osgi.api.ShellCommand;
 import com.zetsubou_0.osgi.api.exception.CommandException;
-import com.zetsubou_0.osgi.calculator.component.core.CalculatorThread;
-import com.zetsubou_0.osgi.calculator.component.core.command.*;
+import com.zetsubou_0.osgi.api.observer.Listener;
+import com.zetsubou_0.osgi.api.ui.CalculatorUI;
+import com.zetsubou_0.osgi.calculator.component.api.CalculatorThreadStore;
+import org.apache.felix.scr.annotations.*;
+import org.apache.felix.scr.annotations.Properties;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,10 +19,31 @@ import java.util.List;
 /**
  * Created by Kiryl_Lutsyk on 9/3/2015.
  */
-public class Window extends AbstractUI {
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
+@org.apache.felix.scr.annotations.Component
+@Service(value = {Listener.class, CalculatorUI.class})
+@Properties(
+        @Property(name = Window.TYPE, value = Window.DEFAULT_TYPE))
+public class Window extends JFrame implements Listener, CalculatorUI {
+    public static final String DEFAULT_TYPE = "calculatorUI";
+    public static final String TYPE = "type";
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 600;
     private static final String[] EMPTY_OPERATIONS = new String[]{"Operations not found"};
+
+    @Reference
+    private CalculatorThreadStore calculatorThread;
+
+    /* UI commands */
+    @Reference(target = "(" + ShellCommand.SHELL_COMMAND + "=calculate)")
+    private ShellCommand calculate;
+    @Reference(target = "(" + ShellCommand.SHELL_COMMAND + "=add)")
+    private ShellCommand add;
+    @Reference(target = "(" + ShellCommand.SHELL_COMMAND + "=remove)")
+    private ShellCommand remove;
+    @Reference(target = "(" + ShellCommand.SHELL_COMMAND + "=update)")
+    private ShellCommand update;
+    @Reference(target = "(" + ShellCommand.SHELL_COMMAND + "=exit)")
+    private ShellCommand exit;
 
     private JFrame window;
     private JTextField inputText;
@@ -29,9 +53,7 @@ public class Window extends AbstractUI {
     private JButton addButton;
     private JButton removeButton;
 
-    public Window(CalculatorThread calculatorThread) {
-        super(calculatorThread);
-        init();
+    public Window() {
     }
 
     @Override
@@ -39,7 +61,6 @@ public class Window extends AbstractUI {
         Map<String, Object> params = new HashMap<>();
         params.put(ShellCommand.CALCULATOR_THREAD, calculatorThread);
         params.put(ShellCommand.INPUT_STRING, input);
-        ShellCommand calculate = new Calculate();
         calculate.execute(params);
         return (double) params.get(ShellCommand.RESULT);
     }
@@ -50,8 +71,7 @@ public class Window extends AbstractUI {
         params.put(ShellCommand.CALCULATOR_THREAD, calculatorThread);
         params.put(ShellCommand.PATH, path);
         params.put(ShellCommand.PROTOCOL, protocol);
-        ShellCommand command = new Add();
-        command.execute(params);
+        add.execute(params);
     }
 
     @Override
@@ -59,8 +79,7 @@ public class Window extends AbstractUI {
         Map<String, Object> params = new HashMap<>();
         params.put(ShellCommand.CALCULATOR_THREAD, calculatorThread);
         params.put(ShellCommand.OPERATIONS, names);
-        ShellCommand command = new Remove();
-        command.execute(params);
+        remove.execute(params);
 
     }
 
@@ -68,7 +87,6 @@ public class Window extends AbstractUI {
     public List<String> operationsList() throws CommandException {
         Map<String, Object> params = new HashMap<>();
         params.put(ShellCommand.CALCULATOR_THREAD, calculatorThread);
-        ShellCommand update = new UpdateOperationList();
         update.execute(params);
         return  (List<String>) params.get(ShellCommand.OPERATIONS);
     }
@@ -77,7 +95,6 @@ public class Window extends AbstractUI {
     public void exitCalculator() throws CommandException {
         Map<String, Object> params = new HashMap<>();
         params.put(ShellCommand.CALCULATOR_THREAD, calculatorThread);
-        ShellCommand exit = new Exit();
         exit.execute(params);
     }
 
@@ -88,6 +105,7 @@ public class Window extends AbstractUI {
 
     @Override
     public void run() {
+        init();
         window.setVisible(true);
     }
 

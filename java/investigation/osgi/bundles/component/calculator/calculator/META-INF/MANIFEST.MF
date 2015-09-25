@@ -4,7 +4,7 @@ Build-Jdk: 1.7.0_60
 Bundle-ManifestVersion: 2
 Bundle-Name: Calculator Component
 Bundle-SymbolicName: com.zetsubou_0.osgi.calculator.component
-Bundle-Version: 1.0.39
+Bundle-Version: 1.0.0
 Import-Package: org.osgi.framework,
  org.osgi.service.component,
  com.zetsubou_0.osgi.api,
@@ -12,6 +12,13 @@ Import-Package: org.osgi.framework,
  com.zetsubou_0.osgi.api.observer,
  com.zetsubou_0.osgi.api.ui,
  javax.swing,javax.swing.filechooser
-Service-Component: OSGI-INF/com.zetsubou_0.osgi.calculator.component.CalculatorComponent.xml,
- OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.CalculatorThread.xml
+Service-Component: OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.CalculatorThread.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.ui.Window.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.command.Add.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.command.Calculate.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.command.Exit.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.command.Remove.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.command.UpdateOperationList.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.Tracker.xml,
+ OSGI-INF/com.zetsubou_0.osgi.calculator.component.core.CalculatorThreadStoreImpl.xml
 
