@@ -2,9 +2,11 @@ package com.zetsubou_0.osgi.calculator.component.core;
 
 import com.zetsubou_0.osgi.api.Operation;
 import com.zetsubou_0.osgi.api.exception.OperationException;
+import com.zetsubou_0.osgi.calculator.component.api.Tracking;
 import com.zetsubou_0.osgi.calculator.component.bean.OperationBean;
 import com.zetsubou_0.osgi.calculator.component.bean.OperationGroupBean;
 import com.zetsubou_0.osgi.calculator.component.helper.BundleHelper;
+import org.apache.felix.scr.annotations.*;
 import org.osgi.framework.Bundle;
 
 import java.util.*;
@@ -14,7 +16,9 @@ import java.util.regex.Pattern;
 /**
  * Created by Kiryl_Lutsyk on 9/3/2015.
  */
-public class Calculator {
+@Component
+@Service(value = com.zetsubou_0.osgi.calculator.component.api.Calculator.class)
+public class Calculator implements com.zetsubou_0.osgi.calculator.component.api.Calculator {
     private static final String PARENTHESIS_PATTERN = "([(\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
     private static final String PARENTHESIS_PATTERN_2 = "[(]([\\s0-9.]|%s|#group([0-9.]+)#)+[)]";
     private static final String GROUP_PATTERN = "([0-9.]+|#group([0-9.]+)#)[\\s]*(%s)[\\s]*([0-9.]+|#group([0-9.]+)#)";
@@ -28,14 +32,14 @@ public class Calculator {
     private int operationNumber = 0;
     private OperationGroupBean last = new OperationGroupBean();
     private Set<Bundle> cache;
+    @Reference
+    private Tracking tracking;
 
-    private Calculator() {}
+    public Calculator() {}
 
-    public Calculator(Set<Bundle> cache) {
-        this.cache = cache;
-    }
-
+    @Override
     public double calculate(String input) throws OperationException {
+        cache = tracking.getCache();
         input = input.trim();
         initPresentedOperation();
         validateOperations(input);
@@ -153,7 +157,7 @@ public class Calculator {
     }
 
     private String compileOperationRegExp() throws OperationException {
-        final int SIMPLE_MIN = 4, MIN = 0;
+        final int SIMPLE_MIN = 6, MIN = 0;
         StringBuilder sb = new StringBuilder();
         StringBuilder sbSimple = new StringBuilder();
         StringBuilder sbTemp = new StringBuilder();

@@ -3,9 +3,7 @@ package com.zetsubou_0.osgi.calculator.component.core;
 import com.zetsubou_0.osgi.api.exception.OperationException;
 import com.zetsubou_0.osgi.api.observer.Handler;
 import com.zetsubou_0.osgi.api.observer.Listener;
-import com.zetsubou_0.osgi.calculator.component.api.BundleContextProvider;
-import com.zetsubou_0.osgi.calculator.component.api.Store;
-import com.zetsubou_0.osgi.calculator.component.api.Tracking;
+import com.zetsubou_0.osgi.calculator.component.api.*;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
@@ -23,10 +21,11 @@ public class StoreImpl implements Store {
     private Tracking tracker;
     @Reference
     private Handler handler;
+    @Reference
+    private com.zetsubou_0.osgi.calculator.component.api.Calculator calculator;
 
     @Override
     public double calculate(String input) throws OperationException {
-        Calculator calculator = new Calculator(tracker.getCache());
         return calculator.calculate(input);
     }
 
