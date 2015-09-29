@@ -32,6 +32,7 @@ public class Calculator implements com.zetsubou_0.osgi.calculator.component.api.
     private int operationNumber = 0;
     private OperationGroupBean last = new OperationGroupBean();
     private Set<Bundle> cache;
+
     @Reference
     private Tracking tracking;
 
