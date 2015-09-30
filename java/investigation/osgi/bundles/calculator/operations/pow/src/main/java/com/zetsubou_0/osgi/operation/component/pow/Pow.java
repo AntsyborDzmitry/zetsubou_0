@@ -1,4 +1,4 @@
-package com.zetsubou_0.osgi.operation.pow;
+package com.zetsubou_0.osgi.operation.component.pow;
 
 import com.zetsubou_0.osgi.api.Operation;
 import com.zetsubou_0.osgi.api.exception.OperationException;
