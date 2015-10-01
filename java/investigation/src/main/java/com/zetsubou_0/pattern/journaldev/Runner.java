@@ -3,9 +3,14 @@ package com.zetsubou_0.pattern.journaldev;
 import com.zetsubou_0.pattern.journaldev.abstractfactory.ComputerFactory;
 import com.zetsubou_0.pattern.journaldev.abstractfactory.PcFactory;
 import com.zetsubou_0.pattern.journaldev.abstractfactory.ServerFactory;
+import com.zetsubou_0.pattern.journaldev.adapter.ClassSocketAdapter;
+import com.zetsubou_0.pattern.journaldev.adapter.ObjectSocketAdapter;
+import com.zetsubou_0.pattern.journaldev.adapter.Socket;
 import com.zetsubou_0.pattern.journaldev.factory.Types;
 import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
 import com.zetsubou_0.pattern.journaldev.prototype.World;
+
+import java.util.Arrays;
 
 /**
  * Created by Kiryl_Lutsyk on 10/1/2015.
@@ -71,5 +76,11 @@ public class Runner {
         //java.io.OutputStreamWriter(OutputStream) (returns a Writer)
         //javax.xml.bind.annotation.adapters.XmlAdapter#marshal()
         System.out.println("\nAdapter");
+        Socket socket = new Socket();
+        System.out.println(socket.getVolt());
+        System.out.println(new ClassSocketAdapter().get5Socket().getVolt());
+        System.out.println(new ClassSocketAdapter().get12Socket().getVolt());
+        System.out.println(new ObjectSocketAdapter(new Socket()).get5Socket().getVolt());
+        System.out.println(new ObjectSocketAdapter(new Socket()).get12Socket().getVolt());
     }
 }
