@@ -10,8 +10,6 @@ import com.zetsubou_0.pattern.journaldev.factory.Types;
 import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
 import com.zetsubou_0.pattern.journaldev.prototype.World;
 
-import java.util.Arrays;
-
 /**
  * Created by Kiryl_Lutsyk on 10/1/2015.
  */
@@ -82,5 +80,10 @@ public class Runner {
         System.out.println(new ClassSocketAdapter().get12Socket().getVolt());
         System.out.println(new ObjectSocketAdapter(new Socket()).get5Socket().getVolt());
         System.out.println(new ObjectSocketAdapter(new Socket()).get12Socket().getVolt());
+
+        /*composite*/
+        //java.awt.Container#add(Component) (practically all over Swing thus)
+        //javax.faces.component.UIComponent#getChildren() (practically all over JSF UI thus)
+        System.out.println("\nComposite");
     }
 }
