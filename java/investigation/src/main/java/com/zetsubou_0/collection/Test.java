@@ -1,20 +1,30 @@
 package com.zetsubou_0.collection;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Kiryl_Lutsyk on 2/2/2015.
  */
 public class Test {
     public static void main(String[] args) {
-        LinkedList<Integer> list = new LinkedList<Integer>();
+        List<String> list1 = new ArrayList<>();
+        List<String> list2 = new LinkedList<>();
 
-        list.add(0);
-        list.offer(3);
-        list.offer(5);
-        list.push(2);
-        list.push(1);
+        list1.add("a");
+        list1.add("b");
+        list1.add("c");
+        list1.add("d");
 
-        System.out.println(list);
+        Iterator<String> iterator = list1.iterator();
+        while(iterator.hasNext()) {
+            String str = iterator.next();
+            if("b".equals(str)) {
+                list1.remove(str);
+            }
+        }
+        System.out.println(list1);
     }
 }
