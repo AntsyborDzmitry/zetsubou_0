@@ -6,6 +6,10 @@ import com.zetsubou_0.pattern.journaldev.abstractfactory.ServerFactory;
 import com.zetsubou_0.pattern.journaldev.adapter.ClassSocketAdapter;
 import com.zetsubou_0.pattern.journaldev.adapter.ObjectSocketAdapter;
 import com.zetsubou_0.pattern.journaldev.adapter.Socket;
+import com.zetsubou_0.pattern.journaldev.composite.Circle;
+import com.zetsubou_0.pattern.journaldev.composite.CompositeShape;
+import com.zetsubou_0.pattern.journaldev.composite.Rectangle;
+import com.zetsubou_0.pattern.journaldev.composite.Shape;
 import com.zetsubou_0.pattern.journaldev.factory.Types;
 import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
 import com.zetsubou_0.pattern.journaldev.prototype.World;
@@ -85,5 +89,11 @@ public class Runner {
         //java.awt.Container#add(Component) (practically all over Swing thus)
         //javax.faces.component.UIComponent#getChildren() (practically all over JSF UI thus)
         System.out.println("\nComposite");
+        Shape circle = new Circle();
+        Shape rectangle = new Rectangle();
+        CompositeShape group = new CompositeShape();
+        group.add(circle);
+        group.add(rectangle);
+        group.draw();
     }
 }
