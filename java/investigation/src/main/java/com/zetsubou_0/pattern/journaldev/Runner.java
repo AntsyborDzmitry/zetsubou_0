@@ -29,6 +29,10 @@ import com.zetsubou_0.pattern.journaldev.prototype.World;
 import com.zetsubou_0.pattern.journaldev.proxy.Command;
 import com.zetsubou_0.pattern.journaldev.proxy.CommandProxy;
 import com.zetsubou_0.pattern.journaldev.proxy.User;
+import com.zetsubou_0.pattern.journaldev.strategy.Cardpay;
+import com.zetsubou_0.pattern.journaldev.strategy.NetPay;
+import com.zetsubou_0.pattern.journaldev.strategy.PayStrategy;
+import com.zetsubou_0.pattern.journaldev.strategy.Shop;
 import com.zetsubou_0.pattern.journaldev.templatemethod.BlockedHouse;
 import com.zetsubou_0.pattern.journaldev.templatemethod.TemplateHouse;
 import com.zetsubou_0.pattern.journaldev.templatemethod.WoodHouse;
@@ -278,6 +282,11 @@ public class Runner {
         //javax.servlet.http.HttpServlet, the service() and all doXXX() methods take HttpServletRequest and HttpServletResponse and the implementor has to process them (and not to get hold of them as instance variables!).
         //javax.servlet.Filter#doFilter()
         System.out.println("\nStrategy");
+        Shop shop = new Shop();
+        PayStrategy card = new Cardpay(12345678);
+        PayStrategy inet = new NetPay("uSer", "www.aliexpress.com");
+        shop.buy("mobile", 200, card);
+        shop.buy("mobile", 110, inet);
 
 
         /*Template method*/
