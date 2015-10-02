@@ -12,6 +12,7 @@ import com.zetsubou_0.pattern.journaldev.composite.Rectangle;
 import com.zetsubou_0.pattern.journaldev.composite.Shape;
 import com.zetsubou_0.pattern.journaldev.factory.Types;
 import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
+import com.zetsubou_0.pattern.journaldev.flyweight.ShapeFlyweightFactory;
 import com.zetsubou_0.pattern.journaldev.prototype.World;
 import com.zetsubou_0.pattern.journaldev.proxy.Command;
 import com.zetsubou_0.pattern.journaldev.proxy.CommandProxy;
@@ -122,6 +123,10 @@ public class Runner {
         /*flyweight*/
         //java.lang.Integer#valueOf(int) (also on Boolean, Byte, Character, Short, Long and BigDecimal)
         System.out.println("\nFlyweight");
+        System.out.println(ShapeFlyweightFactory.getShape(ShapeFlyweightFactory.Type.CIRCLE));
+        System.out.println(ShapeFlyweightFactory.getShape(ShapeFlyweightFactory.Type.ORB_2D));
+        System.out.println(ShapeFlyweightFactory.getShape(ShapeFlyweightFactory.Type.ORB_3D));
+        System.out.println(ShapeFlyweightFactory.getShape(ShapeFlyweightFactory.Type.ORB_2D));
 
 
         /*proxy*/
