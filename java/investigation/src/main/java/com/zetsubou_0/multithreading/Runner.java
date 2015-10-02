@@ -5,10 +5,12 @@ package com.zetsubou_0.multithreading;
  */
 public class Runner implements Listener {
     public static void main(String[] args) {
+        Runtime.getRuntime().addShutdownHook(new Thread(new ShutDownHook()));
         Writer w = new Writer();
         Thread t = new Thread(w);
         System.out.println("Thread was created");
         t.start();
+        System.exit(0);
         System.out.println("Thread was started.");
         try {
             System.out.println("Wait");
