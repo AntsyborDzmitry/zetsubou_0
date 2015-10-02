@@ -6,6 +6,8 @@ import com.zetsubou_0.pattern.journaldev.abstractfactory.ServerFactory;
 import com.zetsubou_0.pattern.journaldev.adapter.ClassSocketAdapter;
 import com.zetsubou_0.pattern.journaldev.adapter.ObjectSocketAdapter;
 import com.zetsubou_0.pattern.journaldev.adapter.Socket;
+import com.zetsubou_0.pattern.journaldev.bridge.GreenColor;
+import com.zetsubou_0.pattern.journaldev.bridge.RedColor;
 import com.zetsubou_0.pattern.journaldev.composite.Circle;
 import com.zetsubou_0.pattern.journaldev.composite.CompositeShape;
 import com.zetsubou_0.pattern.journaldev.composite.Rectangle;
@@ -94,6 +96,10 @@ public class Runner {
         /*bridge*/
         // None comes to mind yet
         System.out.println("\nBridge");
+        com.zetsubou_0.pattern.journaldev.bridge.Shape shape = new com.zetsubou_0.pattern.journaldev.bridge.Circle(new RedColor());
+        com.zetsubou_0.pattern.journaldev.bridge.Shape shape2 = new com.zetsubou_0.pattern.journaldev.bridge.Rectangle(new GreenColor());
+        shape.draw();
+        shape2.draw();
 
 
         /*composite*/
