@@ -12,6 +12,9 @@ import com.zetsubou_0.pattern.journaldev.composite.Circle;
 import com.zetsubou_0.pattern.journaldev.composite.CompositeShape;
 import com.zetsubou_0.pattern.journaldev.composite.Rectangle;
 import com.zetsubou_0.pattern.journaldev.composite.Shape;
+import com.zetsubou_0.pattern.journaldev.decorator.Car;
+import com.zetsubou_0.pattern.journaldev.decorator.SalesmanCar;
+import com.zetsubou_0.pattern.journaldev.decorator.SportCar;
 import com.zetsubou_0.pattern.journaldev.facade.FacadeHelper;
 import com.zetsubou_0.pattern.journaldev.factory.Types;
 import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
@@ -119,6 +122,11 @@ public class Runner {
         //java.util.Collections, the checkedXXX(), synchronizedXXX() and unmodifiableXXX() methods.
         //javax.servlet.http.HttpServletRequestWrapper and HttpServletResponseWrapper
         System.out.println("\nDecorator");
+        Car car = new SalesmanCar();
+        car.drive();
+        Car sportCar = new SportCar(car);
+        sportCar.drive();
+        new SportCar(sportCar).drive();
 
 
         /*facade*/
