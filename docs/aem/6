@@ -1,0 +1,7 @@
+Hello everyone,
+
+In the next Tuesday, we will start discuss Sling framework. Our first topic I want to propose is SlingPostSerlvet. Let’s start digging with this page. Also it would be helpful for you if you get to know with curl tool. I’ve found one working for windows here.
+As you all knows, Apache Sling is open source framework. There is a lot advantages in reading code that maintained by group of professionals. So there is the code of Sling project on GitHub. Don’t try to swallow all in one time. Let’s start with SlingPostServelt functionality.
+Sling framework is based on OSGi functionality that allow us create modular extensible application. Sling itself extensible framework. I want you to extend Sling Post functionality with your custom operation. It’s up to you what operation it will be. Here is some information how to create your custom operation. Also the OSGi component creation experience that you’ve got from our previous lessons should help you in it. ;)
+
+Feel free to ask me personal or in chat in case any questions/issues. See you.
