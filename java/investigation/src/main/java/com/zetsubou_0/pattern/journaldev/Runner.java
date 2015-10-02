@@ -10,6 +10,7 @@ import com.zetsubou_0.pattern.journaldev.composite.Circle;
 import com.zetsubou_0.pattern.journaldev.composite.CompositeShape;
 import com.zetsubou_0.pattern.journaldev.composite.Rectangle;
 import com.zetsubou_0.pattern.journaldev.composite.Shape;
+import com.zetsubou_0.pattern.journaldev.facade.FacadeHelper;
 import com.zetsubou_0.pattern.journaldev.factory.Types;
 import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
 import com.zetsubou_0.pattern.journaldev.flyweight.ShapeFlyweightFactory;
@@ -118,6 +119,8 @@ public class Runner {
         //javax.faces.context.FacesContext, it internally uses among others the abstract/interface types LifeCycle, ViewHandler, NavigationHandler and many more without that the enduser has to worry about it (which are however overrideable by injection).
         //javax.faces.context.ExternalContext, which internally uses ServletContext, HttpSession, HttpServletRequest, HttpServletResponse, etc.
         System.out.println("\nFacade");
+        FacadeHelper.report(FacadeHelper.BaseType.SQL, FacadeHelper.ReportType.HTML, "someTable");
+        FacadeHelper.report(FacadeHelper.BaseType.ORACLE, FacadeHelper.ReportType.PDF, "someTable");
 
 
         /*flyweight*/
