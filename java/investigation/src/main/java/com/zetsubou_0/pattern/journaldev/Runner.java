@@ -160,5 +160,83 @@ public class Runner {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        /*Chain of responsibility*/
+        //java.util.logging.Logger#log()
+        //javax.servlet.Filter#doFilter()
+        System.out.println("Chain of responsibility");
+
+
+        /*Command*/
+        //All implementations of java.lang.Runnable
+        //All implementations of javax.swing.Action
+        System.out.println("Command");
+
+
+        /*Interpreter*/
+        //java.util.Pattern
+        //java.text.Normalizer
+        //All subclasses of java.text.Format
+        //All subclasses of javax.el.ELResolver
+        System.out.println("Interpreter");
+
+
+        /*Iterator*/
+        //All implementations of java.util.Iterator (thus among others also java.util.Scanner!).
+        //All implementations of java.util.Enumeration
+        System.out.println("Iterator");
+
+
+        /*Mediator*/
+        //java.util.Timer (all scheduleXXX() methods)
+        //java.util.concurrent.Executor#execute()
+        //java.util.concurrent.ExecutorService (the invokeXXX() and submit() methods)
+        //java.util.concurrent.ScheduledExecutorService (all scheduleXXX() methods)
+        //java.lang.reflect.Method#invoke()
+        System.out.println("Mediator");
+
+
+        /*Memento*/
+        //java.util.Date (the setter methods do that, Date is internally represented by a long value)
+        //All implementations of java.io.Serializable
+        //All implementations of javax.faces.component.StateHolder
+        System.out.println("Memento");
+
+
+        /*Observer (or Publish/Subscribe)*/
+        //java.util.Observer/java.util.Observable (rarely used in real world though)
+        //All implementations of java.util.EventListener (practically all over Swing thus)
+        //javax.servlet.http.HttpSessionBindingListener
+        //javax.servlet.http.HttpSessionAttributeListener
+        //javax.faces.event.PhaseListener
+        System.out.println("Observer (or Publish/Subscribe)");
+
+
+        /*State*/
+        //javax.faces.lifecycle.LifeCycle#execute() (controlled by FacesServlet, the behaviour is dependent on current phase (state) of JSF lifecycle)
+        System.out.println("State");
+
+
+        /*Strategy*/
+        //java.util.Comparator#compare(), executed by among others Collections#sort().
+        //javax.servlet.http.HttpServlet, the service() and all doXXX() methods take HttpServletRequest and HttpServletResponse and the implementor has to process them (and not to get hold of them as instance variables!).
+        //javax.servlet.Filter#doFilter()
+        System.out.println("Strategy");
+
+
+        /*Template method*/
+        //All non-abstract methods of java.io.InputStream, java.io.OutputStream, java.io.Reader and java.io.Writer.
+        //All non-abstract methods of java.util.AbstractList, java.util.AbstractSet and java.util.AbstractMap.
+        //javax.servlet.http.HttpServlet, all the doXXX() methods by default sends a HTTP 405 "Method Not Allowed" error to the response. You're free to implement none or any of them.
+        System.out.println("Template method");
+
+
+        /*Visitor*/
+        //javax.lang.model.element.AnnotationValue and AnnotationValueVisitor
+        //javax.lang.model.element.Element and ElementVisitor
+        //javax.lang.model.type.TypeMirror and TypeVisitor
+        //java.nio.file.FileVisitor and SimpleFileVisitor
+        System.out.println("Visitor");
     }
 }
