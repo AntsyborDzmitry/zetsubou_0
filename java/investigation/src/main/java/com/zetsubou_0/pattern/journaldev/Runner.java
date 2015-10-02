@@ -23,6 +23,9 @@ import com.zetsubou_0.pattern.journaldev.prototype.World;
 import com.zetsubou_0.pattern.journaldev.proxy.Command;
 import com.zetsubou_0.pattern.journaldev.proxy.CommandProxy;
 import com.zetsubou_0.pattern.journaldev.proxy.User;
+import com.zetsubou_0.pattern.journaldev.templatemethod.BlockedHouse;
+import com.zetsubou_0.pattern.journaldev.templatemethod.TemplateHouse;
+import com.zetsubou_0.pattern.journaldev.templatemethod.WoodHouse;
 
 /**
  * Created by Kiryl_Lutsyk on 10/1/2015.
@@ -206,6 +209,7 @@ public class Runner {
         System.out.println("\nMediator");
 
 
+
         /*Memento*/
         //java.util.Date (the setter methods do that, Date is internally represented by a long value)
         //All implementations of java.io.Serializable
@@ -239,7 +243,10 @@ public class Runner {
         //All non-abstract methods of java.util.AbstractList, java.util.AbstractSet and java.util.AbstractMap.
         //javax.servlet.http.HttpServlet, all the doXXX() methods by default sends a HTTP 405 "Method Not Allowed" error to the response. You're free to implement none or any of them.
         System.out.println("\nTemplate method");
-
+        TemplateHouse woodHouse = new WoodHouse();
+        TemplateHouse blockedHouse = new BlockedHouse();
+        woodHouse.build();
+        blockedHouse.build();
 
 
         /*Visitor*/
