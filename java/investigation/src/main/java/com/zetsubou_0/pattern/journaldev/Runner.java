@@ -8,6 +8,7 @@ import com.zetsubou_0.pattern.journaldev.adapter.ObjectSocketAdapter;
 import com.zetsubou_0.pattern.journaldev.adapter.Socket;
 import com.zetsubou_0.pattern.journaldev.bridge.GreenColor;
 import com.zetsubou_0.pattern.journaldev.bridge.RedColor;
+import com.zetsubou_0.pattern.journaldev.chainofresponsibility.*;
 import com.zetsubou_0.pattern.journaldev.composite.Circle;
 import com.zetsubou_0.pattern.journaldev.composite.CompositeShape;
 import com.zetsubou_0.pattern.journaldev.composite.Rectangle;
@@ -181,6 +182,20 @@ public class Runner {
         //java.util.logging.Logger#log()
         //javax.servlet.Filter#doFilter()
         System.out.println("\nChain of responsibility");
+        Chain node1 = new Chain50();
+        Chain node2 = new Chain20();
+        Chain node3 = new Chain10();
+        Chain node4 = new Chain5();
+        Chain node5 = new Chain1();
+        node1.setNextChain(node2);
+        node2.setNextChain(node3);
+        node3.setNextChain(node4);
+        node4.setNextChain(node5);
+        try {
+            node1.perform(537);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         /*Command*/
