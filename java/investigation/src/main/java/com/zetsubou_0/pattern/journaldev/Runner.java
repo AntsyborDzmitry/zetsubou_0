@@ -19,6 +19,9 @@ import com.zetsubou_0.pattern.journaldev.facade.FacadeHelper;
 import com.zetsubou_0.pattern.journaldev.factory.Types;
 import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
 import com.zetsubou_0.pattern.journaldev.flyweight.ShapeFlyweightFactory;
+import com.zetsubou_0.pattern.journaldev.mediator.MediatorChat;
+import com.zetsubou_0.pattern.journaldev.mediator.MediatorChatimpl;
+import com.zetsubou_0.pattern.journaldev.mediator.UserImpl;
 import com.zetsubou_0.pattern.journaldev.prototype.World;
 import com.zetsubou_0.pattern.journaldev.proxy.Command;
 import com.zetsubou_0.pattern.journaldev.proxy.CommandProxy;
@@ -207,7 +210,17 @@ public class Runner {
         //java.util.concurrent.ScheduledExecutorService (all scheduleXXX() methods)
         //java.lang.reflect.Method#invoke()
         System.out.println("\nMediator");
-
+        MediatorChat mediatorChat = new MediatorChatimpl();
+        com.zetsubou_0.pattern.journaldev.mediator.User u1 = new UserImpl("a", mediatorChat);
+        com.zetsubou_0.pattern.journaldev.mediator.User u2 = new UserImpl("b", mediatorChat);
+        com.zetsubou_0.pattern.journaldev.mediator.User u3 = new UserImpl("c", mediatorChat);
+        com.zetsubou_0.pattern.journaldev.mediator.User u4 = new UserImpl("d", mediatorChat);
+        mediatorChat.addUser(u1);
+        mediatorChat.addUser(u2);
+        mediatorChat.addUser(u3);
+        mediatorChat.addUser(u4);
+        mediatorChat.addUser(u2);
+        u2.sendMsg("Hello");
 
 
         /*Memento*/
@@ -255,5 +268,11 @@ public class Runner {
         //javax.lang.model.type.TypeMirror and TypeVisitor
         //java.nio.file.FileVisitor and SimpleFileVisitor
         System.out.println("\nVisitor");
+
+
+        /*----------------------
+        facade
+        mediator
+        -----------------------*/
     }
 }
