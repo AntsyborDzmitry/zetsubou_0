@@ -29,6 +29,9 @@ import com.zetsubou_0.pattern.journaldev.proxy.User;
  */
 public class Runner {
     public static void main(String[] args) {
+        /************************************************
+         *   Creational Design Patterns                 *
+         ***********************************************/
         /*factory*/
         //java.util.Calendar#getInstance()
         //java.util.ResourceBundle#getBundle()
@@ -82,6 +85,9 @@ public class Runner {
         }
 
 
+        /************************************************
+         *   Structural Design Patterns                 *
+         ***********************************************/
         /*adapter*/
         //java.util.Arrays#asList()
         //java.io.InputStreamReader(InputStream) (returns a Reader)
@@ -162,6 +168,9 @@ public class Runner {
         }
 
 
+        /************************************************
+         *   Behavioral Design Patterns                 *
+         ***********************************************/
         /*Chain of responsibility*/
         //java.util.logging.Logger#log()
         //javax.servlet.Filter#doFilter()
@@ -230,6 +239,7 @@ public class Runner {
         //All non-abstract methods of java.util.AbstractList, java.util.AbstractSet and java.util.AbstractMap.
         //javax.servlet.http.HttpServlet, all the doXXX() methods by default sends a HTTP 405 "Method Not Allowed" error to the response. You're free to implement none or any of them.
         System.out.println("Template method");
+
 
 
         /*Visitor*/
