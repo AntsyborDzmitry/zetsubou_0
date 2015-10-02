@@ -174,13 +174,13 @@ public class Runner {
         /*Chain of responsibility*/
         //java.util.logging.Logger#log()
         //javax.servlet.Filter#doFilter()
-        System.out.println("Chain of responsibility");
+        System.out.println("\nChain of responsibility");
 
 
         /*Command*/
         //All implementations of java.lang.Runnable
         //All implementations of javax.swing.Action
-        System.out.println("Command");
+        System.out.println("\nCommand");
 
 
         /*Interpreter*/
@@ -188,13 +188,13 @@ public class Runner {
         //java.text.Normalizer
         //All subclasses of java.text.Format
         //All subclasses of javax.el.ELResolver
-        System.out.println("Interpreter");
+        System.out.println("\nInterpreter");
 
 
         /*Iterator*/
         //All implementations of java.util.Iterator (thus among others also java.util.Scanner!).
         //All implementations of java.util.Enumeration
-        System.out.println("Iterator");
+        System.out.println("\nIterator");
 
 
         /*Mediator*/
@@ -203,14 +203,14 @@ public class Runner {
         //java.util.concurrent.ExecutorService (the invokeXXX() and submit() methods)
         //java.util.concurrent.ScheduledExecutorService (all scheduleXXX() methods)
         //java.lang.reflect.Method#invoke()
-        System.out.println("Mediator");
+        System.out.println("\nMediator");
 
 
         /*Memento*/
         //java.util.Date (the setter methods do that, Date is internally represented by a long value)
         //All implementations of java.io.Serializable
         //All implementations of javax.faces.component.StateHolder
-        System.out.println("Memento");
+        System.out.println("\nMemento");
 
 
         /*Observer (or Publish/Subscribe)*/
@@ -219,26 +219,26 @@ public class Runner {
         //javax.servlet.http.HttpSessionBindingListener
         //javax.servlet.http.HttpSessionAttributeListener
         //javax.faces.event.PhaseListener
-        System.out.println("Observer (or Publish/Subscribe)");
+        System.out.println("\nObserver (or Publish/Subscribe)");
 
 
         /*State*/
         //javax.faces.lifecycle.LifeCycle#execute() (controlled by FacesServlet, the behaviour is dependent on current phase (state) of JSF lifecycle)
-        System.out.println("State");
+        System.out.println("\nState");
 
 
         /*Strategy*/
         //java.util.Comparator#compare(), executed by among others Collections#sort().
         //javax.servlet.http.HttpServlet, the service() and all doXXX() methods take HttpServletRequest and HttpServletResponse and the implementor has to process them (and not to get hold of them as instance variables!).
         //javax.servlet.Filter#doFilter()
-        System.out.println("Strategy");
+        System.out.println("\nStrategy");
 
 
         /*Template method*/
         //All non-abstract methods of java.io.InputStream, java.io.OutputStream, java.io.Reader and java.io.Writer.
         //All non-abstract methods of java.util.AbstractList, java.util.AbstractSet and java.util.AbstractMap.
         //javax.servlet.http.HttpServlet, all the doXXX() methods by default sends a HTTP 405 "Method Not Allowed" error to the response. You're free to implement none or any of them.
-        System.out.println("Template method");
+        System.out.println("\nTemplate method");
 
 
 
@@ -247,6 +247,6 @@ public class Runner {
         //javax.lang.model.element.Element and ElementVisitor
         //javax.lang.model.type.TypeMirror and TypeVisitor
         //java.nio.file.FileVisitor and SimpleFileVisitor
-        System.out.println("Visitor");
+        System.out.println("\nVisitor");
     }
 }
