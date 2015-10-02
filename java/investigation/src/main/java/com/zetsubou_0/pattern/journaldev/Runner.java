@@ -13,6 +13,9 @@ import com.zetsubou_0.pattern.journaldev.composite.Shape;
 import com.zetsubou_0.pattern.journaldev.factory.Types;
 import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
 import com.zetsubou_0.pattern.journaldev.prototype.World;
+import com.zetsubou_0.pattern.journaldev.proxy.Command;
+import com.zetsubou_0.pattern.journaldev.proxy.CommandProxy;
+import com.zetsubou_0.pattern.journaldev.proxy.User;
 
 /**
  * Created by Kiryl_Lutsyk on 10/1/2015.
@@ -85,6 +88,12 @@ public class Runner {
         System.out.println(new ObjectSocketAdapter(new Socket()).get5Socket().getVolt());
         System.out.println(new ObjectSocketAdapter(new Socket()).get12Socket().getVolt());
 
+
+        /*bridge*/
+        // None comes to mind yet
+        System.out.println("\nBridge");
+
+
         /*composite*/
         //java.awt.Container#add(Component) (practically all over Swing thus)
         //javax.faces.component.UIComponent#getChildren() (practically all over JSF UI thus)
@@ -95,5 +104,39 @@ public class Runner {
         group.add(circle);
         group.add(rectangle);
         group.draw();
+
+
+        /*decorator*/
+        //All subclasses of java.io.InputStream, OutputStream, Reader and Writer have a constructor taking an instance of same type.
+        //java.util.Collections, the checkedXXX(), synchronizedXXX() and unmodifiableXXX() methods.
+        //javax.servlet.http.HttpServletRequestWrapper and HttpServletResponseWrapper
+        System.out.println("\nDecorator");
+
+
+        /*facade*/
+        //javax.faces.context.FacesContext, it internally uses among others the abstract/interface types LifeCycle, ViewHandler, NavigationHandler and many more without that the enduser has to worry about it (which are however overrideable by injection).
+        //javax.faces.context.ExternalContext, which internally uses ServletContext, HttpSession, HttpServletRequest, HttpServletResponse, etc.
+        System.out.println("\nFacade");
+
+
+        /*flyweight*/
+        //java.lang.Integer#valueOf(int) (also on Boolean, Byte, Character, Short, Long and BigDecimal)
+        System.out.println("\nFlyweight");
+
+
+        /*proxy*/
+        //java.lang.reflect.Proxy
+        //java.rmi.*, the whole API actually.
+        System.out.println("\nProxy");
+        try {
+            Command command = new CommandProxy(User.ADMIN);
+            command.execute("init");
+            command = new CommandProxy(User.GUEST);
+            command.execute("init");
+            command = new CommandProxy(null);
+            command.execute("init");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
