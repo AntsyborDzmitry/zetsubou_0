@@ -23,6 +23,8 @@ import com.zetsubou_0.pattern.journaldev.flyweight.ShapeFlyweightFactory;
 import com.zetsubou_0.pattern.journaldev.mediator.MediatorChat;
 import com.zetsubou_0.pattern.journaldev.mediator.MediatorChatimpl;
 import com.zetsubou_0.pattern.journaldev.mediator.UserImpl;
+import com.zetsubou_0.pattern.journaldev.observer.MailReceiver;
+import com.zetsubou_0.pattern.journaldev.observer.MailSender;
 import com.zetsubou_0.pattern.journaldev.prototype.World;
 import com.zetsubou_0.pattern.journaldev.proxy.Command;
 import com.zetsubou_0.pattern.journaldev.proxy.CommandProxy;
@@ -252,6 +254,18 @@ public class Runner {
         //javax.servlet.http.HttpSessionAttributeListener
         //javax.faces.event.PhaseListener
         System.out.println("\nObserver (or Publish/Subscribe)");
+        MailReceiver employee1 = new MailReceiver("e1@company.com");
+        MailReceiver employee2 = new MailReceiver("e2@company.com");
+        MailReceiver employee3 = new MailReceiver("e3@company.com");
+        MailReceiver employee4 = new MailReceiver("e4@company.com");
+        MailReceiver employee5 = new MailReceiver("e5@company.com");
+        MailSender mailSender = new MailSender();
+        mailSender.addObserver(employee1);
+        mailSender.addObserver(employee2);
+        mailSender.addObserver(employee3);
+        mailSender.addObserver(employee4);
+        mailSender.addObserver(employee5);
+        mailSender.sendMail(employee4, "Hello");
 
 
         /*State*/
