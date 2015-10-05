@@ -45,6 +45,11 @@ import com.zetsubou_0.pattern.journaldev.strategy.Shop;
 import com.zetsubou_0.pattern.journaldev.templatemethod.BlockedHouse;
 import com.zetsubou_0.pattern.journaldev.templatemethod.TemplateHouse;
 import com.zetsubou_0.pattern.journaldev.templatemethod.WoodHouse;
+import com.zetsubou_0.pattern.journaldev.visitor.ShoppingCartVisitor;
+import com.zetsubou_0.pattern.journaldev.visitor.ShoppingCartVisitorImpl;
+import com.zetsubou_0.pattern.journaldev.visitor.item.Book;
+import com.zetsubou_0.pattern.journaldev.visitor.item.Fruit;
+import com.zetsubou_0.pattern.journaldev.visitor.item.Item;
 
 /**
  * Created by Kiryl_Lutsyk on 10/1/2015.
@@ -329,11 +334,19 @@ public class Runner {
         //javax.lang.model.type.TypeMirror and TypeVisitor
         //java.nio.file.FileVisitor and SimpleFileVisitor
         System.out.println("\nVisitor");
+        ShoppingCartVisitor shoppingCartVisitor = new ShoppingCartVisitorImpl();
+        Item[] items = new Item[] {new Book("Java core", 330, 4), new Fruit("Orange", 10, 1), new Fruit("Apple", 2, 0), new Book("OSGI in action", 150, 10)};
+        int sum = 0;
+        for(Item item : items) {
+            sum += item.accept(shoppingCartVisitor);
+        }
+        System.out.println("Total: " + sum);
 
 
         /*----------------------
         facade
         mediator
+        visitor
         -----------------------*/
     }
 }
