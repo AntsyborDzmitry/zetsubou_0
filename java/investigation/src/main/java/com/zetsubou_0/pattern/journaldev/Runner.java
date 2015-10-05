@@ -36,6 +36,8 @@ import com.zetsubou_0.pattern.journaldev.iterator.helper.ChannelPrinter;
 import com.zetsubou_0.pattern.journaldev.mediator.MediatorChat;
 import com.zetsubou_0.pattern.journaldev.mediator.MediatorChatimpl;
 import com.zetsubou_0.pattern.journaldev.mediator.UserImpl;
+import com.zetsubou_0.pattern.journaldev.memento.FileWriter;
+import com.zetsubou_0.pattern.journaldev.memento.FileWriterCaretaker;
 import com.zetsubou_0.pattern.journaldev.observer.MailReceiver;
 import com.zetsubou_0.pattern.journaldev.observer.MailSender;
 import com.zetsubou_0.pattern.journaldev.prototype.World;
@@ -298,6 +300,24 @@ public class Runner {
         //All implementations of java.io.Serializable
         //All implementations of javax.faces.component.StateHolder
         System.out.println("\nMemento");
+        FileWriterCaretaker caretaker = new FileWriterCaretaker();
+        FileWriter fileWriter = new FileWriter("someFile.txt");
+        fileWriter.write("1");
+        System.out.println(fileWriter);
+        caretaker.save(fileWriter);
+        fileWriter.write("2");
+        System.out.println(fileWriter);
+        caretaker.save(fileWriter);
+        fileWriter.write("3");
+        System.out.println(fileWriter);
+        caretaker.save(fileWriter);
+        fileWriter.write("4");
+        System.out.println(fileWriter);
+        caretaker.undo(fileWriter);
+        System.out.println(fileWriter);
+        caretaker.undo(fileWriter);
+        caretaker.undo(fileWriter);
+        System.out.println(fileWriter);
 
 
         /*Observer (or Publish/Subscribe)*/
