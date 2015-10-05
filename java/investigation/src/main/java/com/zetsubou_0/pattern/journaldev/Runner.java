@@ -34,6 +34,10 @@ import com.zetsubou_0.pattern.journaldev.prototype.World;
 import com.zetsubou_0.pattern.journaldev.proxy.Command;
 import com.zetsubou_0.pattern.journaldev.proxy.CommandProxy;
 import com.zetsubou_0.pattern.journaldev.proxy.User;
+import com.zetsubou_0.pattern.journaldev.state.StartAction;
+import com.zetsubou_0.pattern.journaldev.state.State;
+import com.zetsubou_0.pattern.journaldev.state.StateChanger;
+import com.zetsubou_0.pattern.journaldev.state.StopAction;
 import com.zetsubou_0.pattern.journaldev.strategy.Cardpay;
 import com.zetsubou_0.pattern.journaldev.strategy.NetPay;
 import com.zetsubou_0.pattern.journaldev.strategy.PayStrategy;
@@ -288,6 +292,12 @@ public class Runner {
         /*State*/
         //javax.faces.lifecycle.LifeCycle#execute() (controlled by FacesServlet, the behaviour is dependent on current phase (state) of JSF lifecycle)
         System.out.println("\nState");
+        State start = new StartAction();
+        State stop = new StopAction();
+        StateChanger changer = new StateChanger(start);
+        changer.doAction();
+        changer = new StateChanger(stop);
+        changer.doAction();
 
 
         /*Strategy*/
