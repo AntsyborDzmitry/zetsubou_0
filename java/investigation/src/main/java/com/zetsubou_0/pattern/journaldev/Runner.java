@@ -27,6 +27,12 @@ import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
 import com.zetsubou_0.pattern.journaldev.flyweight.ShapeFlyweightFactory;
 import com.zetsubou_0.pattern.journaldev.interpreter.GreetingInterpreter;
 import com.zetsubou_0.pattern.journaldev.interpreter.MultiLanguageGreeting;
+import com.zetsubou_0.pattern.journaldev.iterator.ChannelCollection;
+import com.zetsubou_0.pattern.journaldev.iterator.ChannelCollectionImpl;
+import com.zetsubou_0.pattern.journaldev.iterator.ChannelIterator;
+import com.zetsubou_0.pattern.journaldev.iterator.ChannelTypeEnum;
+import com.zetsubou_0.pattern.journaldev.iterator.bean.Channel;
+import com.zetsubou_0.pattern.journaldev.iterator.helper.ChannelPrinter;
 import com.zetsubou_0.pattern.journaldev.mediator.MediatorChat;
 import com.zetsubou_0.pattern.journaldev.mediator.MediatorChatimpl;
 import com.zetsubou_0.pattern.journaldev.mediator.UserImpl;
@@ -249,6 +255,22 @@ public class Runner {
         //All implementations of java.util.Iterator (thus among others also java.util.Scanner!).
         //All implementations of java.util.Enumeration
         System.out.println("\nIterator");
+        ChannelCollection<Channel> channels = new ChannelCollectionImpl<>();
+        channels.add(new Channel(98.5, ChannelTypeEnum.ENGLISH));
+        channels.add(new Channel(99.5, ChannelTypeEnum.HINDI));
+        channels.add(new Channel(100.5, ChannelTypeEnum.FRENCH));
+        channels.add(new Channel(101.5, ChannelTypeEnum.ENGLISH));
+        channels.add(new Channel(102.5, ChannelTypeEnum.HINDI));
+        channels.add(new Channel(103.5, ChannelTypeEnum.FRENCH));
+        channels.add(new Channel(104.5, ChannelTypeEnum.ENGLISH));
+        channels.add(new Channel(105.5, ChannelTypeEnum.HINDI));
+        channels.add(new Channel(106.5, ChannelTypeEnum.FRENCH));
+        System.out.println(ChannelTypeEnum.ALL);
+        ChannelPrinter.printChannels(channels.iterator(ChannelTypeEnum.ALL));
+        System.out.println(ChannelTypeEnum.HINDI);
+        ChannelPrinter.printChannels(channels.iterator(ChannelTypeEnum.HINDI));
+        System.out.println(ChannelTypeEnum.ENGLISH);
+        ChannelPrinter.printChannels(channels.iterator(ChannelTypeEnum.ENGLISH));
 
 
         /*Mediator*/
