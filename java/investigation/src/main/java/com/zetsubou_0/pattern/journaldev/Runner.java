@@ -9,6 +9,11 @@ import com.zetsubou_0.pattern.journaldev.adapter.Socket;
 import com.zetsubou_0.pattern.journaldev.bridge.GreenColor;
 import com.zetsubou_0.pattern.journaldev.bridge.RedColor;
 import com.zetsubou_0.pattern.journaldev.chainofresponsibility.*;
+import com.zetsubou_0.pattern.journaldev.command.FileSystem;
+import com.zetsubou_0.pattern.journaldev.command.UnixFileSystem;
+import com.zetsubou_0.pattern.journaldev.command.command.FileCloseCommand;
+import com.zetsubou_0.pattern.journaldev.command.command.FileReadCommand;
+import com.zetsubou_0.pattern.journaldev.command.factory.FileSystemFactory;
 import com.zetsubou_0.pattern.journaldev.composite.Circle;
 import com.zetsubou_0.pattern.journaldev.composite.CompositeShape;
 import com.zetsubou_0.pattern.journaldev.composite.Rectangle;
@@ -208,6 +213,14 @@ public class Runner {
         //All implementations of java.lang.Runnable
         //All implementations of javax.swing.Action
         System.out.println("\nCommand");
+        FileSystem fileSystem = FileSystemFactory.getFileSystemConfiguration();
+        com.zetsubou_0.pattern.journaldev.command.command.Command read = new FileReadCommand(fileSystem);
+        read.execute();
+        com.zetsubou_0.pattern.journaldev.command.command.Command close = new FileCloseCommand(fileSystem);
+        close.execute();
+        fileSystem = new UnixFileSystem();
+        read = new FileCloseCommand(fileSystem);
+        read.execute();
 
 
         /*Interpreter*/
