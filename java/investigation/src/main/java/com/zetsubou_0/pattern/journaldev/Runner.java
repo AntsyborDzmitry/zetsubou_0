@@ -25,6 +25,8 @@ import com.zetsubou_0.pattern.journaldev.facade.FacadeHelper;
 import com.zetsubou_0.pattern.journaldev.factory.Types;
 import com.zetsubou_0.pattern.journaldev.factory.bean.Computer;
 import com.zetsubou_0.pattern.journaldev.flyweight.ShapeFlyweightFactory;
+import com.zetsubou_0.pattern.journaldev.interpreter.GreetingInterpreter;
+import com.zetsubou_0.pattern.journaldev.interpreter.MultiLanguageGreeting;
 import com.zetsubou_0.pattern.journaldev.mediator.MediatorChat;
 import com.zetsubou_0.pattern.journaldev.mediator.MediatorChatimpl;
 import com.zetsubou_0.pattern.journaldev.mediator.UserImpl;
@@ -238,6 +240,9 @@ public class Runner {
         //All subclasses of java.text.Format
         //All subclasses of javax.el.ELResolver
         System.out.println("\nInterpreter");
+        GreetingInterpreter interpreter = new MultiLanguageGreeting();
+        interpreter.sayHello("Nick");
+        interpreter.sayHello("Вася");
 
 
         /*Iterator*/
