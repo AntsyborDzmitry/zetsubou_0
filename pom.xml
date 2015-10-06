@@ -39,6 +39,9 @@
             <module>java/investigation/osgi/bundles/export/test1/cat</module>
             <module>java/investigation/osgi/bundles/export/test1/dog</module>
 
+        <!--Sling-->
+        <module>java/investigation/sling/operation/content</module>
+
         <!--public-->
 
         <!--training-->

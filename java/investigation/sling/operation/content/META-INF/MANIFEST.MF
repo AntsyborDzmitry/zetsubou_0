@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Bundle-Name: Content modification
+Bundle-SymbolicName: com.zetsubou_0.sling.operation.content
+Bundle-Version: 1.0.0
+Import-Package: org.apache.sling.commons.json,
+ org.apache.sling.api,
+ org.apache.sling.servlets.post,
+ org.apache.sling.api.resource,
+ javax.servlet,
+ javax.jcr,
+ org.apache.jackrabbit,
+ org.slf4j
+Service-Component: OSGI-INF/com.zetsubou_0.sling.operation.Content.xml
