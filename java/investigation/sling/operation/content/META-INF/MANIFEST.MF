@@ -11,5 +11,6 @@ Import-Package: org.apache.sling.commons.json,
  javax.servlet,
  javax.jcr,
  org.apache.jackrabbit,
+ org.apache.commons.io,
  org.slf4j
 Service-Component: OSGI-INF/com.zetsubou_0.sling.operation.Content.xml

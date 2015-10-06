@@ -1,9 +1,11 @@
 package com.zetsubou_0.sling.operation;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.felix.scr.annotations.*;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.servlets.post.*;
 
 import javax.jcr.*;
@@ -26,7 +28,8 @@ public class Content extends AbstractPostOperation {
 
     @Override
     protected void doRun(SlingHttpServletRequest slingHttpServletRequest, PostResponse postResponse, List<Modification> list) throws RepositoryException {
-        Session session = slingHttpServletRequest.getResourceResolver().adaptTo(Session.class);
+        ResourceResolver resourceResolver = slingHttpServletRequest.getResourceResolver();
+        Session session = resourceResolver.adaptTo(Session.class);
         Resource resource = slingHttpServletRequest.getResource();
         Node root = session.getNode(CONTENT_ROOT);
         Node resourceNode = resource.adaptTo(Node.class);
@@ -46,22 +49,29 @@ public class Content extends AbstractPostOperation {
                 }
             }
 
-            Resource jar = slingHttpServletRequest.getResourceResolver().getResource(BUNDLE);
-            File file = jar.adaptTo(File.class);
-            if(file != null) {
-                try {
-                    ValueFactory valueFactory = session.getValueFactory();
-                    Node fileContainer = jcrContent.addNode(file.getName(), JcrConstants.NT_FILE);
-                    Node fileContent = fileContainer.addNode(JcrConstants.JCR_CONTENT, JcrConstants.NT_RESOURCE);
-                    Calendar lastModified = Calendar.getInstance ();
-                    lastModified.setTimeInMillis (file.lastModified ());
-                    BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
-                    fileContent.setProperty(JcrConstants.JCR_DATA, valueFactory.createBinary(in));
-                    fileContent.setProperty(JcrConstants.JCR_LASTMODIFIED, lastModified);
-                    session.save();
-                } catch (java.io.IOException e) {
-                    log.error(e.getMessage(), e);
+            Resource jar = resourceResolver.getResource(BUNDLE);
+            if(jar != null) {
+                File file = jar.adaptTo(File.class);
+                if(file != null) {
+                    try {
+                        ValueFactory valueFactory = session.getValueFactory();
+                        Node fileContainer = jcrContent.addNode(file.getName(), JcrConstants.NT_FILE);
+                        Node fileContent = fileContainer.addNode(JcrConstants.JCR_CONTENT, JcrConstants.NT_RESOURCE);
+                        Calendar lastModified = Calendar.getInstance ();
+                        lastModified.setTimeInMillis (file.lastModified ());
+                        BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
+                        fileContent.setProperty(JcrConstants.JCR_DATA, valueFactory.createBinary(in));
+                        fileContent.setProperty(JcrConstants.JCR_LASTMODIFIED, lastModified);
+                        session.save();
+                        File targetDirectory = jar.getParent().adaptTo(File.class);
+                        if(targetDirectory != null & targetDirectory.isDirectory()) {
+                            FileUtils.deleteDirectory(targetDirectory);
+                        }
+                    } catch (java.io.IOException e) {
+                        log.error(e.getMessage(), e);
+                    }
                 }
+
             }
         }
     }
