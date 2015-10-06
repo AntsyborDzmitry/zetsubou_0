@@ -14,6 +14,8 @@
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+        <sling.host>localhost</sling.host>
+        <sling.port>5000</sling.port>
     </properties>
 
     <dependencies>
@@ -34,6 +36,11 @@
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.servlets.post</artifactId>
             <version>2.3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.fsresource</artifactId>
+            <version>1.1.4</version>
         </dependency>
 
         <!--Servlet-->
@@ -94,6 +101,14 @@
                     <archive>
                         <manifestFile>META-INF/MANIFEST.MF</manifestFile>
                     </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>maven-sling-plugin</artifactId>
+                <configuration>
+                    <slingUrl>http://${sling.host}:${sling.port}/apps/aem/install</slingUrl>
+                    <usePut>true</usePut>
                 </configuration>
             </plugin>
         </plugins>
