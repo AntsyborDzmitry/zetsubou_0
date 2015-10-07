@@ -53,6 +53,20 @@
             <version>4.3.0</version>
         </dependency>
 
+        <!--Adapt annotation-->
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>adapter-annotations</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!--Servlet-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+
         <!--String Utils-->
         <dependency>
             <groupId>org.apache.commons</groupId>
