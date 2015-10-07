@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Bundle-Name: Sling Test
+Bundle-SymbolicName: com.zetsubou_0.sling.test
+Bundle-Version: 1.0.0
+Private-package: com.zetsubou_0.sling.test.servlets
+Import-Package: org.apache.sling.commons.json,
+ org.apache.sling.api,
+ org.apache.sling.servlets.post,
+ org.apache.sling.api.resource,
+ javax.servlet,
+ javax.jcr,
+ org.apache.jackrabbit,
+ org.apache.commons.io,
+ org.slf4j
+Service-Component: OSGI-INF/com.zetsubou_0.sling.test.modifyingresourceprovider.CustomFsModifying.xml,
+ OSGI-INF/com.zetsubou_0.sling.test.servlets.ModifyingResourceProviderServlet.xml

@@ -47,6 +47,11 @@
             <artifactId>org.osgi.core</artifactId>
             <version>4.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+            <version>4.3.0</version>
+        </dependency>
 
         <!--String Utils-->
         <dependency>
@@ -54,6 +59,22 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.0</version>
         </dependency>
+
+        <!--Sling-->
+        <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.api</artifactId>
+        <version>2.8.0</version>
+        </dependency>
+
+        <!--SCR-->
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.scr.annotations</artifactId>
+            <version>1.9.6</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
 </project>
