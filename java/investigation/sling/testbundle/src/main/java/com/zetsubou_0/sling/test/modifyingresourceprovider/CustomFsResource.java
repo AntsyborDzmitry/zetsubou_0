@@ -19,9 +19,17 @@ public class CustomFsResource extends AbstractResource {
         if(relPath.startsWith("/") || relPath.startsWith("\\")) {
             relPath = relPath.substring(1);
         }
+        String resourcePathTmp = String.format(CustomSlingConstants.DEFAULT_SLING_ROOT, relPath);
+        String fsPathTmp = String.format(CustomSlingConstants.DEFAULT_FS_ROOT, relPath);
+        if(resourcePathTmp.endsWith("/") || resourcePathTmp.endsWith("\\")) {
+            resourcePathTmp = resourcePathTmp.substring(0, resourcePathTmp.length() - 1);
+        }
+        if(fsPathTmp.endsWith("/") || fsPathTmp.endsWith("\\")) {
+            fsPathTmp = fsPathTmp.substring(0, fsPathTmp.length() - 1);
+        }
         this.resourceResolver = resourceResolver;
-        this.resourcePath = String.format(CustomSlingConstants.DEFAULT_SLING_ROOT, relPath);
-        this.fsPath = String.format(CustomSlingConstants.DEFAULT_FS_ROOT, relPath);
+        this.resourcePath = resourcePathTmp;
+        this.fsPath = fsPathTmp;
         this.file = new File(this.fsPath);
         this.resourceMetadata = new ResourceMetadata();
         if(this.file == null) {
@@ -62,10 +70,14 @@ public class CustomFsResource extends AbstractResource {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.getClass().getName());
-        sb.append("[path = ");
+        sb.append("[resourcePath = ");
         sb.append(getPath());
+        sb.append(", filePath = ");
+        sb.append(this.fsPath);
         sb.append(", resourceType = ");
         sb.append(getResourceType());
+        sb.append(", metadata = ");
+        sb.append(getResourceMetadata());
         sb.append("]");
         return sb.toString();
     }

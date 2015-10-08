@@ -1,13 +1,14 @@
 package com.zetsubou_0.sling.test.modifyingresourceprovider;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
+import com.zetsubou_0.sling.test.modifyingresourceprovider.monitor.CustomFsMonitor;
+import org.apache.felix.scr.annotations.*;
 import org.apache.sling.api.resource.*;
+import org.osgi.service.event.EventAdmin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Kiryl_Lutsyk on 10/7/2015.
@@ -16,6 +17,15 @@ import java.util.Map;
 @Service
 @Property(name = CustomSlingConstants.MODIFYING_RESOURCE_PROVIDER_NAME, value = CustomSlingConstants.CUSTOM_MODIFYING_RESOURCE_PROVIDER_NAME)
 public class CustomFsModifying implements ModifyingResourceProvider {
+    private static final Logger LOG = LoggerFactory.getLogger(CustomFsModifying.class);
+
+    @Reference(cardinality= ReferenceCardinality.OPTIONAL_UNARY, policy=ReferencePolicy.DYNAMIC)
+    private EventAdmin eventAdmin;
+    @Reference(cardinality= ReferenceCardinality.OPTIONAL_UNARY, policy=ReferencePolicy.DYNAMIC)
+    private ResourceResolverFactory resourceResolverFactory;
+
+    private CustomFsMonitor customFsMonitor;
+
     @Override
     public Resource create(ResourceResolver resourceResolver, String s, Map<String, Object> map) throws PersistenceException {
         return null;
@@ -56,5 +66,20 @@ public class CustomFsModifying implements ModifyingResourceProvider {
     @Override
     public Iterator<Resource> listChildren(Resource resource) {
         return resource.listChildren();
+    }
+
+    @Activate
+    private void initTree() {
+        try {
+            customFsMonitor = new CustomFsMonitor(eventAdmin, resourceResolverFactory.getAdministrativeResourceResolver(null), this);
+            new Thread(customFsMonitor).start();
+        } catch (LoginException e) {
+            LOG.error(e.getMessage(), e);
+        }
+    }
+
+    @Deactivate
+    private void closeResources() {
+        customFsMonitor.stop();
     }
 }
