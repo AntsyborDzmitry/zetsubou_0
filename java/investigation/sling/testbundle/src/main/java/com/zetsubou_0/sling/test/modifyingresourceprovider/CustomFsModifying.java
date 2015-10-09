@@ -67,19 +67,4 @@ public class CustomFsModifying implements ModifyingResourceProvider {
     public Iterator<Resource> listChildren(Resource resource) {
         return resource.listChildren();
     }
-
-    @Activate
-    private void initTree() {
-        try {
-            customFsMonitor = new CustomFsMonitor(eventAdmin, resourceResolverFactory.getAdministrativeResourceResolver(null), this);
-            new Thread(customFsMonitor).start();
-        } catch (LoginException e) {
-            LOG.error(e.getMessage(), e);
-        }
-    }
-
-    @Deactivate
-    private void closeResources() {
-        customFsMonitor.stop();
-    }
 }

@@ -2,6 +2,7 @@ package com.zetsubou_0.sling.test.job;
 
 import com.zetsubou_0.sling.test.modifyingresourceprovider.CustomSlingConstants;
 import org.apache.felix.scr.annotations.*;
+import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.*;
 import org.apache.sling.event.jobs.Job;
 import org.apache.sling.event.jobs.consumer.JobConsumer;
@@ -16,37 +17,42 @@ import java.util.Map;
  */
 @Component
 @Service(value = {JobConsumer.class})
-//@Properties({
-//        @Property(name = JobConsumer.PROPERTY_TOPICS, value = {CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB, CustomSlingConstants.TOPIC_RESOURCE_REMOVE_JOB})
-        @Property(name = JobConsumer.PROPERTY_TOPICS, value = CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB)
-//})
+@Properties({
+        @Property(name = JobConsumer.PROPERTY_TOPICS, value = {CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB, CustomSlingConstants.TOPIC_RESOURCE_REMOVE_JOB})
+//        @Property(name = JobConsumer.PROPERTY_JOB_ASYNC_HANDLER),
+//        @Property(name = JobConsumer.PROPERTY_TOPICS, value = CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB)
+})
 public class FsResourceJob implements JobConsumer {
     private static final Logger LOG = LoggerFactory.getLogger(FsResourceJob.class);
 
     @Reference(cardinality= ReferenceCardinality.OPTIONAL_UNARY, policy=ReferencePolicy.DYNAMIC)
     private ResourceResolverFactory resourceResolverFactory;
 
-//    @Activate
-//    protected void activate() {
-//        LOG.debug("activate");
-//    }
-
     @Override
     public JobResult process(Job job) {
-        ResourceResolver resourceResolver = null;
         try {
-            resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
-            String topic = job.getTopic();
-            final Resource resource = (Resource) job.getProperty(CustomSlingConstants.RESOURCE);
-            final Map<String, Object> properties = new HashMap<>();
-            if(CustomSlingConstants.TOPIC_RESOURCE_ADD.equals(topic)) {
-                resourceResolver.create(resource.getParent(), resource.getName(), properties);
-                resourceResolver.commit();
-            } else if(CustomSlingConstants.TOPIC_RESOURCE_REMOVE.equals(topic)) {
-                resourceResolver.delete(resource);
-                resourceResolver.commit();
-            }else {
-                return JobResult.FAILED;
+            ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
+            if(resourceResolver != null) {
+                String topic = job.getTopic();
+                final String resourceType = (String) job.getProperty(SlingConstants.PROPERTY_RESOURCE_TYPE);
+                final String parentPath = (String) job.getProperty(CustomSlingConstants.PARENT_RESOURCE_PATH);
+                final String path = (String) job.getProperty(SlingConstants.PROPERTY_PATH);
+                final String fsPath = (String) job.getProperty(CustomSlingConstants.FS_PATH);
+                final String name = (String) job.getProperty(CustomSlingConstants.NAME);
+                final Map<String, Object> properties = new HashMap<>();
+                properties.put(SlingConstants.PROPERTY_RESOURCE_TYPE, resourceType);
+                properties.put(CustomSlingConstants.FS_PATH, fsPath);
+                if(CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB.equals(topic)) {
+                    Resource parent = resourceResolver.getResource(parentPath);
+                    resourceResolver.create(parent, name, properties);
+                    resourceResolver.commit();
+                } else if(CustomSlingConstants.TOPIC_RESOURCE_REMOVE_JOB.equals(topic)) {
+                    Resource resource = resourceResolver.getResource(path);
+                    resourceResolver.delete(resource);
+                    resourceResolver.commit();
+                }else {
+                    return JobResult.FAILED;
+                }
             }
         } catch (LoginException | PersistenceException e) {
             LOG.error(e.getMessage(), e);

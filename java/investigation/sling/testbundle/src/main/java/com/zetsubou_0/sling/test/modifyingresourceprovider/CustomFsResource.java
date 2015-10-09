@@ -37,6 +37,10 @@ public class CustomFsResource extends AbstractResource {
         }
     }
 
+    public String getFsPath() {
+        return fsPath;
+    }
+
     @Override
     public String getPath() {
         return this.resourcePath;

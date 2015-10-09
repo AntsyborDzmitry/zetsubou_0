@@ -27,17 +27,14 @@ public class FsHandler implements EventHandler {
     @Override
     public void handleEvent(Event event) {
         String topic = event.getTopic();
-        final String resourceType = (String) event.getProperty(SlingConstants.PROPERTY_RESOURCE_TYPE);
-        final String path = (String) event.getProperty(SlingConstants.PROPERTY_PATH);
-        final Resource resource = (Resource) event.getProperty(CustomSlingConstants.RESOURCE);
         Map<String, Object> properties = new HashMap<>();
-//        properties.put(SlingConstants.PROPERTY_RESOURCE_TYPE, resourceType);
-//        properties.put(SlingConstants.PROPERTY_PATH, path);
-//        properties.put(CustomSlingConstants.RESOURCE, resource);
+        for(String key : event.getPropertyNames()) {
+            properties.put(key, event.getProperty(key));
+        }
         if(CustomSlingConstants.TOPIC_RESOURCE_ADD.equals(topic)) {
-            jobManager.addJob(CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB, FsHandler.class.getName(), properties);
-//        } else if(CustomSlingConstants.TOPIC_RESOURCE_REMOVE.equals(topic)) {
-//            jobManager.addJob(CustomSlingConstants.TOPIC_RESOURCE_REMOVE_JOB, null, properties);
+            jobManager.addJob(CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB, null, properties);
+        } else if(CustomSlingConstants.TOPIC_RESOURCE_REMOVE.equals(topic)) {
+            jobManager.addJob(CustomSlingConstants.TOPIC_RESOURCE_REMOVE_JOB, null, properties);
         }
     }
 }
