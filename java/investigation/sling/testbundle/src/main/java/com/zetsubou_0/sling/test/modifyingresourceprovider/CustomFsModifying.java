@@ -75,7 +75,7 @@ public class CustomFsModifying implements ModifyingResourceProvider {
         return resource.listChildren();
     }
 
-    @Activate
+//    @Activate
     protected void activate() {
         try {
             ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
@@ -88,7 +88,7 @@ public class CustomFsModifying implements ModifyingResourceProvider {
         }
     }
 
-    @Deactivate
+//    @Deactivate
     protected void deactivate() {
         customFsMonitor.stop();
     }
