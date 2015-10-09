@@ -32,9 +32,16 @@ public class CustomFsModifying implements ModifyingResourceProvider {
     }
 
     @Override
-    public void delete(ResourceResolver resourceResolver, String s) throws PersistenceException {
-        CustomFsResource resource = new CustomFsResource(resourceResolver, s);
-        resourceResolver.delete(resource);
+    public void delete(ResourceResolver resourceResolver, String s) {
+        if(s.startsWith(CustomSlingConstants.DEFAULT_SLING_ROOT_PREFIX)) {
+            s = s.replace(CustomSlingConstants.DEFAULT_SLING_ROOT_PREFIX, "");
+        }
+        CustomFsResource resource = (CustomFsResource) getResource(resourceResolver, s);
+        try {
+            resource.fullRemove();
+        } catch (PersistenceException e) {
+            LOG.error(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -66,5 +73,23 @@ public class CustomFsModifying implements ModifyingResourceProvider {
     @Override
     public Iterator<Resource> listChildren(Resource resource) {
         return resource.listChildren();
+    }
+
+    @Activate
+    protected void activate() {
+        try {
+            ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
+            if(resourceResolver != null) {
+                customFsMonitor = new CustomFsMonitor(eventAdmin, resourceResolver, this);
+                new Thread(customFsMonitor).start();
+            }
+        } catch (LoginException e) {
+            LOG.error(e.getMessage(), e);
+        }
+    }
+
+    @Deactivate
+    protected void deactivate() {
+        customFsMonitor.stop();
     }
 }

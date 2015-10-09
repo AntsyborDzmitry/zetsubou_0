@@ -19,8 +19,6 @@ import java.util.Map;
 @Service(value = {JobConsumer.class})
 @Properties({
         @Property(name = JobConsumer.PROPERTY_TOPICS, value = {CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB, CustomSlingConstants.TOPIC_RESOURCE_REMOVE_JOB})
-//        @Property(name = JobConsumer.PROPERTY_JOB_ASYNC_HANDLER),
-//        @Property(name = JobConsumer.PROPERTY_TOPICS, value = CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB)
 })
 public class FsResourceJob implements JobConsumer {
     private static final Logger LOG = LoggerFactory.getLogger(FsResourceJob.class);
@@ -43,20 +41,24 @@ public class FsResourceJob implements JobConsumer {
                 properties.put(SlingConstants.PROPERTY_RESOURCE_TYPE, resourceType);
                 properties.put(CustomSlingConstants.FS_PATH, fsPath);
                 if(CustomSlingConstants.TOPIC_RESOURCE_ADD_JOB.equals(topic)) {
+                    if(resourceResolver.getResource(path) != null) {
+                        return JobResult.CANCEL;
+                    }
                     Resource parent = resourceResolver.getResource(parentPath);
                     resourceResolver.create(parent, name, properties);
                     resourceResolver.commit();
                 } else if(CustomSlingConstants.TOPIC_RESOURCE_REMOVE_JOB.equals(topic)) {
+                    if(resourceResolver.getResource(path) == null) {
+                        return JobResult.CANCEL;
+                    }
                     Resource resource = resourceResolver.getResource(path);
                     resourceResolver.delete(resource);
                     resourceResolver.commit();
-                }else {
-                    return JobResult.FAILED;
                 }
             }
         } catch (LoginException | PersistenceException e) {
             LOG.error(e.getMessage(), e);
-            return JobResult.FAILED;
+            return JobResult.CANCEL;
         }
         return JobResult.OK;
     }

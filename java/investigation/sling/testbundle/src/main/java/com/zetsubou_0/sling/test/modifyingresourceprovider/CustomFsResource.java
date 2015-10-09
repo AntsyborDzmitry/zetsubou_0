@@ -15,6 +15,8 @@ public class CustomFsResource extends AbstractResource {
     private final File file;
     private final ResourceMetadata resourceMetadata;
 
+    private boolean deleted = false;
+
     public CustomFsResource(ResourceResolver resourceResolver, String relPath) throws ResourceNotFoundException {
         if(relPath.startsWith("/") || relPath.startsWith("\\")) {
             relPath = relPath.substring(1);
@@ -35,6 +37,10 @@ public class CustomFsResource extends AbstractResource {
         if(this.file == null) {
             throw new ResourceNotFoundException("FS resource " + this.fsPath + " not found");
         }
+    }
+
+    public File getFile() {
+        return file;
     }
 
     public String getFsPath() {
@@ -84,5 +90,23 @@ public class CustomFsResource extends AbstractResource {
         sb.append(getResourceMetadata());
         sb.append("]");
         return sb.toString();
+    }
+
+    public void fullRemove() throws PersistenceException {
+        deleted = true;
+        recursiveDelete(file);
+        if(deleted) {
+            resourceResolver.delete(this);
+        }
+        deleted = false;
+    }
+
+    private void recursiveDelete(File file) {
+        if(file.isDirectory()) {
+            for(File f : file.listFiles()) {
+                recursiveDelete(f);
+            }
+        }
+        deleted &= file.delete();
     }
 }

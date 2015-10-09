@@ -16,5 +16,6 @@ Import-Package: org.apache.sling.commons.json,
  org.slf4j
 Service-Component: OSGI-INF/com.zetsubou_0.sling.test.modifyingresourceprovider.CustomFsModifying.xml,
  OSGI-INF/com.zetsubou_0.sling.test.servlets.ModifyingResourceProviderServlet.xml,
- OSGI-INF/com.zetsubou_0.sling.test.job.FsHandler,
- OSGI-INF/com.zetsubou_0.sling.test.job.FsResourceJob
+ OSGI-INF/com.zetsubou_0.sling.test.job.FsHandler.xml,
+ OSGI-INF/com.zetsubou_0.sling.test.modifyingresourceprovider.monitor.CustomFsMonitor.xml,
+ OSGI-INF/com.zetsubou_0.sling.test.job.FsResourceJob.xml

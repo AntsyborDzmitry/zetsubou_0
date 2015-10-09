@@ -2,8 +2,6 @@ package com.zetsubou_0.sling.test.job;
 
 import com.zetsubou_0.sling.test.modifyingresourceprovider.CustomSlingConstants;
 import org.apache.felix.scr.annotations.*;
-import org.apache.sling.api.SlingConstants;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.event.jobs.JobManager;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
