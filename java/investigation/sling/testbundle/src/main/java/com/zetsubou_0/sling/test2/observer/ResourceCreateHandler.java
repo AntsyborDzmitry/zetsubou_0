@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Kiryl_Lutsyk on 10/13/2015.
@@ -30,7 +32,9 @@ public class ResourceCreateHandler implements ResourceHandler {
         if(FsHelper.checkEvent(event)) {
             File file = (File) event.getProperty(FsHelper.FILE);
             LOG.debug(event.getTopic() + " - " + file.getPath());
-            Job job = jobManager.addJob(CREATE_JOB, null, FsHelper.getEventProperties(event, FsHelper.PROVIDER, FsHelper.FILE, FsHelper.RESOURCE));
+            Map<String, Object> properties = new HashMap<>();
+            properties.put(FsHelper.FILE, event.getProperty(FsHelper.FILE));
+            Job job = jobManager.addJob(CREATE_JOB, null, properties);
             LOG.debug("Job: " + " - " + job + " - " + file.getPath());
         }
     }

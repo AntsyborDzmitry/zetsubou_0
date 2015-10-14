@@ -33,11 +33,12 @@ public class ResourceCreateJob implements JobConsumer {
     private ResourceResolverFactory resourceResolverFactory;
     @Reference(cardinality = ReferenceCardinality.OPTIONAL_UNARY, policy = ReferencePolicy.DYNAMIC)
     private ScrService scrService;
+    @Reference(target = "(serviceName=" + FsResourceProvider.COMPONENT_NAME + ")")
+    private ModifyingResourceProvider resourceProvider;
 
     @Override
     public JobResult process(Job job) {
         try {
-            FsResourceProvider resourceProvider = job.getProperty(FsHelper.PROVIDER, FsResourceProvider.class);
             ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
             File file =  job.getProperty(FsHelper.FILE, File.class);
             if(resourceProvider != null && file != null && resourceResolver != null && scrService != null) {
@@ -52,11 +53,14 @@ public class ResourceCreateJob implements JobConsumer {
                         if(!fsMountPoint.endsWith("/")) {
                             fsMountPoint += "/";
                         }
-                        String parentResourcePath = file.getPath().replace(fsMountPoint, "").concat("/");
-                        Resource parent = resourceProvider.getResource(resourceResolver, slingMountPoint + parentResourcePath);
+                        String resourcePath = file.getPath().replace("\\", "/").replace(fsMountPoint, "");
+                        if(fsMountPoint.equals(resourcePath + "/")) {
+                            return JobResult.OK;
+                        }
+                        Resource parent = resourceProvider.getResource(resourceResolver, slingMountPoint);
                         Map<String, Object> properties = new HashMap<>();
                         properties.put(SlingConstants.PROPERTY_RESOURCE_TYPE, resourceType);
-                        resourceResolver.create(parent, file.getName(), properties);
+                        ResourceUtil.getOrCreateResource(resourceResolver, parent.getPath() + "/" + resourcePath, properties, "nt:unstructured", true);
                     }
                 }
             }

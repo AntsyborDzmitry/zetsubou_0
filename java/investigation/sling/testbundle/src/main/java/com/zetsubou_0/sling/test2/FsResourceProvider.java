@@ -2,9 +2,7 @@ package com.zetsubou_0.sling.test2;
 
 import com.zetsubou_0.sling.test2.monitor.FileMonitor;
 import org.apache.felix.scr.annotations.*;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceProvider;
-import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.*;
 import org.osgi.service.event.EventAdmin;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,10 +22,11 @@ import java.util.Map;
 )
 @Service(ResourceProvider.class)
 @Properties({
+        @Property(name = "serviceName", value = FsResourceProvider.COMPONENT_NAME, propertyPrivate = true),
         @Property(name="service.description", value="Test Filesystem Resource Provider"),
         @Property(name="service.vendor", value="Test")
 })
-public class FsResourceProvider implements ResourceProvider {
+public class FsResourceProvider implements ModifyingResourceProvider {
     public static final String COMPONENT_NAME = "com.zetsubou_0.sling.test2.FsResourceProvider";
     public static final String DEFAULT_SLING_MOUNT_POINT = "/content/fileSystem";
     public static final String DEFAULT_FS_MOUNT_POINT = "d:/temp/00";
@@ -69,6 +68,31 @@ public class FsResourceProvider implements ResourceProvider {
     @Override
     public Iterator<Resource> listChildren(Resource resource) {
         return null;
+    }
+
+    @Override
+    public Resource create(ResourceResolver resourceResolver, String s, Map<String, Object> map) throws PersistenceException {
+        return null;
+    }
+
+    @Override
+    public void delete(ResourceResolver resourceResolver, String s) throws PersistenceException {
+
+    }
+
+    @Override
+    public void revert(ResourceResolver resourceResolver) {
+
+    }
+
+    @Override
+    public void commit(ResourceResolver resourceResolver) throws PersistenceException {
+
+    }
+
+    @Override
+    public boolean hasChanges(ResourceResolver resourceResolver) {
+        return false;
     }
 
     public EventAdmin getEventAdmin() {
