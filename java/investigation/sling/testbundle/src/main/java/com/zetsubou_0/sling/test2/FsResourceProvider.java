@@ -5,6 +5,7 @@ import org.apache.felix.scr.annotations.*;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceProvider;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.osgi.service.event.EventAdmin;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
@@ -14,9 +15,9 @@ import java.util.Map;
  * Created by Kiryl_Lutsyk on 10/9/2015.
  */
 @Component(
-        name = "com.zetsubou_0.sling.test2.FsResourceProvider",
-        label="%resource.resolver.name",
-        description="%resource.resolver.description",
+        name = FsResourceProvider.COMPONENT_NAME,
+        label="Custom File System Resource Provider",
+        description="Custom File System Resource Provider",
         configurationFactory=true,
         policy= ConfigurationPolicy.REQUIRE,
         metatype=true
@@ -24,31 +25,45 @@ import java.util.Map;
 @Service(ResourceProvider.class)
 @Properties({
         @Property(name="service.description", value="Test Filesystem Resource Provider"),
-        @Property(name="service.vendor", value="Test"),
-        @Property(name=ResourceProvider.ROOTS)
+        @Property(name="service.vendor", value="Test")
 })
 public class FsResourceProvider implements ResourceProvider {
-    @Property
+    public static final String COMPONENT_NAME = "com.zetsubou_0.sling.test2.FsResourceProvider";
+    public static final String DEFAULT_SLING_MOUNT_POINT = "/content/fileSystem";
+    public static final String DEFAULT_FS_MOUNT_POINT = "d:/temp/00";
+    public static final long DEFAULT_CHECKOUT_INTERVAL = 60000L;
+
+    /**
+     * Mount point into sling repository
+     */
+    @Property(value = DEFAULT_SLING_MOUNT_POINT)
     public static final String SLING_MOUNT_POINT = "provider.mount.sling";
-    @Property
+    /**
+     * System directory
+     */
+    @Property(value = DEFAULT_FS_MOUNT_POINT)
     public static final String FS_MOUNT_POINT = "provider.mount.fs";
+    /**
+     * Checkout interval
+     */
     @Property(longValue = DEFAULT_CHECKOUT_INTERVAL)
     public static final String CHECKOUT_INTERVAL = "provider.checkOut.interval";
 
-    public static final String DEFAULT_SLING_MOUNT_POINT = "";
-    public static final String DEFAULT_FS_MOUNT_POINT = "";
-    public static final long DEFAULT_CHECKOUT_INTERVAL = 1000;
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL_UNARY)
+    private volatile EventAdmin eventAdmin;
 
-    private double checkoutInterval;
+    private String slingMountPoint;
+    private String fsMountPoint;
+    private FileMonitor monitor;
 
     @Override
     public Resource getResource(ResourceResolver resourceResolver, HttpServletRequest httpServletRequest, String s) {
-        return null;
+        return getResource(resourceResolver, s);
     }
 
     @Override
     public Resource getResource(ResourceResolver resourceResolver, String s) {
-        return null;
+        return resourceResolver.getResource(s);
     }
 
     @Override
@@ -56,15 +71,32 @@ public class FsResourceProvider implements ResourceProvider {
         return null;
     }
 
-    protected void activate(Map<?, ?> properties) {
-        long checkoutInterval = (long) properties.get(CHECKOUT_INTERVAL);
-        if(checkoutInterval > 1000) {
-            FileMonitor monitor = new FileMonitor(this, checkoutInterval);
-            new Thread(monitor).start();
+    public EventAdmin getEventAdmin() {
+        return eventAdmin;
+    }
+
+    public String getSlingMountPoint() {
+        return slingMountPoint;
+    }
+
+    public String getFsMountPoint() {
+        return fsMountPoint;
+    }
+
+    protected void activate(Map<String, Object> properties) {
+        slingMountPoint = (String) properties.get(SLING_MOUNT_POINT);
+        fsMountPoint = (String) properties.get(FS_MOUNT_POINT);
+        long checkoutInterval = (Long) properties.get(CHECKOUT_INTERVAL);
+        if(checkoutInterval >= DEFAULT_CHECKOUT_INTERVAL) {
+            monitor = new FileMonitor(this, checkoutInterval);
         }
     }
 
     protected void deactivate() {
-
+        synchronized(monitor) {
+            if(monitor != null) {
+                monitor.stop();
+            }
+        }
     }
 }

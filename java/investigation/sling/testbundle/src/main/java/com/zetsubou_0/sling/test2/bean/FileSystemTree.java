@@ -1,7 +1,6 @@
 package com.zetsubou_0.sling.test2.bean;
 
-import org.apache.sling.api.resource.Resource;
-
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,15 +8,16 @@ import java.util.List;
  * Created by Kiryl_Lutsyk on 10/9/2015.
  */
 public class FileSystemTree {
-    private Resource resource;
     private List<FileSystemTree> fileSystemTree = new ArrayList<>();
+    private FileInfo fileInfo = new FileInfo();
 
-    public Resource getResource() {
-        return resource;
+    public File getFile() {
+        return fileInfo.getFile();
     }
 
-    public void setResource(Resource resource) {
-        this.resource = resource;
+    public void setFile(File file) {
+        fileInfo.setFile(file);
+        fileInfo.setLastModified(file.lastModified());
     }
 
     public List<FileSystemTree> getFileSystemTree() {
@@ -26,5 +26,9 @@ public class FileSystemTree {
 
     public void setFileSystemTree(List<FileSystemTree> fileSystemTree) {
         this.fileSystemTree = fileSystemTree;
+    }
+
+    public boolean isModified() {
+        return fileInfo.isModified();
     }
 }
