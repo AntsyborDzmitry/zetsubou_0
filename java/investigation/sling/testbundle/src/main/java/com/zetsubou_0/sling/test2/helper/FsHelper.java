@@ -13,12 +13,13 @@ import java.util.*;
  * Created by Kiryl_Lutsyk on 10/13/2015.
  */
 public class FsHelper {
-    public static final String PROVIDER = "provider";
+    private static final String PREFIX = FsHelper.class.getName().replace(".", "/") + "/";
+    public static final String PROVIDER = PREFIX + "provider";
     public static final String HELPER_CLASS = FsHelper.class.getName();
-    public static final String HELPER = "helper";
-    public static final String EVENT_ADMIN = "eventAdmin";
-    public static final String RESOURCE = "resource";
-    public static final String FILE = "file";
+    public static final String HELPER = PREFIX + "helper";
+    public static final String EVENT_ADMIN = PREFIX + "eventAdmin";
+    public static final String RESOURCE = PREFIX + "resource";
+    public static final String FILE = PREFIX + "file";
 
     public static FileSystemTree getTree(FsResourceProvider resourceProvider, String root, Map<String, Object> properties) throws Exception {
         FileSystemTree tree = null;
@@ -61,6 +62,17 @@ public class FsHelper {
 
     public static boolean checkEvent(Event event) {
         return FsHelper.HELPER_CLASS.equals(event.getProperty(FsHelper.HELPER));
+    }
+
+    public static Map<String, Object> getEventProperties(Event event, String ... keys) {
+        Map<String, Object> properties = new HashMap<>();
+        for(String key : keys) {
+            Object val = event.getProperty(key);
+            if(val != null) {
+                properties.put(key, val);
+            }
+        }
+        return properties;
     }
 
     private static void init(FsResourceProvider resourceProvider, FileSystemTree tree, Map<String, Object> properties) throws Exception {

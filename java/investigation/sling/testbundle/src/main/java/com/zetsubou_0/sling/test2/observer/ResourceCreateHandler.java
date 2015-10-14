@@ -3,6 +3,7 @@ package com.zetsubou_0.sling.test2.observer;
 import com.zetsubou_0.sling.test2.helper.FsHelper;
 import org.apache.felix.scr.annotations.*;
 import org.apache.sling.api.SlingConstants;
+import org.apache.sling.event.jobs.Job;
 import org.apache.sling.event.jobs.JobManager;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
@@ -11,8 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Kiryl_Lutsyk on 10/13/2015.
@@ -29,12 +28,10 @@ public class ResourceCreateHandler implements ResourceHandler {
     @Override
     public void handleEvent(Event event) {
         if(FsHelper.checkEvent(event)) {
-            LOG.debug(event.getTopic() + " - " + ((File)event.getProperty(FsHelper.FILE)).getPath());
-            Map<String, Object> properties = new HashMap<>();
-            properties.put(FsHelper.PROVIDER, event.getProperty(FsHelper.PROVIDER));
-            properties.put(FsHelper.FILE, event.getProperty(FsHelper.FILE));
-            properties.put(FsHelper.RESOURCE, event.getProperty(FsHelper.RESOURCE));
-            jobManager.addJob(CREATE_JOB, null, properties);
+            File file = (File) event.getProperty(FsHelper.FILE);
+            LOG.debug(event.getTopic() + " - " + file.getPath());
+            Job job = jobManager.addJob(CREATE_JOB, null, FsHelper.getEventProperties(event, FsHelper.PROVIDER, FsHelper.FILE, FsHelper.RESOURCE));
+            LOG.debug("Job: " + " - " + job + " - " + file.getPath());
         }
     }
 }
