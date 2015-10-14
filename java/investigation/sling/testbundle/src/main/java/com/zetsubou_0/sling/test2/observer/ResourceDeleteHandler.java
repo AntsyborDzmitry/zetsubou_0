@@ -24,8 +24,5 @@ public class ResourceDeleteHandler implements ResourceHandler {
 
     @Override
     public void handleEvent(Event event) {
-        if(FsHelper.checkEvent(event)) {
-            LOG.debug(event.getTopic() + " - " + ((File)event.getProperty(FsHelper.FILE)).getPath());
-        }
     }
 }

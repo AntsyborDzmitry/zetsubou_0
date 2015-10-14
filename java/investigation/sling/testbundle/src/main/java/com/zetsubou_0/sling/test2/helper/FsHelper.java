@@ -2,10 +2,8 @@ package com.zetsubou_0.sling.test2.helper;
 
 import com.zetsubou_0.sling.test2.FsResourceProvider;
 import com.zetsubou_0.sling.test2.bean.FileSystemTree;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingConstants;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceProvider;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 
@@ -61,12 +59,9 @@ public class FsHelper {
         }
     }
 
-    public static boolean checkEvent(Event event) {
-        return FsHelper.HELPER_CLASS.equals(event.getProperty(FsHelper.HELPER));
-    }
-
-    public static void createResource(ResourceResolver resourceResolver, ResourceProvider resourceProvider, Resource base, String path, Map<String, Object> properties) {
-
+    public static boolean checkEvent(Event event, String base) {
+        String path = (String) event.getProperty(SlingConstants.PROPERTY_PATH);
+        return FsHelper.HELPER_CLASS.equals(event.getProperty(FsHelper.HELPER)) || (StringUtils.isNotBlank(base) && StringUtils.isNotBlank(path) && path.startsWith(base));
     }
 
     private static void init(FsResourceProvider resourceProvider, FileSystemTree tree, Map<String, Object> properties) throws Exception {

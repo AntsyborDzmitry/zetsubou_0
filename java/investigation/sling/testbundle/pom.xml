@@ -234,6 +234,14 @@
             <!--<artifactId>slf4j-api</artifactId>-->
             <!--<version>1.7.6</version>-->
         <!--</dependency>-->
+
+        <!--String Utils-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>

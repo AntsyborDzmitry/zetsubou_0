@@ -2,7 +2,6 @@ package com.zetsubou_0.sling.test2.observer;
 
 import com.zetsubou_0.sling.test2.FsResourceProvider;
 import com.zetsubou_0.sling.test2.helper.FsHelper;
-import org.apache.felix.scr.*;
 import org.apache.felix.scr.annotations.*;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
@@ -15,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,8 +29,6 @@ public class ResourceCreateJob implements JobConsumer {
 
     @Reference(cardinality = ReferenceCardinality.OPTIONAL_UNARY, policy = ReferencePolicy.DYNAMIC)
     private ResourceResolverFactory resourceResolverFactory;
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL_UNARY, policy = ReferencePolicy.DYNAMIC)
-    private ScrService scrService;
     @Reference(target = "(serviceName=" + FsResourceProvider.COMPONENT_NAME + ")")
     private ModifyingResourceProvider resourceProvider;
 
@@ -40,29 +36,20 @@ public class ResourceCreateJob implements JobConsumer {
     public JobResult process(Job job) {
         try {
             ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
-            File file =  job.getProperty(FsHelper.FILE, File.class);
-            if(resourceProvider != null && file != null && resourceResolver != null && scrService != null) {
-                LOG.debug("Process job.\nPath: " + file.getPath());
-                org.apache.felix.scr.Component[] components = scrService.getComponents();
-                for(org.apache.felix.scr.Component component : components) {
-                    if(FsResourceProvider.class.getName().equals(component.getClassName())) {
-                        String resourceType = file.isDirectory() ? JcrConstants.NT_FOLDER : JcrConstants.NT_FILE;
-                        Dictionary<String, Object> componentProperties = component.getProperties();
-                        String fsMountPoint = (String) componentProperties.get(FsResourceProvider.FS_MOUNT_POINT);
-                        String slingMountPoint = (String) componentProperties.get(FsResourceProvider.SLING_MOUNT_POINT);
-                        if(!fsMountPoint.endsWith("/")) {
-                            fsMountPoint += "/";
-                        }
-                        String resourcePath = file.getPath().replace("\\", "/").replace(fsMountPoint, "");
-                        if(fsMountPoint.equals(resourcePath + "/")) {
-                            return JobResult.OK;
-                        }
-                        Resource parent = resourceProvider.getResource(resourceResolver, slingMountPoint);
-                        Map<String, Object> properties = new HashMap<>();
-                        properties.put(SlingConstants.PROPERTY_RESOURCE_TYPE, resourceType);
-                        ResourceUtil.getOrCreateResource(resourceResolver, parent.getPath() + "/" + resourcePath, properties, "nt:unstructured", true);
-                    }
+            File file = job.getProperty(FsHelper.FILE, File.class);
+            String path = job.getProperty(SlingConstants.PROPERTY_PATH, String.class);
+            if(resourceResolver != null) {
+                Map<String, Object> properties = new HashMap<>();
+                String s = null;
+                if(file != null) {
+                    String resourceType = file.isDirectory() ? JcrConstants.NT_FOLDER : JcrConstants.NT_FILE;
+                    properties.put(SlingConstants.PROPERTY_RESOURCE_TYPE, resourceType);
+                    s = file.getPath();
+                } else {
+                    properties.put(SlingConstants.PROPERTY_RESOURCE_TYPE, JcrConstants.NT_FOLDER);
+                    s = path;
                 }
+                resourceProvider.create(resourceResolver, s, properties);
             }
         } catch (LoginException | PersistenceException e) {
             LOG.error(e.getMessage(), e);
