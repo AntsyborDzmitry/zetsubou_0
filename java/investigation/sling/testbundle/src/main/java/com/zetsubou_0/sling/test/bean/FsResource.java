@@ -1,4 +1,4 @@
-package com.zetsubou_0.sling.test2.bean;
+package com.zetsubou_0.sling.test.bean;
 
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.SyntheticResource;

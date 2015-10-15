@@ -1,7 +1,7 @@
-package com.zetsubou_0.sling.test2.observer;
+package com.zetsubou_0.sling.test.observer;
 
-import com.zetsubou_0.sling.test2.FsResourceProvider;
-import com.zetsubou_0.sling.test2.helper.FsHelper;
+import com.zetsubou_0.sling.test.FsResourceProvider;
+import com.zetsubou_0.sling.test.helper.FsHelper;
 import org.apache.felix.scr.annotations.*;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;

@@ -1,6 +1,6 @@
-package com.zetsubou_0.sling.test2;
+package com.zetsubou_0.sling.test;
 
-import com.zetsubou_0.sling.test2.monitor.FileMonitor;
+import com.zetsubou_0.sling.test.monitor.FileMonitor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.felix.scr.annotations.*;
 import org.apache.jackrabbit.JcrConstants;
@@ -86,13 +86,12 @@ public class FsResourceProvider implements ModifyingResourceProvider {
         // find resource
         File file = new File(path);
         // from file
-        if(file != null) {
-            String filePath = file.getPath().replace("\\", "/");
-            if(!filePath.startsWith(fsBase)) {
+        if(file.exists()) {
+            if(!path.startsWith(fsBase)) {
                 return null;
             }
             // in repository
-            String resourcePath = slingBase + filePath.replace(fsBase, StringUtils.EMPTY);
+            String resourcePath = slingBase + path.replace(fsBase, StringUtils.EMPTY);
             resource = ResourceUtil.getOrCreateResource(resourceResolver, resourcePath, properties, JcrConstants.NT_UNSTRUCTURED, true);
         } else {
             // in repository
@@ -130,14 +129,17 @@ public class FsResourceProvider implements ModifyingResourceProvider {
             resourceType = (StringUtils.isNotBlank(resourceType)) ? resourceType : resource.getResourceType();
 
             File f = new File(filePath.toString());
-            if(JcrConstants.NT_FILE.equals(resourceType)) {
-                try(FileOutputStream out = new FileOutputStream(f)) {
-                    out.close();
-                } catch (IOException e) {
-                    throw new PersistenceException(e.getMessage(), e);
+            // create new file/folder
+            if(!f.exists()) {
+                if(JcrConstants.NT_FILE.equals(resourceType)) {
+                    try(FileOutputStream out = new FileOutputStream(f)) {
+                        out.close();
+                    } catch (IOException e) {
+                        throw new PersistenceException(e.getMessage(), e);
+                    }
+                } else {
+                    f.mkdirs();
                 }
-            } else {
-                f.mkdirs();
             }
         }
 

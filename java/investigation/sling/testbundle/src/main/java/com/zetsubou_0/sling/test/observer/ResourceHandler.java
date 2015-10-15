@@ -1,4 +1,4 @@
-package com.zetsubou_0.sling.test2.observer;
+package com.zetsubou_0.sling.test.observer;
 
 import org.osgi.service.event.EventHandler;
 

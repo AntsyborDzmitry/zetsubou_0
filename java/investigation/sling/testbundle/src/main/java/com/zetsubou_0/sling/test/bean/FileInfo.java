@@ -1,4 +1,4 @@
-package com.zetsubou_0.sling.test2.bean;
+package com.zetsubou_0.sling.test.bean;
 
 import java.io.File;
 

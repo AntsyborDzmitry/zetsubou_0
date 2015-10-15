@@ -1,6 +1,5 @@
-package com.zetsubou_0.sling.test2.observer;
+package com.zetsubou_0.sling.test.observer;
 
-import com.zetsubou_0.sling.test2.helper.FsHelper;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
@@ -10,8 +9,6 @@ import org.osgi.service.event.EventConstants;
 import org.osgi.service.event.EventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
 
 /**
  * Created by Kiryl_Lutsyk on 10/13/2015.
