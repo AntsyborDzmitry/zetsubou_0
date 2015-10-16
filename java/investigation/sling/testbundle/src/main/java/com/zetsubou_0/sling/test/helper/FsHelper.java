@@ -13,9 +13,8 @@ public class FsHelper {
     public static final String HELPER_CLASS = FsHelper.class.getName();
     public static final String HELPER = "helper";
     public static final String FILE = "file";
-
-    private static final String BACK_SLASH = "\\";
-    private static final String SLASH = "/";
+    public static final String BACK_SLASH = "\\";
+    public static final String SLASH = "/";
 
     public static String getSlingPath(String baseFs, String baseSling, String absPath) throws Exception {
         StringBuilder path = new StringBuilder();
