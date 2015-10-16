@@ -132,7 +132,7 @@ public class FsResourceProvider implements ResourceProvider, FsPropertyProvider 
     protected void activate(Map<String, Object> properties) throws Exception {
         this.properties = properties;
         slingMountPoint = (String) properties.get(SLING_MOUNT_POINT);
-        fsMountPoint = (String) properties.get(FS_MOUNT_POINT);
+        fsMountPoint = ((String) properties.get(FS_MOUNT_POINT)).replace(FsHelper.BACK_SLASH, FsHelper.SLASH);
         // deactivate if mount point not exists
         if(!new File(fsMountPoint).exists()) {
             throw new Exception();
