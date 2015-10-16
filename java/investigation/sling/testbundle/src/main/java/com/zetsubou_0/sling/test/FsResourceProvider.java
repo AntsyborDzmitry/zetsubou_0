@@ -5,7 +5,6 @@ import com.zetsubou_0.sling.test.bean.FsResource;
 import com.zetsubou_0.sling.test.helper.FsHelper;
 import org.apache.felix.scr.annotations.*;
 import org.apache.sling.api.resource.*;
-import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
