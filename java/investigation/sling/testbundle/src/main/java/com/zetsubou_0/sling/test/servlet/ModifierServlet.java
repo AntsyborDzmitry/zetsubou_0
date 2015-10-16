@@ -1,5 +1,7 @@
 package com.zetsubou_0.sling.test.servlet;
 
+import com.zetsubou_0.sling.test.api.FsPropertyProvider;
+import com.zetsubou_0.sling.test.helper.FsHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.ReferenceCardinality;
@@ -42,12 +44,15 @@ public class ModifierServlet extends SlingAllMethodsServlet {
     @Reference(cardinality = ReferenceCardinality.OPTIONAL_UNARY, policy = ReferencePolicy.DYNAMIC)
     private ResourceResolverFactory resourceResolverFactory;
 
+    @Reference
+    private FsPropertyProvider fsPropertyProvider;
+
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
         try(PrintWriter out = response.getWriter()) {
             ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
             RequestPathInfo requestPathInfo = request.getRequestPathInfo();
-            String path = requestPathInfo.getSuffix();
+            String path = verifyFsSuffix(requestPathInfo.getSuffix());
             for(String selector : requestPathInfo.getSelectors()) {
                 if(CREATE.equals(selector)) {
                     if(StringUtils.isNotBlank(path)) {
@@ -69,5 +74,15 @@ public class ModifierServlet extends SlingAllMethodsServlet {
         } catch (Exception e) {
             throw new ServletException(e);
         }
+    }
+
+    private String verifyFsSuffix(String path) {
+        if(StringUtils.isNotBlank(path)) {
+            path = path.replace(FsHelper.BACK_SLASH, FsHelper.SLASH);
+            if(path.startsWith(FsHelper.SLASH + fsPropertyProvider.getFsMountPoint())) {
+                return path.substring(1);
+            }
+        }
+        return path;
     }
 }
