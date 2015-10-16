@@ -32,12 +32,12 @@ public class ResourceCreateHandler implements ResourceHandler {
 
     @Override
     public void handleEvent(Event event) {
-        if(FsHelper.checkEvent(event, (String) ((FsResourceProvider) resourceProvider).getProperties().get(FsResourceProvider.SLING_MOUNT_POINT))) {
-            Map<String, Object> properties = FsHelper.getEventProperties(event, SlingConstants.PROPERTY_PATH, FsHelper.FILE);
-            Job job = jobManager.addJob(CREATE_JOB, null, properties);
-            File file = (File) event.getProperty(FsHelper.FILE);
-            String text = (file != null) ? file.getPath() : (String) event.getProperty(SlingConstants.PROPERTY_PATH);
-            LOG.debug("Job: " +  job+ " - " + text);
-        }
+//        if(FsHelper.checkEvent(event, (String) ((FsResourceProvider) resourceProvider).getProperties().get(FsResourceProvider.SLING_MOUNT_POINT))) {
+//            Map<String, Object> properties = FsHelper.getEventProperties(event, SlingConstants.PROPERTY_PATH, SlingConstants.PROPERTY_ADDED_ATTRIBUTES, FsHelper.FILE);
+//            Job job = jobManager.addJob(CREATE_JOB, null, properties);
+//            File file = (File) event.getProperty(FsHelper.FILE);
+//            String text = (file != null) ? file.getPath() : (String) event.getProperty(SlingConstants.PROPERTY_PATH);
+//            LOG.debug("Job: " +  job+ " - " + text);
+//        }
     }
 }

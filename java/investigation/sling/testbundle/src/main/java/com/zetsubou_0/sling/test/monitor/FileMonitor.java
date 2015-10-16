@@ -123,7 +123,6 @@ public class FileMonitor extends TimerTask {
         Map<String, Object> properties = new HashMap<>();
         properties.put(FsHelper.HELPER, FsHelper.HELPER_CLASS);
         properties.put(FsHelper.FILE, file);
-        properties.put(FsHelper.RESOURCE, null);
         resourceProvider.getEventAdmin().postEvent(new Event(topic, properties));
     }
 }

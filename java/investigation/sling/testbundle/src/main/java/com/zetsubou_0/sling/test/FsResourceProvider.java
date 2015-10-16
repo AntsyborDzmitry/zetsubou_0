@@ -1,16 +1,17 @@
 package com.zetsubou_0.sling.test;
 
+import com.zetsubou_0.sling.test.bean.FsResource;
+import com.zetsubou_0.sling.test.helper.FsHelper;
 import com.zetsubou_0.sling.test.monitor.FileMonitor;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.felix.scr.annotations.*;
-import org.apache.jackrabbit.JcrConstants;
-import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.*;
 import org.osgi.service.event.EventAdmin;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,15 +25,15 @@ import java.util.Map;
         policy= ConfigurationPolicy.REQUIRE,
         metatype=true
 )
-@Service(ModifyingResourceProvider.class)
+@Service
 @Properties({
         @Property(name = "serviceName", value = FsResourceProvider.COMPONENT_NAME, propertyPrivate = true),
         @Property(name="service.description", value="Test Filesystem Resource Provider"),
         @Property(name="service.vendor", value="Test")
 })
-public class FsResourceProvider implements ModifyingResourceProvider {
-    public static final String COMPONENT_NAME = "com.zetsubou_0.sling.test2.FsResourceProvider";
-    public static final String DEFAULT_SLING_MOUNT_POINT = "/content/fileSystem";
+public class FsResourceProvider implements ResourceProvider {
+    public static final String COMPONENT_NAME = "com.zetsubou_0.sling.test.FsResourceProvider";
+    public static final String DEFAULT_SLING_MOUNT_POINT = "/content/fs";
     public static final String DEFAULT_FS_MOUNT_POINT = "d:/temp/00";
     public static final long DEFAULT_CHECKOUT_INTERVAL = 60000L;
 
@@ -40,7 +41,7 @@ public class FsResourceProvider implements ModifyingResourceProvider {
      * Mount point into sling repository
      */
     @Property(value = DEFAULT_SLING_MOUNT_POINT)
-    public static final String SLING_MOUNT_POINT = "provider.mount.sling";
+    public static final String SLING_MOUNT_POINT = ResourceProvider.ROOTS;
     /**
      * System directory
      */
@@ -55,6 +56,9 @@ public class FsResourceProvider implements ModifyingResourceProvider {
     @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL_UNARY)
     private volatile EventAdmin eventAdmin;
 
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL_UNARY, policy = ReferencePolicy.DYNAMIC)
+    private ResourceResolverFactory resourceResolverFactory;
+
     private Map<String, Object> properties;
     private String slingMountPoint;
     private String fsMountPoint;
@@ -67,78 +71,18 @@ public class FsResourceProvider implements ModifyingResourceProvider {
 
     @Override
     public Resource getResource(ResourceResolver resourceResolver, String s) {
-        return resourceResolver.getResource(s);
-    }
-
-    @Override
-    public Iterator<Resource> listChildren(Resource resource) {
-        return null;
-    }
-
-    @Override
-    public Resource create(ResourceResolver resourceResolver, String path, Map<String, Object> properties) throws PersistenceException {
         Resource resource = null;
-        String fsBase = ((String) this.properties.get(FS_MOUNT_POINT)).replace("\\", "/");
-        String slingBase = (String) this.properties.get(SLING_MOUNT_POINT);
-        String resourceType = (String) properties.get(SlingConstants.PROPERTY_RESOURCE_TYPE);
-        path = path.replace("\\", "/");
+        String fsRoot = (String) properties.get(FS_MOUNT_POINT);
+        String slingRoot = (String) properties.get(SLING_MOUNT_POINT);
 
-        // find resource
-        File file = new File(path);
-        // from file
-        if(file.exists()) {
-            if(!path.startsWith(fsBase)) {
-                return null;
-            }
-            // in repository
-            String resourcePath = slingBase + path.replace(fsBase, StringUtils.EMPTY);
-            resource = ResourceUtil.getOrCreateResource(resourceResolver, resourcePath, properties, JcrConstants.NT_UNSTRUCTURED, true);
-        } else {
-            // in repository
-            StringBuilder filePath = new StringBuilder();
-            String relPath = null;
-            if(path.startsWith(slingBase)) {
-                resource = ResourceUtil.getOrCreateResource(resourceResolver, path, properties, JcrConstants.NT_UNSTRUCTURED, true);
-                relPath = path.replace(slingBase, StringUtils.EMPTY);
-            // wrong absolute path
-            } else if(path.startsWith("/")) {
-                throw new PersistenceException("Validation exception. invalid path: " + path);
-            // relative path in repository
+        if(s.startsWith(slingRoot)) {
+            if(slingRoot.equals(s)) {
+                resource = new SyntheticResource(resourceResolver, s, FsResource.RESOURCE_TYPE);
             } else {
-                resource = ResourceUtil.getOrCreateResource(resourceResolver, slingBase + path, properties, JcrConstants.NT_UNSTRUCTURED, true);
-                relPath = path;
-            }
-
-            // create file path
-            if(fsBase.endsWith("/")) {
-                if(relPath.startsWith("/")) {
-                    filePath.append(fsBase.substring(1));
-                } else {
-                    filePath.append(fsBase);
-                }
-                filePath.append(relPath);
-            } else if(relPath.startsWith("/")) {
-                filePath.append(fsBase);
-                filePath.append(relPath);
-            } else {
-                filePath.append(fsBase);
-                filePath.append("/");
-                filePath.append(relPath);
-            }
-
-            resourceType = (StringUtils.isNotBlank(resourceType)) ? resourceType : resource.getResourceType();
-
-            File f = new File(filePath.toString());
-            // create new file/folder
-            if(!f.exists()) {
-                if(JcrConstants.NT_FILE.equals(resourceType)) {
-                    try(FileOutputStream out = new FileOutputStream(f)) {
-                        out.close();
-                    } catch (IOException e) {
-                        throw new PersistenceException(e.getMessage(), e);
-                    }
-                } else {
-                    f.mkdirs();
+                try {
+                    resource = new FsResource(resourceResolver, new File(FsHelper.getFsPath(fsRoot ,slingRoot, s)), this.properties);
+                } catch (Exception e) {
+                    // ignore
                 }
             }
         }
@@ -147,27 +91,21 @@ public class FsResourceProvider implements ModifyingResourceProvider {
     }
 
     @Override
-    public void delete(ResourceResolver resourceResolver, String s) throws PersistenceException {
-
-    }
-
-    @Override
-    public void revert(ResourceResolver resourceResolver) {
-
-    }
-
-    @Override
-    public void commit(ResourceResolver resourceResolver) throws PersistenceException {
-
-    }
-
-    @Override
-    public boolean hasChanges(ResourceResolver resourceResolver) {
-        return false;
-    }
-
-    public EventAdmin getEventAdmin() {
-        return eventAdmin;
+    public Iterator<Resource> listChildren(Resource resource) {
+        try{
+            String slingRoot = (String) properties.get(SLING_MOUNT_POINT);
+            String fsRoot = (String) properties.get(FS_MOUNT_POINT);
+            ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
+            if(resource.getPath().startsWith(slingRoot)) {
+                List<Resource> childResources = new ArrayList<>();
+                File parentFile = new File(FsHelper.getFsPath(fsRoot, slingRoot, resource.getPath()));
+                for(File file : parentFile.listFiles()) {
+                    childResources.add(new FsResource(resourceResolver, file, this.properties));
+                }
+                return childResources.iterator();
+            }
+        } catch(Exception e) {}
+        return null;
     }
 
     public String getSlingMountPoint() {
@@ -180,6 +118,10 @@ public class FsResourceProvider implements ModifyingResourceProvider {
 
     public Map<String, Object> getProperties() {
         return properties;
+    }
+
+    public EventAdmin getEventAdmin() {
+        return eventAdmin;
     }
 
     protected void activate(Map<String, Object> properties) {
