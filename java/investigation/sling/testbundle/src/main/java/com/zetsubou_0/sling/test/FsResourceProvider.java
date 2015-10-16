@@ -5,6 +5,7 @@ import com.zetsubou_0.sling.test.bean.FsResource;
 import com.zetsubou_0.sling.test.helper.FsHelper;
 import org.apache.felix.scr.annotations.*;
 import org.apache.sling.api.resource.*;
+import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,20 +36,18 @@ import java.util.Map;
 public class FsResourceProvider implements ResourceProvider, FsPropertyProvider {
     public static final String COMPONENT_NAME = "com.zetsubou_0.sling.test.FsResourceProvider";
     public static final String COMPONENT_PROPERTY = "componentName";
-    public static final String DEFAULT_SLING_MOUNT_POINT = "/content/fs";
-    public static final String DEFAULT_FS_MOUNT_POINT = "d:/temp/00";
 
     private static final Logger LOG = LoggerFactory.getLogger(FsResourceProvider.class);
 
     /**
      * Mount point into sling repository
      */
-    @Property(value = DEFAULT_SLING_MOUNT_POINT)
+    @Property(label = "Mount point into sling repository", description = "Mount point into sling repository")
     public static final String SLING_MOUNT_POINT = ResourceProvider.ROOTS;
     /**
      * System directory
      */
-    @Property(value = DEFAULT_FS_MOUNT_POINT)
+    @Property(label = "System directory", description = "System directory")
     public static final String FS_MOUNT_POINT = "provider.mount.fs";
 
     @Reference(cardinality = ReferenceCardinality.OPTIONAL_UNARY, policy = ReferencePolicy.DYNAMIC)
@@ -129,9 +128,14 @@ public class FsResourceProvider implements ResourceProvider, FsPropertyProvider 
         return properties;
     }
 
-    protected void activate(Map<String, Object> properties) {
+    @Activate
+    protected void activate(Map<String, Object> properties) throws Exception {
         this.properties = properties;
         slingMountPoint = (String) properties.get(SLING_MOUNT_POINT);
         fsMountPoint = (String) properties.get(FS_MOUNT_POINT);
+        // deactivate if mount point not exists
+        if(!new File(fsMountPoint).exists()) {
+            throw new Exception();
+        }
     }
 }

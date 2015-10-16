@@ -48,20 +48,22 @@ public class ModifierServlet extends SlingAllMethodsServlet {
             ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
             RequestPathInfo requestPathInfo = request.getRequestPathInfo();
             String path = requestPathInfo.getSuffix();
-            if(StringUtils.isNotBlank(path)) {
-                for(String selector : requestPathInfo.getSelectors()) {
-                    if(CREATE.equals(selector)) {
+            for(String selector : requestPathInfo.getSelectors()) {
+                if(CREATE.equals(selector)) {
+                    if(StringUtils.isNotBlank(path)) {
                         out.println("Resource created: " + modifyingResourceProvider.create(resourceResolver, path, null));
-                    } else if(DELETE.equals(selector)) {
+                    }
+                } else if(DELETE.equals(selector)) {
+                    if(StringUtils.isNotBlank(path)) {
                         modifyingResourceProvider.delete(resourceResolver, path);
                         out.println("Resource deleted: " + path);
-                    } else if(COMMIT.equals(selector)) {
-                        modifyingResourceProvider.commit(resourceResolver);
-                        out.println("All changes were committed");
-                    } else if(REVERT.equals(selector)) {
-                        modifyingResourceProvider.revert(resourceResolver);
-                        out.println("All changes were reverted");
                     }
+                } else if(COMMIT.equals(selector)) {
+                    modifyingResourceProvider.commit(resourceResolver);
+                    out.println("All changes were committed");
+                } else if(REVERT.equals(selector)) {
+                    modifyingResourceProvider.revert(resourceResolver);
+                    out.println("All changes were reverted");
                 }
             }
         } catch (Exception e) {

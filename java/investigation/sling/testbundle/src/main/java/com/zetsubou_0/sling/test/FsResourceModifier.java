@@ -26,7 +26,7 @@ public class FsResourceModifier implements ModifyingResourceProvider {
     private static final Logger LOG = LoggerFactory.getLogger(FsResourceModifier.class);
     private static final String FILE_WITH_EXTENSION = "^.*[.].+$";
 
-    private Set<File> cache = new HashSet<>();
+    private Set<String> cache = new HashSet<>();
 
     @Reference(target = "(" + FsResourceProvider.COMPONENT_PROPERTY + "=" + FsResourceProvider.COMPONENT_NAME + ")")
     private ResourceProvider resourceProvider;
@@ -57,16 +57,31 @@ public class FsResourceModifier implements ModifyingResourceProvider {
     }
 
     @Override
-    public void delete(ResourceResolver resourceResolver, String s) throws PersistenceException {
+    public void delete(ResourceResolver resourceResolver, String path) throws PersistenceException {
+        final boolean cleanCache = true;
+        path = path.replace(FsHelper.BACK_SLASH, FsHelper.SLASH);
+        Source source = getSource(path);
 
+        try {
+            if(source == Source.FILE_SYSTEM) {
+                deleteFile(path, cleanCache);
+            } else if(source == Source.SLING_TREE) {
+                deleteFile(path.replace(fsPropertyProvider.getSlingMountPoint(), fsPropertyProvider.getFsMountPoint()), cleanCache);
+            } else if(source == Source.OTHER) {
+                throw new PersistenceException("Resource wasn't deleted [path=" + path + "]");
+            }
+        } catch(IOException e) {
+            throw new PersistenceException(e.getMessage());
+        }
     }
 
     @Override
     public void revert(ResourceResolver resourceResolver) {
         synchronized(cache) {
-            for(File file : cache) {
+            for(String path : cache) {
+                File file = new File(path);
                 if(file.exists()) {
-                    deleteFile(file.getPath());
+                    deleteFile(file.getPath(), false);
                 }
             }
             cache = new HashSet<>();
@@ -105,6 +120,7 @@ public class FsResourceModifier implements ModifyingResourceProvider {
     }
 
     private Source getSource(String path) {
+        path = path.replace(FsHelper.BACK_SLASH, FsHelper.SLASH);
         Source source = Source.OTHER;
 
         if(StringUtils.isNotBlank(fsPropertyProvider.getFsMountPoint()) && StringUtils.isNotBlank(fsPropertyProvider.getSlingMountPoint()) && StringUtils.isNotBlank(path)) {
@@ -119,6 +135,7 @@ public class FsResourceModifier implements ModifyingResourceProvider {
     }
 
     private void createFile(String path, Map<String, Object> properties) throws IOException {
+        path = path.replace(FsHelper.BACK_SLASH, FsHelper.SLASH);
         File file = null;
         if(isFile(path, properties)) {
             file = new File(path);
@@ -133,7 +150,7 @@ public class FsResourceModifier implements ModifyingResourceProvider {
 
         if(file != null && file.exists()) {
             synchronized(cache) {
-                cache.add(file);
+                cache.add(file.getPath());
             }
         }
     }
@@ -153,16 +170,24 @@ public class FsResourceModifier implements ModifyingResourceProvider {
         }
     }
 
-    private void deleteFile(String path) {
+    private void deleteFile(String path, boolean cleanCache) {
+        path = path.replace(FsHelper.BACK_SLASH, FsHelper.SLASH);
         if(StringUtils.isNotBlank(path) && path.startsWith(fsPropertyProvider.getFsMountPoint())) {
             File file = new File(path);
             if(file.exists()) {
                 if(file.isDirectory()) {
                     for(File f : file.listFiles()) {
-                        deleteFile(f.getPath());
+                        deleteFile(f.getPath(), cleanCache);
                     }
-                } else {
-                    file.delete();
+                }
+                String filePath = file.getPath();
+                file.delete();
+                if(cleanCache) {
+                    synchronized(cache) {
+                        if(cache.contains(filePath)) {
+                            cache.remove(filePath);
+                        }
+                    }
                 }
             }
         }
