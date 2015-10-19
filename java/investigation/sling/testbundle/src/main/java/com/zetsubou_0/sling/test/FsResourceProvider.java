@@ -72,7 +72,10 @@ public class FsResourceProvider implements ResourceProvider, FsPropertyProvider 
                 resource = new SyntheticResource(resourceResolver, s, FsResource.RESOURCE_TYPE);
             } else {
                 try {
-                    resource = new FsResource(resourceResolver, new File(FsHelper.getFsPath(fsRoot ,slingRoot, s)), this.properties);
+                    File file = new File(FsHelper.getFsPath(fsRoot ,slingRoot, s));
+                    if(file.exists()) {
+                        resource = new FsResource(resourceResolver, file, this.properties);
+                    }
                 } catch (Exception e) {
                     LOG.error(e.getMessage(), e);
                 }
