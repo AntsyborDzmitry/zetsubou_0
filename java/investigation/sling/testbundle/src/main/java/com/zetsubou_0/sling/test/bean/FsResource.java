@@ -5,7 +5,6 @@ import com.zetsubou_0.sling.test.helper.FsHelper;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.adapter.annotations.Adaptable;
 import org.apache.sling.adapter.annotations.Adapter;
-import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.*;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
 
