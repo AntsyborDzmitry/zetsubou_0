@@ -5,6 +5,7 @@ import com.zetsubou_0.sling.test.helper.FsHelper;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.adapter.annotations.Adaptable;
 import org.apache.sling.adapter.annotations.Adapter;
+import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.*;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
 
@@ -30,6 +31,7 @@ public class FsResource extends AbstractResource {
     public static final String FILE_TYPE = "fileType";
     public static final String CREATED = "created";
     public static final String MIME_TYPE = "mimeType";
+    public static final String SLING_RESOURCE_TYPE = "sling:resourceType";
 
     private final ValueMap valueMap;
     private final ResourceResolver resourceResolver;
@@ -47,6 +49,7 @@ public class FsResource extends AbstractResource {
         resourceMetadata.setResolutionPath(getPath());
         resourceMetadata.setCreationTime(file.lastModified());
         resourceMetadata.put(FILE_TYPE, fileType);
+        resourceMetadata.put(SLING_RESOURCE_TYPE, RESOURCE_TYPE);
 
         valueMap = new ValueMapDecorator(new HashMap<String, Object>());
         valueMap.put(FILE_TYPE, resourceMetadata.get(FILE_TYPE));
