@@ -4,15 +4,12 @@ import com.zetsubou_0.sling.test.api.FsPropertyProvider;
 import com.zetsubou_0.sling.test.helper.FsHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.ReferenceCardinality;
-import org.apache.felix.scr.annotations.ReferencePolicy;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.request.RequestPathInfo;
 import org.apache.sling.api.resource.ModifyingResourceProvider;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 
 import javax.servlet.ServletException;
@@ -41,16 +38,13 @@ public class ModifierServlet extends SlingAllMethodsServlet {
     @Reference(target = "(custom.modifier=FsResourceModifier)")
     private ModifyingResourceProvider modifyingResourceProvider;
 
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL_UNARY, policy = ReferencePolicy.DYNAMIC)
-    private ResourceResolverFactory resourceResolverFactory;
-
     @Reference
     private FsPropertyProvider fsPropertyProvider;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
         try(PrintWriter out = response.getWriter()) {
-            ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
+            ResourceResolver resourceResolver = fsPropertyProvider.getResourceResolver();
             RequestPathInfo requestPathInfo = request.getRequestPathInfo();
             String path = verifyFsSuffix(requestPathInfo.getSuffix());
             for(String selector : requestPathInfo.getSelectors()) {
