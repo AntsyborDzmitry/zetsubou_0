@@ -20,7 +20,7 @@ import java.io.PrintWriter;
         extensions = {"info"},
         resourceTypes = {FsResource.RESOURCE_TYPE}
 )
-public class FsResourceModifyingServlet extends SlingAllMethodsServlet {
+public class FsResourceInfoServlet extends SlingAllMethodsServlet {
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
         Resource resource = request.getResource();
