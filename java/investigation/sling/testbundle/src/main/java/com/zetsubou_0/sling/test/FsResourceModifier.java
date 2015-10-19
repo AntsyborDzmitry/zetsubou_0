@@ -26,7 +26,7 @@ public class FsResourceModifier implements ModifyingResourceProvider {
     private static final Logger LOG = LoggerFactory.getLogger(FsResourceModifier.class);
     private static final String FILE_WITH_EXTENSION = "^.*[.].+$";
 
-    private Set<String> cache = new HashSet<>();
+    private Set<String> cache = new TreeSet<>();
 
     @Reference(target = "(" + FsResourceProvider.COMPONENT_PROPERTY + "=" + FsResourceProvider.COMPONENT_NAME + ")")
     private ResourceProvider resourceProvider;
