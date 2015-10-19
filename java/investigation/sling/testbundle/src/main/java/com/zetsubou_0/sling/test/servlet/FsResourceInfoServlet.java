@@ -18,7 +18,8 @@ import java.io.PrintWriter;
  */
 @SlingServlet(
         extensions = {"info"},
-        resourceTypes = {FsResource.RESOURCE_TYPE}
+        selectors = {"fs"},
+        resourceTypes = {"sling/servlet/default"}
 )
 public class FsResourceInfoServlet extends SlingAllMethodsServlet {
     @Override
