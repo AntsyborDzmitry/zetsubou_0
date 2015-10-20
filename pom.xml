@@ -42,6 +42,8 @@
         <!--Sling-->
         <module>java/investigation/sling/operation/content</module>
         <module>java/investigation/sling/testbundle</module>
+        <!--CQ-->
+        <module>java/investigation/cq/test</module>
 
         <!--public-->
 
