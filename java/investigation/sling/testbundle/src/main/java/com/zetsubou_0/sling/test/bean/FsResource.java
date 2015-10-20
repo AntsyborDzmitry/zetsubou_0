@@ -1,8 +1,6 @@
 package com.zetsubou_0.sling.test.bean;
 
-import com.day.cq.dam.api.Asset;
 import com.zetsubou_0.sling.test.FsResourceProvider;
-import com.zetsubou_0.sling.test.asset.FsAsset;
 import com.zetsubou_0.sling.test.helper.FsHelper;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.adapter.annotations.Adaptable;
@@ -22,7 +20,6 @@ import java.util.*;
  */
 @Adaptable(adaptableClass=Resource.class, adapters={
         @Adapter({ValueMap.class}),
-        @Adapter({Asset.class}),
         @Adapter({File.class}),
         @Adapter({InputStream.class})
 })
@@ -103,8 +100,6 @@ public class FsResource extends AbstractResource {
     public <AdapterType> AdapterType adaptTo(Class<AdapterType> type) {
         if(type == ValueMap.class) {
             return (AdapterType) valueMap;
-        } else if(type == Asset.class) {
-            return (AdapterType)  new FsAsset(this);
         } else if(type == File.class) {
             return (AdapterType) file;
         } else if(type == InputStream.class) {
