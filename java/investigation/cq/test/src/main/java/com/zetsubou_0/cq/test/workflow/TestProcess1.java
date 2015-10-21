@@ -2,6 +2,7 @@ package com.zetsubou_0.cq.test.workflow;
 
 import com.adobe.granite.workflow.WorkflowException;
 import com.adobe.granite.workflow.WorkflowSession;
+import com.adobe.granite.workflow.exec.Route;
 import com.adobe.granite.workflow.exec.WorkItem;
 import com.adobe.granite.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
@@ -18,6 +19,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.Value;
+import java.util.List;
 
 /**
  * Created by Kiryl_Lutsyk on 10/21/2015.
@@ -51,15 +53,23 @@ public class TestProcess1 implements WorkflowProcess {
                     }
                     session.save();
                 }
-                LOG.debug(workflowSession.getRoutes(workItem, true).toString());
+
+                // add metadata to next step
+                MetaDataMap map = workItem.getWorkflow().getMetaDataMap();
+                map.put("y", "y");
+                map.put("PROCESS_AUTO_ADVANCE", true);
+
+                // get all routes
+                List<Route> routes = workflowSession.getRoutes(workItem, true);
+                LOG.debug(routes.toString());
+                if(routes.size() > 0) {
+                    workflowSession.complete(workItem, routes.get(0));
+                }
             }
         } catch(ClassCastException | RepositoryException e) {
             LOG.error(e.getMessage(), e);
         }
 
-        MetaDataMap map = workItem.getWorkflow().getMetaDataMap();
-        map.put("y", "y");
-        map.put("PROCESS_AUTO_ADVANCE", true);
 
     }
 }
