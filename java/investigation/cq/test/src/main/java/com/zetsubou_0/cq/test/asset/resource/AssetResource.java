@@ -1,9 +1,8 @@
-package com.zetsubou_0.cq.test.resource;
+package com.zetsubou_0.cq.test.asset.resource;
 
 import com.day.cq.dam.api.Asset;
-import com.day.cq.dam.api.AssetManager;
-import com.zetsubou_0.cq.test.AssetProvider;
-import com.zetsubou_0.cq.test.asset.CustomAsset;
+import com.zetsubou_0.cq.test.asset.AssetProvider;
+import com.zetsubou_0.cq.test.asset.bean.CustomAsset;
 import org.apache.sling.adapter.annotations.Adaptable;
 import org.apache.sling.adapter.annotations.Adapter;
 import org.apache.sling.api.resource.*;

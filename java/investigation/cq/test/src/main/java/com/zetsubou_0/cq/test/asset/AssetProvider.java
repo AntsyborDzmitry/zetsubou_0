@@ -1,7 +1,7 @@
-package com.zetsubou_0.cq.test;
+package com.zetsubou_0.cq.test.asset;
 
 import com.day.cq.dam.api.AssetManager;
-import com.zetsubou_0.cq.test.resource.AssetResource;
+import com.zetsubou_0.cq.test.asset.resource.AssetResource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.felix.scr.annotations.*;
 import org.apache.felix.scr.annotations.Properties;
@@ -35,7 +35,7 @@ import java.util.*;
         @Property(name="service.vendor", value="Test Asset")
 })
 public class AssetProvider implements ResourceProvider {
-    public static final String COMPONENT_NAME = "com.zetsubou_0.cq.test.AssetProvider";
+    public static final String COMPONENT_NAME = "com.zetsubou_0.cq.test.asset.AssetProvider";
     public static final String COMPONENT_PROPERTY = "componentName";
     public static final String IMAGE_PATH = "imageResource";
 

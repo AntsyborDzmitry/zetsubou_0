@@ -1,10 +1,10 @@
-package com.zetsubou_0.cq.test.asset;
+package com.zetsubou_0.cq.test.asset.bean;
 
 import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.api.Rendition;
 import com.day.cq.dam.api.RenditionPicker;
 import com.day.cq.dam.api.Revision;
-import com.zetsubou_0.cq.test.resource.AssetResource;
+import com.zetsubou_0.cq.test.asset.resource.AssetResource;
 import org.apache.sling.adapter.annotations.Adaptable;
 import org.apache.sling.adapter.annotations.Adapter;
 import org.apache.sling.api.resource.Resource;
