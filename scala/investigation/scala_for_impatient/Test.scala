@@ -1,3 +1,5 @@
+import com.zetsubou_0.scala.test.{Network, Counter, Person}
+
 var a: Array[Int] = Array(-24, -9, -20, 13, 24, 7, -6, -13, -21, 1, 6, 2, -6, -13, -19, -2, 11, 20, 2, -17, 29, 14, 19, 8, 3, 0, -2, -21, 23, 14);
 a.filter(_ > 0).toBuffer ++= a.filter(_ <= 0)
 
@@ -21,22 +23,27 @@ val pricesDiscount = for ((k, v) <- prices) yield (k, v * 0.9)
 
 
 
-val in = new java.util.Scanner(new java.io.File("d:\\temp\\scala\\incomplete"))
-val m: scala.collection.mutable.Map[String, Int] = scala.collection.mutable.Map()
-while (in.hasNext) {
-  val word: String = in.next;
-  m += (word -> (m.getOrElse(word, 0) + 1))
-}
-in.close()
-m
+//val in = new java.util.Scanner(new java.io.File("d:\\temp\\scala\\incomplete"))
+//val m: scala.collection.mutable.Map[String, Int] = scala.collection.mutable.Map()
+//while (in.hasNext) {
+//  val word: String = in.next;
+//  m += (word -> (m.getOrElse(word, 0) + 1))
+//}
+//in.close()
+//m
 
+Console.println()
+val p = new Person()
+p.age = 30
+Console.println(p.age)
+p.age = 10
+Console.println(p.age)
 
-val in = new java.util.Scanner(new java.io.File("d:\\temp\\scala\\incomplete"))
-var m: scala.collection.immutable.TreeMap[String, Int] = scala.collection.immutable.TreeMap()
-while (in.hasNext) {
-  val word: String = in.next;
-  m = m + (word -> (m.getOrElse(word, 0) + 1))
-}
-in.close()
-m
+val counter = new Counter(10)
+counter.increment()
+Console.println(counter.current)
 
+new Person().action(p)
+
+val network = new Network("Kiryl")
+Console.println(network.member.description)
