@@ -9,7 +9,10 @@ for ((k, v) <- str.zip(num)) {
 }
 
 
-java.util.TimeZone.getAvailableIDs.filter(_.startsWith("America")).map(_.diff("America/")).sorted
+java.util.TimeZone.getAvailableIDs.
+  filter(_.startsWith("America")).
+  map(_.diff("America/")).
+  sorted
 
 
 val prices = Map("a" -> 100.0, "b" -> 250.0, "c" -> 80.50)
@@ -26,3 +29,14 @@ while (in.hasNext) {
 }
 in.close()
 m
+
+
+val in = new java.util.Scanner(new java.io.File("d:\\temp\\scala\\incomplete"))
+var m: scala.collection.immutable.TreeMap[String, Int] = scala.collection.immutable.TreeMap()
+while (in.hasNext) {
+  val word: String = in.next;
+  m = m + (word -> (m.getOrElse(word, 0) + 1))
+}
+in.close()
+m
+
