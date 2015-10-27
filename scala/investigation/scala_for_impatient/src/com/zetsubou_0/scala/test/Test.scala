@@ -5,7 +5,8 @@ package com.zetsubou_0.scala.test
  */
 object Test {
     def main (args: Array[String]): Unit = {
-        Console.println(Color.RED)
-        Console.println(Color.RED.id)
+        val item1: Item = new SimpleItem(400, "apple")
+        Console.println(item1.price)
+        Console.println(item1.description)
     }
 }
