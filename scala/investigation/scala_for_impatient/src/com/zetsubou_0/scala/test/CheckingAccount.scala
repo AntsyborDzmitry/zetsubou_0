@@ -7,11 +7,10 @@ class CheckingAccount(name: String) extends BankAccount(name){
     private val SERVICE_COST = 1;
 
     override def deposit(v: Int): Unit = {
-        balance += v - SERVICE_COST
+        super.deposit(v - SERVICE_COST)
     }
 
     override def withdraw(v: Int): Int = {
-        balance -= v + SERVICE_COST
-        balance
+        super.withdraw(v - SERVICE_COST)
     }
 }
