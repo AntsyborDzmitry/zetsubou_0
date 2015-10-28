@@ -197,7 +197,9 @@ public class Runner {
         FacadeHelper.report(FacadeHelper.BaseType.ORACLE, FacadeHelper.ReportType.PDF, "someTable");
 
 
-        /*flyweight*/
+        /**
+         * Flyweight
+         */
         //java.lang.Integer#valueOf(int) (also on Boolean, Byte, Character, Short, Long and BigDecimal)
         System.out.println("\nFlyweight");
         System.out.println(ShapeFlyweightFactory.getShape(ShapeFlyweightFactory.Type.CIRCLE));
@@ -206,7 +208,9 @@ public class Runner {
         System.out.println(ShapeFlyweightFactory.getShape(ShapeFlyweightFactory.Type.ORB_2D));
 
 
-        /*proxy*/
+        /**
+         * Proxy
+         */
         //java.lang.reflect.Proxy
         //java.rmi.*, the whole API actually.
         System.out.println("\nProxy");

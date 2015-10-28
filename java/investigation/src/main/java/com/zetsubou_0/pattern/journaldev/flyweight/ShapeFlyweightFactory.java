@@ -29,6 +29,6 @@ public class ShapeFlyweightFactory {
     }
 
     public enum Type {
-        CIRCLE, ORB_2D, ORB_3D;
+        CIRCLE, ORB_2D, ORB_3D
     }
 }
