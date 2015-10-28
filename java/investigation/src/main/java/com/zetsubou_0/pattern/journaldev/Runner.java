@@ -110,7 +110,9 @@ public class Runner {
         System.out.println(computer);
 
 
-        /*prototype*/
+        /**
+         * Prototype
+         */
         //java.lang.Object#clone()
         System.out.println("\nPrototype");
         try {
@@ -130,7 +132,9 @@ public class Runner {
         /************************************************
          *   Structural Design Patterns                 *
          ***********************************************/
-        /*adapter*/
+        /**
+         * Adapter
+         */
         //java.util.Arrays#asList()
         //java.io.InputStreamReader(InputStream) (returns a Reader)
         //java.io.OutputStreamWriter(OutputStream) (returns a Writer)
@@ -144,7 +148,9 @@ public class Runner {
         System.out.println(new ObjectSocketAdapter(new Socket()).get12Socket().getVolt());
 
 
-        /*bridge*/
+        /**
+         * Bridge
+         */
         // None comes to mind yet
         System.out.println("\nBridge");
         com.zetsubou_0.pattern.journaldev.bridge.Shape shape = new com.zetsubou_0.pattern.journaldev.bridge.Circle(new RedColor());
