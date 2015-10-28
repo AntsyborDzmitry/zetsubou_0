@@ -5,6 +5,6 @@ package com.zetsubou_0.scala.test
  */
 object Test {
     def main (args: Array[String]): Unit = {
-
+        FileTree.getTree("d:\\temp\\00")
     }
 }

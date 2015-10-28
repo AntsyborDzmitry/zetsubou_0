@@ -3,8 +3,8 @@ package com.zetsubou_0.scala.test
 /**
  * Created by Kiryl_Lutsyk on 10/26/2015.
  */
-
-class Person(private[this] val name: String) {
+@SerialVersionUID(4L)
+class Person(private[this] val name: String) extends Serializable {
     private val MIN_AGE = 18
     private var privateAge = 0
     private val counter = new Counter(0)
