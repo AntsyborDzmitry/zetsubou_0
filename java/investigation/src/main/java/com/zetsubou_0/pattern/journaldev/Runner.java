@@ -69,7 +69,7 @@ public class Runner {
          *   Creational Design Patterns                 *
          ***********************************************/
         /**
-         * factory
+         * Factory
          */
         //java.util.Calendar#getInstance()
         //java.util.ResourceBundle#getBundle()
@@ -84,7 +84,7 @@ public class Runner {
 
 
         /**
-         * abstract factory
+         * Abstract Factory
          */
         //javax.xml.parsers.DocumentBuilderFactory#newInstance()
         //javax.xml.transform.TransformerFactory#newInstance()
@@ -98,7 +98,9 @@ public class Runner {
         System.out.println(server2);
 
 
-        /*builder*/
+        /**
+         * Builder
+         */
         //java.lang.StringBuilder#append()
         //java.lang.StringBuffer#append()
         //java.nio.ByteBuffer#put()
