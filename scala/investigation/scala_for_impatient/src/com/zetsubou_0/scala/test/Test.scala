@@ -1,22 +1,33 @@
 package com.zetsubou_0.scala.test
 
-import java.io.{FileInputStream, ObjectInputStream, FileOutputStream, ObjectOutputStream}
+import java.io.File
+import java.net.URL
+
+import collection.immutable.StringOps
 
 /**
  * Created by Kiryl_Lutsyk on 10/27/2015.
  */
 object Test {
-    def main (args: Array[String]): Unit = {
-        val path = "d:\\temp\\00\\person.obj"
+    val path = "d:/temp/00"
 
-        val person = new Person("Nick White")
-        val out = new ObjectOutputStream(new FileOutputStream(path))
-        out.writeObject(person)
-        out.close()
-        val in = new ObjectInputStream(new FileInputStream(path))
-        val readPerson = in.readObject().asInstanceOf[Person]
-        in.close()
-        println(readPerson.firstName)
-        println(readPerson.lastName)
+    def main (args: Array[String]): Unit = {
+        val REG_EXP = new StringOps(""".*["].*""").r
+        for (m <- REG_EXP.findAllIn("Name \"qwe\"")) {
+            println(m)
+        }
+    }
+
+    def script: Unit = {
+        import sys.process._
+
+        val dirName = "dirs"
+
+        val file = new File(path + "/" + "dirs")
+        val index = new File(path + "/index.html")
+
+        "ls -al d:/temp/00" #| ("grep " + dirName) #> file !;
+//        "grep dirs" #< file !
+        index #< new URL("http://horstmann.com/index.html") !;
     }
 }
