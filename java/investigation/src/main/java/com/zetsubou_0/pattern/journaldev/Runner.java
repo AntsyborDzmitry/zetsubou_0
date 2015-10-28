@@ -159,7 +159,9 @@ public class Runner {
         shape2.draw();
 
 
-        /*composite*/
+        /**
+         * Composite
+         */
         //java.awt.Container#add(Component) (practically all over Swing thus)
         //javax.faces.component.UIComponent#getChildren() (practically all over JSF UI thus)
         System.out.println("\nComposite");
@@ -171,7 +173,9 @@ public class Runner {
         group.draw();
 
 
-        /*decorator*/
+        /**
+         * Decorator
+         */
         //All subclasses of java.io.InputStream, OutputStream, Reader and Writer have a constructor taking an instance of same type.
         //java.util.Collections, the checkedXXX(), synchronizedXXX() and unmodifiableXXX() methods.
         //javax.servlet.http.HttpServletRequestWrapper and HttpServletResponseWrapper
@@ -183,7 +187,9 @@ public class Runner {
         new SportCar(sportCar).drive();
 
 
-        /*facade*/
+        /**
+         * Facade
+         */
         //javax.faces.context.FacesContext, it internally uses among others the abstract/interface types LifeCycle, ViewHandler, NavigationHandler and many more without that the enduser has to worry about it (which are however overrideable by injection).
         //javax.faces.context.ExternalContext, which internally uses ServletContext, HttpSession, HttpServletRequest, HttpServletResponse, etc.
         System.out.println("\nFacade");
