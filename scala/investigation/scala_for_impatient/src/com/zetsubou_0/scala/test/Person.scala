@@ -7,6 +7,7 @@ package com.zetsubou_0.scala.test
 class Person(private[this] val name: String) extends Serializable {
     private val MIN_AGE = 18
     private var privateAge = 0
+    @transient
     private val counter = new Counter(0)
     private[this] val names: Array[String] = name.split(" ")
 
