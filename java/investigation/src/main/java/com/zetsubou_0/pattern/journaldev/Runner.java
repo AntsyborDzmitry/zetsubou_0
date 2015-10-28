@@ -29,7 +29,6 @@ import com.zetsubou_0.pattern.journaldev.interpreter.GreetingInterpreter;
 import com.zetsubou_0.pattern.journaldev.interpreter.MultiLanguageGreeting;
 import com.zetsubou_0.pattern.journaldev.iterator.ChannelCollection;
 import com.zetsubou_0.pattern.journaldev.iterator.ChannelCollectionImpl;
-import com.zetsubou_0.pattern.journaldev.iterator.ChannelIterator;
 import com.zetsubou_0.pattern.journaldev.iterator.ChannelTypeEnum;
 import com.zetsubou_0.pattern.journaldev.iterator.bean.Channel;
 import com.zetsubou_0.pattern.journaldev.iterator.helper.ChannelPrinter;
