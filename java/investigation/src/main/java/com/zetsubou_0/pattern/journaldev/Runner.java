@@ -431,11 +431,5 @@ public class Runner {
             sum += item.accept(shoppingCartVisitor);
         }
         System.out.println("Total: " + sum);
-
-
-        /*----------------------
-        facade
-        visitor
-        -----------------------*/
     }
 }
