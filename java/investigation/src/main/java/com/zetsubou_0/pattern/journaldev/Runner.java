@@ -326,7 +326,9 @@ public class Runner {
         u2.sendMsg("Hello");
 
 
-        /*Memento*/
+        /**
+         * Memento
+         */
         //java.util.Date (the setter methods do that, Date is internally represented by a long value)
         //All implementations of java.io.Serializable
         //All implementations of javax.faces.component.StateHolder
@@ -351,7 +353,9 @@ public class Runner {
         System.out.println(fileWriter);
 
 
-        /*Observer (or Publish/Subscribe)*/
+        /**
+         * Observer (or Publish/Subscribe)
+         */
         //java.util.Observer/java.util.Observable (rarely used in real world though)
         //All implementations of java.util.EventListener (practically all over Swing thus)
         //javax.servlet.http.HttpSessionBindingListener
@@ -372,7 +376,9 @@ public class Runner {
         mailSender.sendMail(employee4, "Hello");
 
 
-        /*State*/
+        /**
+         * State
+         */
         //javax.faces.lifecycle.LifeCycle#execute() (controlled by FacesServlet, the behaviour is dependent on current phase (state) of JSF lifecycle)
         System.out.println("\nState");
         State start = new StartAction();
@@ -423,7 +429,6 @@ public class Runner {
 
         /*----------------------
         facade
-        mediator
         visitor
         -----------------------*/
     }
