@@ -267,7 +267,9 @@ public class Runner {
         read.execute();
 
 
-        /*Interpreter*/
+        /**
+         * Interpreter
+         */
         //java.util.Pattern
         //java.text.Normalizer
         //All subclasses of java.text.Format
@@ -278,7 +280,9 @@ public class Runner {
         interpreter.sayHello("Вася");
 
 
-        /*Iterator*/
+        /**
+         * Iterator
+         */
         //All implementations of java.util.Iterator (thus among others also java.util.Scanner!).
         //All implementations of java.util.Enumeration
         System.out.println("\nIterator");
@@ -300,7 +304,9 @@ public class Runner {
         ChannelPrinter.printChannels(channels.iterator(ChannelTypeEnum.ENGLISH));
 
 
-        /*Mediator*/
+        /**
+         * Mediator
+         */
         //java.util.Timer (all scheduleXXX() methods)
         //java.util.concurrent.Executor#execute()
         //java.util.concurrent.ExecutorService (the invokeXXX() and submit() methods)
@@ -308,10 +314,10 @@ public class Runner {
         //java.lang.reflect.Method#invoke()
         System.out.println("\nMediator");
         MediatorChat mediatorChat = new MediatorChatimpl();
-        com.zetsubou_0.pattern.journaldev.mediator.User u1 = new UserImpl("a", mediatorChat);
-        com.zetsubou_0.pattern.journaldev.mediator.User u2 = new UserImpl("b", mediatorChat);
-        com.zetsubou_0.pattern.journaldev.mediator.User u3 = new UserImpl("c", mediatorChat);
-        com.zetsubou_0.pattern.journaldev.mediator.User u4 = new UserImpl("d", mediatorChat);
+        com.zetsubou_0.pattern.journaldev.mediator.User u1 = new UserImpl("User 'a'", mediatorChat);
+        com.zetsubou_0.pattern.journaldev.mediator.User u2 = new UserImpl("User 'b'", mediatorChat);
+        com.zetsubou_0.pattern.journaldev.mediator.User u3 = new UserImpl("User 'c'", mediatorChat);
+        com.zetsubou_0.pattern.journaldev.mediator.User u4 = new UserImpl("User 'd'", mediatorChat);
         mediatorChat.addUser(u1);
         mediatorChat.addUser(u2);
         mediatorChat.addUser(u3);
