@@ -229,7 +229,9 @@ public class Runner {
         /************************************************
          *   Behavioral Design Patterns                 *
          ***********************************************/
-        /*Chain of responsibility*/
+        /**
+         * Chain of responsibility
+         */
         //java.util.logging.Logger#log()
         //javax.servlet.Filter#doFilter()
         System.out.println("\nChain of responsibility");
@@ -249,7 +251,9 @@ public class Runner {
         }
 
 
-        /*Command*/
+        /**
+         * Command
+         */
         //All implementations of java.lang.Runnable
         //All implementations of javax.swing.Action
         System.out.println("\nCommand");
