@@ -389,7 +389,9 @@ public class Runner {
         changer.doAction();
 
 
-        /*Strategy*/
+        /**
+         * Strategy
+         */
         //java.util.Comparator#compare(), executed by among others Collections#sort().
         //javax.servlet.http.HttpServlet, the service() and all doXXX() methods take HttpServletRequest and HttpServletResponse and the implementor has to process them (and not to get hold of them as instance variables!).
         //javax.servlet.Filter#doFilter()
@@ -401,7 +403,9 @@ public class Runner {
         shop.buy("mobile", 110, inet);
 
 
-        /*Template method*/
+        /**
+         * Template method
+         */
         //All non-abstract methods of java.io.InputStream, java.io.OutputStream, java.io.Reader and java.io.Writer.
         //All non-abstract methods of java.util.AbstractList, java.util.AbstractSet and java.util.AbstractMap.
         //javax.servlet.http.HttpServlet, all the doXXX() methods by default sends a HTTP 405 "Method Not Allowed" error to the response. You're free to implement none or any of them.
