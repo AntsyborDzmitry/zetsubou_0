@@ -66,7 +66,7 @@ import com.zetsubou_0.pattern.journaldev.visitor.item.Item;
 public class Runner {
     public static void main(String[] args) {
         /************************************************
-         *   Creational Design Patterns                 *
+         *   Creation Design Patterns                   *
          ***********************************************/
         /**
          * Factory
