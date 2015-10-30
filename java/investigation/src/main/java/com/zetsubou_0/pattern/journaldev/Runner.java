@@ -43,6 +43,7 @@ import com.zetsubou_0.pattern.journaldev.prototype.World;
 import com.zetsubou_0.pattern.journaldev.proxy.Command;
 import com.zetsubou_0.pattern.journaldev.proxy.CommandProxy;
 import com.zetsubou_0.pattern.journaldev.proxy.User;
+import com.zetsubou_0.pattern.journaldev.singleton.BillPughSingleton;
 import com.zetsubou_0.pattern.journaldev.state.StartAction;
 import com.zetsubou_0.pattern.journaldev.state.State;
 import com.zetsubou_0.pattern.journaldev.state.StateChanger;
@@ -68,6 +69,12 @@ public class Runner {
         /************************************************
          *   Creation Design Patterns                   *
          ***********************************************/
+        /**
+         * Singleton
+         */
+        System.out.println("Singleton");
+        BillPughSingleton billPughSingleton = BillPughSingleton.getInstance();
+
         /**
          * Factory
          */
