@@ -74,6 +74,7 @@ public class Runner {
          */
         System.out.println("Singleton");
         BillPughSingleton billPughSingleton = BillPughSingleton.getInstance();
+        System.out.println(billPughSingleton);
 
         /**
          * Factory
@@ -85,7 +86,7 @@ public class Runner {
         //java.net.URLStreamHandlerFactory#createURLStreamHandler(String)
         Computer pc = com.zetsubou_0.pattern.journaldev.factory.ComputerFactory.getComputer(Types.PC, "ram", "hd", "cpu");
         Computer server = com.zetsubou_0.pattern.journaldev.factory.ComputerFactory.getComputer(Types.SERVER, "ram", "hd", "cpu");
-        System.out.println("Factory");
+        System.out.println("\nFactory");
         System.out.println(pc);
         System.out.println(server);
 
