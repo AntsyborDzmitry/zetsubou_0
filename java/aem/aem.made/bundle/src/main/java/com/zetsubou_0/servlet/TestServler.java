@@ -1,8 +1,10 @@
 package com.zetsubou_0.servlet;
 
+import com.zetsubou_0.model.PersonModel;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 
 import javax.servlet.ServletException;
@@ -18,6 +20,10 @@ import java.io.IOException;
 public class TestServler extends SlingAllMethodsServlet {
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-        super.doGet(request, response);
+        Resource resource = request.getRequestPathInfo().getSuffixResource();
+        if (resource != null) {
+            PersonModel person = resource.adaptTo(PersonModel.class);
+            response.getWriter().print(person);
+        }
     }
 }
