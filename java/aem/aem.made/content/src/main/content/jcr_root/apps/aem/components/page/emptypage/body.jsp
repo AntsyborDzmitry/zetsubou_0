@@ -1,4 +1,4 @@
-<%@ include file="/apps/aem/components/global.jspx" %>
+<%@ include file="/libs/foundation/global.jsp" %>
 
 <body>
     <cq:include path="container" resourceType="foundation/components/parsys"/>

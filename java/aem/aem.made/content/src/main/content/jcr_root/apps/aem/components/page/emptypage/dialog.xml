@@ -7,10 +7,6 @@
             jcr:primaryType="cq:Widget"
             xtype="tabpanel">
         <items jcr:primaryType="cq:WidgetCollection">
-            <myPathComponent
-                    jcr:primaryType="cq:Widget"
-                    path="/apps/aem/.sponsoredDialog.json"
-                    xtype="cqinclude" />
         </items>
     </items>
 </jcr:root>
