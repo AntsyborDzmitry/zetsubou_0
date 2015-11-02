@@ -227,18 +227,18 @@
                     <extensions>true</extensions>
                     <configuration>
                         <verbose>true</verbose>
-                        <embeddeds>
-                            <embedded>
-                                <groupId>org.apache.sling</groupId>
-                                <artifactId>org.apache.sling.models.api</artifactId>
-                                <target>/apps/aem/install</target>
-                            </embedded>
-                            <embedded>
-                                <groupId>org.apache.sling</groupId>
-                                <artifactId>org.apache.sling.models.impl</artifactId>
-                                <target>/apps/aem/install</target>
-                            </embedded>
-                        </embeddeds>
+                        <!--<embeddeds>-->
+                            <!--<embedded>-->
+                                <!--<groupId>org.apache.sling</groupId>-->
+                                <!--<artifactId>org.apache.sling.models.api</artifactId>-->
+                                <!--<target>/apps/aem/install</target>-->
+                            <!--</embedded>-->
+                            <!--<embedded>-->
+                                <!--<groupId>org.apache.sling</groupId>-->
+                                <!--<artifactId>org.apache.sling.models.impl</artifactId>-->
+                                <!--<target>/apps/aem/install</target>-->
+                            <!--</embedded>-->
+                        <!--</embeddeds>-->
                     </configuration>
                 </plugin>
                 <!--This plugin's configuration is used to store Eclipse
