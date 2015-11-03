@@ -13,6 +13,6 @@ public class CustomServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");
-        resp.getWriter().write("Hello I'm mapped servlet");
+        resp.getWriter().write("Hello I'm servlet");
     }
 }
