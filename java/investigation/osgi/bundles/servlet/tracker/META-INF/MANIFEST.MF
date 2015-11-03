@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Bundle-ManifestVersion: 2
+Bundle-Name: Servlet Tracker
+Bundle-Activator: com.zetsubou_0.osgi.servlet.tracker.Activator
+Bundle-SymbolicName: com.zetsubou_0.osgi.servlet.tracker
+Bundle-Version: 1.0.0
+Import-Package: org.osgi.framework,
+ org.osgi.util.tracker,
+ org.osgi.service.http,
+ javax.servlet.http,
+ javax.servlet
+Export-Packages: com.zetsubou_0.osgi.servlet.tracker
+Servlet-Path: /test/path
+
