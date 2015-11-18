@@ -4,11 +4,15 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.FontUnderline;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.extractor.XSSFExportToXml;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.xwpf.converter.xhtml.XHTMLConverter;
 import org.apache.poi.xwpf.converter.xhtml.XHTMLOptions;
 import org.apache.poi.xwpf.usermodel.*;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.*;
 import java.util.Iterator;
 
@@ -270,7 +274,17 @@ public class Runner {
                 ("D:/test.xml"))) {
             XSSFWorkbook workbook = new XSSFWorkbook(in);
 
+            for (XSSFMap map : workbook.getCustomXMLMappings()) {
+                XSSFExportToXml exporter = new XSSFExportToXml(map);
+                exporter.exportToXML(out, false);
+            }
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
             e.printStackTrace();
         }
     }
