@@ -62,22 +62,23 @@ public class Runner {
         try (FileInputStream in = new FileInputStream(DOCX_FILE)) {
             XWPFDocument document = new XWPFDocument(OPCPackage.open(in));
             for (XWPFParagraph p : document.getParagraphs()) {
+                StringBuilder text = new StringBuilder();
                 for (XWPFRun r :  p.getRuns()) {
                     if (r.isBold()) {
-                        System.out.print("<b>");
+                        text.append("<b>");
                     }
                     if (r.isItalic()) {
-                        System.out.print("<i>");
+                        text.append("<i>");
                     }
-                    System.out.print(r.getText(TEXT_START_POSITION));
+                    text.append(r.getText(TEXT_START_POSITION));
                     if (r.isBold()) {
-                        System.out.print("</b>");
+                        text.append("</b>");
                     }
                     if (r.isItalic()) {
-                        System.out.print("</i>");
+                        text.append("</i>");
                     }
                 }
-                System.out.println();
+                System.out.println(text.toString());
             }
         } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
@@ -188,6 +189,7 @@ public class Runner {
             while (rows.hasNext()) {
                 XSSFRow row = (XSSFRow) rows.next();
                 XSSFCell cell = row.getCell(0);
+                StringBuilder text = new StringBuilder();
                 if (cell != null) {
                     if (cell.getCellType() == XSSFCell.CELL_TYPE_STRING) {
                         int i = 0;
@@ -197,32 +199,32 @@ public class Runner {
                             XSSFFont font = string.getFontOfFormattingRun(i);
                             if (font != null) {
                                 if (font.getBold()) {
-                                    System.out.print("<b>");
+                                    text.append("<b>");
                                 }
                                 if (font.getItalic()) {
-                                    System.out.print("<i>");
+                                    text.append("<i>");
                                 }
                             }
-                            System.out.print(string.getString().substring(j, string.getLengthOfFormattingRun(i) + j));
-                            j = string.getLengthOfFormattingRun(i);
+                            text.append(string.getString().substring(j, string.getLengthOfFormattingRun(i) + j));
+                            j += string.getLengthOfFormattingRun(i);
                             if (font != null) {
                                 if (font.getBold()) {
-                                    System.out.print("</b>");
+                                    text.append("</b>");
                                 }
                                 if (font.getItalic()) {
-                                    System.out.print("</i>");
+                                    text.append("</i>");
                                 }
                             }
                             i++;
                         }
 
                         if (i == 0) {
-                            System.out.print(string.getString());
+                            text.append(string.getString());
                         }
                     } else if (cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
-                        System.out.print((int) cell.getNumericCellValue());
+                        text.append((int) cell.getNumericCellValue());
                     }
-                    System.out.print(" => ");
+                    text.append(" => ");
                 }
                 cell = row.getCell(1);
                 if (cell != null) {
@@ -233,35 +235,43 @@ public class Runner {
                         XSSFFont font = string.getFontOfFormattingRun(i);
                         if (font != null) {
                             if (font.getBold()) {
-                                System.out.print("<b>");
+                                text.append("<b>");
                             }
                             if (font.getItalic()) {
-                                System.out.print("<i>");
+                                text.append("<i>");
                             }
                         }
-                        System.out.print(string.getString().substring(j, string.getLengthOfFormattingRun(i) + j));
-                        j = string.getLengthOfFormattingRun(i);
+                        text.append(string.getString().substring(j, string.getLengthOfFormattingRun(i) + j));
+                        j += string.getLengthOfFormattingRun(i);
                         if (font != null) {
                             if (font.getBold()) {
-                                System.out.print("</b>");
+                                text.append("</b>");
                             }
                             if (font.getItalic()) {
-                                System.out.print("</i>");
+                                text.append("</i>");
                             }
                         }
                         i++;
                     }
 
                     if (i == 0) {
-                        System.out.print(string.getString());
+                        text.append(string.getString());
                     }
                 }
-                System.out.println();
+                System.out.println(text.toString());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
+        try (FileInputStream in = new FileInputStream(XLSX_FILE);
+             OutputStream out = new FileOutputStream(new File
+                ("D:/test.xml"))) {
+            XSSFWorkbook workbook = new XSSFWorkbook(in);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
