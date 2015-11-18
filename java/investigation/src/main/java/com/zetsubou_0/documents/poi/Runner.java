@@ -190,7 +190,35 @@ public class Runner {
                 XSSFCell cell = row.getCell(0);
                 if (cell != null) {
                     if (cell.getCellType() == XSSFCell.CELL_TYPE_STRING) {
-                        System.out.print(cell.getRichStringCellValue());
+                        int i = 0;
+                        int j = 0;
+                        XSSFRichTextString string = cell.getRichStringCellValue();
+                        while (string.getLengthOfFormattingRun(i) > 0) {
+                            XSSFFont font = string.getFontOfFormattingRun(i);
+                            if (font != null) {
+                                if (font.getBold()) {
+                                    System.out.print("<b>");
+                                }
+                                if (font.getItalic()) {
+                                    System.out.print("<i>");
+                                }
+                            }
+                            System.out.print(string.getString().substring(j, string.getLengthOfFormattingRun(i) + j));
+                            j = string.getLengthOfFormattingRun(i);
+                            if (font != null) {
+                                if (font.getBold()) {
+                                    System.out.print("</b>");
+                                }
+                                if (font.getItalic()) {
+                                    System.out.print("</i>");
+                                }
+                            }
+                            i++;
+                        }
+
+                        if (i == 0) {
+                            System.out.print(string.getString());
+                        }
                     } else if (cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
                         System.out.print((int) cell.getNumericCellValue());
                     }
@@ -198,8 +226,37 @@ public class Runner {
                 }
                 cell = row.getCell(1);
                 if (cell != null) {
-                    System.out.println(cell.getRichStringCellValue());
+                    int i = 0;
+                    int j = 0;
+                    XSSFRichTextString string = cell.getRichStringCellValue();
+                    while (string.getLengthOfFormattingRun(i) > 0) {
+                        XSSFFont font = string.getFontOfFormattingRun(i);
+                        if (font != null) {
+                            if (font.getBold()) {
+                                System.out.print("<b>");
+                            }
+                            if (font.getItalic()) {
+                                System.out.print("<i>");
+                            }
+                        }
+                        System.out.print(string.getString().substring(j, string.getLengthOfFormattingRun(i) + j));
+                        j = string.getLengthOfFormattingRun(i);
+                        if (font != null) {
+                            if (font.getBold()) {
+                                System.out.print("</b>");
+                            }
+                            if (font.getItalic()) {
+                                System.out.print("</i>");
+                            }
+                        }
+                        i++;
+                    }
+
+                    if (i == 0) {
+                        System.out.print(string.getString());
+                    }
                 }
+                System.out.println();
             }
         } catch (IOException e) {
             e.printStackTrace();
