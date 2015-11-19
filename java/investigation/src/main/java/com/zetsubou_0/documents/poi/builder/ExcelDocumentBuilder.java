@@ -12,8 +12,6 @@ import java.io.OutputStream;
  * Created by Kiryl_Lutsyk on 11/19/2015.
  */
 public class ExcelDocumentBuilder {
-    private final String sheetName;
-
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
     private XSSFRow currentRow;
@@ -23,9 +21,15 @@ public class ExcelDocumentBuilder {
     private int cellIndex;
     private int maxColumnsInRow = 0;
 
-    public ExcelDocumentBuilder(String sheetName) {
-        this.sheetName = sheetName;
+    public ExcelDocumentBuilder() {
+        this.workbook = new XSSFWorkbook();
         init();
+    }
+
+    public ExcelDocumentBuilder appendSheet(String sheetName) {
+        this.sheet = this.workbook.createSheet(sheetName);
+        init();
+        return this;
     }
 
     public ExcelDocumentBuilder appendRow() throws DocumentException {
@@ -84,8 +88,9 @@ public class ExcelDocumentBuilder {
     }
 
     protected void init() {
-        this.workbook = new XSSFWorkbook();
-        this.sheet = this.workbook.createSheet(sheetName);
+        this.currentRow = null;
+        this.currentCell = null;
+        this.string = null;
         this.rowIndex = 0;
         this.cellIndex = 0;
     }

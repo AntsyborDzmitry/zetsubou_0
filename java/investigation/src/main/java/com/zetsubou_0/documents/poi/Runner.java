@@ -121,7 +121,8 @@ public class Runner {
         // write xslx
         try {
             int i = 0;
-            ExcelDocumentBuilder builder = new ExcelDocumentBuilder(XLSX_SHEET);
+            ExcelDocumentBuilder builder = new ExcelDocumentBuilder();
+            builder.appendSheet(XLSX_SHEET);
             builder.appendRow()
                     .appendCell().appendCellText("Key", new BoldStyle())
                     .buildCellString()
