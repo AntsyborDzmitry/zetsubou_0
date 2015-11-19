@@ -125,60 +125,60 @@ public class Runner {
             builder.appendSheet(XLSX_SHEET);
             builder.appendRow()
                     .appendCell().appendCellText("Key", new BoldStyle())
-                    .buildCellString()
+                    .fillCellString()
                     .appendCell().appendCellText("Value", new BoldStyle())
-                    .buildCellString();
+                    .fillCellString();
             builder.appendRow()
                     .appendCell()
                         .appendCellText("dictionary-" + ++i)
-                        .buildCellString()
+                        .fillCellString()
                     .appendCell()
                         .appendCellText(SOME)
                         .appendCellText("bold", new BoldStyle())
                         .appendCellText(TEXT)
-                        .buildCellString();
+                        .fillCellString();
             builder.appendRow()
                     .appendCell()
                         .appendCellText("dictionary-" + ++i)
-                        .buildCellString()
+                        .fillCellString()
                     .appendCell()
                         .appendCellText(SOME)
                         .appendCellText("underline", new UnderlineStyle())
                         .appendCellText(TEXT)
-                        .buildCellString();
+                        .fillCellString();
             builder.appendRow()
                     .appendCell()
                         .appendCellText("dictionary-" + ++i)
-                        .buildCellString()
+                        .fillCellString()
                     .appendCell()
                         .appendCellText(SOME)
                         .appendCellText(TEXT)
-                        .buildCellString();
+                        .fillCellString();
             builder.appendRow()
                     .appendCell()
                         .appendCellText("dictionary-" + ++i)
-                        .buildCellString()
+                        .fillCellString()
                     .appendCell()
                         .appendCellText(SOME)
                         .appendCellText("italic", new ItalicStyle())
                         .appendCellText(TEXT)
-                        .buildCellString();
+                        .fillCellString();
             builder.appendRow()
                     .appendCell()
                         .appendCellText("dictionary-" + ++i)
-                        .buildCellString()
+                        .fillCellString()
                     .appendCell()
                         .appendCellText("Русский текст")
-                        .buildCellString();
+                        .fillCellString();
             builder.appendRow()
                     .appendCell()
                     .appendCellText("dictionary-" + ++i)
-                    .buildCellString()
+                    .fillCellString()
                     .appendCell()
                     .appendCellText(SOME)
                     .appendCellText("all styled", new ItalicStyle(), new BoldStyle(), new UnderlineStyle())
                     .appendCellText(TEXT)
-                    .buildCellString();
+                    .fillCellString();
             service.writeDocument(XLSX_FILE, builder);
         } catch (DocumentException e) {
             e.printStackTrace();

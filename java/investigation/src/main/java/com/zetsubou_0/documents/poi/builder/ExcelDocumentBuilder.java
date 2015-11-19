@@ -33,6 +33,11 @@ public class ExcelDocumentBuilder {
     }
 
     public ExcelDocumentBuilder appendRow() throws DocumentException {
+        return appendRow(rowIndex);
+    }
+
+    public ExcelDocumentBuilder appendRow(int row) throws DocumentException {
+        rowIndex = row;
         currentRow = sheet.createRow(rowIndex++);
         maxColumnsInRow = (maxColumnsInRow < cellIndex) ? cellIndex : maxColumnsInRow;
         cellIndex = 0;
@@ -68,7 +73,7 @@ public class ExcelDocumentBuilder {
         return this;
     }
 
-    public ExcelDocumentBuilder buildCellString() {
+    public ExcelDocumentBuilder fillCellString() {
         if (currentCell != null && string != null) {
             currentCell.setCellValue(string);
         }
