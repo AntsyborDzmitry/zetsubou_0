@@ -37,49 +37,33 @@ public class Runner {
 
     public static void main(String[] args) {
         // write docx
-//        try (OutputStream out = new FileOutputStream(DOCX_FILE)) {
-//            XWPFDocument document = new XWPFDocument();
-//
-//            XWPFParagraph paragraph = document.createParagraph();
-//            paragraph.setAlignment(ParagraphAlignment.CENTER);
-//            XWPFRun run = paragraph.createRun();
-//            run.setText("Document test");
-//            run.setBold(true);
-//            run.setFontSize(32);
-//
-//            paragraph = document.createParagraph();
-//            run = paragraph.createRun();
-//            run.setText("Some text ");
-//
-//            run = paragraph.createRun();
-//            run.setUnderline(UnderlinePatterns.DASH);
-//            run.setText("Some underline text ");
-//
-//            run = paragraph.createRun();
-//            run.setItalic(true);
-//            run.setText("Some italic text ");
-//
-//            run = paragraph.createRun();
-//            run.setText("Русский текст");
-//
-//            document.write(out);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try (OutputStream out = new FileOutputStream(DOCX_FILE)) {
+            XWPFDocument document = new XWPFDocument();
 
-        try {
-            WordDocumentBuilder builder = new WordDocumentBuilder();
-            builder.createParagraph().
-                    appendString("Document test", StyleType.BOLD);
-            builder.createParagraph()
-                    .appendString("Some text ")
-                    .appendString("Some underline text ", StyleType.UNDERLINE)
-                    .appendString("Some italic text ", StyleType.ITALIC)
-                    .appendString("Русский текст");
-            builder.createParagraph()
-                    .appendString("All styles", StyleType.BOLD, StyleType.ITALIC, StyleType.UNDERLINE);
-            wordService.writeDocument(DOCX_FILE, builder);
-        } catch (DocumentException e) {
+            XWPFParagraph paragraph = document.createParagraph();
+            paragraph.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun run = paragraph.createRun();
+            run.setText("Document test");
+            run.setBold(true);
+            run.setFontSize(32);
+
+            paragraph = document.createParagraph();
+            run = paragraph.createRun();
+            run.setText("Some text ");
+
+            run = paragraph.createRun();
+            run.setUnderline(UnderlinePatterns.DASH);
+            run.setText("Some underline text ");
+
+            run = paragraph.createRun();
+            run.setItalic(true);
+            run.setText("Some italic text ");
+
+            run = paragraph.createRun();
+            run.setText("Русский текст");
+
+            document.write(out);
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
