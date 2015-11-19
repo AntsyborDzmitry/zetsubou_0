@@ -1,5 +1,9 @@
 package com.zetsubou_0.documents.poi;
 
+import com.zetsubou_0.documents.poi.api.WordService;
+import com.zetsubou_0.documents.poi.builder.StyleType;
+import com.zetsubou_0.documents.poi.builder.WordDocumentBuilder;
+import com.zetsubou_0.documents.poi.exception.DocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.FontUnderline;
@@ -29,35 +33,53 @@ public class Runner {
     public static final String HTML_FILE = "D:/test.html";
     public static final String HTML_FILE_2 = "D:/test2.html";
 
+    private static WordService wordService = new WordServiceImpl();
+
     public static void main(String[] args) {
         // write docx
-        try (OutputStream out = new FileOutputStream(DOCX_FILE)) {
-            XWPFDocument document = new XWPFDocument();
+//        try (OutputStream out = new FileOutputStream(DOCX_FILE)) {
+//            XWPFDocument document = new XWPFDocument();
+//
+//            XWPFParagraph paragraph = document.createParagraph();
+//            paragraph.setAlignment(ParagraphAlignment.CENTER);
+//            XWPFRun run = paragraph.createRun();
+//            run.setText("Document test");
+//            run.setBold(true);
+//            run.setFontSize(32);
+//
+//            paragraph = document.createParagraph();
+//            run = paragraph.createRun();
+//            run.setText("Some text ");
+//
+//            run = paragraph.createRun();
+//            run.setUnderline(UnderlinePatterns.DASH);
+//            run.setText("Some underline text ");
+//
+//            run = paragraph.createRun();
+//            run.setItalic(true);
+//            run.setText("Some italic text ");
+//
+//            run = paragraph.createRun();
+//            run.setText("Русский текст");
+//
+//            document.write(out);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-            XWPFParagraph paragraph = document.createParagraph();
-            paragraph.setAlignment(ParagraphAlignment.CENTER);
-            XWPFRun run = paragraph.createRun();
-            run.setText("Document test");
-            run.setBold(true);
-            run.setFontSize(32);
-
-            paragraph = document.createParagraph();
-            run = paragraph.createRun();
-            run.setText("Some text ");
-
-            run = paragraph.createRun();
-            run.setUnderline(UnderlinePatterns.DASH);
-            run.setText("Some underline text ");
-
-            run = paragraph.createRun();
-            run.setItalic(true);
-            run.setText("Some italic text ");
-
-            run = paragraph.createRun();
-            run.setText("Русский текст");
-
-            document.write(out);
-        } catch (IOException e) {
+        try {
+            WordDocumentBuilder builder = new WordDocumentBuilder();
+            builder.createParagraph().
+                    appendString("Document test", StyleType.BOLD);
+            builder.createParagraph()
+                    .appendString("Some text ")
+                    .appendString("Some underline text ", StyleType.UNDERLINE)
+                    .appendString("Some italic text ", StyleType.ITALIC)
+                    .appendString("Русский текст");
+            builder.createParagraph()
+                    .appendString("All styles", StyleType.BOLD, StyleType.ITALIC, StyleType.UNDERLINE);
+            wordService.writeDocument(DOCX_FILE, builder);
+        } catch (DocumentException e) {
             e.printStackTrace();
         }
 
