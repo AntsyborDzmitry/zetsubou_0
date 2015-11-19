@@ -1,12 +1,13 @@
 package com.zetsubou_0.documents.poi;
 
-import com.zetsubou_0.documents.poi.api.WordService;
-import com.zetsubou_0.documents.poi.builder.StyleType;
-import com.zetsubou_0.documents.poi.builder.WordDocumentBuilder;
+import com.zetsubou_0.documents.poi.api.ExcelDocumentService;
+import com.zetsubou_0.documents.poi.builder.ExcelDocumentBuilder;
 import com.zetsubou_0.documents.poi.exception.DocumentException;
+import com.zetsubou_0.documents.poi.style.BoldStyle;
+import com.zetsubou_0.documents.poi.style.ItalicStyle;
+import com.zetsubou_0.documents.poi.style.UnderlineStyle;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.ss.usermodel.FontUnderline;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.extractor.XSSFExportToXml;
 import org.apache.poi.xssf.usermodel.*;
@@ -32,8 +33,10 @@ public class Runner {
     public static final String XLSX_SHEET = "Dictionary";
     public static final String HTML_FILE = "D:/test.html";
     public static final String HTML_FILE_2 = "D:/test2.html";
+    public static final String SOME = "Some ";
+    public static final String TEXT = " text";
 
-    private static WordService wordService = new WordServiceImpl();
+    private static ExcelDocumentService service = new ExcelDocumentServiceImpl();
 
     public static void main(String[] args) {
         // write docx
@@ -116,78 +119,69 @@ public class Runner {
 
 
         // write xslx
-        try (OutputStream out = new FileOutputStream(new File(XLSX_FILE))) {
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet(XLSX_SHEET);
-            XSSFFont bold = workbook.createFont();
-            bold.setBold(true);
-            XSSFFont italic = workbook.createFont();
-            italic.setItalic(true);
-            XSSFFont underline = workbook.createFont();
-            underline.setUnderline(FontUnderline.SINGLE);
-
-            int rowCount = 0;
-            XSSFRow row = sheet.createRow(rowCount++);
-            XSSFCell cell = row.createCell(0);
-            XSSFRichTextString string = new XSSFRichTextString("Key");
-            string.applyFont(bold);
-            cell.setCellValue(string);
-            cell = row.createCell(1);
-            string.setString("Value");
-            string.applyFont(bold);
-            cell.setCellValue(string);
-
-            row = sheet.createRow(rowCount);
-            cell = row.createCell(0);
-            cell.setCellValue(rowCount++);
-            cell = row.createCell(1);
-            string.setString("Some ");
-            int strLength = string.length();
-            string.append("bold");
-            string.applyFont(strLength, strLength + "bold".length(), bold);
-            string.append(" text");
-            cell.setCellValue(string);
-
-            row = sheet.createRow(rowCount);
-            cell = row.createCell(0);
-            cell.setCellValue(rowCount++);
-            cell = row.createCell(1);
-            string.setString("Some ");
-            cell.setCellValue("Some text ");
-
-            row = sheet.createRow(rowCount);
-            cell = row.createCell(0);
-            cell.setCellValue(rowCount++);
-            cell = row.createCell(1);
-            string.setString("Some ");
-            strLength = string.length();
-            string.append("underline");
-            string.applyFont(strLength, strLength + "underline".length(), underline);
-            string.append(" text");
-            cell.setCellValue(string);
-
-            row = sheet.createRow(rowCount);
-            cell = row.createCell(0);
-            cell.setCellValue(rowCount++);
-            cell = row.createCell(1);
-            string.setString("Some ");
-            strLength = string.length();
-            string.append("italic");
-            string.applyFont(strLength, strLength + "italic".length(), italic);
-            string.append(" text");
-            cell.setCellValue(string);
-
-            row = sheet.createRow(rowCount);
-            cell = row.createCell(0);
-            cell.setCellValue(rowCount++);
-            cell = row.createCell(1);
-            cell.setCellValue("Русский текст");
-
-            workbook.write(out);
-        } catch (IOException e) {
+        try {
+            int i = 0;
+            ExcelDocumentBuilder builder = new ExcelDocumentBuilder(XLSX_SHEET);
+            builder.appendRow()
+                    .appendCell().appendCellText("Key", new BoldStyle())
+                    .buildCellString()
+                    .appendCell().appendCellText("Value", new BoldStyle())
+                    .buildCellString();
+            builder.appendRow()
+                    .appendCell()
+                        .appendCellText("dictionary-" + ++i)
+                        .buildCellString()
+                    .appendCell()
+                        .appendCellText(SOME)
+                        .appendCellText("bold", new BoldStyle())
+                        .appendCellText(TEXT)
+                        .buildCellString();
+            builder.appendRow()
+                    .appendCell()
+                        .appendCellText("dictionary-" + ++i)
+                        .buildCellString()
+                    .appendCell()
+                        .appendCellText(SOME)
+                        .appendCellText("underline", new UnderlineStyle())
+                        .appendCellText(TEXT)
+                        .buildCellString();
+            builder.appendRow()
+                    .appendCell()
+                        .appendCellText("dictionary-" + ++i)
+                        .buildCellString()
+                    .appendCell()
+                        .appendCellText(SOME)
+                        .appendCellText(TEXT)
+                        .buildCellString();
+            builder.appendRow()
+                    .appendCell()
+                        .appendCellText("dictionary-" + ++i)
+                        .buildCellString()
+                    .appendCell()
+                        .appendCellText(SOME)
+                        .appendCellText("italic", new ItalicStyle())
+                        .appendCellText(TEXT)
+                        .buildCellString();
+            builder.appendRow()
+                    .appendCell()
+                        .appendCellText("dictionary-" + ++i)
+                        .buildCellString()
+                    .appendCell()
+                        .appendCellText("Русский текст")
+                        .buildCellString();
+            builder.appendRow()
+                    .appendCell()
+                    .appendCellText("dictionary-" + ++i)
+                    .buildCellString()
+                    .appendCell()
+                    .appendCellText(SOME)
+                    .appendCellText("all styled", new ItalicStyle(), new BoldStyle(), new UnderlineStyle())
+                    .appendCellText(TEXT)
+                    .buildCellString();
+            service.writeDocument(XLSX_FILE, builder);
+        } catch (DocumentException e) {
             e.printStackTrace();
         }
-
 
 
         // read xslx
