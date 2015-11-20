@@ -1,0 +1,220 @@
+<div ewf-form="itarEei">
+    <p>{{itarEeiCtrl.descriptionContinuing}}</p>
+    <p nls="shipment.shipment_type_itar_eei_description_after_submit"></p>
+    <p nls="shipment.shipment_type_itar_eei_description_to_submit"></p>
+    <div ewf-form="itarEeiRowsForm" ng-form="itarEeiRowsForm" ng-if="true">
+        <div class="product-item" ng-repeat="item in itarEeiCtrl.commodityList">
+            <div class="row">
+                <div class="col-6">
+                    <div class="field field_width_full field_with-mark" ewf-field="description{{$index}}">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_description_label"></label>
+                        <input type="text" name="eeiDescription" class="input" nls="shipment.shipment_type_itar_eei_description" maxlength="100"
+                           ng-model="item.description"
+                           ng-disabled="!item.editable"
+                           ewf-input="itarEei.description{{$index}}"
+                           ewf-validate-required>
+                        <span class="validation-mark"></span>
+                        <div ewf-field-errors></div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="field field_width_full field_with-mark">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_license_type_label"></label>
+                        <span class="select">
+                            <select name="eeiLicenseType"
+                               ng-model="item.licenseType"
+                               ng-options="license.key as license.value for license in itarEeiCtrl.licenseTypes">
+                            </select>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="field field_width_full field_with-mark" ewf-field="licenseNumber{{$index}}">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_license_number_label"></label>
+                        <input type="text" name="eeiLicenseNumber" class="input" maxlength="16"
+                           ng-if="item.licenseType === ''"
+                           ng-model="item.licenseNumber">
+                        <input type="text" name="eeiLicenseNumber" class="input" maxlength="16"
+                           ng-if="item.licenseType !== 'LIC' && item.licenseType !== ''"
+                           ng-model="item.licenseNumber"
+                           ewf-input="itarEei.licenseNumber{{$index}}"
+                           ewf-validate-required>
+                        <input type="text" name="eeiLicenseNumber" class="input" maxlength="16"
+                           ng-if="item.licenseType === 'LIC'"
+                           ng-model="item.licenseNumber"
+                           ewf-input="itarEei.licenseNumber{{$index}}"
+                           ewf-validate-pattern="{{itarEeiCtrl.PATTERNS.LIC}}"
+                           ewf-validate-required>
+                        <div ewf-field-errors></div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="field field_width_full">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_eccn_label"></label>
+                        <input type="text" class="input input_width_tiny" name="eeiECCN" maxlength="16"
+                           ng-model="item.ECCN">
+                        <button type="button" class="btn btn_addon btn_animate">
+                            <span class="btn__text" nls="shipment.shipment_type_itar_eei_eccn_find_button"></span><i class="dhlicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-small">
+                <div class="col-1">
+                    <div class="field" ewf-field="quantity{{$index}}">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_quantity_label"></label>
+                        <input type="text" class="input input_width_tiny" name="eeiQuantity" maxlength="4"
+                           ng-model="item.quantity"
+                           ewf-input="itarEei.quantity{{$index}}"
+                           ewf-validate-pattern="{{itarEeiCtrl.PATTERNS.NUMBER}}"
+                           ewf-validate-required>
+                        <span class="validation-mark"></span>
+                        <div class="msg-error_left" ewf-field-errors></div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="field field_with-mark field_width_full" ewf-field="quantityUnit{{$index}}">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_units_label"></label>
+                        <span class="select">
+                            <select id="quantityUnit"
+                                ng-options="unit for unit in itarEeiCtrl.quantityUnits"
+                                ng-model="item.quantityUnit"
+                                ewf-input="itarEei.quantityUnit{{$index}}"
+                                ewf-validate-required>
+                            </select>
+                            <span class="validation-mark"></span>
+                            <div ewf-field-errors></div>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="field field_width_full field_with-mark" ewf-field="exportCode{{$index}}">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_export_code_label"></label>
+                        <span class="select">
+                            <select name="eeiExportCode"
+                               ng-model="item.exportCode"
+                               ng-options="code.value for code in itarEeiCtrl.exportCodes track by code.key"
+                               ewf-input="itarEei.exportCode{{$index}}"
+                               ewf-validate-required>
+                            </select>
+                            <span class="validation-mark"></span>
+                            <div ewf-field-errors></div>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="field field_width_full field_with-mark" ewf-field="origin{{$index}}">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_commodity_origin_label"></label>
+                        <span class="select">
+                            <select name="eeiOrigin"
+                               ng-model="item.origin"
+                               ewf-input="itarEei.origin{{$index}}"
+                               ewf-validate-required>
+                                <option value=""></option>
+                                <option value="{{itarEeiCtrl.originTypes.domestic}}" nls="shipment.shipment_type_itar_eei_commodity_origin_domestic"></option>
+                                <option value="{{itarEeiCtrl.originTypes.international}}" nls="shipment.shipment_type_itar_eei_commodity_origin_international"></option>
+                            </select>
+                            <span class="validation-mark"></span>
+                            <div ewf-field-errors></div>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="field" ewf-field="weight{{$index}}">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_total_weight_label"></label>
+                        <input type="text" class="input input_width_small" name="eeiWeight" maxlength="5"
+                           ng-model="item.totalWeight"
+                           ewf-input="itarEei.weight{{$index}}"
+                           ewf-validate-pattern="{{itarEeiCtrl.PATTERNS.NUMBER}}"
+                           ewf-validate-required
+                           ewf-validate-max-message="shipment.package_details_max_weight_validation_error"
+                           ewf-validate-max="{{itarEeiCtrl.maxTotalWeight}}">
+                        <span class="validation-mark"></span>
+                        <div ewf-field-errors></div>
+                        {{itarEeiCtrl.currentWeightUnit}}
+                        <div ng-if="itarEeiCtrl.isUnitsMismatched">
+                            <small>
+                                {{item.totalWeight | convertUomToOpposite : itarEeiCtrl.weightConvertionRate : itarEeiCtrl.userProfileCountryConversionPrecision}}
+                                {{itarEeiCtrl.oppositeWeightUnit}}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="field" ewf-field="value{{$index}}">
+                        <label class="label" nls="shipment.shipment_type_itar_eei_total_value_label"></label>
+                        <input type="text" class="input input_width_tiny" name="eeiValue" maxlength="10"
+                           ng-model="item.totalValue"
+                           ewf-input="itarEei.value{{$index}}"
+                           ewf-validate-pattern="{{itarEeiCtrl.PATTERNS.NUMBER}}"
+                           ewf-validate-max-message="shipment.shipment_type_itar_eei_max_total_value_error_message"
+                           ewf-validate-max="{{itarEeiCtrl.maxTotalValue}}"
+                           ewf-validate-required>
+                        <span class="validation-mark"></span>
+                        <div ewf-field-errors></div>
+                    </div>
+                </div>
+                <div class="col-3 right" ng-if="itarEeiCtrl.commodityList.length > 1">
+                    <button type="button" class="btn btn_action btn_width_half right" ng-click="itarEeiCtrl.deleteCommodityRow(item)">
+                        <i class="dhlicon-remove"></i>
+                        <span nls="shipment.shipment_type_itar_eei_remove_button"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <p ng-show="itarEeiCtrl.isUnitsMismatched" class="alert alert_info" nls="shipment.shipment_type_packages_item_attributes_units_mismatch_recount_message"></p>
+        </div>
+
+        <div class="row margin-top margin-bottom">
+            <div class="col-4">
+                <span nls="shipment.shipment_type_packages_item_attributes_total_pieces"></span>:
+                <b>{{itarEeiCtrl.commodityList | calculateTotal : 'quantity'}}</b>
+            </div>
+            <div class="col-3">
+                <span nls="shipment.shipment_type_packages_item_attributes_total_net_weight"></span>:
+                <b class="right">{{itarEeiCtrl.calculateTotalWeight()}} {{itarEeiCtrl.currentWeightUnit}}</b>
+                <div ng-if="itarEeiCtrl.isUnitsMismatched">
+                    <small class="right">
+                        {{totalWeight | convertUomToOpposite : itarEeiCtrl.weightConvertionRate : itarEeiCtrl.userProfileCountryConversionPrecision}}
+                        {{itarEeiCtrl.oppositeWeightUnit}}
+                    </small>
+                </div>
+            </div>
+            <div class="col-3">
+                <span nls="shipment.shipment_type_packages_item_attributes_shipment_value"></span>:
+                <b>{{itarEeiCtrl.commodityList | calculateTotal : 'totalValue' : 'quantity' | currency : '$' : 2}}</b>
+            </div>
+
+            <button type="button" class="btn btn_small right" ng-click="itarEeiCtrl.addNewCommodityRow(itarEeiRowsForm, ewfFormCtrl)">
+                <span nls="shipment.shipment_type_itar_eei_add_button"></span> <i class="dhlicon-add"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="field-wrapper"
+       ewf-field="ein">
+        <label class="label">
+            <span nls="shipment.shipment_type_itar_eei_ein_label"></span>
+            <a class="info"><span nls="shipment.shipment_type_itar_eei_ein_description_tooltip"></span></a>
+        </label>
+        <input type="text" name="eeiEIN" class="input" maxlength="11"
+           ng-model="itarEeiCtrl.ein"
+           ewf-input="itarEei.ein"
+           ewf-validate-pattern="{{itarEeiCtrl.PATTERNS.EIN}}"
+           ewf-validate-required>
+        <span class="validation-mark"></span>
+        <div class="msg-error_left" ewf-field-errors></div>
+    </div>
+
+    <label class="checkbox">
+        <input type="checkbox" name="eeiRelated" id="checkbox_eeiRelated" class="checkbox__input"
+           data-aqa-id="checkbox_eeiRelated"
+           ng-model="itarEeiCtrl.isRelated">
+        <span class="label"
+           nls="shipment.shipment_type_itar_eei_related_label">
+        </span>
+    </label>
+</div>

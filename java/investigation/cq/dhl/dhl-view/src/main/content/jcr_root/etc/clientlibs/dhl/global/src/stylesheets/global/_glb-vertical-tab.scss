@@ -1,0 +1,30 @@
+.vertical-tab {
+    float: left;
+    width: 22%;
+
+    &__item {
+        display: block;
+        padding: 10px 5px 10px 30px;
+        text-decoration: none;
+        color: $COLOR_GRAY_3;
+        background: $COLOR_GRAY_7;
+        font-size: 14px;
+
+        &:hover {
+            color: $COLOR_GRAY_1;
+            background: #fff;
+        }
+
+        .is-active {
+            color: $TAB_ACTIVE_BG;
+            background: #fff;
+            font-weight: bold;
+        }
+    }
+}
+
+.vertical-tab-content {
+    float: left;
+    width: 76%;
+    margin-left: 2%;
+}

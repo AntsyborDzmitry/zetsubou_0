@@ -1,0 +1,297 @@
+.delivery {
+    &-tabs {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-bottom: 3px solid $COLOR_DHL_YELLOW;
+        font-size: 0;
+
+        &__item {
+            display: inline-block;
+            margin: 0 3px 0 0;
+            position: relative;
+
+            &-content {
+                cursor: pointer;
+                padding: 5px 10px 3px;
+                border-color: $COLOR_DHL_YELLOW;
+                border-style: solid solid none;
+                border-width: 1px 1px 0;
+                border-radius: 3px 3px 0 0;
+                background: #fff;
+                color: $COLOR_GRAY_3;
+                min-width: 95px;
+
+                &:hover {
+                    color: $COLOR_GRAY_1;
+                    background: lighten($COLOR_DHL_YELLOW, 15%);
+                }
+            }
+
+            &.is-active {
+                .delivery-tabs__item-content {
+                    border: 1px solid $COLOR_DHL_YELLOW;
+                    border-bottom: 0;
+                    color: $COLOR_GRAY_1;
+                    background: $COLOR_DHL_YELLOW;
+                    min-width: 110px;
+                }
+            }
+        }
+    }
+
+    &-date {
+        text-align: center;
+        vertical-align: bottom;
+        font-size: 14px;
+
+        &-content {
+            vertical-align: bottom;
+        }
+
+        &__month {
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 14px;
+        }
+
+        &__date {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 24px;
+        }
+
+        &__day {
+            font-size: 11px;
+            font-weight: normal;
+            line-height: 11px;
+        }
+
+        &_flex {
+            .delivery-tabs__item-content {
+                display: inline-block;
+                min-width: 0;
+                vertical-align: bottom;
+            }
+        }
+
+        &.is-active {
+            .delivery-date__month {
+                font-size: 14px;
+                line-height: 16px;
+            }
+
+            .delivery-date__date {
+                font-size: 30px;
+                line-height: 30px;
+            }
+
+            .delivery-date__day {
+                font-size: 11px;
+                line-height: 12px;
+            }
+        }
+
+        &__container {
+            display: inline-block;
+            text-align: center;
+        }
+    }
+
+    &-table {
+        padding: 15px;
+        text-align: center;
+        border: 1px solid $COLOR_GRAY_6;
+        background: $COLOR_GRAY_7;
+
+        &__header {
+            @include clearfix();
+            margin: 0 0 10px;
+
+            .delivery-table__cell {
+                padding-bottom: 1em;
+                float: left;
+
+                &:first-child {
+                    border-left: 0;
+                }
+            }
+
+            .currency-icon {
+                position: absolute;
+                top: 5px;
+                left: 50%;
+                margin: 0 0 0 -13px;
+                width: 27px;
+                height: 27px;
+                line-height: 21px;
+                border: 3px solid #333;
+                border-radius: 100px;
+            }
+        }
+
+        &__caption {
+            padding: 40px 0 0;
+            position: relative;
+
+            .delivery-table__icon {
+                font-size: 2em;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+        }
+
+        &__item {
+            width: 100%;
+            margin: 0 0 10px;
+        }
+
+        &__holder {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        &__row {
+            margin: 5px 0;
+            background: #fff;
+            display: table-row;
+
+            .delivery-table__cell {
+                padding: 15px 10px;
+                font-size: 14px;
+
+                &:first-child {
+                    border-left: 0;
+                }
+            }
+        }
+
+        &__cell {
+            display: table-cell;
+            vertical-align: middle;
+            width: 25%;
+        }
+    }
+
+    &-product {
+        &__month {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        &__date,
+        &__price {
+            letter-spacing: -1px;
+            font-size: 32px;
+        }
+
+        &__day {
+            font-size: 14px;
+            margin: 0 0 22px;
+        }
+
+        &__currency {
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        &__time {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        &__name {
+            margin: 0 20px;
+            font-size: 12px;
+        }
+
+        &__link {
+            font-size: 11px;
+        }
+
+        &.is-favorite {
+            .delivery-table__row {
+                background: lighten($COLOR_DHL_YELLOW, 15%);
+            }
+        }
+
+        .product-details {
+            position: relative;
+            margin: 0 10px 10px 10px;
+            padding: 10px 30px 10px 10px;
+            text-align: left;
+            border-right: 0;
+            border-bottom: 0;
+            border-left: 0;
+            font-size: 12px;
+
+            .close {
+                position: absolute;
+                top: 0;
+                right: 10px;
+                color: $fgCallout;
+                font-size: 22px;
+
+                &:after {
+                    @include icon (close);
+                    font-size: 0.5em;
+                }
+
+                &_white {
+                    color: #fff;
+                }
+            }
+
+            &__item {
+                padding: 8px 0 4px 40px;
+                line-height: 16px;
+                position: relative;
+
+                .product-details__icon {
+                    position: absolute;
+                    left: 0;
+                    width: 30px;
+                    text-align: center;
+                    font-size: 1.2em;
+                    &.fix-top {
+                        top: -.25em;
+                    }
+                }
+            }
+
+            &__charges {
+                tr {
+                    border-top: 1px solid #fff;
+
+                    &:first-child {
+                        border-top: 0;
+                    }
+
+                    &:last-child {
+                        font-weight: bold;
+                    }
+
+                    td,
+                    th {
+                        padding: 5px;
+
+                        &:first-child {
+                            width: 95%;
+                        }
+
+                        &:last-child {
+                            text-align: right;
+                        }
+
+                        &.cost {
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

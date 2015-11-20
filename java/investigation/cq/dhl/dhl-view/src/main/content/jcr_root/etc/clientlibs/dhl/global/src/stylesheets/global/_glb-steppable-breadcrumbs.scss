@@ -1,0 +1,46 @@
+.steppable-breadcrumbs {
+    display: inline-block;
+    height: 20px;
+    margin: 0;
+    margin: 10px 0 20px -10px;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid $COLOR_GRAY_3;
+
+    &__item {
+        display: inline-block;
+        margin-top: 0;
+        margin-left: 40px;
+        padding: 10px;
+        color: $COLOR_GRAY_4;
+        background: $BODY_BG;
+        font-size: 14px;
+        font-weight: normal;
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &.is-current {
+            color: $COLOR_GRAY_1;
+            font-weight: bold;
+        }
+
+        &.is-complete {
+            color: $COLOR_GRAY_3;
+
+            @include dhlicon(check, after, all) {
+                $iconSize: 14px;
+                position: relative;
+                top: $iconSize - 17;
+                width: $iconSize;
+                height: $iconSize;
+                margin-left: 5px;
+                color: $BODY_BG;
+                border-radius: $iconSize;
+                background-color: $COLOR_GREEN;
+                font-size: $iconSize - 5;
+                line-height: $iconSize;
+            }
+        }
+    }
+}

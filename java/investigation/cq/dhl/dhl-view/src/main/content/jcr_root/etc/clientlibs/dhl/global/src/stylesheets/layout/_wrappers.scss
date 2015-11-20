@@ -1,0 +1,8 @@
+.container {
+    @include clearfix;
+
+    position: relative;
+    min-width: $CONTAINER_TABLET;
+    max-width: $CONTAINER_DESKTOP;
+    margin: 0 auto;
+}

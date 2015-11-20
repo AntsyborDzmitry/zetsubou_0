@@ -1,0 +1,134 @@
+.package-list {
+    &__header {
+        @include clearfix;
+
+        padding: 10px 15px 0;
+        vertical-align: bottom;
+        white-space: nowrap;
+        color: #666;
+        font-size: 12px;
+        line-height: 25px;
+    }
+
+    &__footer {
+        @include clearfix;
+    }
+
+    .form-line {
+        vertical-align: bottom;
+    }
+
+    .btn {
+        position: relative;
+        top: -1px;
+        margin: 0;
+    }
+}
+
+.package-item {
+    @include clearfix;
+
+    position: relative;
+    margin-bottom: 5px;
+    padding: 10px ;
+    transition: all 0.25s;
+    background-color: $COLOR_GRAY_6;
+    line-height: 30px;
+
+    &__name,
+    &__quantity,
+    &__weight,
+    &__dimensions {
+        vertical-align: top;
+    }
+
+    &__name {
+        width: 205px;
+    }
+
+    &__quantity {
+        width: 64px;
+    }
+
+    &__weight {
+        width: 64px;
+    }
+
+    &__pallet {
+        width: 30px;
+        text-align: center;
+    }
+
+    &__dimensions {
+        width: 330px;
+        text-align: center;
+
+        .field {
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+
+    &__reference {
+        width: 130px;
+    }
+
+    &__actions {
+        float: right;
+    }
+
+    &__summary {
+        text-align: center;
+        white-space: nowrap;
+        text-indent: 10px;
+        font-weight: bold;
+    }
+
+
+    &__dimension-converted {
+        display: inline-block;
+        width: 85px;
+    }
+
+    &__fixed-weight-msg {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+}
+
+.package-type {
+    position: relative;
+    padding-left: 60px !important;
+
+    &__name {
+        display: block;
+        overflow: hidden;
+        max-width: 310px;
+        margin-right: 10px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    &__img-icon {
+        position: absolute;
+        left: 5px;
+        width: 50px;
+    }
+
+    &__dimensions {
+        display: block;
+        white-space: nowrap;
+        font-size: 11px;
+    }
+}
+
+.package-generator {
+    .form-line {
+        vertical-align: baseline;
+    }
+}
+
+// For mobile version:
+// - Hide package-list__header
+// - Add label for each column
+// - Change columns width

@@ -1,0 +1,59 @@
+.filter {
+    position: relative;
+    z-index: 1000;
+    padding: 5px;
+    background: $AREA_BG;
+
+    &__divider {
+        position: relative;
+        top: 2px;
+        display: inline-block;
+        height: 1em;
+        margin: 0 10px;
+        border: 1px solid $COLOR_GRAY_6;
+    }
+    &__title {
+    }
+    &__group {
+        position: relative;
+    }
+    &__categories {
+        display: inline-block;
+        padding: 5px 0;
+    }
+    &__checkbox {
+        padding: 5px;
+    }
+    &__input {
+        margin: 0 0 5px 0;
+        padding: 5px;
+        border-bottom: 1px solid $COLOR_GRAY_7;
+    }
+    &__dropdown {
+        &:not(:empty) {
+            position: absolute;
+            top: 100%;
+            left: -5px;
+            box-sizing: border-box;
+            margin: 0;
+            border: 1px solid $COLOR_GRAY_6;
+            background: $COLOR_GRAY_8;
+        }
+    }
+    &__list {
+        min-width: 250px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        &-sub {
+            margin-left: 15px;
+        }
+    }
+    &__no-results {
+        padding: 10px;
+        font-size: 12px;
+    }
+    &__item {
+        margin: 10px;
+    }
+}

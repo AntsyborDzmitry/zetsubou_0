@@ -1,0 +1,29 @@
+<div ewf-modal nls-title="shipment.address_details_swap_dialog_title">
+    <p nls="shipment.address_details_swap_dialog_description"></p>
+    <p nls="shipment.address_details_swap_dialog_enter_import_express_account"></p>
+    <div class="row">
+        <div class="field-wrapper">
+            <input class="input input_width_full" type="text" ng-model="addressDetailsCtrl.importAccountNumber"/>
+            <div class="label-error ng-scope" ng-if="addressDetailsCtrl.error">{{addressDetailsCtrl.error}}</div>
+        </div>
+        <label class="checkbox">
+            <input id="save_import_account_number" class="checkbox__input" name="favorite['receiver']" type="checkbox" value="true"
+               data-aqa-id="save_import_account_number"
+               ng-model="addressDetailsCtrl.savingAccountNumberSelected">
+            <span class="label"
+               nls="shipment.address_details_swap_dialog_save_account">
+            </span>
+        </label>
+    </div>
+    <button class="btn"
+            ng-click="addressDetailsCtrl.checkImportAccountNumber()"
+            nls="shipment.address_details_swap_dialog_go">
+    </button>
+
+    <h4 nls="shipment.address_details_swap_dialog_dont_have_account"></h4>
+    <p>
+        <span nls="shipment.address_details_swap_dialog_contact"></span>
+        <a nls="shipment.address_details_swap_dialog_contact_us" ng-click="addressDetailsCtrl.redirectToHelpCenterPage();"></a>
+        <span nls="shipment.address_details_swap_dialog_contact_learn_more"></span>
+    </p>
+</div>

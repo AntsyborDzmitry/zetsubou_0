@@ -1,0 +1,77 @@
+<form class="login" id="home-login-form" name="loginForm"
+   novalidate>
+    <div class="loginContainer_title">
+        <h5 nls="{{loginCtrl.formTitle}}"
+           nls-bind>
+        </h5>
+    </div>
+
+    <div ewf-form-errors></div>
+    <div class="field-wrapper">
+        <a href="#" class="help__link"
+           nls="login.send_new_activation_email"
+           ng-if="loginCtrl.userInactive"
+           ng-click="loginCtrl.resendActivationEmail()">
+        </a>
+    </div>
+
+    <div class="loginForm_emailContainer field-wrapper">
+        <label class="label" for="lform_username">
+            <span nls="login.email_address_text_box_label"></span>
+            <a class="help after right">
+                <b nls="login.help_tooltip_title"></b>
+                <div nls="login.help_tooltip_message"></div>
+            </a>
+        </label>
+        <input class="input input_width_full required" id="lform_username" name="lform_username" type="email" tabindex="1"
+           ng-model="loginCtrl.username"
+           ng-model-options="{ updateOn: 'blur'}"
+           validated-email/>
+        <span class="validation-mark"></span>
+
+        <div ng-repeat="(key, value) in loginForm.lform_username.errorsMessages">
+            <span class="label-error"
+               ng-if="loginForm.lform_username.$error[key]"
+               nls="{{value}}">
+            </span>
+        </div>
+    </div>
+
+    <div class="loginForm_passwordContainer field-wrapper">
+        <label class="label" for="lform_password">
+            <span nls="login.password_text_box_label"></span>
+            <a href="forgot-password.html" class="right fgtPswd"
+               nls="login.forgot_password_label">
+            </a>
+        </label>
+        <input class="input input_width_full required" id="lform_password" name="lform_password" type="password" tabindex="2"
+           ng-model="loginCtrl.password"
+           ng-model-options="{ updateOn: 'blur'}"
+           validated-password/>
+        <span class="validation-mark"></span>
+
+        <div ng-repeat="(key, value) in loginForm.lform_password.errorsMessages">
+            <span class="label-error"
+               ng-if="loginForm.lform_password.$error[key]"
+               nls="{{value}}">
+            </span>
+        </div>
+    </div>
+
+    <div class="field-wrapper">
+        <label class="login__remember checkbox checkbox_small left">
+            <input id="remember_me_checkbox" type="checkbox" value="checkbox" class="checkbox__input"
+               data-aqa-id="remember_me_checkbox"
+               ng-model="loginCtrl.rememberMe" />
+            <span class="label">
+                <span nls="login.remember_me_checkbox_label"></span>
+                <a class="info"><div nls="login.remember_me_tooltip_message"></div></a>
+            </span>
+        </label>
+        <button class="btn btn_small right" tabindex="3"
+           ng-value="Submit"
+           ewf-click="loginCtrl.logIn(loginForm)">
+            <span nls="login.submit_button_label"></span>
+        </button>
+    </div>
+</form>

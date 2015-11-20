@@ -1,0 +1,88 @@
+.table {
+    width: 100%;
+    margin: 0;
+
+    td,
+    th {
+        position: relative;
+        transition: all .15s;
+        vertical-align: top;
+    }
+
+    th {
+        padding: 5px 10px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    td {
+        padding: 10px;
+
+        &.checkbox-cell {
+            background: $COLOR_GRAY_5;
+        }
+    }
+
+    &_hover {
+        tr {
+            td {
+                transition: background .15s;
+            }
+
+            &:hover td {
+                cursor: pointer;
+                background: rgba(128,128,128,.15) !important;
+            }
+        }
+    }
+
+    &_zebra {
+        tr {
+            &:nth-child(odd) {
+                td {
+                    background: rgba(128,128,128,.05);
+                }
+            }
+        }
+
+        &__category_header {
+            background: $COLOR_GRAY_5;
+        }
+
+        &__subcategory_header {
+            background: $COLOR_GRAY_6;
+            th {
+                font-size: 12px;
+            }
+        }
+    }
+
+    &_summary {
+        td,
+        th {
+            padding: 5px;
+            vertical-align: middle;
+        }
+
+        td {
+            border-top: 1px solid $COLOR_GRAY_1;
+        }
+
+        tr:first-child {
+            td,
+            th {
+                border-top: none;
+            }
+        }
+    }
+
+    &__cost,
+    &__sum {
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    &__total {
+        font-size: 25px;
+    }
+}

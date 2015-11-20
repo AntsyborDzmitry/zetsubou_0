@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>UI Style Guide</title>
+    <link rel="stylesheet" href="./stylesheets/main.css">
+    <link rel="stylesheet" href="./stylesheets/ui-doc.css">
+    <script type="text/javascript" src="./js/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="./js/lib/jquery/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+</head>
+
+<body class="ui-doc">
+    <div class="main">
+        @@include('./includes/header.html')
+        @@include('./includes/nav-components.html')
+
+        <div class="ui-doc__content">
+            @@include('./includes/modal.html')
+            <!-- @@include('./includes/tabs.html')
+            @@include('./includes/data-table.html')
+            @@include('./includes/progress-line.html') -->
+        </div>
+    </div>
+    @@include('./includes/js.html')
+</body>
+
+</html>

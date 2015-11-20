@@ -1,0 +1,61 @@
+{
+  "name": "dhl-ewf-ui",
+  "version": "0.2.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/npm/npm.git"
+  },
+  "description": "Node.js package manager config for DHL CQ build. In version v.0.3.0 Karma and PhantomJS was getted back",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "angular": "1.2.28",
+    "angular-cookies": "1.2.28",
+    "angular-local-storage": "~0.2.2",
+    "babel-core": "~5.8.22",
+    "es5-shim": "~4.1.9",
+    "jquery": "~1.11.3",
+    "ng-dialog": "0.4.0",
+    "ngmodeloptions": "1.0.1",
+    "pdfjs-dist": "1.2.61",
+    "requirejs": "~2.1.19"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.5",
+    "gulp-babel": "^5.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp.spritesmith": "^4.0.0",
+    "gulp-watch": "^4.3.3",
+    "gulp-shell": "^0.4.2",
+    "gulp-plumber": "^1.0.1",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-iconfont": "^5.0.0",
+    "gulp-iconfont-css": "^2.0.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-file-include": "^0.13.7",
+    "del": "^1.2.0",
+    "gulp-eslint": "^1.0.0",
+    "babel-eslint": "^4.0.5",
+    "eslint-plugin-angular": "^0.4.0",
+    "eslint-config-angular": "^0.2.0",
+    "gulp-jscpd": "^0.0.6",
+    "run-sequence": "^1.1.2",
+    "gulp-angular-embed-templates": "^0.1.5",
+    "angular-mocks": "1.2.28",
+    "jasmine-core": "^2.3.4",
+    "gulp-karma": "^0.0.4",
+      "karma": "0.12.36",
+      "karma-coverage": "~0.4.1",
+      "karma-jasmine": "~0.3.5",
+      "karma-requirejs": "~0.2.2",
+      "karma-junit-reporter": "~0.2.2",
+      "karma-phantomjs-launcher": "~0.2.0",
+        "phantomjs": "~1.9.17",
+
+
+    "bootstrap": "3.3.4"
+  }
+}

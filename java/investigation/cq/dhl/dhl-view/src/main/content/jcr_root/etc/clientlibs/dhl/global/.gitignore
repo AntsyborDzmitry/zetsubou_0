@@ -1,0 +1,11 @@
+.tmp/
+node_modules/
+coverage/
+bower_components/
+report/
+test/
+node/
+public/
+js/lib/
+*.log
+temp/

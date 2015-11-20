@@ -1,0 +1,14 @@
+<div ewf-modal title="{{title}}"
+           nls-title="{{nlsTitle}}">
+    <div class="ewf-modal__body">
+        <p ng-if="nlsMessage" nls="{{nlsMessage}}"></p>
+        <p ng-if="message" ng-bind="message"></p>
+    </div>
+    <div class="ewf-modal__footer">
+        <button class="btn btn_primary-action"
+                ng-click="ewfModalCtrl.close();">
+            <span ng-if="okButtonLabel" ng-bind="okButtonLabel"></span>
+            <span ng-if="okButtonNlsLabel" nls="{{okButtonNlsLabel}}"></span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div ewf-modal nls-title='shipment.shipment_complete_save_as_favorite_dialog_title'>
+    <form name="saveAsFavoriteForm"
+       ewf-form="saveAsFavoriteEwfFormCtrl"
+       ng-submit="saveAsFavoriteDialogCtrl.saveAsFavorite(saveAsFavoriteForm, ewfFormCtrl)">
+        <div class="section__content">
+            <div class="form-line">
+                <label nls="shipment.shipment_complete_save_as_favorite_dialog_save_as_label"></label>
+            </div>
+            <div class="form-line field" ewf-field="shipmentName">
+                <input type="text" name="shipmentName" class="input input_width_half" autocomplete="off"
+                   nls="shipment.shipment_complete_save_as_favorite_dialog_input"
+                   ng-model="saveAsFavoriteDialogCtrl.shipmentName"
+                   ewf-input="saveAsFavoriteEwfFormCtrl.shipmentName"
+                   ewf-validate-required>
+                <div ewf-field-errors></div>
+            </div>
+            <div class="form-line">
+                <button class="btn btn_success btn_regular" type="submit"
+                   nls="shipment.shipment_complete_save_as_favorite_dialog_save_and_continue_button_label">
+                </button>
+            </div>
+            <div class="msg-error"
+               ng-repeat="error in saveAsFavoriteDialogCtrl.errors"
+               nls="{{error}}">
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,46 @@
+<script>
+    document.createElement('ewf-form');
+    document.createElement('ewf-field');
+    dhl.registerComponent('directives/ewf-form/ewf-form-directive');
+    dhl.registerComponent('directives/ewf-input/ewf-input-controller');
+    dhl.registerComponent('directives/ewf-validate/ewf-validate-pattern-directive');
+    dhl.registerComponent('directives/ewf-validate/ewf-validate-required-directive');
+    dhl.registerComponent('directives/ewf-click/ewf-click-directive');
+</script>
+
+<ewf-modal>
+    <div class="modal invisible" id="shipment_reference_modal">
+        <form name="shipmentReferenceForm"
+           ewf-form="shipmentReferenceForm">
+            <h3 nls="{{shipmentReferenceCtrl.currentAction.title}}"></h3>
+            <div class="field-wrapper"
+               ewf-field="nickName">
+                <label class="label" for="reference_nickname" nls="{{shipmentReferenceCtrl.currentAction.label}}"></label>
+                <input id="reference_nickname" class="input input_width_full" type="text"
+                   ng-model="shipmentReferenceCtrl.referenceNickname"
+                   ng-change="shipmentReferenceCtrl.onReferenceNameChange()"
+                   ewf-input="shipmentReferenceForm.nickName"
+                   ewf-validate-required/>
+                <span class="validation-mark"></span>
+                <div ewf-field-errors></div>
+                <div class="label-error ng-scope" ng-if="shipmentReferenceCtrl.referenceValidationError"
+                   nls="{{shipmentReferenceCtrl.referenceValidationError}}">
+                </div>
+            </div>
+            <label class="checkbox" ng-if="shipmentReferenceCtrl.isAddAction()">
+                <input id="reference_set_as_default" class="checkbox__input" type="checkbox"
+                   data-aqa-id="reference_set_as_default"
+                   ng-model="shipmentReferenceCtrl.referenceSetAsDefault">
+                <span class="label"
+                   nls="shipment-settings.ship_ref__mdl_set_as_default_label">
+                </span>
+            </label>
+            <div class="row">
+                <button type="submit" class="btn right"
+                   ewf-click="shipmentReferenceCtrl.proceedAction(shipmentReferenceForm, ewfFormCtrl)"
+                   nls="shipment-settings.ship_ref__mdl_save_btn_label">
+                </button>
+            </div>
+        </form>
+    </div>
+</ewf-modal>

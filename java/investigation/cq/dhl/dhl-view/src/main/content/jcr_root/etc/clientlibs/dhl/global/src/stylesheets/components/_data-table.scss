@@ -1,0 +1,250 @@
+.data-table {
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    line-height: 1.15;
+    margin: 10px 0 0;
+    word-break: break-all;
+    width: 100%;
+
+    &__container {
+        position: relative;
+    }
+
+    &__settings-btn {
+        position: absolute;
+        top: 15px;
+        right: 12px;
+        z-index: 10;
+    }
+
+    &__header-cell {
+        padding: 10px;
+        text-align: left;
+        position: relative;
+        transition: all .15s;
+        vertical-align: top;
+        font-size: 15px;
+        font-weight: bold;
+
+        &:last-child {
+            padding-right: 30px !important;
+        }
+    }
+
+    &__cell {
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+        background: #fff;
+        position: relative;
+        transition: all .15s;
+        vertical-align: top;
+        padding: 10px;
+
+        &:first-child {
+            border-radius: 2px 0 0 2px;
+        }
+
+        &:last-child {
+            border-radius: 0 2px 2px 0;
+        }
+
+        &.checkbox-cell {
+            background: $COLOR_GRAY_5;
+        }
+
+        &.edit-delete-case {
+            text-align: center;
+            word-break: normal;
+            white-space: nowrap;
+        }
+    }
+
+    .checkbox-cell {
+        width: 36px;
+        position: relative;
+        text-align: center;
+    }
+
+    &__item {
+        &.favorite-cell {
+            font-size: 16px;
+
+            a {
+                color: #333;
+            }
+
+            i {
+                &.dhlicon-favorite-full {
+                    color: $COLOR_DHL_YELLOW;
+                }
+            }
+        }
+
+        &:hover {
+            .data-table__cell {
+                background: $COLOR_GRAY_8;
+                &.checkbox-cell {
+                    background: $COLOR_GRAY_4;
+                }
+            }
+        }
+
+        &.in-progress {
+            &.checkbox-cell {
+                background: $COLOR_DHL_YELLOW; 
+            }
+        }
+
+        &.selected {
+            .data-table__cell {
+                background: $COLOR_GRAY_6;
+                &.checkbox-cell {
+                    background: $COLOR_GREEN;
+                }
+            }
+        }
+    }
+
+    &__sort {
+        position: relative;
+        display: inline-block;
+
+        &:hover {
+            .data-table__sort-arrow {
+                position: absolute;
+                left: 100%;
+                display: inline;
+
+                &.dhlicon-arrow-up {
+                    top: -4px;
+                }
+
+                &.dhlicon-arrow-down {
+                    bottom: -4px;
+                }
+
+                &:before {
+                    margin: 0;
+                }
+            }
+        }
+
+        &.current:hover {
+            .data-table__sort-arrow {
+                display: none;
+
+                &.dhlicon-arrow-up {
+                    top: -1px;
+                }
+
+                &.dhlicon-arrow-down {
+                    bottom: -1px;
+                }
+
+                &:before {
+                    margin: 0 3px;
+                }
+            }
+        }
+    }
+
+    &__sort-arrow {
+        display: none;
+
+        .desc &,
+        .descending &,
+        .asc &,
+        .ascending & {
+            position: absolute;
+            left: 100%;
+
+            &.dhlicon-arrow-up {
+                top: -1px;
+            }
+
+            &.dhlicon-arrow-down {
+                bottom: -1px;
+            }
+        }
+
+        .current.asc &.dhlicon-arrow-down,
+        .current.ascending &.dhlicon-arrow-down,
+        .current.desc &.dhlicon-arrow-up,
+        .current.descending &.dhlicon-arrow-up {
+            display: inline;
+        }
+    }
+
+    &_advanced {
+        .data-table__item:hover {
+            .data-table__cell {
+                border-bottom-width: 30px;
+
+                .individual-options {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+
+        .edit-delete-case {
+            display: none;
+        }
+    }
+
+    &_zebra {
+        .checkbox-cell, 
+        .edit-delete-case {
+            display: none;
+        }
+
+        .data-table {
+            border-top: none;
+            border-spacing: 0;
+            &__header {
+                text-align: left;
+                border-bottom: 1px solid $COLOR_GRAY_4;
+                background-color: $COLOR_GRAY_6;
+                &:first-child {
+                    border-left: 1px solid $COLOR_GRAY_4;
+                }
+                &:last-child {
+                    border-right: 1px solid $COLOR_GRAY_4;
+                }
+            }
+            &__item:nth-child(odd) .data-table__cell {
+                background: rgba(128,128,128,.05);
+            }
+        }
+    }
+}
+
+.individual-options {
+    position: absolute;
+    z-index: 100;
+    bottom: -25px;
+    left: 5px;
+    display: block;
+    visibility: hidden;
+    width: 975px;
+    transition: all .25s;
+    white-space: nowrap;
+    opacity: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: inline-block;
+        margin: 0 0 0 5px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}

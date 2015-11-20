@@ -1,0 +1,581 @@
+.field-wrapper {
+    @extend .form-row;
+    @extend .field;
+    @extend .field_with-mark;
+}
+
+.field {
+    position: relative;
+    white-space: nowrap;
+
+    &_width_full {
+        .input,
+        .select,
+        .textarea {
+            width: 100%;
+        }
+    }
+
+    &_width_half {
+        .input,
+        .select,
+        .textarea {
+            width: 50%;
+        }
+    }
+
+    &_without-label {
+        padding-top: 15px;
+        vertical-align: middle;
+    }
+
+    .msg-error {
+        position: absolute;
+        display: none;
+        white-space: normal;
+        right: 0;
+        left: 0;
+        margin: 5px 10px 5px 0;
+
+        &_static {
+            display: block;
+        }
+
+        &_left {
+            left: 0;
+            right: auto;
+            min-width: 140px;
+        }
+
+        &_right {
+            left: auto;
+            right: 0;
+            min-width: 140px;
+        }
+    }
+
+    .btn_addon {
+        right: 2px;
+    }
+
+    &.email-group__email {
+        margin-bottom: 5px;
+    }
+}
+
+// Separate for extend
+.field_with-mark {
+    padding-right: 10px;
+
+    .btn_addon {
+        right: 12px;
+    }
+}
+
+.form-line {
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: middle;
+
+    .field-wrapper,
+    .checkbox,
+    .radio,
+    .input,
+    .select,
+    .btn {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .checkbox,
+    .radio {
+        margin-bottom: 0;
+    }
+}
+
+// Wrapper for group of fields
+.field-group {
+    display: block;
+    margin-bottom: 20px;
+}
+
+// For separete fields in form
+.form-row {
+    @include clearfix;
+
+    display: block;
+    margin-bottom: 10px;
+}
+
+// For fields in group
+.field-row {
+    display: block;
+    margin-bottom: 5px;
+}
+
+// For correct vertical align when text replacing the field
+.field-row-text {
+    $field-height: 30px;
+
+    display: block;
+    height: $field-height;
+    line-height: $field-height;
+}
+
+.msg-error {
+    z-index: 100;
+    margin: 5px 10px;
+    padding: 5px 7px;
+    color: $COLOR_RED;
+    border: 1px solid $COLOR_RED;
+    border-radius: $BASE_BORDER_RADIUS;
+    background-color: #fff;
+    font-size: 11px;
+    line-height: 1;
+}
+
+.checkbox-group {
+    border: 1px solid transparent;
+    margin: 0 0 0 7px;
+    padding: 7px;
+
+    &-erroneous {
+        border-color: #d62727;
+        border-radius: 2px;
+    }
+
+    &-error-msg {
+        color: #d62727;
+        font-size: 11px;
+        vertical-align: bottom;
+        display: none;
+    }
+
+    &-erroneous &-error-msg {
+        display: inline;
+    }
+}
+
+.single-msg-error {
+    background-color: #fff;
+    border: 1px solid #d62727;
+    border-radius: 2px;
+    color: #d62727;
+    font-size: 11px;
+    right: 0;
+    line-height: 1;
+    margin: 5px 0 0;
+    padding: 5px 7px;
+    position: absolute;
+    z-index: 100;   
+}
+
+.single-msg-error.to-left {
+    left: 0;
+}
+
+.single-error-input {
+    border: 1px solid $COLOR_RED!important;
+}
+
+.label {
+    display: block;
+    white-space: normal;
+    //color: inherit;
+    font-size: 12px;
+    line-height: 1.25;
+
+    &_big {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    &__description {
+        font-size: 11px;
+        color: $COLOR_GRAY_4;
+    }
+}
+
+.form-note {
+    @extend .note;
+
+    margin: 7px 10px;
+}
+
+.validation-mark {
+    position: relative;
+    top: 3px;
+
+    .lt-ie9 .select & {
+        position: absolute;
+        top: 3px;
+        right: -15px;
+    }
+
+    &:after {
+        position: relative;
+        display: inline-block;
+        width: 10px;
+        vertical-align: top;
+        font-size: 18px;
+        line-height: 12px;
+
+        [ewf-validate-required] ~ &,
+        [ewf-input-password] ~ &,
+        [required] ~ & {
+            @extend %validation-mark-required;
+        }
+
+        .ng-valid-required ~ &,
+        .ewf-required.ng-valid-ewf-valid ~ &,
+        .ng-valid-password ~ &{
+            @extend %validation-mark-success;
+        }
+
+        .ng-invalid.ng-dirty ~ & {
+            @extend %validation-mark-error;
+        }
+    }
+}
+
+input,
+select,
+textarea {
+    outline: none;
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+    }
+
+    &.multiple-select {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+.textarea {
+    white-space: pre-wrap;
+    resize: vertical;
+
+    &_no-resize {
+        resize: none;
+    }
+}
+
+.input,
+.textarea,
+.select select {
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.1),
+                0 0 5px 2px rgba(lighten($INPUT_BORDER, 20%), 0);
+    transition: box-shadow 0.25s, border-color 0.25s, background-color 0.15s;
+    color: $INPUT_COLOR;
+    border: 1px solid $INPUT_BORDER;
+    border-radius: $INPUT_BORDER_RADIUS;
+    font-size: 14px;
+    line-height: 16px;
+
+    &[disabled] {
+        color: $INPUT_DISABLED_COLOR;
+        background-color: $INPUT_DISABLED_BG;
+    }
+
+    &:focus {
+        box-shadow: inset 0 2px 3px transparent,
+                    0 0 5px 2px lighten($INPUT_BORDER, 20%);
+    }
+
+    &.ng-valid-required {
+        @extend %field-success;
+    }
+
+    &.ng-invalid.ng-dirty {
+        @extend %field-error;
+    }
+}
+
+.is-submitted {
+    .ng-invalid {
+        .validation-mark:after {
+            @extend %validation-mark-error;
+        }
+    }
+
+    .input,
+    .textarea,
+    .select select {
+        &.ng-invalid {
+            @extend %field-error;
+
+            ~ .msg-error {
+                display: block;
+            }
+        }
+    }
+}
+
+@keyframes blur {
+    0%   {
+      opacity: 1;
+    }
+    99% {
+      opacity: .01;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+}
+
+@keyframes unblur {
+    0%   {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+%validation-mark-required {
+    content: '*';
+}
+
+%validation-mark-success {
+    top: -3px;
+    @include icon(check);
+    color: $COLOR_GREEN;
+    font-size: 10px;
+}
+
+%validation-mark-error {
+    top: 0;
+    content: '*';
+    color: $COLOR_RED;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+}
+
+%field-success {
+    &:focus {
+        box-shadow: inset 0 2px 3px transparent,
+                    0 0 5px 2px lighten($INPUT_SUCCESS_COLOR, 20%);
+    }
+}
+
+%field-error {
+    border-color: $INPUT_ERROR_COLOR;
+
+    &:focus {
+        box-shadow: inset 0 2px 3px transparent,
+                    0 0 5px 2px lighten($INPUT_ERROR_COLOR, 20%);
+
+        ~ .msg-error {
+            display: block;
+            animation: unblur 0.25s forwards;
+            animation-iteration-count: 1;
+            .lt-ie9 & {
+
+            }
+        }
+    }
+    ~ .msg-error {
+      .lt-ie9 & {
+        display: none;
+      }
+      &.lt-ie9-focus-timeout {
+        display: block !important;
+      }
+    }
+}
+
+.input,
+.textarea {
+    max-width: 100%;
+    padding: 6px 8px;
+    background: $INPUT_BG;
+
+    &::placeholder {
+        color: $COLOR_GRAY_5;
+    }
+
+    &_small {
+        padding: 4px 8px;
+        font-size: 12px;
+        line-height: 1;
+    }
+
+    &.ng-valid.ng-dirty {
+        @extend %field-success;
+    }
+
+    &.ng-blur ~ .msg-error {
+        display: block;
+        animation: blur 0.25s 2s forwards;
+        .lt-ie9 & {
+            display: none;
+        }
+    }
+
+    &.ng-blur:focus ~ .msg-error {
+        animation: unblur 0.25s forwards;
+        animation-iteration-count: 1;
+        .lt-ie9 & {
+            display: block !important;
+        }
+    }
+
+    &.ng-blur.lt-ie9-focus-timeout ~ .msg-error {
+        display: block !important;
+    }
+
+    // TODO: refactiring
+
+    &[size] {
+        width: auto;
+        letter-spacing: 0;
+    }
+    // TODO: refactiring
+
+    &.hasDatepicker {
+        width: 10em;
+        padding-left: 40px;
+        background-image: url('../img/icon_calendar.svg');
+        background-repeat: no-repeat;
+        background-position: 12px 47%;
+    }
+}
+
+.textarea {
+    height: 5em;
+    line-height: 1.25;
+
+    &_height_big {
+        height: 14em;
+    }
+}
+
+.select {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    transition: all 0.15s;
+    white-space: nowrap;
+    background-color: $INPUT_BG;
+
+    @include dhlicon(arrow-down, after, all) {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        right: 10px;
+        margin: -0.5em 0 0;
+        font-size: 14px;
+    }
+
+    .lt-ie9 & {
+        &:after {
+            display: none;
+        }
+    }
+
+    select {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        padding: 5px 28px 5px 10px;
+        background-color: transparent;
+        appearance: none;
+
+        .lt-ie9 & {
+            padding-right: 10px !important;
+            display: block;
+        }
+
+        &::-ms-expand {
+            display: none;
+        }
+    }
+
+    &_small {
+        &:after {
+            right: 7px;
+        }
+        select {
+            padding: 4px 2em 4px 8px;
+
+            font-size: 12px;
+            line-height: 14px;
+        }
+    }
+}
+
+.input,
+.textarea,
+.select {
+    &_width_tiny {
+        width: $INPUT_WIDTH_TINY;
+    }
+
+    &_width_small {
+        width: $INPUT_WIDTH_SMALL;
+    }
+
+    &_width_base {
+        width: $INPUT_WIDTH_BASE;
+    }
+
+    &_width_large {
+        width: $INPUT_WIDTH_LARGE;
+    }
+
+    &_width_huge {
+        width: $INPUT_WIDTH_HUGE;
+    }
+
+    &_width_full {
+        width: 100%;
+    }
+
+    &_width_half {
+        min-width: 50%;
+    }
+}
+
+.select-units {
+    padding: 4px 5px;
+    text-decoration: underline;
+    color: $INPUT_COLOR;
+    border: 0;
+    border-radius: $INPUT_BORDER_RADIUS;
+    background: none;
+    box-shadow: none;
+    font-size: 12px;
+    line-height: 16px;
+
+    appearance: none;
+
+    &:focus {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    &:disabled {
+        text-decoration: none;
+        cursor: not-allowed;
+        color: #666;
+    }
+}
+
+.contact-notifications {
+  margin-top: 8px;
+}
+
+.dimensions-divider {
+    display: inline-block;
+
+    &:before {
+        content: 'X';
+    }
+}
+

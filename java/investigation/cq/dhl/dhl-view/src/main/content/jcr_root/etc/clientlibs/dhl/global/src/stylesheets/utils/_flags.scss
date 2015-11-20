@@ -1,0 +1,28 @@
+.flag {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+    background-image: url('../img/#{$flag-source-32}');
+    background-repeat: no-repeat;
+    background-position: nth($unknown, 1) nth($unknown, 2);
+
+    &_small {
+        background-image: url('../img/#{$flag-source-24}');
+        background-position: nth($unknown-small, 1) nth($unknown-small, 2);
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@each $item in $flags-32 {
+	.flag_#{nth($item, 3)} {
+		background-position: #{nth($item, 1)} #{nth($item, 2)};
+	}
+}
+
+@each $item in $flags-24 {
+    .flag_small.flag_#{nth($item, 3)} {
+        background-position: #{nth($item, 1)} #{nth($item, 2)};
+    }
+}

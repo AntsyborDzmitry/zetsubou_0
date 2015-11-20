@@ -1,0 +1,5 @@
+.select:after {
+  display: none; }
+
+.select select {
+  padding-right: 10px !important; }

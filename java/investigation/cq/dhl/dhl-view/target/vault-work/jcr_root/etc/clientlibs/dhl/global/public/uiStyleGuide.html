@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>UI Style Guide</title>
+    <link rel="stylesheet" href="./stylesheets/main.css">
+    <link rel="stylesheet" href="./stylesheets/ui-doc.css">
+    <script type="text/javascript" src="./js/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="./js/lib/jquery/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+</head>
+
+<body class="ui-doc">
+    <div class="main">
+        <header class="header">
+    <nav class="nav-bar">
+        <ul class="top-nav top-nav_main">
+            <li class="top-nav__item">
+                <a class="top-nav__link" href="./uiStyleGuide.html" title="CSS">CSS</a>
+            </li>
+            <li class="top-nav__item">
+                <a class="top-nav__link" href="./components.html" title="Components">Components</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+        <ul class="tabs tabs_vertical tabs_vertical_full ui-doc__nav">
+    <li class="tabs__item">
+        <a href="#overview">Overview</a>
+    </li>
+    <li class="tabs__item">
+        <a href="#grid-system">Grid system</a>
+    </li>
+    <li class="tabs__item">
+        <a href="#area">Area</a>
+    </li>
+    <li class="tabs__item">
+        <a href="#area_synopsis">Area with synopsis</a>
+    </li>
+    <li class="tabs__item">
+        <a href="#wrappers">Wrappers</a>
+    </li>
+    <li class="tabs__item">
+        <a href="#icons">Icons</a>
+    </li>
+    <li class="tabs__item">
+        <a href="#alerts">Alerts</a>
+    </li>
+</ul>
+
+        <div class="ui-doc__content">
+            <h1 class="page-title" id="overview">Overview</h1>
+<section class="area">
+    <h3>Normalize.css</h3>
+    <p>For improved cross-browser rendering, we use <a href="http://necolas.github.io/normalize.css/" target="_blank">Normalize.css</a>, a project by <a href="https://twitter.com/necolas" target="_blank">Nicolas Gallagher</a> and <a href="https://twitter.com/jon_neal" target="_blank">Jonathan Neal</a>.</p>
+
+    <h3>Containers</h3>
+    <p>Use <code class="class">.container</code> for a responsive fixed width container.</p>
+    <pre><code class="html"><div class="container">
+    ...
+</div>
+</code></pre>
+
+</section>
+            <h1 class="page-title" id="grid-system">Grid system</h1>
+<section class="area">
+    <h3>Grid example</h3>
+    <div class="row">
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+        <div class="col-1 grid-example">.col-1</div>
+    </div>
+    <div class="row">
+        <div class="col-8 grid-example">.col-8</div>
+        <div class="col-4 grid-example">.col-4</div>
+    </div>
+    <div class="row">
+        <div class="col-3 grid-example">.col-3</div>
+        <div class="col-3 grid-example">.col-3</div>
+        <div class="col-3 grid-example">.col-3</div>
+        <div class="col-3 grid-example">.col-3</div>
+    </div>
+    <div class="row">
+        <div class="col-6 grid-example">.col-6</div>
+        <div class="col-6 grid-example">.col-6</div>
+    </div>
+<pre><code class="html"><div class="row">
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+    <div class="col-1">.col-1</div>
+</div>
+<br />
+<div class="row">
+    <div class="col-8">.col-8</div>
+    <div class="col-4">.col-4</div>
+</div>
+<br />
+<div class="row">
+    <div class="col-3">.col-3</div>
+    <div class="col-3">.col-3</div>
+    <div class="col-3">.col-3</div>
+    <div class="col-3">.col-3</div>
+</div>
+<br />
+<div class="row">
+    <div class="col-6">.col-6</div>
+    <div class="col-6">.col-6</div>
+</div>
+</code></pre>
+
+    <h3>Offsetting columns</h3>
+    <p>Move columns to the right using <code class="class">.offset-*</code>. classes. These classes increase the left margin of a column by * columns. For example, <code class="class">.offset-4</code> over four columns.</p>
+    <div class="row">
+        <div class="col-8 offset-4 grid-example">.col-8</div>
+    </div>
+    <div class="row">
+        <div class="col-3 grid-example">.col-3</div>
+        <div class="col-3 offset-3 grid-example">.col-3</div>
+        <div class="col-3 grid-example">.col-3</div>
+    </div>
+<pre><code class="html"><div class="row">
+    <div class="col-8 offset-4">.col-8</div>
+</div>
+<br />
+<div class="row">
+    <div class="col-3">.col-3</div>
+    <div class="col-3 offset-3">.col-3</div>
+    <div class="col-3">.col-3</div>
+</div>
+</code></pre>
+</section>
+            <h1 class="page-title" id="area">Area</h1>
+<section class="area">
+    <p><code class="class">.area</code> is base content wrapper.
+        <b>Catalyst</b> used class <code class="class">.section</code> for this block</p>
+
+<pre><code class="html"><section class="area">
+    <header class="area__header">
+        <span class="right">some text</span>
+        <h2 class="area__title">Title</h2>
+    </header>
+    <div class="area__content">
+        content
+    </div>
+    <footer class="area__footer">
+        <button class="btn">Next</button>
+    </footer>
+</section>
+</code></pre>
+    <div class="style-guide-callout right" data-title="Area"></div>
+</section>
+
+<h1 class="page-title" id="area_synopsis">Area with synopsis</h1>
+
+<div class="area-wrap">
+    <div class="synopsis synopsis_with-icon">
+        <div class="style-guide-callout right" data-title="Synopsis"></div>
+        <i class="synopsis__icon dhlicon-packages"></i>
+        Synopsis content would go here.
+        <a class="synopsis__edit btn btn_action" ><i class="fa fa-pencil"></i> Edit</a>
+    </div>
+</div>
+
+<section class="area">
+    <p>Area with <code class="class">.synopsis</code> is used for pages with steps. On the <code class="class">.synopsis</code> user can see information from previous steps.</p>
+<pre><code class="html"><div class="area-wrap">
+    <section class="area">
+        <header class="area__header">
+            <span class="right"></span>
+            <h2 class="area__title"></h2>
+        </header>
+        <div class="area__content">
+            content
+        </div>
+        <footer class="area__footer">
+            <button class="btn btn_success right">
+                <i class="dhlicon-carat-right">Next</i>
+            </button>
+        </footer>
+    </section>
+    <section class="synopsis synopsis_with-icon">
+        <i class="synopsis__icon dhlicon"></i>
+        Synopsis content would go here.
+        <button class="synopsis__edit btn btn_action"></button>
+    </section>
+</div>
+</code></pre>
+
+</section>
+            <h1 class="page-title" id="wrappers">Wrappers</h1>
+<section class="area">
+    <h3>Grey overlay</h3>
+    <div class="overlay-grey">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Sit voluptas, rerum pariatur iusto necessitatibus aliquam blanditiis.</p>
+    </div>
+    <pre><code class="html"><div class="overlay-grey"> ... </div></code></pre>
+
+    <h3>White overlay</h3>
+    <div class="overlay-white">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Sit voluptas, rerum pariatur iusto necessitatibus aliquam blanditiis.</p>
+    </div>
+    <pre><code class="html"><div class="overlay-white"> ... </div></code></pre>
+
+    <h3>Dark overlay</h3>
+    <div class="overlay-dark">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Sit voluptas, rerum pariatur iusto necessitatibus aliquam blanditiis.</p>
+    </div>
+    <pre><code class="html"><div class="overlay-dark"> ... </div></code></pre>
+
+    <h3>Callout</h3>
+
+    <div class="row">
+    	<div class="col-3">
+    		<div class="callout callout_carat_left">
+    			<h4 class="callout__title">Not sure if it's a Document or Package?</h4>
+    			<div class="callout__content">
+    				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum facere, neque dolore eos quasi atque error non ea labore itaque optio hic quam debitis. Quos magnam nulla, nobis officiis blanditiis.
+    			</div>
+    		</div>
+            <code class="hljs class">.callout .callout_carat_left</code>
+    	</div>
+    	<div class="col-3">
+    		<div class="callout callout_carat_right">
+    			<h4 class="callout__title">Not sure if it's a Document or Package?</h4>
+    			<div class="callout__content">
+    				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum facere, neque dolore eos quasi atque error non ea labore itaque optio hic quam debitis. Quos magnam nulla, nobis officiis blanditiis.
+    			</div>
+            </div>
+            <code class="hljs class">.callout <br /> .callout_carat_right</code>
+    	</div>
+    	<div class="col-3">
+    		<div class="callout callout_carat_top">
+    			<h4 class="callout__title">Not sure if it's a Document or Package?</h4>
+    			<div class="callout__content">
+    				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum facere, neque dolore eos quasi atque error non ea labore itaque optio hic quam debitis. Quos magnam nulla, nobis officiis blanditiis.
+    			</div>
+    		</div>
+            <code class="hljs class">.callout <br /> .callout_carat_top</code>
+    	</div>
+    	<div class="col-3">
+    		<div class="callout callout_carat_bottom">
+    			<h4 class="callout__title">Not sure if it's a Document or Package?</h4>
+    			<div class="callout__content">
+    				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum facere, neque dolore eos quasi atque error non ea labore itaque optio hic quam debitis. Quos magnam nulla, nobis officiis blanditiis.
+    			</div>
+    		</div>
+            <code class="hljs class">.callout <br /> .callout_carat_bottom</code>
+    	</div>
+    </div>
+<pre><code class="html"><div class="callout callout_carat_left">
+    <h4 class="callout__title">Not sure if it's a Document or Package?</h4>
+    <div class="callout__content">
+        ...
+    </div>
+</div>
+</code></pre>
+</section>
+            
+            <h1 class="page-title" id="icons">Icons</h1>
+<section class="area">
+    <div class="area__content">
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-arrow-up"></i> <span class="i-name">.dhlicon-arrow-up</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-arrow-right"></i> <span class="i-name">.dhlicon-arrow-right</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-arrow-down"></i> <span class="i-name">.dhlicon-arrow-down</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-arrow-left"></i> <span class="i-name">.dhlicon-arrow-left</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-alert"></i> <span class="i-name">.dhlicon-alert</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-direction"></i> <span class="i-name">.dhlicon-direction</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-carat-down"></i> <span class="i-name">.dhlicon-carat-down</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-carat-left"></i> <span class="i-name">.dhlicon-carat-left</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-carat-right"></i> <span class="i-name">.dhlicon-carat-right</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-carat-up"></i> <span class="i-name">.dhlicon-carat-up</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-documents"></i> <span class="i-name">.dhlicon-documents</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-from"></i> <span class="i-name">.dhlicon-from</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-openbox"></i> <span class="i-name">.dhlicon-openbox</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-mobile"></i> <span class="i-name">.dhlicon-mobile</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-to"></i> <span class="i-name">.dhlicon-to</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-delivery-date"></i> <span class="i-name">.dhlicon-delivery-date</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-dropoff"></i> <span class="i-name">.dhlicon-dropoff</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-truck"></i> <span class="i-name">.dhlicon-truck</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-thumbs-up"></i> <span class="i-name">.dhlicon-thumbs-up</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-stopwatch"></i> <span class="i-name">.dhlicon-stopwatch</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-packages"></i> <span class="i-name">.dhlicon-packages</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-customs"></i> <span class="i-name">.dhlicon-customs</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-credit-card"></i> <span class="i-name">.dhlicon-credit-card</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-lock"></i> <span class="i-name">.dhlicon-lock</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-email-secure"></i> <span class="i-name">.dhlicon-email-secure</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-terms"></i> <span class="i-name">.dhlicon-terms</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-barcode"></i> <span class="i-name">.dhlicon-barcode</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-pages"></i> <span class="i-name">.dhlicon-pages</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-add"></i> <span class="i-name">.dhlicon-add</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-share"></i> <span class="i-name">.dhlicon-share</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-doorway-in"></i> <span class="i-name">.dhlicon-doorway-in</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-clock"></i> <span class="i-name">.dhlicon-clock</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-computer"></i> <span class="i-name">.dhlicon-computer</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-pencil"></i> <span class="i-name">.dhlicon-pencil</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-coupon"></i> <span class="i-name">.dhlicon-coupon</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-download"></i> <span class="i-name">.dhlicon-download</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-check"></i> <span class="i-name">.dhlicon-check</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-address-book"></i> <span class="i-name">.dhlicon-address-book</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-remove"></i> <span class="i-name">.dhlicon-remove</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-duration"></i> <span class="i-name">.dhlicon-duration</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-globe"></i> <span class="i-name">.dhlicon-globe</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-chat"></i> <span class="i-name">.dhlicon-chat</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-account"></i> <span class="i-name">.dhlicon-account</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-user"></i> <span class="i-name">.dhlicon-user</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-key"></i> <span class="i-name">.dhlicon-key</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-search"></i> <span class="i-name">.dhlicon-search</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-favorite-full"></i> <span class="i-name">.dhlicon-favorite-full</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-favorite-empty"></i> <span class="i-name">.dhlicon-favorite-empty</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-cancel"></i> <span class="i-name">.dhlicon-cancel</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-copy"></i> <span class="i-name">.dhlicon-copy</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-print"></i> <span class="i-name">.dhlicon-print</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-deliver"></i> <span class="i-name">.dhlicon-deliver</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-info"></i> <span class="i-name">.dhlicon-info</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-close"></i> <span class="i-name">.dhlicon-close</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-help"></i> <span class="i-name">.dhlicon-help</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-calc"></i> <span class="i-name">.dhlicon-calc</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-update"></i> <span class="i-name">.dhlicon-update</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-flashlight"></i> <span class="i-name">.dhlicon-flashlight</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-gear"></i> <span class="i-name">.dhlicon-gear</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-save"></i> <span class="i-name">.dhlicon-save</span></div>
+        </div>
+        <div class="row">
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-help-circle"></i> <span class="i-name">.dhlicon-help-circle</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-switch"></i> <span class="i-name">.dhlicon-switch</span></div>
+            <div class="the-icons col-3"><i class="demo-icon dhlicon-switch-vertical"></i> <span class="i-name">.dhlicon-switch-vertical</span></div>
+        </div>
+    </div>
+</section>
+            <section class="area">
+    <div class="area__content">
+        <div class="row">
+            <div class="overlay-grey col-9">
+                <h2 class="margin-top-none">Payment by credit card</h2>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="field card-list">
+                            <input class="input input_width_full" placeholder="Select your card type">
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="card-list_item">
+                                        <img class="card-type" src="/etc/clientlibs/dhl/global/public/img/credit-cards/visa.png" />
+                                        <span>Visa</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="card-list_item">
+                                        <img class="card-type" src="/etc/clientlibs/dhl/global/public/img/credit-cards/maestro.png" />
+                                        <span>Maestro</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="card-list_item">
+                                        <img class="card-type" src="/etc/clientlibs/dhl/global/public/img/credit-cards/amex.png" />
+                                        <span>American Express</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <label class="checkbox">
+                    <input type="checkbox" class="checkbox checkbox__input">
+                    <span class="label">Billing address is the same as the shipper (from) address</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+            
+            
+
+            <h1 class="page-title" id="alerts">
+    Alerts
+</h1>
+<section class="area">
+    <div class="alert">
+        This is a default alert. <a href="#">Link</a>
+    </div>
+
+    <div class="alert">
+        <button type="button" class="alert__close"></button>
+        This is a default alert with a dismissal. <a href="#">Link</a>
+    </div>
+
+    <div class="alert">
+        <button type="button" class="alert__close"></button>
+        This is a default alert with a dismissal and "Don't Show Me Again" checkbox. <a href="#">Link</a>
+        <br/>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla justo justo, commodo non molestie non.
+        <label class="checkbox checkbox_small alert__dont-show-checkbox">
+            <input type="checkbox" class="checkbox__input"/>
+            <span class="label right">Don't Show Me Again</span>
+        </label>
+    </div>
+    <div class="alert small">
+        This is a small default alert. <a href="#">Link</a>
+    </div>
+
+    <div class="alert alert_info">
+        This is an info alert. <a href="#">Link</a>
+    </div>
+    <div class="alert alert_info">
+        <button type="button" class="alert__close"></button>
+        This is an info alert with a dismissal. <a href="#">Link</a>
+    </div>
+    <div class="alert alert_info">
+        <button type="button" class="alert__close"></button>
+        This is a info alert with a dismissal and "Don't Show Me Again" checkbox. <a href="#">Link</a>
+        <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla justo justo, commodo non molestie non.
+        <label class="checkbox checkbox_small alert__dont-show-checkbox">
+            <input type="checkbox" class="checkbox__input"/>
+            <span class="label right">Don't Show Me Again</span>
+        </label>
+    </div>
+    <div class="alert alert_info small">
+        This is a small info alert. <a href="#">Link</a>
+    </div>
+
+
+    <div class="alert alert_success">
+        This is a success alert. <a href="#">Link</a>
+    </div>
+    <div class="alert alert_success">
+        <button type="button" class="alert__close"></button>
+        This is an success alert with a dismissal. <a href="#">Link</a>
+    </div>
+    <div class="alert alert_success">
+        <button type="button" class="alert__close"></button>
+        This is a success alert with a dismissal and "Don't Show Me Again" checkbox. <a href="#">Link</a>
+        <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla justo justo, commodo non molestie non.
+        <label class="checkbox checkbox_small alert__dont-show-checkbox">
+            <input type="checkbox" class="checkbox__input"/>
+            <span class="label right">Don't Show Me Again</span>
+        </label>
+    </div>
+    <div class="alert alert_success small">
+        This is a small success alert. <a href="#">Link</a>
+    </div>
+
+
+    <div class="alert alert_warning">
+        This is a warning alert. <a href="#">Link</a>
+    </div>
+    <div class="alert alert_warning">
+        <button type="button" class="alert__close"></button>
+        This is an warning alert with a dismissal. <a href="#">Link</a>
+    </div>
+    <div class="alert alert_warning">
+        <button type="button" class="alert__close"></button>
+        This is a warning alert with a dismissal and "Don't Show Me Again" checkbox. <a href="#">Link</a>
+        <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla justo justo, commodo non molestie non.
+        <label class="checkbox checkbox_small alert__dont-show-checkbox">
+            <input type="checkbox" class="checkbox__input"/>
+            <span class="label right">Don't Show Me Again</span>
+        </label>
+    </div>
+    <div class="alert alert_warning small">
+        This is a small warning alert. <a href="#">Link</a>
+    </div>
+
+    <div class="alert alert_error">
+        This is an error alert. <a href="#">Link</a>
+    </div>
+    <div class="alert alert_error">
+        <button type="button" class="alert__close"></button>
+        This is an error alert with a dismissal. <a href="#">Link</a>
+    </div>
+    <div class="alert alert_error">
+        <button type="button" class="alert__close"></button>
+        This is a error alert with a dismissal and "Don't Show Me Again" checkbox. <a href="#">Link</a>
+        <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla justo justo, commodo non molestie non.
+        <label class="checkbox checkbox_small alert__dont-show-checkbox">
+            <input type="checkbox" class="checkbox__input"/>
+            <span class="label right">Don't Show Me Again</span>
+        </label>
+    </div>
+    <div class="alert alert_error small">
+        This is a small error alert. <a href="#">Link</a>
+    </div>
+</section>
+            
+        </div>
+    </div>
+    <script>
+    $(function () {
+        $('pre code').each(function () {
+            $(this).text($(this).html());
+            hljs.highlightBlock(this);
+        });
+    });
+</script>
+</body>
+
+</html>

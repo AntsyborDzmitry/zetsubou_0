@@ -1,0 +1,57 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    color: #333;
+    background: $BODY_BG;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+body {
+    padding-top: $HEADER_HEIGHT + $HEADER_NAV_HEIGHT;
+}
+
+.main {
+    @include clearfix;
+}
+
+// Please don't use tag <hr> for block indenting
+hr {
+    clear: both;
+    width: 100%;
+    height: 1px;
+    margin: 0 0 $PADDING_LARGE_VERTICAL 0;
+    border: 0;
+
+    &.large {
+        margin: $PADDING_LARGE_VERTICAL 0;
+    }
+}
+
+.hr {
+    margin: $PADDING_LARGE_VERTICAL 0;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    clear: both;
+}
+
+a {
+    cursor: pointer;
+    transition: all .25s;
+    text-decoration: none;
+    color: $COLOR_LINK;
+}
+
+ul,
+ol {
+    margin: $PADDING_LARGE_VERTICAL 0;
+    padding-left: 1.75em;
+
+    li {
+        margin: 5px 0;
+    }
+}

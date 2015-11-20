@@ -1,0 +1,64 @@
+.footer {
+    font-size: 12px;
+    line-height: 1.5;
+
+    .area {
+        margin: 45px 0;
+    }
+
+    &__logo {
+        float: left;
+        margin-right: 20px;
+    }
+
+    &__copyright {
+        padding: 0 5px;
+        text-align: right;
+        color: $COLOR_GRAY_3;
+        font-size: .9em;
+    }
+}
+
+.footer-nav {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &__item {
+        display: inline-block;
+        margin: 0;
+        padding: 0 5px;
+        border-left: 1px solid $COLOR_GRAY_4;
+        font-size: .9em;
+
+        &:first-child {
+            border-left: 0;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $COLOR_GRAY_3;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+#chat_container {
+    position: fixed;
+    z-index: 1;
+    bottom: 10px;
+    display: none;
+    width: 100%;
+    text-align: right;
+
+    .chat_button {
+        display: inline-block;
+        width: 240px;
+        height: 60px;
+        background: url('../img/chat.png') no-repeat center center;
+    }
+}

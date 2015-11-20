@@ -1,0 +1,5 @@
+<div ng-switch="registration.currentStep">
+    <registration-form ng-switch-when="form" ewf-form="registration"></registration-form>
+    <registration-result ng-switch-when="result"></registration-result>
+    <email-verification ng-switch-when="verification"></email-verification>
+</div>

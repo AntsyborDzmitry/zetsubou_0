@@ -1,0 +1,7 @@
+<div class="modal ng-scope visible" id="modal_confirmAction">
+    <form id="form_action-confirm" method="GET">
+        <h3 class="area__title">{{confirmationDialogCtrl.message}}</h3>
+        <a class="btn" ng-show="confirmationDialogCtrl.yes" ng-click="confirmationDialogCtrl.confirmAction(closeThisDialog)">{{ confirmationDialogCtrl.yes }}</a>
+        <a class="btn close-modal" ng-show="!!confirmationDialogCtrl.no" ng-click="confirmationDialogCtrl.rejectAction(closeThisDialog)">{{ confirmationDialogCtrl.no }}</a>
+    </form>
+</div>

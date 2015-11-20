@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CQ.iml" filepath="$PROJECT_DIR$/CQ.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhl-all/dhl-all.iml" filepath="$PROJECT_DIR$/dhl-all/dhl-all.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhl-author/dhl-author.iml" filepath="$PROJECT_DIR$/dhl-author/dhl-author.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhl-components/dhl-components.iml" filepath="$PROJECT_DIR$/dhl-components/dhl-components.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhl-config/dhl-config.iml" filepath="$PROJECT_DIR$/dhl-config/dhl-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhl-content/dhl-content.iml" filepath="$PROJECT_DIR$/dhl-content/dhl-content.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhl-services/dhl-services.iml" filepath="$PROJECT_DIR$/dhl-services/dhl-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhl-view/dhl-view.iml" filepath="$PROJECT_DIR$/dhl-view/dhl-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhl-view-author/dhl-view-author.iml" filepath="$PROJECT_DIR$/dhl-view-author/dhl-view-author.iml" />
+    </modules>
+  </component>
+</project>

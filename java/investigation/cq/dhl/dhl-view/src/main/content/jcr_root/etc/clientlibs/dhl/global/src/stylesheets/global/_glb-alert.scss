@@ -1,0 +1,167 @@
+.alert {
+    margin: 10px 0;
+    padding: 15px 25px 15px 15px;
+    border: 1px solid;
+    border-radius: 2px;
+    position: relative;
+    box-sizing: border-box;
+    max-height: 1000px;
+
+    @include dhlicon(before, min) {
+        width: 30px;
+        line-height: 1;
+        font-size: 1.25em;
+        position: absolute;
+        text-align: center;
+        left: -35px;
+    }
+
+    &_info {
+        $thisColor: lighten($COLOR_BLUE, 47%);
+        @extend %mark-styles;
+        @extend %common-styles;
+
+        color: $COLOR_GRAY_1;
+        border-color: rgba(darken($thisColor, 25%), .9);
+        background: rgba($thisColor, .9);
+
+        &:before {
+            @include icon (info, false);
+        }
+
+        .alert__toggle {
+            background: rgba(darken($thisColor, 25%), .9);
+        }
+    }
+
+    &_success {
+        $thisColor: lighten($COLOR_GREEN, 22%);
+        @extend %mark-styles;
+        @extend %common-styles;
+
+        color: #000;
+        border-color: rgba(darken($thisColor, 20%), .9);
+        background: rgba($thisColor, .9);
+
+        &:before {
+            @include icon (check, false);
+        }
+
+        .alert__toggle {
+            background: rgba(darken($thisColor, 25%), .9);
+        }
+    }
+
+    &_warning {
+        $thisColor: lighten($COLOR_DHL_YELLOW, 15%);
+        @extend %common-styles;
+
+        color: $COLOR_GRAY_1;
+        border-color: rgba(darken($thisColor, 20%), .9);
+        background: rgba($thisColor, .9);
+
+        &:before {
+            @include icon (alert, false);
+        }
+
+        .alert__toggle {
+            background: rgba(darken($thisColor, 25%), .9);
+        }
+
+        a {
+            color: #000;
+        }
+
+        i {
+            color: #fff;
+            text-align: center;
+        }
+    }
+
+    &_error {
+        $thisColor: lighten($COLOR_RED, 10%);
+        @extend %mark-styles;
+        @extend %common-styles;
+
+        color: #fff;
+        border-color: rgba(darken($thisColor, 15%), .9);
+        background: rgba($thisColor, .9);
+
+        &:before {
+            @include icon (stop, false);
+        }
+
+        .alert__toggle {
+            background: rgba(darken($thisColor, 25%), .9);
+        }
+    }
+
+    &.small,
+    &_small {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    &_closed {
+        transition: all .25s;
+        opacity: 0;
+        max-height: 0;
+        margin: 0;
+        padding: 0 15px;
+    }
+
+    &__close {
+        @include dhlicon(close, after, min);
+
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: 0;
+        font-size: 0.8em;
+        padding: 0;
+    }
+
+    &__dont-show-checkbox {
+        position: absolute;
+        right: 10px;
+        bottom: 0;
+    }
+
+    &__toggle {
+        text-decoration: none;
+        position: absolute;
+        right: 15px;
+        width: 20px;
+        text-align: center;
+        border-radius: 2px;
+
+        &:before {
+            margin-right: 1px;
+        }
+    }
+}
+
+%mark-styles {
+    &:before,
+    .alert__toggle {
+        color: #fff;
+        text-shadow: 0 1px .5px rgba(0,0,0,.2);
+    }
+}
+
+%common-styles {
+    border-left-width: 40px;
+
+    &.small {
+        border-left-width: 30px;
+    }
+
+    a {
+        color: inherit;
+    }
+}

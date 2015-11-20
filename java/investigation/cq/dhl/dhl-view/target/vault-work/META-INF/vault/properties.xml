@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>EWF - dhl-view</comment>
+<entry key="createdBy">Kiryl_Lutsyk</entry>
+<entry key="name">dhl-view</entry>
+<entry key="created">2015-11-20T12:23:06.738-0300</entry>
+<entry key="groupId">EWF</entry>
+<entry key="version">1.0-SNAPSHOT</entry>
+<entry key="requiresRoot">false</entry>
+<entry key="group">EWF</entry>
+<entry key="description">All of the CQ component and template definitions for the DHL project.
+
+        During development, the files in this module should be sync'd to your CQ instance using the FileVault command
+        line tool available with CQ. There is also a plugin for Eclipse called "vaultclipse" that can be used instead
+        of the command line tool.</entry>
+<entry key="artifactId">dhl-view</entry>
+<entry key="path">/etc/packages/EWF/dhl-view.zip</entry>
+</properties>

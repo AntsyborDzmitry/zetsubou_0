@@ -1,0 +1,20 @@
+canvas.print {
+    display: none;
+}
+
+@media print {
+    .header,
+    .header ~ div,
+    .footer {
+        display: none;
+    }
+
+    canvas {
+        display: block;
+    }
+
+    canvas.print {
+        page-break-after: always;
+        display: block;
+    }
+}

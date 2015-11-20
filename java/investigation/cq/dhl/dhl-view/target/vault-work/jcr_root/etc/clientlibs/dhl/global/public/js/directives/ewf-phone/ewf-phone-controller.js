@@ -1,0 +1,62 @@
+define(['exports', 'module'], function (exports, module) {
+    'use strict';
+
+    module.exports = EwfPhoneController;
+    EwfPhoneController.$inject = ['$scope', '$attrs', 'attrsService'];
+
+    function EwfPhoneController($scope, $attrs, attrsService) {
+        var PHONE_TYPES_MAP = {
+            OFFICE: 'OFFICE',
+            MOBILE: 'MOBILE',
+            OTHER: 'OTHER'
+        };
+
+        //TODO make a single instance of patterns in one place
+        var patterns = {
+            emailRegExp: '^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$',
+            numeric: '^(\\s*|\\d+)$',
+            formatted: '^([\\s\\d\\-\\(\\)]+)$',
+            alphaNumeric: '^[a-z\\d\\-_\\s]+$',
+            numericSpecialChars: '^[0-9\\+]*$'
+        };
+
+        var vm = this;
+
+        Object.assign(vm, {
+            patterns: patterns,
+            phoneTypesMap: PHONE_TYPES_MAP,
+            attributes: {},
+
+            isOfficePhone: isOfficePhone,
+            isMobilePhone: isMobilePhone
+        });
+
+        // call `untrack()` on this function's return value when no tracking is further required
+        attrsService.track($scope, $attrs, 'phone', vm.attributes, onPhoneAttrsChange);
+
+        // This will replace whole addressDetailsCtrl.fromContactFields and make shipment not usable
+        //vm.attributes.phone = {
+        //    phoneDetails: {
+        //        phoneType: vm.phoneTypesMap.OTHER
+        //    }
+        //};
+
+        function phoneTypeIs(phoneType) {
+            return vm.attributes.phone.phoneDetails.phoneType === phoneType;
+        }
+
+        function isOfficePhone() {
+            return phoneTypeIs(PHONE_TYPES_MAP.OFFICE);
+        }
+
+        function isMobilePhone() {
+            return phoneTypeIs(PHONE_TYPES_MAP.MOBILE);
+        }
+
+        function onPhoneAttrsChange(phone) {
+            phone.phoneDetails = phone.phoneDetails || {};
+            phone.phoneDetails.phoneType = phone.phoneDetails.phoneType || PHONE_TYPES_MAP.OTHER;
+        }
+    }
+});
+//# sourceMappingURL=ewf-phone-controller.js.map

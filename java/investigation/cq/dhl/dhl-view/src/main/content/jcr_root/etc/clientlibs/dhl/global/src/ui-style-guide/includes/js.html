@@ -1,0 +1,8 @@
+<script>
+    $(function () {
+        $('pre code').each(function () {
+            $(this).text($(this).html());
+            hljs.highlightBlock(this);
+        });
+    });
+</script>

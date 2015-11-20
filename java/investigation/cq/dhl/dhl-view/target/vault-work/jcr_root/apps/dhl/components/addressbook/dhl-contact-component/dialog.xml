@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:TabPanel"
+    activeTab="0"
+    xtype="tabpanel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <first
+            jcr:primaryType="nt:unstructured"
+            title="Basic Values"
+            xtype="panel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <label
+                    jcr:primaryType="cq:Widget"
+                    editable="{Boolean}true"
+                    fieldLabel="Label"
+                    name="./label"
+                    type="text"
+                    xtype="field"/>
+                <hint
+                    jcr:primaryType="cq:Widget"
+                    editable="{Boolean}true"
+                    fieldLabel="Hint"
+                    name="./hint"
+                    type="text"
+                    xtype="field"/>
+                <visible
+                    jcr:primaryType="cq:Widget"
+                    editable="{Boolean}true"
+                    fieldLabel="Is visible"
+                    name="./visible"
+                    type="checkbox"
+                    xtype="selection"/>
+                <required
+                    jcr:primaryType="cq:Widget"
+                    editable="{Boolean}true"
+                    fieldLabel="Is required"
+                    name="./required"
+                    type="checkbox"
+                    xtype="selection"/>
+                <regex
+                    jcr:primaryType="cq:Widget"
+                    editable="{Boolean}true"
+                    fieldLabel="Regex"
+                    name="./regex"
+                    type="text"
+                    xtype="field"/>
+                <errorMessage
+                    jcr:primaryType="cq:Widget"
+                    editable="{Boolean}true"
+                    fieldLabel="Error message"
+                    name="./errorMessage"
+                    type="text"
+                    xtype="field"/>
+            </items>
+        </first>
+    </items>
+</jcr:root>

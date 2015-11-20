@@ -1,0 +1,63 @@
+.page-title {
+    margin: $PADDING_LARGE_VERTICAL*1.5 0 $PADDING_LARGE_VERTICAL;
+}
+
+.note {
+    color: $LABEL_COLOR;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+p.note {
+    margin: $PADDING_BASE_VERTICAL 0;
+}
+
+.warning-text,
+.required-text {
+    color: $COLOR_RED;
+}
+
+.summary-text {
+    color: $COLOR_GRAY_2;
+
+    &__group {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 12px;
+    }
+}
+
+a.gray {
+    color: $COLOR_GRAY_3;
+}
+
+$ICON_LARGE: 70px;
+
+.icon-large {
+    font-size: $ICON_LARGE;
+}
+
+.icon-round {
+    display: inline-block;
+    width: ($ICON_LARGE + 30px);
+    height: ($ICON_LARGE + 30px);
+    text-align: center;
+    border-radius: 100%;
+    line-height: ($ICON_LARGE + 30px);
+    &:before {
+        margin: 0;
+    }
+}
+
+.bg-green {
+    color: #fff;
+    background: $COLOR_GREEN_2;
+}
+
+.bg-blue {
+    color: #fff;
+    background: $COLOR_BLUE;
+}

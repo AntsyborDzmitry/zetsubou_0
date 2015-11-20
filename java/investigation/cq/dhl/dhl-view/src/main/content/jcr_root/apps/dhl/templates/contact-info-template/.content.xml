@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:description="Contact info page template"
+    jcr:primaryType="cq:Template"
+    jcr:title="Contact info page"
+    ranking="{Long}100">
+    <jcr:content
+        cq:designPath="/etc/designs/dhl"
+        cq:tags="[authorization:regular]"
+        cq:template="/apps/dhl/templates/contact-info-template"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Contact info"
+        sling:resourceType="dhl/pages/dhl-generic-page">
+        <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <contact_info
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/addressbook/contact-info"/>
+        </content>
+    </jcr:content>
+</jcr:root>

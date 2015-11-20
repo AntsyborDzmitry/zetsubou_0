@@ -1,0 +1,361 @@
+.irs {
+  position: relative;
+  display: block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.irs-line {
+  background: #ccc;
+  box-shadow: 0 1px 1px #333 inset;
+  position: relative;
+  display: block;
+  height: 8px !important;
+  overflow: hidden;
+  outline: none !important;
+}
+
+.irs-line-left,
+.irs-line-mid,
+.irs-line-right {
+  background: none!important;
+  position: absolute;
+  display: block;
+  top: 0;
+}
+
+.irs-line-left {
+  left: 0;
+  width: 11%;
+}
+
+.irs-line-mid {
+  left: 9%;
+  width: 82%;
+}
+
+.irs-line-right {
+  right: 0;
+  width: 11%;
+}
+
+.irs-bar {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 0;
+}
+
+.irs-bar-edge {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+}
+
+.irs-shadow {
+  position: absolute;
+  display: none;
+  left: 0;
+  width: 0;
+}
+
+.irs-slider {
+  position: absolute;
+  display: block;
+  cursor: default;
+  z-index: 1;
+}
+
+.irs-slider.type_last {
+  z-index: 2;
+}
+
+.irs-min {
+  position: absolute;
+  display: block;
+  left: 0;
+  cursor: default;
+}
+
+.irs-max {
+  position: absolute;
+  display: block;
+  right: 0;
+  cursor: default;
+}
+
+.irs-from,
+.irs-to,
+.irs-single {
+  position: absolute;
+  display: block;
+  top: -14px;
+  left: 0;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.irs-grid {
+  position: absolute;
+  display: none;
+  bottom: 0; left: 0;
+  width: 100%; 
+  height: 20px;
+}
+
+.irs-with-grid .irs-grid {
+  display: block;
+  height: 70px;
+  margin: 31px auto 10px;
+  width: 80%;
+}
+
+.irs-grid-pol {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  width: 1px;
+  height: 8px;
+  background: #000;
+}
+
+.irs-grid-pol.small {
+  background: #ccc;
+  height: 5px;
+  width: 2px;
+}
+
+.irs-grid-text {
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 9px; 
+  line-height: 9px;
+  padding: 0 3px;
+  color: #000;
+}
+
+.irs-disable-mask {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: -1%;
+  width: 102%;
+  height: 100%;
+  cursor: default;
+  background: transparent;
+  z-index: 2;
+}
+.lt-ie9 .irs-disable-mask {
+  background: #000;
+  filter: alpha(opacity=0);
+  cursor: not-allowed;
+}
+
+.irs-disabled {
+  opacity: 0.4;
+}
+
+.irs-hidden-input {
+  position: absolute !important;
+  display: block !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  outline: none !important;
+  z-index: -9999 !important;
+  background: none !important;
+  border-style: solid !important;
+  border-color: transparent !important;
+}
+
+.irs-line-mid,
+.irs-line-left,
+.irs-line-right,
+.irs-bar,
+.irs-bar-edge,
+.irs-slider {
+  background: url(../img/sprite-skin-modern.png) repeat-x;
+}
+
+.irs {
+  height: 50px;
+}
+
+.irs-with-grid {
+  display: block;
+  height: 70px;
+  margin: 31px auto 10px;
+  width: 80%;
+}
+
+.irs-line {
+  height: 6px;
+  top: 25px;
+}
+
+.irs-line-left {
+  height: 6px;
+  background-position: 0 -30px;
+}
+
+.irs-line-mid {
+  height: 6px;
+  background-position: 0 0;
+}
+
+.irs-line-right {
+  height: 6px;
+  background-position: 100% -30px;
+}
+
+.irs-bar {
+  background-color: #666 !important;
+  background-image: none !important;
+  background-position: 0 -60px;
+  cursor: w-resize;
+  height: 8px;
+  top: 25px;
+}
+
+.irs-bar-edge {
+  top: 25px;
+  height: 6px; width: 6px;
+  background-position: 0 -90px;
+}
+
+.irs-shadow {
+  height: 5px; top: 25px;
+  background: #000;
+  opacity: 0.25;
+}
+
+.lt-ie9 .irs-shadow {
+  filter: alpha(opacity=25);
+}
+
+.irs-slider {
+  background: #fecb2f;
+  border-radius: 2px;
+  height: 15px;
+  top: 1px;
+}
+
+.irs-slider:after {
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #fecb2f;
+  content: "";
+  display: block;
+  left: 0;
+  position: relative;
+  top: 14px;
+}
+
+.irs-slider.state_hover,
+.irs-slider:hover,
+.irs-slider:focus {
+  background: #7a7a7a;
+}
+
+.irs-slider.state_hover:after,
+.irs-slider:hover:after,
+.irs-slider:focus:after {
+  border-top-color: #7a7a7a;
+}
+
+.irs-min,
+.irs-max {
+  color: #999;
+  font-size: 10px;
+  line-height: 1.333;
+  text-shadow: none;
+  top: 0;
+  padding: 1px 3px;
+  background: #e1e4e9;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.irs-from,
+.irs-to,
+.irs-single {
+  color: #333;
+  font-size: 0.85em;
+  font-family: sans-serif;
+  line-height: 1.4;
+  text-shadow: none;
+  padding: 1px 5px;
+}
+
+.irs-from strong,
+.irs-to strong,
+.irs-single strong{
+  display: block;
+  clear: both;
+}
+
+.irs-from:after,
+.irs-to:after,
+.irs-single:after {
+  content: attr(data-content);
+  display: block;
+  font-weight: bold;
+  height: 0;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: -13px;
+  width: 100%;
+}
+
+.irs-grid {
+  height: 34px;
+}
+
+.irs-grid-pol {
+  background: #ccc;
+  height: 5px;
+  width: 2px; 
+}
+
+.irs-grid-text {
+  bottom: 0;
+  color: #333;
+  font-size: 0.85em;
+  font-family: sans-serif;
+  line-height: 1.4;
+}
+
+.irs-to {
+  margin: 0 0 0 34px;
+}
+
+.irs-from {
+  margin: 0 0 0 -38px;
+}
+
+#earliest-pickup,
+#latest-pickup {
+  height: 1px;
+  visibility: hidden;
+}
+
+.pickup-hidden-wrapper {
+  height: 111px;
+}
+
+.pickup-shown-wrapper {
+  height: 80px;
+}

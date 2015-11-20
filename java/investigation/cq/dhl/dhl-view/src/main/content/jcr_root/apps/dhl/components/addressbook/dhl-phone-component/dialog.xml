@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Dialog"
+    xtype="dialog">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <tabs jcr:primaryType="cq:TabPanel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <tab2
+                    jcr:primaryType="cq:Panel"
+                    border="false"
+                    height=""
+                    title="Labels configs"
+                    width="">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <generalLabel
+                                jcr:primaryType="nt:unstructured"
+                                defaultValue="Phone"
+                                fieldLabel="General label"
+                                name="./generalLabel"
+                                xtype="textfield"/>
+                        <label1
+                            jcr:primaryType="nt:unstructured"
+                            defaultValue="Office"
+                            fieldLabel="Office phone label"
+                            name="./officeLabel"
+                            xtype="textfield"/>
+                        <label2
+                            jcr:primaryType="nt:unstructured"
+                            defaultValue="Mobile"
+                            fieldLabel="Mobile phone label"
+                            name="./mobileLabel"
+                            xtype="textfield"/>
+                        <label3
+                            jcr:primaryType="nt:unstructured"
+                            defaultValue="Other"
+                            fieldLabel="Other phone label"
+                            name="./otherLabel"
+                            xtype="textfield"/>
+                        <label4
+                            jcr:primaryType="nt:unstructured"
+                            defaultValue="SMS enabled"
+                            fieldLabel="SMS enabled label"
+                            name="./smsLabel"
+                            xtype="textfield"/>
+                        <label5
+                                jcr:primaryType="nt:unstructured"
+                                defaultValue="Fax"
+                                fieldLabel="Fax label"
+                                name="./faxLabel"
+                                xtype="textfield"/>
+                    </items>
+                </tab2>
+                <tab3
+                    jcr:primaryType="cq:Panel"
+                    border="false"
+                    height=""
+                    title="Placeholders configs"
+                    width="">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <paceholder1
+                            jcr:primaryType="nt:unstructured"
+                            defaultValue="+000"
+                            fieldLabel="Country code placeholder"
+                            name="./countryCodePlaceholder"
+                            xtype="textfield"/>
+                        <paceholder2
+                            jcr:primaryType="nt:unstructured"
+                            defaultValue="Phone number"
+                            fieldLabel="Phone number placeholder"
+                            name="./numberPlaceholder"
+                            xtype="textfield"/>
+                        <paceholder3
+                            jcr:primaryType="nt:unstructured"
+                            defaultValue="Ext"
+                            fieldLabel="Ext placeholder"
+                            name="./extPlaceholder"
+                            xtype="textfield"/>
+                    </items>
+                </tab3>
+                <tab4
+                    jcr:primaryType="cq:Panel"
+                    border="false"
+                    height=""
+                    title="Mode configs"
+                    width="">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <default
+                            jcr:primaryType="cq:Widget"
+                            fieldLabel="Default value:"
+                            name="./default"
+                            type="select"
+                            xtype="selection">
+                            <options jcr:primaryType="cq:WidgetCollection">
+                                <option1
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Office"
+                                    value="office"/>
+                                <option2
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Mobile"
+                                    value="mobile"/>
+                                <option3
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Other"
+                                    value="other"/>
+                            </options>
+                        </default>
+                    </items>
+                </tab4>
+            </items>
+        </tabs>
+    </items>
+</jcr:root>

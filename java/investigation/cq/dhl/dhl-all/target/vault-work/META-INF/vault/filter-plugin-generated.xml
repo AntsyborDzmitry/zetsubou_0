@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/dhl/install" />
+    <filter root="/apps/dhl/install/dhl-services-1.0-SNAPSHOT.jar" />
+    <filter root="/apps/dhl/install/dhl-taglib-1.0-SNAPSHOT.jar" />
+    <filter root="/apps/dhl/install/dhl-components-1.0-SNAPSHOT.jar" />
+    <filter root="/apps/dhl/install/wink-osgi-1.4.jar" />
+    <filter root="/apps/dhl/install/jackson-core-asl-1.9.13.jar" />
+    <filter root="/apps/dhl/install/jackson-mapper-asl-1.9.13.jar" />
+    <filter root="/apps/dhl/install/jackson-jaxrs-1.9.13.jar" />
+    <filter root="/apps/dhl/install/jackson-xc-1.9.13.jar" />
+    <filter root="/apps/dhl/install/javax.ws.rs-api-2.0-m15.jar" />
+    <filter root="/apps/dhl/install/guava-14.0.1.jar" />
+    <filter root="/apps/dhl/install/dhl-author-1.0-SNAPSHOT.jar" />
+    <filter root="/etc/packages/EWF/dhl-config-1.0-SNAPSHOT.zip" />
+    <filter root="/etc/packages/EWF/dhl-view-1.0-SNAPSHOT.zip" />
+    <filter root="/etc/packages/EWF/dhl-content-1.0-SNAPSHOT.zip" />
+    <filter root="/etc/packages/com.cqblueprints.taglib/cqblueprints-taglib-all-5.5.1.zip" />
+    <filter root="/etc/packages/EWF/dhl-view-author-1.0-SNAPSHOT.zip" />
+</workspaceFilter>

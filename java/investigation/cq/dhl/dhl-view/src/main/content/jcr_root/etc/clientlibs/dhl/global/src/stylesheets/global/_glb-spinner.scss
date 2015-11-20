@@ -1,0 +1,21 @@
+.spinner-wrapper {
+    background: #f1f1f1;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+
+    &__spinner {
+        background: url("../img/loading.gif") no-repeat;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 200px;
+        height: 74px;
+    }
+}

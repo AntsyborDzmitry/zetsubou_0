@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="cq:Dialog"
+          activeTab="0"
+          xtype="dialog">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <tabs jcr:primaryType="cq:TabPanel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <country
+                    jcr:primaryType="cq:Panel"
+                    title="Country"
+                    xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <country_label
+                           jcr:primaryType="cq:Widget"
+                           editable="{Boolean}true"
+                           fieldLabel="Label"
+                           name="./country_label"
+                           type="text"
+                           xtype="field"/>
+                        <!-- <country_hint
+                            jcr:primaryType="cq:Widget"
+                            editable="{Boolean}true"
+                            fieldLabel="Hint"
+                            name="./country_hint"
+                            type="text"
+                            xtype="field"/> -->
+                        <country_required
+                            jcr:primaryType="cq:Widget"
+                            editable="{Boolean}true"
+                            fieldLabel="Is required"
+                            name="./country_required"
+                            type="checkbox"
+                            xtype="selection"/>
+                        <!--<country_visible
+                            jcr:primaryType="cq:Widget"
+                            editable="{Boolean}true"
+                            fieldLabel="Is visible"
+                            name="./country_visible"
+                            type="checkbox"
+                            xtype="selection"/>-->
+                        <!--<country_max_length
+                            jcr:primaryType="cq:Widget"
+                            editable="{Boolean}true"
+                            fieldLabel="Max length"
+                            name="./country_max_length"
+                            xtype="numberfield"/>-->
+                        <!--<country_regex
+                            jcr:primaryType="cq:Widget"
+                            editable="{Boolean}true"
+                            fieldLabel="Regex"
+                            name="./country_regex"
+                            type="text"
+                            xtype="field"/>-->
+                        <country_errorMessage
+                            jcr:primaryType="cq:Widget"
+                            editable="{Boolean}true"
+                            fieldLabel="Error message"
+                            name="./country_errorMessage"
+                            type="text"
+                            xtype="field"/>
+                    </items>
+                </country>
+                <address
+                        jcr:primaryType="cq:Panel"
+                        title="Address"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <address_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./address_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <address_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./address_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <address_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./address_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <address_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./address_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                        <!--<address_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./address_max_length"
+                                xtype="numberfield"/>-->
+                        <!--<address_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./address_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <address_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./address_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </address>
+                <address2
+                        jcr:primaryType="cq:Panel"
+                        title="Address2"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <address2_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./address2_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <address2_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./address2_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <address2_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./address2_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <address2_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./address2_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                       <!-- <address2_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./address2_max_length"
+                                xtype="numberfield"/>-->
+                       <!-- <address2_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./address2_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <address2_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./address2_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </address2>
+                <address3
+                        jcr:primaryType="cq:Panel"
+                        title="Address3"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <address3_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./address3_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <address3_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./address3_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <address3_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./address3_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <address3_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./address3_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                       <!-- <address3_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./address3_max_length"
+                                xtype="numberfield"/>-->
+                        <!--<address3_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./address3_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <address3_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./address3_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </address3>
+                <address4
+                        jcr:primaryType="cq:Panel"
+                        title="Address4"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <address4_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./address4_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <address4_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./address4_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <address4_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./address4_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <address4_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./address4_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                       <!-- <address4_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./address4_max_length"
+                                xtype="numberfield"/>-->
+                        <!--<address4_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./address4_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <address4_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./address4_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </address4>
+                <suburb
+                        jcr:primaryType="cq:Panel"
+                        title="Suburb"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <suburb_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./suburb_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <suburb_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./suburb_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <suburb_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./suburb_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <suburb_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./suburb_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                        <!--<suburb_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./suburb_max_length"
+                                xtype="numberfield"/>
+                        <suburb_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./suburb_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <suburb_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./suburb_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </suburb>
+                <city
+                        jcr:primaryType="cq:Panel"
+                        title="City"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <city_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./city_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <city_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./city_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <city_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./city_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <city_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./city_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                        <!--<city_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./city_max_length"
+                                xtype="numberfield"/>
+                        <city_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./city_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <city_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./city_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </city>
+                <postal_code
+                        jcr:primaryType="cq:Panel"
+                        title="Postal code"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <postal_code_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./postal_code_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <postal_code_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./postal_code_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <postal_code_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./postal_code_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <postal_code_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./postal_code_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                       <!-- <postal_code_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./postal_code_max_length"
+                                xtype="numberfield"/>
+                        <postal_code_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./postal_code_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <postal_code_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./postal_code_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </postal_code>
+                <zip_code
+                        jcr:primaryType="cq:Panel"
+                        title="Zip code"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <zip_code_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./zip_code_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <zip_code_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./zip_code_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <zip_code_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./zip_code_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <zip_code_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./zip_code_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                     <!--   <zip_code_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./zip_code_max_length"
+                                xtype="numberfield"/>
+                        <zip_code_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./zip_code_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <zip_code_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./zip_code_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </zip_code>
+                <province
+                        jcr:primaryType="cq:Panel"
+                        title="Province"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <province_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./province_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <province_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./province_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <province_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./province_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <province_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./province_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                       <!-- <province_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./province_max_length"
+                                xtype="numberfield"/>
+                        <province_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./province_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <province_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./province_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </province>
+                <state
+                        jcr:primaryType="cq:Panel"
+                        title="State"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <state_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./state_label"
+                                type="text"
+                                xtype="field"/>
+                        <!-- <state_hint
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Hint"
+                                name="./state_hint"
+                                type="text"
+                                xtype="field"/> -->
+                        <state_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./state_required"
+                                type="checkbox"
+                                xtype="selection"/>
+                        <!-- <state_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./state_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                        <!--<state_max_length
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Max length"
+                                name="./state_max_length"
+                                xtype="numberfield"/>
+                        <state_regex
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Regex"
+                                name="./state_regex"
+                                type="text"
+                                xtype="field"/>-->
+                        <state_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./state_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                    </items>
+                </state>
+                <checkbox
+                        jcr:primaryType="cq:Panel"
+                        title="Checkbox"
+                        xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <checkbox_label
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Label"
+                                name="./checkbox_label"
+                                type="text"
+                                xtype="field"/>
+                        <checkbox_errorMessage
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Error message"
+                                name="./checkbox_errorMessage"
+                                type="text"
+                                xtype="field"/>
+                       <!-- <checkbox_required
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is required"
+                                name="./checkbox_required"
+                                type="checkbox"
+                                xtype="selection"/>-->
+                        <!-- <checkbox_visible
+                                jcr:primaryType="cq:Widget"
+                                editable="{Boolean}true"
+                                fieldLabel="Is visible"
+                                name="./checkbox_visible"
+                                type="checkbox"
+                                xtype="selection"/> -->
+                    </items>
+                </checkbox>
+            </items>
+        </tabs>
+    </items>
+</jcr:root>

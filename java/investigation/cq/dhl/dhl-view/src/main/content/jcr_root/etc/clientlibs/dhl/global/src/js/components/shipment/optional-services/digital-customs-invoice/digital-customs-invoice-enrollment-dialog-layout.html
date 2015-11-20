@@ -1,0 +1,32 @@
+<div ewf-modal title="Digital Customs Invoice">
+    <hr>
+    <div class="section__content">
+        <b nls="shipment.digital_customs_invoice_popup_header"></b>
+        <textarea class="textarea textarea_width_full textarea_height_large"
+           nls="shipment.digital_customs_invoice_popup_terms_and_conditions_text">
+        </textarea>
+        <label class="checkbox">
+            <input type="checkbox" class="checkbox__input"
+               ng-model="agreedAndAccepted">
+            <span class="label"
+               nls="shipment.digital_customs_invoice_popup_accept_t_and_c_checkbox">
+            </span>
+        </label>
+        <div class="right" ng-if="agreedAndAccepted">
+            <button class="btn btn_success right"
+               ewf-modal-resolver
+               nls="shipment.digital_customs_invoice_popup_enroll_button_label">
+            </button>
+            <b class="block"
+               nls="shipment.digital_customs_invoice_popup_need_to_make_updates">
+            </b>
+            <div>
+                <span nls="shipment.digital_customs_invoice_popup_footer_left"></span>
+                <a href="#"
+                   nls="shipment.digital_customs_invoice_popup_my_profile_and_settings_link">
+                </a>
+                <span nls="shipment.digital_customs_invoice_popup_footer_right"></span>
+            </div>
+        </div>
+    </div>
+</div>

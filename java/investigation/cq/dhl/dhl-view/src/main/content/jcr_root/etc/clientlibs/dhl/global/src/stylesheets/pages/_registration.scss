@@ -1,0 +1,70 @@
+.registration {
+    &__form {
+        margin-top: 0;
+    }
+
+    &__extra-info {
+        padding: $CALLOUT_PADDING;
+    }
+}
+
+.registration-synopsis {
+    margin-top: 10px;
+}
+
+.registration-account-number {
+    margin-bottom: 0;
+}
+
+.user-country {
+    margin-right: 15px;
+    font-size: 12px;
+
+    &__flag {
+        margin-right: 5px;
+    }
+}
+
+// TODO Delete for prodaction code, only for prototipe
+
+.captcha-wrapper {
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e1e1e1;
+}
+
+#registration div[ewf-field] .static.msg-error{
+    display: block;
+    -webkit-animation: blur 1s 3s;
+    animation: blur 1s 3s;
+}
+
+.captcha {
+    &__item {
+        display: inline-block;
+        margin: 0 10px;
+        line-height: 40px;
+    }
+
+    &__icon {
+        display: block;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        text-align: center;
+        border-radius: 50%;
+
+        img {
+            display: block;
+        }
+    }
+
+    &__radio {
+        display: none;
+
+        &:checked + .captcha__icon {
+            background: #ccc;
+        }
+    }
+}

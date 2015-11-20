@@ -1,0 +1,27 @@
+.nectar-rewards {
+  position: relative;
+
+  //&:after {
+  .number-placeholder {
+    position: absolute;
+    top: 2px;
+    bottom: 1px;
+    left: 1px;
+    padding-top: 5px;
+    padding-left: 3px;
+    width: 70px;
+    content: '98263000';
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    background-color: #f1f1f1;
+  }
+  .input {
+    padding-left: 74px;
+  }
+}
+.safe-for-later{
+  position: relative;
+  top: -82px;
+  right: -20px;
+}

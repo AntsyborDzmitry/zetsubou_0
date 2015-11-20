@@ -1,0 +1,300 @@
+*.unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+
+    // Introduced in IE 10, see ie.microsoft.com/testdrive/HTML5/msUserSelect
+    -ms-user-select: none;
+    user-select: none;
+}
+
+span.normal {
+    font-size: 12px;
+
+    a {
+        color: #189aca;
+        text-decoration: none;
+    }
+}
+
+.fgtPswd {
+    color: #189aca;
+}
+
+.log {
+    &__background {
+        background-image: url('../img/backgroundGB.jpg');
+    }
+
+    .login {
+        .loginContainer_title * {
+            margin-top: 0;
+        }
+
+        .help {
+            color: #189aca !important;
+        }
+
+        .field-wrapper {
+            padding-bottom: 15px;
+            position: relative;
+
+            .label-error {
+                position: absolute;
+                top: auto;
+                bottom: 0;
+                height: 15px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                width: 100%;
+                font-size: 9px;
+            }
+        }
+    }
+
+    &__help,
+    .login-welcome {
+        .help {
+            color: white !important;
+        }
+    }
+}
+
+.darker {
+    position: relative;
+
+    label,
+    .label {
+        color: #fff;
+    }
+}
+
+form .select {
+    border-radius: 4px;
+
+    &:after {
+        color: #000;
+    }
+}
+
+.select_location {
+    margin: 0;
+
+    &__title {
+        color: $COLOR_DHL_YELLOW;
+        font-size: 28px;
+        font-weight: normal;
+        margin-top: 0;
+    }
+}
+
+.a-right {
+    text-align: right;
+}
+
+.area {
+    &__item {
+        padding-top: 10px;
+    }
+
+    &__help {
+        padding-top: 30px;
+    }
+}
+
+.button {
+    margin-right: 10px;
+
+    &:last-child {
+        margin: 0;
+    }
+}
+
+#loginContainer .button:last-child {
+    margin: 5px 10px 5px 0;
+}
+
+#logoutButton {
+    margin-right: 10px;
+}
+
+.ngdialog-content:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.external-system__frame {
+    width: 100%;
+    min-height: 550px;
+    border: none;
+}
+
+.ngdialog.ngdialog-theme-default .btn-dialog-close.ngdialog-close {
+    position: static;
+
+    &:before {
+        display: none;
+    }
+}
+
+.divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    border-left: 1px solid #a1a1a1;
+}
+
+.address-book {
+    &-modal {
+        position: fixed;
+        background: #f3f3f3;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 999;
+
+        .la-ball-pulse {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+    }
+
+    &__search {
+        .select {
+            max-width: 50%;
+        }
+    }
+}
+
+.footer {
+    &__logo {
+        float: left;
+        padding-right: 20px;
+    }
+
+    &-nav {
+        float: left;
+        padding-left: 0;
+    }
+}
+
+.email.generic {
+    margin: 0;
+}
+
+[ng-cloak],
+.ng-cloak {
+    display: none !important; //hide uncompilled angular templates from user
+}
+
+.search {
+    .dropdown-menu {
+        font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+        background: #fff;
+        border: 1px solid #a1a1a1;
+        margin: 0;
+        max-height: 250px;
+        overflow-y: auto;
+        padding: 0;
+        width: 300px;
+        z-index: 999;
+
+        .ui-autocomplete-category {
+            background-color: #ccc;
+            color: #666;
+            font-size: 10px;
+            font-style: italic;
+            line-height: 1.3;
+            padding: 2px 7px;
+            position: relative;
+            text-align: right;    
+        }
+
+
+        li {
+            background-color: #fff;
+            border: 0 none;
+            color: #666;
+            font-size: 12px;
+            line-height: 1.25em;
+            margin: 0;
+            text-align: left;
+            transition: all 0.25s ease 0s;
+            width: 100%;
+
+            &:nth-child(2n+1) {
+                background-color: #f9f9f9;
+            }
+
+            div {
+                padding: 6px 10px;
+            }
+
+            span {
+                display: block;
+            }
+
+            i {
+                font-style: normal;
+            }
+
+            strong{
+                color: #000;
+            }
+
+            &:hover {
+                background: #b7e6f7;
+                color: inherit;
+                cursor: pointer;
+                font-weight: inherit;
+            }
+        }
+
+        a {
+            background: none !important;
+            color: inherit !important;
+            white-space: normal !important;
+        }
+    }
+}
+
+ewf-search .dropdown-menu li.active {
+    background: #b7e6f7;
+    color: inherit;
+    cursor: pointer;
+    font-weight: inherit;
+}
+
+.dropdown {
+    background-color: #333;
+    
+    &__list {
+        margin: 0;
+        padding: 7px 0 10px 0;
+        list-style: none;
+        
+        &-item {
+            margin: 0;
+            white-space: nowrap;
+        }
+    }
+}
+
+.help,
+.info {
+    b {
+        font-weight: normal;
+    }
+}
+
+.itar-block {
+    background-color: #f1f1f1;
+}

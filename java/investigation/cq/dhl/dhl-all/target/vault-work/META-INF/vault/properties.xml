@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>EWF - dhl-all</comment>
+<entry key="createdBy">Kiryl_Lutsyk</entry>
+<entry key="name">dhl-all</entry>
+<entry key="created">2015-11-20T12:23:33.105-0300</entry>
+<entry key="groupId">EWF</entry>
+<entry key="version">1.0-SNAPSHOT</entry>
+<entry key="requiresRoot">false</entry>
+<entry key="group">EWF</entry>
+<entry key="description">Builds a CQ package containing all components of the 'ctc-core' project. Useful for making formal
+        releases to QA and production environments for example.</entry>
+<entry key="artifactId">dhl-all</entry>
+<entry key="path">/etc/packages/EWF/dhl-all.zip</entry>
+</properties>

@@ -1,0 +1,7 @@
+<div class="dropdown">
+    <select class="btn btn-default dropdown-toggle"
+            ng-options="lg.name for lg in langselector.availableLangs"
+            ng-model="langselector.currentLang"
+            ng-change="langselector.langChanged()">
+    </select>
+</div>

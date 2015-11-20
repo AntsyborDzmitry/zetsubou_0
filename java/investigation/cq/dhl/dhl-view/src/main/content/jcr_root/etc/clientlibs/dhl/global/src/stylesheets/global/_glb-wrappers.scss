@@ -1,0 +1,128 @@
+.synopsis {
+    @include clearfix;
+
+    position: relative;
+    min-height: 46px;
+    margin: 1px 0 0;
+    padding: 15px;
+    color: $COLOR_GRAY_4;
+    background: $SYNOPSIS_BG;
+    line-height: 1;
+
+    &_with-icon {
+        position: relative;
+        box-sizing: border-box;
+        padding-left: 70px;
+    }
+
+    .row {
+        margin: 0 -15px;
+    }
+
+    &__icon {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 50px;
+        margin-top: -0.5em;
+        text-align: center;
+        font-size: 28px;
+
+        &:before {
+            margin: 0;
+        }
+    }
+
+    &__edit {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        right: 10px;
+        margin-top: -1.15em;
+        cursor: pointer;
+    }
+}
+
+%overlay {
+    @include clearfix;
+
+    margin-top: 15px; // For using with col-$
+    margin-bottom: 15px;
+    padding: $CALLOUT_PADDING;
+    color: $CALLOUT_FG;
+    border: 1px solid $COLOR_GRAY_5;
+    box-shadow: none;
+
+    // TODO Update after refactoring
+    > *:first-child {
+        margin-top: 0;
+    }
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.overlay {
+    &-grey {
+        @extend %overlay;
+
+        background-color: $CALLOUT_BG;
+    }
+
+    &-dark {
+        @extend %overlay;
+
+        color: #fff;
+        border-color: transparent;
+        background-color: $COLOR_GRAY_2;
+    }
+
+    &-white {
+        @extend %overlay;
+
+        background-color: #fff;
+    }
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &__header {
+        margin: $CALLOUT_PADDING (0 - $CALLOUT_PADDING);
+        padding: ($CALLOUT_PADDING/2) $CALLOUT_PADDING;
+        background-color: $COLOR_GRAY_6;
+
+        &:first-child {
+            margin-top: (0 - $CALLOUT_PADDING);
+        }
+    }
+
+    &__fixed {
+        height: 350px;
+    }
+
+    &__scroll {
+        overflow-y: scroll;
+        height: 210px;
+    }
+}
+
+.vertical-line {
+    display: block;
+    padding-left: 20px;
+    border-left: 1px solid $COLOR_GRAY_4;
+}
+
+.darker {
+    @include clearfix;
+
+    padding: 20px;
+    color: white;
+    border-color: $COLOR_GRAY_1;  // For old IE
+    background-color: rgba(0,0,0,.8);
+
+    .lt-ie9 & {
+        background: #000;
+        zoom: 1;
+    }
+}

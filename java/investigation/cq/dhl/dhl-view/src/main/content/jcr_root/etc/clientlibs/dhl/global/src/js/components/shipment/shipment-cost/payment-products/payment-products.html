@@ -1,0 +1,18 @@
+<div class="field card-list"
+   ng-class="{open: paymentProductsCtrl.productsShown}">
+    <input type="text" class="input input_width_full"
+       nls="shipment.credit_card_selector"
+       ng-change="paymentProductsCtrl.onRawProductUpdate()"
+       ng-focus="paymentProductsCtrl.showProducts()"
+       ng-blur="paymentProductsCtrl.hideProducts()"
+       ng-model="paymentProductsCtrl.rawProduct">
+    <ul class="dropdown-menu">
+        <li ng-repeat="product in paymentProductsCtrl.products"
+           ng-click="paymentProductsCtrl.onProductSelect(product)">
+            <a class="card-list_item">
+                <img class="card-type" ng-src="{{product.img}}" />
+                <span ng-bind="product.label"></span>
+            </a>
+        </li>
+    </ul>
+</div>

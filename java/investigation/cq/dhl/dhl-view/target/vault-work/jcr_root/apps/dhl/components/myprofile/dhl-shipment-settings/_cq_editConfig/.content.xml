@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+	cq:actions="[DELETE]"
+	cq:dialogMode="floating"
+	jcr:created="{Date}2015-08-17T09:15:12.749Z"
+	cq:disableTargeting="{Boolean}true"
+	cq:layout="editbar"
+	jcr:createdBy="admin"
+	jcr:primaryType="cq:EditConfig" />

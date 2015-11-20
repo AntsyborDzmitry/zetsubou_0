@@ -1,0 +1,15 @@
+<ewf-modal>
+    <div class="modal visible" id="modal_selectCountry">
+        <form id="form_country-changer" method="GET">
+            <h3 nls="registration.change_country_modal_title"></h3>
+            <p nls="registration.change_country_modal_description"></p>
+            <span class="select">
+                <select name="country" id="select_country" ng-init="regCtrl.newCountry = regCtrl.currentCountry" ng-model="regCtrl.newCountry" ng-options="country.name for country in regCtrl.countrySelector"></select>
+            </span>
+            <br>
+            <br>
+            <a class="btn" ng-click="regCtrl.applyCountryPopUp()" nls="registration.change_country_modal_yes_button_label"></a>
+            <a class="x-button close-modal" nls="registration.change_country_modal_no_button_label" ng-click="ewfModalCtrl.dismiss()"></a>
+        </form>
+    </div>
+</ewf-modal>

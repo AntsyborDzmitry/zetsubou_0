@@ -1,0 +1,27 @@
+<div ewf-form="itemAttributes" class="item-attributes-container">
+    <div ng-if="shipmentTypeCtrl.customsInvoiceType === shipmentTypeCtrl.CUSTOMS_INVOICE_TYPE.CREATE">
+        <h3 class="h5">
+            <span nls="shipment.shipment_type_packages_purpose_title"></span>
+            <a class="info">
+                <span nls="shipment.shipment_type_packages_purpose_tooltip"></span>
+            </a>
+        </h3>
+        <span class="select">
+            <select name="shippingPurpose" class="required"
+               ng-model="itemAttrCtrl.shippingPurpose"
+               ng-options="purpose.reasonForExport as purpose.title for purpose in itemAttrCtrl.shippingPurposeList"
+               ewf-input="itemAttributes.shippingPurpose"
+               ewf-validate-required>
+                <option value="" nls="shipment.select_one"></option>
+            </select>
+        </span>
+    </div>
+
+    <div class="clear" ng-if="itemAttrCtrl.shippingPurpose">
+        <div item-attributes-form></div>
+
+        <!-- TODO: add references & shipment protection here -->
+
+        <div ewf-itar></div>
+    </div>
+</div>

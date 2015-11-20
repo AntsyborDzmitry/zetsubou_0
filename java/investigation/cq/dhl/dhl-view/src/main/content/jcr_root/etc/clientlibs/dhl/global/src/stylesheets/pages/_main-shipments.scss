@@ -1,0 +1,26 @@
+.pickups {
+    &__item {
+        margin-bottom: 15px;
+        padding-top: 10px;
+        border-top: 1px solid $COLOR_GRAY_6;
+        &__day {
+            color: $COLOR_GRAY_3;
+        }
+        &__date {
+            margin: 0;
+        }
+        &__time {
+            margin-bottom: 5px;
+        }
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+    &__actions {
+        margin: 5px 0 0 0;
+    }
+}

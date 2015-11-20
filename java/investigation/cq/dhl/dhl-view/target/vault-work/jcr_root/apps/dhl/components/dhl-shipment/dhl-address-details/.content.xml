@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:description="Address Details"
+    jcr:primaryType="cq:Component"
+    jcr:title="Address Details"
+    componentGroup="DHL">
+    <fromAddress
+        cq:lastRolledout="{Date}2015-08-26T13:30:19.002+03:00"
+        cq:lastRolledoutBy="admin"
+        jcr:lastModified="{Date}2015-08-26T13:30:19.001+03:00"
+        jcr:lastModifiedBy="admin"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="nt:unstructured"
+        showAddressBookButton="{Boolean}true"
+        parentControllerObject="addressDetailsCtrl.fromContactFields"
+        ewfPhoneIdSuffix="from"
+        address3_visible="true"
+        address4_visible="true"
+        address_required="true"
+        checkbox_visible="true"
+        city_required="true"
+        country_required="false"
+        country_visible="true"
+        postal_code_required="true"
+        province_required="false"
+        state_required="false"
+        isZipAndCityAutocompleteEnabled="{Boolean}true"
+        zip_code_required="true"
+        showNickNameField="{Boolean}false">
+        <addressbook
+            jcr:primaryType="nt:unstructured"
+            addressBookAttributes="is-popup='true' on-selection='addressDetailsCtrl.addressBookSelected($selection, addressDetailsCtrl.FROM); addressCtrl.showPopup = false'"
+            showFavoritesFrom="true">
+            <search
+                jcr:primaryType="nt:unstructured"
+                searchAttributes="on-search='addressBookCtrl.handleSearch($data)'"
+                showAddressBook="{Boolean}false"
+                showAhead="{Boolean}true"
+                showFavoritesFrom="{Boolean}true"
+                showCategory="{Boolean}true"
+                showSearchButton="{Boolean}true" />
+        </addressbook>
+    </fromAddress>
+    <fromPhone
+        cq:lastRolledout="{Date}2015-08-26T13:30:19.004+03:00"
+        cq:lastRolledoutBy="admin"
+        jcr:lastModified="{Date}2015-08-26T13:30:19.003+03:00"
+        jcr:lastModifiedBy="admin"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="nt:unstructured"
+        parentControllerObject="addressDetailsCtrl.fromContactFields"
+        ewfPhoneIdSuffix="from"
+        ewfPhoneFormName=""
+        countryCodePlaceholder="000"
+        extPlaceholder="Ext"
+        numberPlaceholder="(___) ___-____"
+        phoneNumberMask="(999) 999-9999"
+        phone_number_required="{Boolean}true"
+        smsLabel="SMS enabled"
+        showFaxField="{Boolean}false" />
+    <toAddress
+        cq:lastRolledout="{Date}2015-08-26T13:30:19.012+03:00"
+        cq:lastRolledoutBy="admin"
+        jcr:lastModified="{Date}2015-08-26T13:30:19.011+03:00"
+        jcr:lastModifiedBy="admin"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="nt:unstructured"
+        showAddressBookButton="{Boolean}true"
+        parentControllerObject="addressDetailsCtrl.toContactFields"
+        ewfPhoneIdSuffix="to"
+        address3_visible="true"
+        address4_visible="true"
+        address_required="true"
+        checkbox_visible="true"
+        city_required="true"
+        country_required="false"
+        country_visible="true"
+        postal_code_required="true"
+        province_required="false"
+        state_required="false"
+        isZipAndCityAutocompleteEnabled="{Boolean}true"
+        zip_code_required="true"
+        showNickNameField="{Boolean}false">
+        <addressbook
+            jcr:primaryType="nt:unstructured"
+            addressBookAttributes="is-popup='true' on-selection='addressDetailsCtrl.addressBookSelected($selection, addressDetailsCtrl.TO); addressCtrl.showPopup = false'">
+            <search
+                jcr:primaryType="nt:unstructured"
+                searchAttributes="on-search='addressBookCtrl.handleSearch($data)'"
+                showAddressBook="{Boolean}false"
+                showAhead="{Boolean}true"
+                showFavoritesTo="{Boolean}true"
+                showCategory="{Boolean}true"
+                showSearchButton="{Boolean}true" />
+        </addressbook>
+    </toAddress>
+    <toPhone
+        cq:lastRolledout="{Date}2015-08-26T13:30:19.014+03:00"
+        cq:lastRolledoutBy="admin"
+        jcr:lastModified="{Date}2015-08-26T13:30:19.013+03:00"
+        jcr:lastModifiedBy="admin"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="nt:unstructured"
+        parentControllerObject="addressDetailsCtrl.toContactFields"
+        ewfPhoneIdSuffix="to"
+        ewfPhoneFormName=""
+        countryCodePlaceholder="000"
+        extPlaceholder="Ext"
+        numberPlaceholder="(___) ___-____"
+        phoneNumberMask="(999) 999-9999"
+        showFaxField="{Boolean}false" />
+</jcr:root>

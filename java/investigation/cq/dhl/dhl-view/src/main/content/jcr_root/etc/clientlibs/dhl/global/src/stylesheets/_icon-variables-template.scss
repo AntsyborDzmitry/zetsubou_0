@@ -1,0 +1,9 @@
+// Icon font settings
+$FONT_PATH: '<%= fontPath %>';
+$FONT_NAME: '<%= fontName %>';
+$ICONS_CLASS: '<%= cssClass%>';
+
+//Icon font varibles
+$FONT_ICONS: (<% _.each(glyphs, function(glyph) { %>
+    <%= glyph.fileName %>: <%= glyph.codePoint %>,<% });%>
+);

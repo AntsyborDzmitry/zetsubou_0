@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.sling:org.apache.sling.i18n:2.2.1-R1243488">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/sling/org.apache.sling.i18n/2.2.1-R1243488/org.apache.sling.i18n-2.2.1-R1243488.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/sling/org.apache.sling.i18n/2.2.1-R1243488/org.apache.sling.i18n-2.2.1-R1243488-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/sling/org.apache.sling.i18n/2.2.1-R1243488/org.apache.sling.i18n-2.2.1-R1243488-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

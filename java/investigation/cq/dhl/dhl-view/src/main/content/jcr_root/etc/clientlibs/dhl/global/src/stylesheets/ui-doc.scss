@@ -1,0 +1,182 @@
+// All constants(varibles)
+@import 'variables';
+
+// Mixins
+@import 'mixins/all';
+@import 'ui-doc/github';
+
+.ui-doc {
+    padding-top: 0;
+
+    .header {
+        position: static;
+    }
+
+    &__content {
+        @include clearfix;
+
+        float: left;
+        width: $CONTAINER_DESKTOP;
+        margin-left: 200px;
+    }
+
+    &__nav {
+        width: 170px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: auto;
+        margin-top: 80px;
+    }
+
+    .top-nav {
+        margin-left: 200px;
+    }
+
+    .main {
+         @include clearfix;
+    }
+
+    .example-table {
+        border-collapse: separate;
+        border-spacing: 1px;
+        width: 100%;
+        background: #999;
+
+        td {
+            background: #fff;
+        }
+    }
+
+    .grid-example {
+        height: 50px;
+        background: $COLOR_GRAY_5;
+        border: 1px solid #999;
+        margin-bottom: 10px;
+    }
+
+    code.class {
+        color: #d14;
+        background: #f8f8f8;
+    }
+
+    .the-icons {
+        padding: 5px 0;
+        color: $COLOR_GRAY_1;
+
+        i {
+            font-size: 30px;
+        }
+    }
+
+    .style-guide-callout {
+        text-align: center;
+        color: rgba(0,0,0,.4);
+        font-size: .9em;
+
+        &:before,
+        &:after {
+            display: block;
+            content: '';
+        }
+
+        &.right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 100%;
+            margin-left: 10px;
+
+            &:before {
+                width: 10px;
+                height: 100%;
+                margin: 0 10px 0 0;
+                border: 1px solid rgba(0,0,0,.2);
+                border-left: 0;
+            }
+            &:after {
+                position: absolute;
+                top: 50%;
+                left: 20px;
+                margin-top: -.5em;
+                content: attr(data-title);
+                text-align: left;
+            }
+        }
+    }
+}
+
+.ui-for-refactoring {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p,
+    li {
+        background: #fffdc4;
+    }
+
+    p {
+        margin: 0 0 20px;
+    }
+
+
+
+    .text-block {
+        line-height: 1.5;
+
+        p,
+        ol,
+        ul {
+            margin: 1em 0;
+        }
+
+        ol,
+        ul {
+            li {
+                margin: 0.5em 0;
+            }
+        }
+
+        h1,
+        h2 {
+            margin: 2em 0 0.75em;
+        }
+
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 1em 0;
+        }
+
+        & > *:first-child {
+            margin-top: 0;
+        }
+
+        & > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .sub-area {
+        margin-bottom: 40px;
+        background: #ccfaff;
+
+        &__title {
+            margin: 0 0 10px;
+            //@extend .h3;
+            font-size: 18px;
+        }
+    }
+    .area__content .sub-area:last-child {
+        margin-bottom: 0;
+    }
+
+    .area__footer {
+        margin-top: 20px;
+    }
+}

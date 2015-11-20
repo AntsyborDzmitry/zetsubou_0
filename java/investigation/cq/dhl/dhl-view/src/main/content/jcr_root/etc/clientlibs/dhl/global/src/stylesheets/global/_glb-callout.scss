@@ -1,0 +1,155 @@
+.callout {
+    position: relative;
+    // Two margins for using .callout with .col-$
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 15px;
+    text-align: left;
+    border: 1px solid $COLOR_GRAY_5;
+    background: #fff;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    > *:first-child {
+        margin-top: 0;
+    }
+    > *:last-child {
+        margin-bottom: 0;
+    }
+
+    &_alert {
+        border: 1px solid $COLOR_DHL_YELLOW;
+    }
+
+    &_carat {
+        &_left,
+        &_right,
+        &_top,
+        &_bottom {
+            &:before,
+            &:after {
+                position: absolute;
+                width: 0;
+                height: 0;
+                content: '';
+                border-style: solid;
+                border-color: transparent;
+            }
+
+            &:before {
+                z-index: 1;
+                border-width: 10px;
+            }
+
+            &:after {
+                z-index: 2;
+                border-width: 9px;
+            }
+        }
+
+        &_left {
+            &:before,
+            &:after {
+                right: 100%;
+            }
+
+            &:before {
+                top: 20px;
+                border-right-color: $COLOR_GRAY_5;
+                border-left: 0;
+            }
+
+            &:after {
+                top: 21px;
+                border-right-color: #fff;
+                border-left: 0;
+            }
+        }
+
+        &_right {
+            &:before,
+            &:after {
+                left: 100%;
+            }
+
+            &:before {
+                top: 20px;
+                border-left-color: $COLOR_GRAY_5;
+                border-right: 0;
+            }
+
+            &:after {
+                top: 21px;
+                border-left-color: #fff;
+                border-right: 0;
+            }
+        }
+
+        &_top {
+            &:before,
+            &:after {
+                bottom: 100%;
+            }
+
+            &:before {
+                left: 20px;
+                border-bottom-color: $COLOR_GRAY_5;
+                border-top: 0;
+            }
+
+            &:after {
+                left: 21px;
+                border-bottom-color: #fff;
+                border-top: 0;
+            }
+        }
+
+        &_bottom {
+            &:before,
+            &:after {
+                top: 100%;
+            }
+
+            &:before {
+                left: 20px;
+                border-top-color: $COLOR_GRAY_5;
+                border-bottom: 0;
+            }
+
+            &:after {
+                left: 21px;
+                border-top-color: #fff;
+                border-bottom: 0;
+            }
+        }
+    }
+
+    &_absolute {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    &__content {
+        @include clearfix;
+
+        > *:first-child {
+            margin-top: 0;
+        }
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__title {
+        margin: 0 0 15px;
+        font-size: 16px;
+    }
+
+    &-holder {
+        position: relative;
+    }
+}

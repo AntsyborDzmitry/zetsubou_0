@@ -1,0 +1,14 @@
+<!--<div class="msg-error" ng-if="ewfFieldErrorsCtrl.errorMessages.length > 0 || (!(ewfFieldErrorsCtrl.validationMessages[ewfFieldErrorsCtrl.fieldName] === undefined) && ewfFieldErrorsCtrl.validationMessages[ewfFieldErrorsCtrl.fieldName].length > 0)">-->
+    <!--<div ng-repeat="errorMessage in ewfFieldErrorsCtrl.errorMessages">-->
+        <!--<span nls="{{errorMessage}}"></span>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; @todo: refactor this temporary hack and merge it with errorMessages &ndash;&gt;-->
+    <!--<div ng-repeat="validationMessage in ewfFieldErrorsCtrl.validationMessages[ewfFieldErrorsCtrl.fieldName]">-->
+        <!--<span nls="{{validationMessage}}"></span>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="msg-error" ng-if="ewfFieldErrorsCtrl.getErrorMessages().length > 0">
+    <div ng-repeat="errorMessage in ewfFieldErrorsCtrl.getErrorMessages() track by $index">
+        <span nls="{{errorMessage}}" nls-bind></span>
+    </div>
+</div>

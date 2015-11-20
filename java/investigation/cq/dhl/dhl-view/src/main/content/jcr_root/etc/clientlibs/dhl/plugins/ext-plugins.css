@@ -1,0 +1,7 @@
+.specificationsTbarUploadButton ~ input[type='file'] {
+	width: 100% !important;
+}
+#CQ .x-grid3-td-col_checkbox.x-grid3-dirty-cell,
+#CQ .x-grid3-td-col_checkbox.x-grid3-cell-selected {
+	background: inherit !important;
+}

@@ -1,0 +1,72 @@
+.dashboard {
+    &__addresses {
+        position: relative;
+    }
+    &__swap {
+        position: absolute;
+        z-index: 100;
+        right: 175px;
+        bottom: -14px;
+    }
+    &__cards {
+        position: relative;
+    }
+    &__card {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 28%;
+        margin: 0 1.5%;
+        padding: $CALLOUT_PADDING;
+        text-align: left;
+        vertical-align: top;
+        color: $COLOR_GRAY_1;
+        border-radius: 4px;
+        background: #fff;
+        box-shadow: 0 0 5px rgba(0,0,0,.1);
+        font-size: 12px;
+
+        > * {
+            &:first-child {
+                margin-top: 0;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &__icon {
+            text-align: center;
+            font-size: 3em;
+            > * {
+                &:before {
+                    margin: 0;
+                }
+            }
+        }
+    }
+    &__arrow {
+        position: absolute;
+        top: 50%;
+        margin-top: -.5em;
+        color: #fff;
+        font-size: 3em;
+        line-height: 1;
+        [class^='dhlicon-'],
+        [class*=' dhlicon-'] {
+            &:before {
+                width: auto;
+                margin: 0;
+                line-height: 1;
+            }
+        }
+        &_left {
+            left: 5px;
+        }
+        &_right {
+            right: 5px;
+        }
+    }
+    #customsInvoiceTemplates &__arrow {
+        color: #189aca;
+    }
+}

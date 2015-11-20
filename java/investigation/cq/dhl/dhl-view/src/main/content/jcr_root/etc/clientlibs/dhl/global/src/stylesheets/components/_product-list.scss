@@ -1,0 +1,47 @@
+.item-attributes-container {
+    clear: left;
+    padding-top: 20px;
+}
+
+.product-list {
+    &__footer {
+        @include clearfix;
+    }
+
+    &__summary {
+        padding: 10px;
+        border: 1px solid $COLOR_GRAY_5;
+
+        .table__sum {
+            padding-left: 20px;
+            text-align: right;
+        }
+    }
+}
+
+.product-item {
+    @include clearfix;
+
+    position: relative;
+    margin-bottom: 5px;
+    padding: 10px;
+    transition: all 0.25s;
+    background-color: $COLOR_GRAY_6;
+
+    .item-attributes-block & {
+        border-left: 30px solid $COLOR_GRAY_5;
+    }
+
+    &__number {
+        width: 30px;
+        text-align: center;
+        position: absolute;
+        left: -30px;
+        color: $COLOR_GRAY_4;
+        font-weight: bold;
+    }
+
+    .input_width_small {
+        width: 90px;
+    }
+}

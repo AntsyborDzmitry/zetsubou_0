@@ -1,0 +1,19 @@
+<div ewf-modal nls-title="shipment.shipment_type_itar_ftr_lookup_title_help">
+    <h4 nls="shipment.shipment_type_itar_ftr_lookup_title_ftr"></h4>
+    <p nls="shipment.shipment_type_itar_ftr_lookup_ftr_definition"></p>
+    <table class="table table_zebra">
+        <thead>
+            <tr>
+                <th nls="shipment.shipment_type_itar_table_ftr_label"></th>
+                <th nls="shipment.shipment_type_itar_table_ftr_explanation_label"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="exemption in itarCtrl.ftrExemptionList">
+                <td>{{exemption.code}}</td>
+                <td nls="{{exemption.description}}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="margin-bottom-none" nls="shipment.shipment_type_itar_ftr_lookup_footnote"></p>
+</div>
