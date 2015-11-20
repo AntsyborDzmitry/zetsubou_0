@@ -1,6 +1,6 @@
 package com.zetsubou_0.documents.poi.builder;
 
-import com.zetsubou_0.documents.poi.api.Style;
+import com.zetsubou_0.documents.poi.api.ExcelStyle;
 import com.zetsubou_0.documents.poi.exception.DocumentException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.*;
@@ -62,7 +62,7 @@ public class ExcelDocumentBuilder {
         return appendCellText(text, null);
     }
 
-    public ExcelDocumentBuilder appendCellText(String text, Style... styles) throws DocumentException {
+    public ExcelDocumentBuilder appendCellText(String text, ExcelStyle... styles) throws DocumentException {
         if (currentCell == null) {
             throw new DocumentException("Cell is null");
         }
@@ -100,15 +100,17 @@ public class ExcelDocumentBuilder {
         this.cellIndex = 0;
     }
 
-    private void applyStyles(String text, Style... styles) {
+    private void applyStyles(String text, ExcelStyle... styles) {
         if (styles == null) {
             string.append(text);
             return;
         }
 
         XSSFFont font = workbook.createFont();
-        for (Style style : styles) {
-            style.applyStyle(font);
+        for (ExcelStyle style : styles) {
+            if (style != null) {
+                style.applyStyle(font);
+            }
         }
 
         int length = string.length();

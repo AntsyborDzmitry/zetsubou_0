@@ -3,9 +3,9 @@ package com.zetsubou_0.documents.poi;
 import com.zetsubou_0.documents.poi.api.ExcelDocumentService;
 import com.zetsubou_0.documents.poi.builder.ExcelDocumentBuilder;
 import com.zetsubou_0.documents.poi.exception.DocumentException;
-import com.zetsubou_0.documents.poi.style.BoldStyle;
-import com.zetsubou_0.documents.poi.style.ItalicStyle;
-import com.zetsubou_0.documents.poi.style.UnderlineStyle;
+import com.zetsubou_0.documents.poi.style.ExcelBoldStyle;
+import com.zetsubou_0.documents.poi.style.ExcelItalicStyle;
+import com.zetsubou_0.documents.poi.style.ExcelUnderlineStyle;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.Row;
@@ -124,9 +124,9 @@ public class Runner {
             ExcelDocumentBuilder builder = new ExcelDocumentBuilder();
             builder.appendSheet(XLSX_SHEET);
             builder.appendRow()
-                    .appendCell().appendCellText("Key", new BoldStyle())
+                    .appendCell().appendCellText("Key", new ExcelBoldStyle())
                     .fillCellString()
-                    .appendCell().appendCellText("Value", new BoldStyle())
+                    .appendCell().appendCellText("Value", new ExcelBoldStyle())
                     .fillCellString();
             builder.appendRow()
                     .appendCell()
@@ -134,7 +134,7 @@ public class Runner {
                         .fillCellString()
                     .appendCell()
                         .appendCellText(SOME)
-                        .appendCellText("bold", new BoldStyle())
+                        .appendCellText("bold", new ExcelBoldStyle())
                         .appendCellText(TEXT)
                         .fillCellString();
             builder.appendRow()
@@ -143,7 +143,7 @@ public class Runner {
                         .fillCellString()
                     .appendCell()
                         .appendCellText(SOME)
-                        .appendCellText("underline", new UnderlineStyle())
+                        .appendCellText("underline", new ExcelUnderlineStyle())
                         .appendCellText(TEXT)
                         .fillCellString();
             builder.appendRow()
@@ -160,7 +160,7 @@ public class Runner {
                         .fillCellString()
                     .appendCell()
                         .appendCellText(SOME)
-                        .appendCellText("italic", new ItalicStyle())
+                        .appendCellText("italic", new ExcelItalicStyle())
                         .appendCellText(TEXT)
                         .fillCellString();
             builder.appendRow()
@@ -176,7 +176,7 @@ public class Runner {
                     .fillCellString()
                     .appendCell()
                     .appendCellText(SOME)
-                    .appendCellText("all styled", new ItalicStyle(), new BoldStyle(), new UnderlineStyle())
+                    .appendCellText("all styled", new ExcelItalicStyle(), new ExcelBoldStyle(), new ExcelUnderlineStyle())
                     .appendCellText(TEXT)
                     .fillCellString();
             service.writeDocument(XLSX_FILE, builder);
