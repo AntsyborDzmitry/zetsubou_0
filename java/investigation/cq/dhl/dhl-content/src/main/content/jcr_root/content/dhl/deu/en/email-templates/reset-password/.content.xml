@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2015-08-03T19:15:18.779+03:00"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2015-08-03T19:15:18.780+03:00"
+        cq:lastRolledoutBy="admin"
+        cq:template="/apps/dhl/templates/email-templates/activation"
+        jcr:buttonName="Reset Password"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Forgot Password"
+        sling:resourceType="dhl/pages/email-templates/dhl-activation"
+        allowedPath="/content(/.*)?">
+        <content
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.778+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.778+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>You are receiving this because you (or someone else) requested the reset of the '$user_id' dhl account.&lt;br>&#xa;&lt;br>&#xa;Please click on the following link, or paste this into your browser to complete the process:&lt;/p>&#xa;"
+            textIsRich="true"/>
+        <content2
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.779+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.778+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>If you received this in error, you can safely ignore it.&lt;br>&lt;/p>&#xa;"
+            textIsRich="true"/>
+        <content3
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.780+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.779+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>You can reply to this message, or email &lt;a href=&quot;mailto:dhl@support.com&quot; adhocenable=&quot;false&quot;>dhl@support.com&lt;/a>&amp;nbsp;if you have questions.&lt;/p>&#xa;"
+            textIsRich="true"/>
+    </jcr:content>
+</jcr:root>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2015-08-03T19:15:18.613+03:00"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2015-08-03T19:15:18.614+03:00"
+        cq:lastRolledoutBy="admin"
+        cq:template="/apps/dhl/templates/email-templates/welcome"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Welcome Account Holder With Proview"
+        sling:resourceType="dhl/pages/email-templates/dhl-welcome"
+        allowedPath="/content(/.*)?">
+        <welcomeStatus
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.603+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.603+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="Registration has successfully been activated"
+            textIsRich="true"/>
+        <userID
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.604+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.604+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="$user_id"
+            textIsRich="true"/>
+        <topLink
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.605+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.604+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="To view this email as a web page, go here"
+            textIsRich="true"/>
+        <headerLink
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.606+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.605+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="Help Center"
+            textIsRich="true"/>
+        <congratTitle
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.607+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.606+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="Congratulations!"
+            textIsRich="true"/>
+        <congratText
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.608+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.607+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="You have successfully registered with DHL online. This email contains important login information and can guide you through the login process online."
+            textIsRich="true"/>
+        <recommendText
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.608+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.608+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="We recommend you keep your login information confidential."
+            textIsRich="true"/>
+        <userDescriprion
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.609+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.609+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="Your DHL Online User ID is:"
+            textIsRich="true"/>
+        <addText
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.610+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.610+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>Start shipping, scheduling pickups, ordering supplies and perform other online functions faster, easier and more efficiently.&lt;/p>&#xa;&lt;p>SAVE 15% ON INTERNATIONAL ONLINE SHIPMENTS&lt;/p>&#xa;"
+            textIsRich="true"/>
+        <addDescription
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.611+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.611+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="As a leader in the International shipping arena, DHL is pleased to offer you a 15% saving on our International Services when you ship online."
+            textIsRich="true"/>
+        <addLink
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.612+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.612+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="Visit us to learn more."
+            textIsRich="true"/>
+        <footerLinks
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.613+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.612+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>&lt;a adhocenable=&quot;false&quot; href=&quot;#&quot;>Terms &amp; Conditions&lt;/a> | &lt;a adhocenable=&quot;false&quot; href=&quot;#&quot;>Privacy &amp; Cookies&lt;/a>&lt;/p>&#xa;"
+            textIsRich="true"/>
+        <footerCopy
+            cq:lastRolledout="{Date}2015-08-03T19:15:18.614+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-08-03T19:15:18.613+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="2015 © Deutsche Post AG"
+            textIsRich="true"/>
+    </jcr:content>
+</jcr:root>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0" name="com.dhl.services.rest.ExcelController">
+    <implementation class="com.dhl.services.rest.ExcelController"/>
+    <service servicefactory="false">
+        <provide interface="javax.servlet.Servlet"/>
+    </service>
+    <property name="sling.servlet.resourceTypes">
+        sling/servlet/default
+    </property>
+    <property name="sling.servlet.selectors">
+        export
+        import
+    </property>
+    <property name="sling.servlet.extensions">
+        xlsx
+    </property>
+    <property name="sling.servlet.methods">
+        POST
+    </property>
+    <property name="service.pid" value="com.dhl.services.rest.ExcelController"/>
+    <reference name="excelDocumentService" interface="com.dhl.services.service.ExcelDocumentService" cardinality="1..1" policy="static" bind="bindExcelDocumentService" unbind="unbindExcelDocumentService"/>
+</scr:component>

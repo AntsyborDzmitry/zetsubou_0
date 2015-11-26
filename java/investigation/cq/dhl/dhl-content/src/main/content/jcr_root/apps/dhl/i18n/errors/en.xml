@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:language="en"
+    jcr:mixinTypes="[mix:language]"
+    jcr:primaryType="sling:Folder"
+    sling:basename="[dhl,errors]">
+    <bad_uploaded_csv_file
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Product Catalog upload failed" />
+    <csv_contains_duplicate_description_records
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="File contains duplicate records" />
+    <csv_reading_error
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Product Catalog upload failed" />
+    <csv_writing_error
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Product Catalog upload failed" />
+    <duplicate_description
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="File contains duplicate records" />
+    <required_column_header_not_found
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="File does not match template" />
+    <account_not_valid
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Account not valid"/>
+    <account_on_credit_stop
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Account on credit Stop"/>
+    <account_is_incorrect
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Entered Account number is not valid"/>
+    <account_is_unauthorized
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Account is unauthorized to use in this transaction"/>
+    <captcha_not_valid
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="You have select wrong picture, please try register again selecting the rign one"/>
+    <email_does_not_exist
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Email does not exist"/>
+    <email_inappropriate_format_message
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Entered email address has inappropriate format"/>
+    <link_invalid
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your link is invalid."/>
+    <link_expired
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your link is expired."/>
+    <max_value_error_message
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Value is more than allowed."/>
+    <pattern_error_message
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Field format is wrong"/>
+    <email_error_message
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Email format is wrong"/>
+    <password_inappropriate_format_message
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Entered password has inappropriate format"/>
+    <passwords_identical
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Current password and new are the same"/>
+    <password_security_format_message
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your password must be a minimum of 8 characters and contain at least 1 uppercase letter, 1 lowercase letter and 1 number. Special characters (e.g. %, $) are recommended."/>
+    <required_field_error_password_is_empty
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Password cannot be blank!"/>
+    <provided_passwords_do_not_match
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Provided passwords do not match or the same as current password"/>
+    <password_identical
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Current Password and Password fields are the same"/>
+    <service_currently_unavailable
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Service is currently unavailable"/>
+    <shipment_account_is_unauthorized
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="You are not authorized to use this account. Kindly contact the account owner"/>
+    <shipment_account_not_import
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="The account used for this shipment is invalid"/>
+    <shipment_account_not_local
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="The account used for this shipment is invalid"/>
+    <shipment_account_not_valid
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="The account used for this shipment is invalid"/>
+    <shipment_account_on_credit_stop
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="The account used for this shipment in credit Stop"/>
+    <shipment_account_white_list
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="The account used for this shipment in white list"/>
+    <shipment_package_details_invalid
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Details invalid"/>
+    <shipment_package_dhl_not_exists
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Package dhl not exist"/>
+    <shipment_service_currently_unavailable
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Shipment service is currently unavailable"/>
+    <shipment_not_found
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Shipment not found"/>
+    <validation_email_already_exists
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Entered email is already registered. Please login. Or use another email for registration"/>
+    <wrong_email
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Wrong email!"/>
+    <your_password_must
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your password must..."/>
+    <user_not_valid
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Entered email is invalid."/>
+    <user_inactive
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your user login has been locked, please contact DHL."/>
+    <captcha_not_valid
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Please redo CAPTCHA"/>
+    <token_empty
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Token empty."/>
+    <body_not_json
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Body not json."/>
+    <json_element_not_found
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Json element not found."/>
+    <user_self_locked
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your user login has been locked, please contact DHL."/>
+    <pending_activation
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your profile have not activated yet."/>
+    <pending_password
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your password have not been created yet."/>
+    <user_locked
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your user login has been locked, please contact DHL."/>
+    <form_field_is_required
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Invalid entry. Mandatory fields are empty. Please fill in the fields, marked with *"/>
+    <required_error_message
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Field is required"/>
+    <reward_card_number_is_incorrect
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Reward card number is incorrect"/>
+    <pattern_error_message
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Entered value has inappropriate format"/>
+    <json_element_not_found_type
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="JSON element not found"/>
+    <json_element_not_found_accountNumber
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="JSON element not found accountNumber"/>
+    <wrong_old_password
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Old password is incorrect"/>
+    <passwords_identical
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Old password and new password are identical"/>
+    <dct_server_error_message
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Internal DCT server error"/>
+    <print_label_cannot_be_rendered
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Label cannot be rendered"/>
+    <print_service_error
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Service error"/>
+    <print_service_receive_waybill
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Can not receive waybill PDF files for printing"/>
+    <print_service_receive_receipt
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Can not receive receipt PDF files for printing"/>
+    <print_service_recieve_invoice
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Can not receive invoice PDF files for printing"/>
+    <tracking_number_receive
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Can not show tracking number"/>
+    <pickup_info_receive
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Can not receive pick up info"/>
+    <wrong_card_number
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Please enter a valid Nectar card number"/>
+    <account_is_inactive
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Provided DHL Account is inactive. Please provide another DHL account."/>
+    <account_credit_is_stopped
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Provided DHL Account has credit issues. Please provide another DHL account."/>
+    <country_not_allow_local_account
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Country doesn’t allowed Local IMP Account"/>
+    <account_country_not_belongs_to_your_country
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Provided Local account does not belong to your country"/>
+    <country_not_allow_non_digit_accounts
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Please provide numeric DHL account"/>
+    <no_shipper_accounts_provided
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="At least one Shipper DHL Account must be saved. Please, provide Shipper account"/>
+    <cannot_remove_selected_default_accounts
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Can not remove selected account(s)"/>
+    <uploaded_file_has_wrong_dimensions
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Invalid Entry. Please, select file with picture size 150 x 120"/>
+    <uploaded_file_type_is_not_supported
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Invalid Entry. Please, select JPG, JPEG, PNG, TIFF"/>
+    <files_number_limit_exceeded
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Maximum allowed number of files has been uploaded"/>
+    <uploaded_file_failed
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="File upload is failed"/>
+    <file_size_limit_exceeded
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="File size exceeds the size limitation"/>
+    <uploaded_file_is_null
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="File size is null"/>
+    <signer_name_should_be_filled
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Signer name should be filled"/>
+    <signer_title_should_be_filled
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Signer title should be filled"/>
+    <file_reading_error
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="File reading error"/>
+    <requested_image_not_found
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Requested image not found"/>
+    <signature_must_present
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Signature image should be present"/>
+    <server_error
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Server error"/>
+    <bad_uploaded_csv_file
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Bad uploaded CSV file"/>
+    <csv_contains_duplicate_description_records
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="CSV contains duplicate records"/>
+    <csv_reading_error
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="CSV parsing errors"/>
+    <can_not_be_blank
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Cannot be blank"/>
+    <can_not_be_null
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Cannot be null"/>
+    <max_size_exceeded
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Max size exceeded"/>
+    <invalid_value
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Entered value has inappropriate format"/>
+
+</jcr:root>

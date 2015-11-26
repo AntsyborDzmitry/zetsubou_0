@@ -1,0 +1,6 @@
+com\dhl\taglib\nls\NlsAttrTagTest.class
+com\dhl\taglib\components\RegisterComponentTest.class
+com\dhl\taglib\nls\NlsBaseTest$MockResourceBundle.class
+com\dhl\taglib\nls\NlsBundlesTagTest.class
+com\dhl\taglib\nls\NlsTagTest.class
+com\dhl\taglib\nls\NlsBaseTest.class

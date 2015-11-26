@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/dhl"
+        cq:lastModified="{Date}2015-08-26T13:30:19.013+03:00"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2015-08-26T13:30:19.014+03:00"
+        cq:lastRolledoutBy="admin"
+        cq:tags="[authorization:regular]"
+        cq:template="/apps/dhl/templates/shipment-template"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveSync,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Ship Now"
+        jcr:uuid="f82d92b1-9352-46c4-ad81-4027e8dfb9a1"
+        sling:resourceType="dhl/pages/dhl-generic-page">
+        <content
+            cq:lastRolledout="{Date}2015-08-26T13:30:18.984+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <form
+                cq:lastRolledout="{Date}2015-08-26T13:30:18.989+03:00"
+                cq:lastRolledoutBy="admin"
+                jcr:created="{Date}2015-02-04T15:39:29.211+02:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2015-08-26T13:30:18.988+03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/dynamic-form"
+                flow="/etc/clientlibs/dhl/global/apps/shipment/shipment.js"/>
+            <shipment
+                    jcr:created="{Date}2015-07-28T10:54:51.762+03:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2015-07-28T10:54:51.762+03:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/dhl-shipment">
+                <address-step jcr:primaryType="nt:unstructured">
+                    <fromAddress
+                        cq:lastRolledout="{Date}2015-08-26T13:30:19.002+03:00"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2015-08-26T13:30:19.001+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceSuperType="foundation/components/form/defaults/field"
+                        sling:resourceType="dhl/components/addressbook/dhl-address"
+                        showAddressBookButton="{Boolean}true"
+                        parentControllerObject="addressDetailsCtrl.fromContactFields"
+                        ewfPhoneIdSuffix="from"
+                        address3_visible="true"
+                        address4_visible="true"
+                        address_required="true"
+                        checkbox_visible="true"
+                        city_required="true"
+                        country_required="false"
+                        country_visible="true"
+                        postal_code_required="true"
+                        province_required="false"
+                        state_required="false"
+                        isZipAndCityAutocompleteEnabled="{Boolean}true"
+                        zip_code_required="true"
+                        showNickNameField="{Boolean}false"
+                        showAheadFrom="true">
+                        <addressbook
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/addressbook/dhl-address-book"
+                            addressBookAttributes="is-popup='true' on-selection='addressDetailsCtrl.addressBookSelected($selection, addressDetailsCtrl.FROM); addressCtrl.showPopup = false'"
+                            showFavoritesFrom="true"
+                            paginationSize="{Long}25"
+                            showPaginationSpan="{Boolean}false">
+                            <search
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/form/dhl-search"
+                                searchAttributes="on-search='addressBookCtrl.handleSearch($data)'"
+                                showAddressBook="{Boolean}false"
+                                showAhead="{Boolean}true"
+                                showFavoritesFrom="{Boolean}true"
+                                showCategory="{Boolean}true"
+                                showSearchButton="{Boolean}true" />
+                        </addressbook>
+                    </fromAddress>
+                    <fromPhone
+                        cq:lastRolledout="{Date}2015-08-26T13:30:19.004+03:00"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2015-08-26T13:30:19.003+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceSuperType="foundation/components/form/defaults/field"
+                        sling:resourceType="dhl/components/addressbook/dhl-phone-component"
+                        parentControllerObject="addressDetailsCtrl.fromContactFields"
+                        ewfPhoneIdSuffix="from"
+                        ewfPhoneFormName=""
+                        countryCodePlaceholder="000"
+                        extPlaceholder="Ext"
+                        numberPlaceholder="(___) ___-____"
+                        phoneNumberMask="(999) 999-9999"
+                        phone_number_required="{Boolean}true"
+                        smsLabel="SMS enabled"
+                        showFaxField="{Boolean}false" />
+                    <toAddress
+                        cq:lastRolledout="{Date}2015-08-26T13:30:19.012+03:00"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2015-08-26T13:30:19.011+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceSuperType="foundation/components/form/defaults/field"
+                        sling:resourceType="dhl/components/addressbook/dhl-address"
+                        showAddressBookButton="{Boolean}true"
+                        parentControllerObject="addressDetailsCtrl.toContactFields"
+                        ewfPhoneIdSuffix="to"
+                        address3_visible="true"
+                        address4_visible="true"
+                        address_required="true"
+                        checkbox_visible="true"
+                        city_required="true"
+                        country_required="false"
+                        country_visible="true"
+                        postal_code_required="true"
+                        province_required="false"
+                        state_required="false"
+                        isZipAndCityAutocompleteEnabled="{Boolean}true"
+                        zip_code_required="true"
+                        showNickNameField="{Boolean}false"
+                        showAheadTo="true">
+                        <addressbook
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/addressbook/dhl-address-book"
+                            addressBookAttributes="is-popup='true' on-selection='addressDetailsCtrl.addressBookSelected($selection, addressDetailsCtrl.TO); addressCtrl.showPopup = false'"
+                            paginationSize="{Long}25"
+                            showPaginationSpan="{Boolean}false">
+                            <search
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/form/dhl-search"
+                                searchAttributes="on-search='addressBookCtrl.handleSearch($data)'"
+                                showAddressBook="{Boolean}false"
+                                showAhead="{Boolean}true"
+                                showFavoritesTo="{Boolean}true"
+                                showCategory="{Boolean}true"
+                                showSearchButton="{Boolean}true" />
+                        </addressbook>
+                    </toAddress>
+                    <toPhone
+                        cq:lastRolledout="{Date}2015-08-26T13:30:19.014+03:00"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2015-08-26T13:30:19.013+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceSuperType="foundation/components/form/defaults/field"
+                        sling:resourceType="dhl/components/addressbook/dhl-phone-component"
+                        parentControllerObject="addressDetailsCtrl.toContactFields"
+                        ewfPhoneIdSuffix="to"
+                        ewfPhoneFormName=""
+                        countryCodePlaceholder="000"
+                        extPlaceholder="Ext"
+                        numberPlaceholder="(___) ___-____"
+                        phoneNumberMask="(999) 999-9999"
+                        showFaxField="{Boolean}false" />
+                </address-step>
+                <cost-step jcr:primaryType="nt:unstructured">
+                    <billingAddressBook
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/addressbook/dhl-address-book"
+                        addressBookAttributes="is-popup='true' on-selection='shipmentCostCtrl.addressBookSelected($selection); addressCtrl.showPopup = false'"
+                        showFavoritesFrom="true"
+                        paginationSize="{Long}25"
+                        showPaginationSpan="{Boolean}false">
+                        <search
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/form/dhl-search"
+                            searchAttributes="on-search='addressBookCtrl.handleSearch($data)'"
+                            showAddressBook="{Boolean}false"
+                            showAhead="{Boolean}true"
+                            showFavoritesFrom="{Boolean}true"
+                            showCategory="{Boolean}true"
+                            showSearchButton="{Boolean}true" />
+                    </billingAddressBook>
+                </cost-step>
+                <enhanced-invoice jcr:primaryType="nt:unstructured">
+                    <invoiceContactAddress
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceSuperType="foundation/components/form/defaults/field"
+                        sling:resourceType="dhl/components/addressbook/dhl-address"
+                        showAddressBookButton="{Boolean}true"
+                        parentControllerObject="enhancedInvoiceAddressCtrl.invoice.contactDetails"
+                        ewfPhoneIdSuffix="to"
+                        address3_visible="true"
+                        address4_visible="true"
+                        address_required="true"
+                        checkbox_visible="true"
+                        city_required="true"
+                        country_required="false"
+                        country_visible="true"
+                        postal_code_required="true"
+                        province_required="false"
+                        state_required="false"
+                        isZipAndCityAutocompleteEnabled="{Boolean}true"
+                        zip_code_required="true"
+                        showNickNameField="{Boolean}false"
+                        showAheadTo="true">
+                        <addressbook
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/addressbook/dhl-address-book"
+                            addressBookAttributes="is-popup='true' on-selection='enhancedInvoiceAddressCtrl.addressBookSelected($selection); addressCtrl.showPopup = false'"
+                            paginationSize="{Long}25"
+                            showPaginationSpan="{Boolean}false">
+                            <search
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/form/dhl-search"
+                                searchAttributes="on-search='addressBookCtrl.handleSearch($data)'"
+                                showAddressBook="{Boolean}false"
+                                showAhead="{Boolean}true"
+                                showFavoritesTo="{Boolean}true"
+                                showCategory="{Boolean}true"
+                                showSearchButton="{Boolean}true" />
+                        </addressbook>
+                    </invoiceContactAddress>
+                    <invoiceContactPhone
+                        cq:lastRolledout="{Date}2015-08-26T13:30:19.014+03:00"
+                        cq:lastRolledoutBy="admin"
+                        jcr:lastModified="{Date}2015-08-26T13:30:19.013+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceSuperType="foundation/components/form/defaults/field"
+                        sling:resourceType="dhl/components/addressbook/dhl-phone-component"
+                        parentControllerObject="enhancedInvoiceAddressCtrl.invoice.contactDetails.phone"
+                        ewfPhoneIdSuffix="to"
+                        ewfPhoneFormName=""
+                        countryCodePlaceholder="000"
+                        extPlaceholder="Ext"
+                        numberPlaceholder="(___) ___-____"
+                        phoneNumberMask="(999) 999-9999"
+                        showFaxField="{Boolean}false" />
+                </enhanced-invoice>
+            </shipment>
+        </content>
+        <cq:LiveSyncConfig
+            cq:isDeep="{Boolean}true"
+            cq:master="/content/dhl/master_languages/en/shipment"
+            cq:rolloutConfigs="[/etc/msm/rolloutconfigs/pushonmodify]"
+            jcr:primaryType="cq:LiveSyncConfig"/>
+    </jcr:content>
+</jcr:root>

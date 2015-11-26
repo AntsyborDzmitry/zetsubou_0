@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <dashboard/>
+    <jcr:content
+        cq:designPath="/etc/designs/dhl"
+        cq:lastModified="{Date}2015-03-11T16:41:56.485+02:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/apps/dhl/templates/generic-page-template"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="English"
+        jcr:uuid="00c0626e-885f-44de-bd66-5982b78e1d5c"
+        sling:resourceType="dhl/pages/dhl-generic-page"
+        abbr="en"
+        langName="English">
+        <header
+            jcr:lastModified="{Date}2014-09-18T11:44:47.672+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dhl/components/global/glb-header"
+            menuItems="[{&quot;text&quot;:&quot;Sign In&quot;\,&quot;link&quot;:&quot;/content/dhl/uk/en&quot;\,&quot;type&quot;:&quot;unauthorized&quot;},{&quot;text&quot;:&quot;Register&quot;\,&quot;link&quot;:&quot;/content/dhl/uk/en/registration&quot;\,&quot;type&quot;:&quot;unauthorized&quot;},{&quot;text&quot;:&quot;Ship Now&quot;\,&quot;link&quot;:&quot;/content/dhl/uk/en/shipment&quot;\,&quot;type&quot;:&quot;all&quot;},{&quot;text&quot;:&quot;Get Quote&quot;\,&quot;link&quot;:&quot;/content/dhl/uk/en/quotation&quot;\,&quot;type&quot;:&quot;all&quot;}]"/>
+        <loginContent
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <form
+                jcr:created="{Date}2014-09-12T09:00:01.870+03:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2014-09-12T13:28:51.901+03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/form"
+                path="forms/login"/>
+        </loginContent>
+    </jcr:content>
+    <quotation/>
+    <shipment/>
+    <registration/>
+    <user-profile/>
+    <auth/>
+    <email-templates/>
+    <error/>
+    <forbidden/>
+    <esecure/>
+    <manage-shipments/>
+</jcr:root>

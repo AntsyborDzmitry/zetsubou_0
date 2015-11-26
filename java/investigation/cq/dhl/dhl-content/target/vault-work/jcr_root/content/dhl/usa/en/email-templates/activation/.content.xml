@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2015-07-15T10:57:42.032+03:00"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2015-07-15T10:57:42.033+03:00"
+        cq:lastRolledoutBy="admin"
+        cq:template="/apps/dhl/templates/email-templates/activation"
+        jcr:buttonName="Activate Your Registration"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Activation"
+        sling:resourceType="dhl/pages/email-templates/dhl-activation"
+        allowedPath="/content(/.*)?">
+        <image
+            cq:lastRolledout="{Date}2015-07-15T10:57:42.008+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-07-15T10:57:42.003+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            imageRotate="0"/>
+        <content
+            cq:lastRolledout="{Date}2015-07-15T10:57:42.028+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-07-15T10:57:42.026+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>Thank you for choosing DHL. We look forward to serving you with fast, reliable delivery and exceptional service at the best possible rates.&amp;nbsp;&lt;/p>&#xa;&lt;p>For your convenience, we'd like to offer you a choice in reaching Customer Service with any questions:&lt;/p>&#xa;&lt;p>&amp;nbsp; &amp;nbsp; 1. Visit us at: &lt;a adhocenable=&quot;false&quot; href=&quot;http://www.dhl-usa.com/cs2&quot;>http://www.dhl-usa.com/cs2&lt;/a>.&lt;/p>&#xa;&lt;p>&amp;nbsp; &amp;nbsp; 2. Use a touchtone phone to call DHL Customer Service at 1-800-CALL-DHL (1-800-225-5345).&lt;/p>&#xa;&lt;p>Please do not reply to this email; it is used to send automated emails and is not monitored for responses. Please activate your account by pressing button below.&lt;/p>&#xa;"
+            textIsRich="true"/>
+        <content2
+            cq:lastRolledout="{Date}2015-07-15T10:57:42.030+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-07-15T10:57:42.029+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>We recommend you keep your login information confidential. Your DHL Online User ID is: $user_id&lt;/p>&#xa;&lt;p>*****************************************************************&lt;/p>&#xa;&lt;p>Start shipping, scheduling pickups, ordering supplies and perform other online functions faster, easier and more efficiently.&lt;/p>&#xa;&lt;p>SAVE 15% ON INTERNATIONAL ONLINE SHIPMENTS&lt;/p>&#xa;&lt;p>***********************************************&lt;/p>&#xa;&lt;p>As a leader in the International shipping arena, DHL is pleased to offer you a 15% saving on our International Services when you ship online.&lt;/p>&#xa;"
+            textIsRich="true"/>
+        <content3
+            cq:lastRolledout="{Date}2015-07-15T10:57:42.032+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-07-15T10:57:42.031+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>Visit us at &lt;a adhocenable=&quot;false&quot; href=&quot;http://www.dhl-usa.com/save&quot;>http://www.dhl-usa.com/save&lt;/a> to learn more.&lt;/p>&#xa;"
+            textIsRich="true"/>
+    </jcr:content>
+</jcr:root>

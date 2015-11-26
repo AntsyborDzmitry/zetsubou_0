@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/dhl"
+        cq:lastModified="{Date}2015-08-14T10:11:03.881+03:00"
+        cq:lastModifiedBy="admin"
+        cq:tags="[authorization:regular]"
+        cq:template="/apps/dhl/templates/profile-details-template"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Profile details"
+        sling:resourceType="dhl/pages/dhl-generic-page">
+        <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <profile_details
+                jcr:created="{Date}2015-08-06T15:54:01.608+03:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2015-08-06T15:54:01.608+03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/myprofile/dhl-profile-details">
+                <tabs-container
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="foundation/components/parsys">
+                    <contact-component
+                        jcr:created="{Date}2015-08-14T09:52:36.556+03:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2015-08-14T09:52:36.556+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceSuperType="foundation/components/form/defaults/field"
+                        sling:resourceType="dhl/components/addressbook/dhl-contact-component"
+                        tabName="userDetails"
+                        tabTitle="Update Contact Info"
+                        separateArea="{Boolean}false">
+                        <address
+                            jcr:lastModified="{Date}2015-08-14T10:08:35.564+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceSuperType="foundation/components/form/defaults/field"
+                            sling:resourceType="dhl/components/addressbook/dhl-address"
+                            address_required="true"
+                            city_required="true"
+                            postal_code_required="true"
+                            zip_code_required="true"
+                            isZipAndCityAutocompleteEnabled="{Boolean}false"
+                            showAddressBookButton="{Boolean}false"
+                            showNickNameField="{Boolean}false"
+                            parentControllerObject="contactInfoCtrl.contact.contactDetails"
+                            ewfAddressIdSuffix="preId"/>
+                        <phone
+                            jcr:lastModified="{Date}2015-08-14T10:11:03.879+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceSuperType="foundation/components/form/defaults/field"
+                            sling:resourceType="dhl/components/addressbook/dhl-phone-component"
+                            countryCodePlaceholder="1"
+                            default="office"
+                            extPlaceholder="Ext"
+                            numberPlaceholder="(___) ___-____"
+                            phoneNumberMask="(999) 999-9999"
+                            parentControllerObject="contactInfoCtrl.contact.contactDetails"
+                            ewfPhoneIdSuffix="phone"
+                            ewfPhoneFormName="contactDetails"
+                            showFaxField="{Boolean}true"/>
+                    </contact-component>
+                    <profile_password
+                        jcr:created="{Date}2015-08-14T09:53:34.121+03:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2015-08-14T09:53:34.121+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/myprofile/dhl-profile-password"
+                        tabName="passwordUpdate"
+                        tabTitle="Change Password"/>
+                    <profile_quick_links
+                        jcr:created="{Date}2015-08-14T09:58:34.818+03:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2015-08-14T09:58:34.818+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/myprofile/dhl-profile-quick-links"
+                        tabName="manageLinks"
+                        tabTitle="Manage Quick Links"/>
+                    <profile_rewards
+                        jcr:created="{Date}2015-08-14T09:59:04.778+03:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2015-08-14T09:59:04.778+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/myprofile/dhl-profile-rewards"
+                        tabName="rewardProgram"
+                        tabTitle="Manage Rewards Cards"/>
+                </tabs-container>
+            </profile_details>
+        </content>
+    </jcr:content>
+</jcr:root>

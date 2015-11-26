@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/dhl"
+        cq:lastModified="{Date}2015-03-11T16:47:42.318+02:00"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2015-03-11T16:47:42.319+02:00"
+        cq:lastRolledoutBy="admin"
+        cq:template="/apps/dhl/templates/generic-page-template"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Registration"
+        jcr:uuid="37b8cd33-58bf-481d-ba9a-1c28927dee2a"
+        sling:resourceType="dhl/pages/dhl-generic-page">
+        <content
+            cq:lastRolledout="{Date}2015-03-11T16:47:42.314+02:00"
+            cq:lastRolledoutBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <registration
+                cq:lastRolledout="{Date}2015-03-11T16:47:42.318+02:00"
+                cq:lastRolledoutBy="admin"
+                jcr:created="{Date}2015-02-23T11:24:47.751+02:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2015-03-11T16:47:42.318+02:00"
+                jcr:lastModifiedBy="admin"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/auth/dhl-registration"/>
+        </content>
+    </jcr:content>
+</jcr:root>

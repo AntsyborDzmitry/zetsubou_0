@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0" name="com.dhl.services.service.HttpServiceImpl">
+    <implementation class="com.dhl.services.service.HttpServiceImpl"/>
+    <service servicefactory="false">
+        <provide interface="com.dhl.services.service.HttpService"/>
+    </service>
+    <property name="service.pid" value="com.dhl.services.service.HttpServiceImpl"/>
+</scr:component>

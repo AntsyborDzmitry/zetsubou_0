@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.0.0" localization="OSGI-INF/metatype/com.dhl.services.config.PlayConfiguration">
+    <OCD id="com.dhl.services.config.PlayConfiguration" name="%com.dhl.services.config.PlayConfiguration.name" description="%com.dhl.services.config.PlayConfiguration.description">
+        <AD id="play.host" type="String" default="localhost" name="%com.dhl.services.config.PlayConfiguration.play.host.name" description="%com.dhl.services.config.PlayConfiguration.play.host.description"/>
+        <AD id="play.port" type="String" default="9000" name="%com.dhl.services.config.PlayConfiguration.play.port.name" description="%com.dhl.services.config.PlayConfiguration.play.port.description"/>
+    </OCD>
+    <Designate pid="com.dhl.services.config.PlayConfiguration">
+        <Object ocdref="com.dhl.services.config.PlayConfiguration"/>
+    </Designate>
+</metatype:MetaData>

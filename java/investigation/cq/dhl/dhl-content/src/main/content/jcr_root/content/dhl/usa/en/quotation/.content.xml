@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/dhl"
+        cq:lastModified="{Date}2015-03-11T16:46:53.663+02:00"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2015-03-11T16:46:53.663+02:00"
+        cq:lastRolledoutBy="admin"
+        cq:template="/apps/dhl/templates/generic-page-template"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Quotation"
+        jcr:uuid="a6ef2311-51e3-4ef6-8c32-0d7145982c2b"
+        sling:resourceType="dhl/pages/dhl-generic-page">
+        <content
+            cq:lastRolledout="{Date}2015-03-11T16:46:53.659+02:00"
+            cq:lastRolledoutBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <form
+                cq:lastRolledout="{Date}2015-03-11T16:46:53.662+02:00"
+                cq:lastRolledoutBy="admin"
+                jcr:created="{Date}2014-09-12T11:30:48.362+03:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2015-03-11T16:46:53.661+02:00"
+                jcr:lastModifiedBy="admin"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/dynamic-form"
+                flow="/etc/clientlibs/dhl/global/apps/quotation/quotation.js"
+                path="quotation_form"/>
+        </content>
+    </jcr:content>
+</jcr:root>

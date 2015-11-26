@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/dhl"
+        cq:lastModified="{Date}2015-07-15T17:12:40.094+03:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/apps/dhl/templates/page-container-template"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Email Templates"
+        sling:resourceType="dhl/pages/dhl-page-container"/>
+    <activation/>
+    <create-password/>
+    <reset-password/>
+    <share-shipment/>
+    <welcome-acc-holder-no-proview/>
+    <welcome-acc-holder-proview/>
+    <welcome-acc-request/>
+    <welcome-no-acc/>
+</jcr:root>

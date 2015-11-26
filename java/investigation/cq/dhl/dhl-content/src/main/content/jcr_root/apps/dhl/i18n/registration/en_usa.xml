@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:language="en_ukr"
+          jcr:mixinTypes="[mix:language]"
+          jcr:primaryType="sling:Folder"
+          sling:basename="[dhl,registration]">
+    <account_add_one_or_more_accounts
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="question_is_user_has_dhl_account ((Question about existence of DHL account for user))"
+        sling:message="Enter one or more DHL account numbers"/>
+    <account_part_continue_button
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Continue"/>
+    <add_account_field_button
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Add another account"/>
+    <change_country_modal_description
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="This will refresh the current page and reset your DHL country preferences."/>
+    <change_country_modal_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Change country"/>
+    <change_country_modal_no_button_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Close without saving"/>
+    <change_country_modal_title
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Change country"/>
+    <change_country_modal_yes_button_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Continue"/>
+    <country_code_format_error
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:message="Invalid Country code format"/>
+    <company_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Company name (Optional)"/>
+    <create_password_block_title
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Create Your Password"/>
+    <dhl_account_block_description
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="With a DHL account, you'll be able to simplify all your shipping needs with DHL's industry leading shipping tools, cutting-edge technology and the most dependable international network in the world."/>
+    <dhl_account_request_checkbox_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Yes, I'd like to request a DHL Account"/>
+    <dhl_account_shipment_address_1_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Address 1"/>
+    <dhl_account_shipment_address_2_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Address 2"/>
+    <dhl_account_shipment_address_city_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="City"/>
+    <dhl_account_shipment_address_company_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Company"/>
+    <dhl_account_shipment_address_country_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Country"/>
+    <dhl_account_shipment_address_state_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="State"/>
+    <dhl_account_shipment_address_zip_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="ZIP"/>
+    <dhl_account_shipment_frequency_select_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="How often do you plan to ship?"/>
+    <dhl_account_shipment_phone_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Phone"/>
+    <dhl_account_shipment_vat_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="VAX (Tax Id)"/>
+    <email_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Email (Will be your username)"/>
+    <ext_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Ext."/>
+    <first_name_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="First Name"/>
+    <general_error_validation
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Some errors on the form"/>
+    <has_account_button_description
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Register with your account to view your preferential rates and bill shipments to your DHL account."/>
+    <last_name_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Last Name"/>
+    <make_account_primary_checkbox_title
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Make primary"/>
+    <marketing_acceptance_checkbox_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="I would like to receive DHL information and promotional offers via email"/>
+    <no_account_button_description
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="No account? No problem! Register and pay by credit card or PayPal."/>
+    <password_input_title
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Password"/>
+    <phone_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Phone number"/>
+    <privacy_cookie_policy_checkbox_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="I accept the DHL Express"/>
+    <re_enter_password_field_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Confirm Password"/>
+    <register_dhl_account_block_title
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Would you like a DHL account for future payments (optional)"/>
+    <account_only_digits_length_10
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="10 digits"/>
+    <account_only_digits_length_5
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="5 digits"/>
+    <continue
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Continue"/>
+    <enter_account_number_title
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Enter any DHL Account Number associated with your personal contact information"/>
+    <error_no_such_account
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="There is no such account!"/>
+    <has_dhl_account_no_answer
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="has_dhl_account_no_answer ((No answer in check box (User does not has DHL account)))"
+        sling:message="No"/>
+    <has_dhl_account_yes_answer
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="has_dhl_account_yes_answer ((Yes answer in checkbox))"
+        sling:message="Yes"/>
+    <head
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="head ((header for registration))"
+        sling:message="Registration"/>
+    <password_capital_letter
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="contains at least one capital letter"/>
+    <password_length_8
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="has length at least 8 chars"/>
+    <password_number
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="contains at least one number"/>
+    <password_small_letter
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="contains at least one non-capital letter"/>
+    <question_is_user_has_dhl_account
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="question_is_user_has_dhl_account ((Question about existence of DHL account for user))"
+        sling:message="Do you have a DHL Account Number?"/>
+    <reguired_message
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Invalid entry. Mandatory fields are empty. Please fill in the fields, marked with *"/>
+    <special_character
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="must contains special character"/>
+    <remove_account_field_button
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Remove"/>
+    <request_account_link_to_details
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="More details about benefits"/>
+    <sms_enabled_checkbox_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="This an SMS (text) enabled phone"/>
+    <term_conditions_section_title
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Agree to Terms and Conditions"/>
+    <terms_and_conditions_checkbox_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="I accept the DHL Express"/>
+    <title_input_label
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Title"/>
+    <validation_email_already_exists
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="User with such email already registered"/>
+    <validation_email_format_invalid
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Email format is incorrect"/>
+    <validation_password_match
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Entered and confirm Password doesn't match"/>
+    <your_info_section_title
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:message="Your information"/>
+</jcr:root>

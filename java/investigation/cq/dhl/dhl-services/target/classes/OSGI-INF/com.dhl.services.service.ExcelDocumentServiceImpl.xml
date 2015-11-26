@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0" name="com.dhl.services.service.ExcelDocumentServiceImpl">
+    <implementation class="com.dhl.services.service.ExcelDocumentServiceImpl"/>
+    <service servicefactory="false">
+        <provide interface="com.dhl.services.service.ExcelDocumentService"/>
+    </service>
+    <property name="service.pid" value="com.dhl.services.service.ExcelDocumentServiceImpl"/>
+    <reference name="slingDao" interface="com.dhl.services.dao.SlingDao" cardinality="1..1" policy="static" bind="bindSlingDao" unbind="unbindSlingDao"/>
+    <reference name="jcrSessionFactory" interface="com.dhl.services.dao.JcrSessionFactory" cardinality="1..1" policy="static" bind="bindJcrSessionFactory" unbind="unbindJcrSessionFactory"/>
+    <reference name="nlsService" interface="com.dhl.services.service.NlsService" cardinality="1..1" policy="static" bind="bindNlsService" unbind="unbindNlsService"/>
+</scr:component>

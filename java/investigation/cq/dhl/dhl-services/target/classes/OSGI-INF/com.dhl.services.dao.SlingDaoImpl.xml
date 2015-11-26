@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0" name="com.dhl.services.dao.SlingDaoImpl">
+    <implementation class="com.dhl.services.dao.SlingDaoImpl"/>
+    <service servicefactory="false">
+        <provide interface="com.dhl.services.dao.SlingDao"/>
+    </service>
+    <property name="service.pid" value="com.dhl.services.dao.SlingDaoImpl"/>
+    <reference name="resolverFactory" interface="org.apache.sling.api.resource.ResourceResolverFactory" cardinality="1..1" policy="static" bind="bindResolverFactory" unbind="unbindResolverFactory"/>
+</scr:component>

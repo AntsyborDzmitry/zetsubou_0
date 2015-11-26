@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0" name="com.dhl.services.security.SecurityValidatorImpl">
+    <implementation class="com.dhl.services.security.SecurityValidatorImpl"/>
+    <service servicefactory="false">
+        <provide interface="com.dhl.services.security.SecurityValidator"/>
+    </service>
+    <property name="service.pid" value="com.dhl.services.security.SecurityValidatorImpl"/>
+    <reference name="playConfiguration" interface="com.dhl.services.config.PlayConfiguration" cardinality="1..1" policy="static" bind="bindPlayConfiguration" unbind="unbindPlayConfiguration"/>
+</scr:component>

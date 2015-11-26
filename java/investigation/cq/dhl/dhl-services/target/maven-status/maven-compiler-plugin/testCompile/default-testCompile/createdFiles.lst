@@ -1,0 +1,10 @@
+com\dhl\services\TestConstants.class
+com\dhl\services\security\SecurityValidatorTest.class
+com\dhl\services\mock\HttpMocks.class
+com\dhl\services\security\HttpServiceTest.class
+com\dhl\services\mock\JcrMocks$1.class
+com\dhl\services\security\SecurityFilterTest.class
+com\dhl\services\mock\JcrMocks.class
+com\dhl\services\service\NlsServiceTest.class
+com\dhl\services\mock\HttpMocks$Builder.class
+com\dhl\services\mock\HttpMocks$1.class

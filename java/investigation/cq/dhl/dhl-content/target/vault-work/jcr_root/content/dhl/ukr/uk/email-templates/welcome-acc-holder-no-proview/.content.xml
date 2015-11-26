@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2015-07-15T10:57:43.411+03:00"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2015-07-15T10:57:43.412+03:00"
+        cq:lastRolledoutBy="admin"
+        cq:template="/apps/dhl/templates/email-templates/welcome"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Welcome Account Holder Without Proview"
+        sling:resourceType="dhl/pages/email-templates/dhl-welcome"
+        allowedPath="/content(/.*)?">
+        <content
+            cq:lastRolledout="{Date}2015-07-15T10:57:43.408+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-07-15T10:57:43.407+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>Congratulations! You have successfully registered with DHL online. This email contains important login information and can guide you through the login process online.&lt;/p>&#xa;&lt;p>Sience you have not have ProView access you will be receiving a PIN for advanced tracking and monitoring.&lt;/p>&#xa;"
+            textIsRich="true"/>
+        <content2
+            cq:lastRolledout="{Date}2015-07-15T10:57:43.410+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-07-15T10:57:43.409+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>We recommend you keep your login information confidential.&lt;/p>&#xa;&lt;p>Your DHL Online User ID is: $user_id&lt;/p>&#xa;&lt;p>*****************************************************************&lt;/p>&#xa;&lt;p>Start shipping, scheduling pickups, ordering supplies and perform other online functions faster, easier and more efficiently.&lt;/p>&#xa;"
+            textIsRich="true"/>
+        <content3
+            cq:lastRolledout="{Date}2015-07-15T10:57:43.412+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:lastModified="{Date}2015-07-15T10:57:43.411+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/text"
+            text="&lt;p>SAVE 15% ON INTERNATIONAL ONLINE SHIPMENTS&lt;/p>&#xa;&lt;p>***********************************************&lt;/p>&#xa;&lt;p>As a leader in the International shipping arena, DHL is pleased to offer you a 15% saving on our International Services when you ship online.&lt;/p>&#xa;&lt;p>Visit us at &lt;a adhocenable=&quot;false&quot; href=&quot;http://www.dhl-usa.com/save&quot;>http://www.dhl-usa.com/save&lt;/a> to learn more.&lt;/p>&#xa;"
+            textIsRich="true"/>
+    </jcr:content>
+</jcr:root>

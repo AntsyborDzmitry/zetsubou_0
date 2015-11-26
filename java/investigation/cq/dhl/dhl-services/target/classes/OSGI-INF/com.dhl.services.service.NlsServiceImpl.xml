@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0" name="com.dhl.services.service.NlsServiceImpl">
+    <implementation class="com.dhl.services.service.NlsServiceImpl"/>
+    <service servicefactory="false">
+        <provide interface="com.dhl.services.service.NlsService"/>
+    </service>
+    <property name="service.pid" value="com.dhl.services.service.NlsServiceImpl"/>
+    <reference name="slingDao" interface="com.dhl.services.dao.SlingDao" cardinality="1..1" policy="static" bind="bindSlingDao" unbind="unbindSlingDao"/>
+</scr:component>

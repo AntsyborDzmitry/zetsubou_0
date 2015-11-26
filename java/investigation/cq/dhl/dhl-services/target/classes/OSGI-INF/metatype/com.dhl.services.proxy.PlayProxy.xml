@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.0.0" localization="OSGI-INF/metatype/com.dhl.services.proxy.PlayProxy">
+    <OCD id="com.dhl.services.proxy.PlayProxy" name="%com.dhl.services.proxy.PlayProxy.name" description="%com.dhl.services.proxy.PlayProxy.description">
+        <AD id="javax.ws.rs" type="Boolean" default="true" name="%com.dhl.services.proxy.PlayProxy.javax.ws.rs.name" description="%com.dhl.services.proxy.PlayProxy.javax.ws.rs.description"/>
+    </OCD>
+    <Designate pid="com.dhl.services.proxy.PlayProxy">
+        <Object ocdref="com.dhl.services.proxy.PlayProxy"/>
+    </Designate>
+</metatype:MetaData>

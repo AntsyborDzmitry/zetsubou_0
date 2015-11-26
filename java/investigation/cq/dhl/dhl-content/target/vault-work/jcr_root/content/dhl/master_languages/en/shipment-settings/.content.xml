@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/dhl"
+        cq:lastModified="{Date}2015-08-20T13:23:46.235+03:00"
+        cq:lastModifiedBy="admin"
+        cq:tags="[authorization:regular]"
+        cq:template="/apps/dhl/templates/generic-page-template"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Shipment Settings"
+        sling:resourceType="dhl/pages/dhl-generic-page">
+        <image
+            jcr:lastModified="{Date}2015-08-20T12:05:09.246+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            imageRotate="0"/>
+        <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <shipment_settings
+                jcr:created="{Date}2015-08-20T13:23:46.234+03:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2015-08-20T13:23:46.234+03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/myprofile/dhl-shipment-settings"/>
+        </content>
+    </jcr:content>
+</jcr:root>

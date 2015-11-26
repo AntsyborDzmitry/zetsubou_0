@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/dhl"
+        cq:lastModified="{Date}2015-07-30T13:51:53.396+03:00"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2015-07-30T13:51:53.397+03:00"
+        cq:lastRolledoutBy="admin"
+        cq:template="/apps/dhl/templates/generic-page-template"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Print"
+        sling:resourceType="dhl/pages/dhl-generic-page">
+        <content
+            cq:lastRolledout="{Date}2015-07-30T13:51:53.393+03:00"
+            cq:lastRolledoutBy="admin"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <technical-demo
+                cq:lastRolledout="{Date}2015-07-30T13:51:53.397+03:00"
+                cq:lastRolledoutBy="admin"
+                jcr:created="{Date}2015-07-30T13:51:53.293+03:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2015-07-30T13:51:53.396+03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/dhl-technical-demo"/>
+        </content>
+    </jcr:content>
+</jcr:root>

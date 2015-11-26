@@ -1,0 +1,280 @@
+diff --git a/play/modules/java/web/app/com/dhl/ewf/myprofile/controller/dto/KeyNameDto.java b/play/modules/java/web/app/com/dhl/ewf/myprofile/controller/dto/KeyNameDto.java
+index e154191..33f83ce 100644
+--- a/play/modules/java/web/app/com/dhl/ewf/myprofile/controller/dto/KeyNameDto.java
++++ b/play/modules/java/web/app/com/dhl/ewf/myprofile/controller/dto/KeyNameDto.java
+@@ -1,11 +1,15 @@
+ package com.dhl.ewf.myprofile.controller.dto;
+ 
++import lombok.AllArgsConstructor;
+ import lombok.Getter;
++import lombok.NoArgsConstructor;
+ import lombok.Setter;
+ import org.hibernate.validator.constraints.NotBlank;
+ 
+ @Getter
+ @Setter
++@AllArgsConstructor
++@NoArgsConstructor
+ public class KeyNameDto {
+     @NotBlank
+     private String key;
+diff --git a/play/modules/java/web/app/com/dhl/ewf/myprofile/controller/dto/MyCustomsClearanceDto.java b/play/modules/java/web/app/com/dhl/ewf/myprofile/controller/dto/MyCustomsClearanceDto.java
+index ab1b564..3f52b77 100644
+--- a/play/modules/java/web/app/com/dhl/ewf/myprofile/controller/dto/MyCustomsClearanceDto.java
++++ b/play/modules/java/web/app/com/dhl/ewf/myprofile/controller/dto/MyCustomsClearanceDto.java
+@@ -1,6 +1,7 @@
+ package com.dhl.ewf.myprofile.controller.dto;
+ 
+ 
++import com.dhl.ewf.myprofile.persistence.entity.UserShipmentDefaults;
+ import lombok.Getter;
+ import lombok.Setter;
+ import org.hibernate.validator.constraints.NotBlank;
+@@ -12,12 +13,7 @@ import java.util.List;
+ @Setter
+ public class MyCustomsClearanceDto {
+ 
+-    public enum InvoiceType {
+-        NEW,
+-        EXISTING
+-    }
+-
+-    private InvoiceType invoiceType;
++    private UserShipmentDefaults.InvoiceType invoiceType;
+     private String selectedShipmentPurpose;
+     private List<KeyNameDto> shipmentPurposes;
+     private String shipmentDescription;
+diff --git a/play/modules/java/web/app/com/dhl/ewf/myprofile/converter/UserShipmentDefaultsConverter.java b/play/modules/java/web/app/com/dhl/ewf/myprofile/converter/UserShipmentDefaultsConverter.java
+index 583e3c4..4329604 100644
+--- a/play/modules/java/web/app/com/dhl/ewf/myprofile/converter/UserShipmentDefaultsConverter.java
++++ b/play/modules/java/web/app/com/dhl/ewf/myprofile/converter/UserShipmentDefaultsConverter.java
+@@ -6,16 +6,13 @@ import com.dhl.ewf.businessdomain.converter.PickupDetailsConverter;
+ import com.dhl.ewf.businessdomain.entity.PickupDetailsEntity;
+ import com.dhl.ewf.businessdomain.entity.PickupDetailsEntity.PickupLocation;
+ import com.dhl.ewf.commons.Som;
+-import com.dhl.ewf.myprofile.controller.dto.MyUnitsAndCurrenciesRequest;
+-import com.dhl.ewf.myprofile.controller.dto.MyUnitsAndCurrenciesResponse;
+-import com.dhl.ewf.myprofile.controller.dto.ShipmentInsuranceDto;
+-import com.dhl.ewf.myprofile.controller.dto.ShipmentPickupDto;
+-import com.dhl.ewf.myprofile.controller.dto.ShipmentReturnDto;
++import com.dhl.ewf.myprofile.controller.dto.*;
+ import com.dhl.ewf.myprofile.model.UserShipmentDefaultProperties;
+ import com.dhl.ewf.myprofile.persistence.entity.UserProfile;
+ import com.dhl.ewf.myprofile.persistence.entity.UserShipmentDefaults;
+ import com.dhl.ewf.myprofile.persistence.entity.UserShipmentDefaults.PickupDefaultType;
+ 
++import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Optional;
+ 
+@@ -177,6 +174,29 @@ public class UserShipmentDefaultsConverter {
+         return myUnitsAndCurrenciesResponse;
+     }
+ 
++    public static MyCustomsClearanceDto toCustomsClearanceFromEntity(final UserShipmentDefaults userShipmentDefaults,
++                                                                     final List<KeyNameDto> incoterms,
++                                                                     final List<KeyNameDto> shipmentPurposes,
++                                                                     final List<String> currencies) {
++        MyCustomsClearanceDto dto = new MyCustomsClearanceDto();
++
++        dto.setIncoterms(Optional.ofNullable(incoterms).orElse(new ArrayList<>()));
++        dto.setShipmentPurposes(Optional.ofNullable(shipmentPurposes).orElse(new ArrayList<>()));
++        dto.setCurrencies(currencies);
++
++        UserShipmentDefaults.CustomsClearance customsClearanceEmbed = userShipmentDefaults.getCustomsClearance();
++        if (customsClearanceEmbed != null) {
++
++            dto.setInvoiceType(customsClearanceEmbed.getInvoiceType());
++            dto.setSelectedCurrency(customsClearanceEmbed.getSelectedCurrency());
++            dto.setSelectedIncoterm(customsClearanceEmbed.getSelectedIncoterm());
++            dto.setSelectedShipmentPurpose(customsClearanceEmbed.getSelectedShipmentPurpose());
++            dto.setShipmentDescription(customsClearanceEmbed.getShipmentDescription());
++            dto.setShipmentValue(customsClearanceEmbed.getShipmentValue());
++        }
++        return dto;
++    }
++
+     public static UserShipmentDefaultProperties toUserShipmentDefaultProperties(final UserShipmentDefaults userShipmentDefaults) {
+         UserShipmentDefaultProperties shipmentDefaultProperties = new UserShipmentDefaultProperties();
+         shipmentDefaultProperties.setDefaultInsurance(toShipmentInsuranceDto(userShipmentDefaults.getDefaultInsurance()));
+diff --git a/play/modules/java/web/app/com/dhl/ewf/myprofile/persistence/entity/UserShipmentDefaults.java b/play/modules/java/web/app/com/dhl/ewf/myprofile/persistence/entity/UserShipmentDefaults.java
+index 9993fc4..7e7dfa8 100644
+--- a/play/modules/java/web/app/com/dhl/ewf/myprofile/persistence/entity/UserShipmentDefaults.java
++++ b/play/modules/java/web/app/com/dhl/ewf/myprofile/persistence/entity/UserShipmentDefaults.java
+@@ -2,6 +2,7 @@ package com.dhl.ewf.myprofile.persistence.entity;
+ 
+ import com.dhl.ewf.commons.Som;
+ import com.dhl.ewf.businessdomain.entity.PickupDetailsEntity;
++import com.dhl.ewf.myprofile.controller.dto.MyCustomsClearanceDto;
+ import lombok.Getter;
+ import lombok.NoArgsConstructor;
+ import lombok.Setter;
+@@ -56,6 +57,9 @@ public class UserShipmentDefaults implements Serializable {
+     private PickupDetailsEntity shipmentPickup;
+ 
+     @Embedded
++    private CustomsClearance customsClearance;
++
++    @Embedded
+     private UnitsAndCurrencies unitsAndCurrencies;
+ 
+     @Getter
+@@ -85,6 +89,12 @@ public class UserShipmentDefaults implements Serializable {
+         CUSTOM_VALUE
+     }
+ 
++    public enum InvoiceType {
++        NONE,
++        NEW,
++        EXISTING
++    }
++
+     @Getter
+     @Setter
+     @NoArgsConstructor
+@@ -117,6 +127,33 @@ public class UserShipmentDefaults implements Serializable {
+     @Setter
+     @NoArgsConstructor
+     @Embeddable
++    public static class CustomsClearance implements Serializable {
++        private static final long serialVersionUID = -3267428222838032936L;
++
++        @Column(name = "CLEARANCE_INVOICE_TYPE")
++        @Enumerated(EnumType.STRING)
++        private InvoiceType invoiceType;
++
++        @Column(name = "CLEARANCE_PURPOSE_KEY")
++        private String selectedShipmentPurpose;
++
++        @Column(name = "CLEARANCE_SHIPMENT_DESCRIPTION")
++        private String shipmentDescription;
++
++        @Column(name = "CLEARANCE_SHIPMENT_VALUE")
++        private Double shipmentValue;
++
++        @Column(name = "CLEARANCE_CURRENCY")
++        private String selectedCurrency;
++
++        @Column(name = "CLEARANCE_INCOTERM_KEY")
++        private String selectedIncoterm;
++    }
++
++    @Getter
++    @Setter
++    @NoArgsConstructor
++    @Embeddable
+     public static class UnitsAndCurrencies implements Serializable {
+         private static final long serialVersionUID = -3267428222838032736L;
+ 
+diff --git a/play/modules/java/web/app/com/dhl/ewf/myprofile/service/impl/UserShipmentDefaultsServiceImpl.java b/play/modules/java/web/app/com/dhl/ewf/myprofile/service/impl/UserShipmentDefaultsServiceImpl.java
+index 2825690..a89ac9b 100644
+--- a/play/modules/java/web/app/com/dhl/ewf/myprofile/service/impl/UserShipmentDefaultsServiceImpl.java
++++ b/play/modules/java/web/app/com/dhl/ewf/myprofile/service/impl/UserShipmentDefaultsServiceImpl.java
+@@ -7,16 +7,7 @@ import com.dhl.ewf.commons.Som;
+ import com.dhl.ewf.framework.promise.SequencedPromise;
+ import com.dhl.ewf.framework.service.PromiseFactory;
+ import com.dhl.ewf.helper.JsonHelper;
+-import com.dhl.ewf.myprofile.controller.dto.ShipmentSavingDto;
+-import com.dhl.ewf.myprofile.controller.dto.ShipmentReturnDto;
+-import com.dhl.ewf.myprofile.controller.dto.ShipmentOptionalDto;
+-import com.dhl.ewf.myprofile.controller.dto.MyUnitsAndCurrenciesResponse;
+-import com.dhl.ewf.myprofile.controller.dto.MyDeliveryOptionsDto;
+-import com.dhl.ewf.myprofile.controller.dto.MyCustomsClearanceDto;
+-import com.dhl.ewf.myprofile.controller.dto.MyUnitsAndCurrenciesRequest;
+-import com.dhl.ewf.myprofile.controller.dto.ShipmentCustomsDto;
+-import com.dhl.ewf.myprofile.controller.dto.ShipmentInsuranceDto;
+-import com.dhl.ewf.myprofile.controller.dto.ShipmentPickupDto;
++import com.dhl.ewf.myprofile.controller.dto.*;
+ import com.dhl.ewf.myprofile.converter.UserShipmentDefaultsConverter;
+ import com.dhl.ewf.myprofile.model.UserShipmentDefaultProperties;
+ import com.dhl.ewf.myprofile.persistence.entity.UserProfile;
+@@ -37,6 +28,7 @@ import play.libs.F.Promise;
+ import play.libs.Json;
+ 
+ import javax.inject.Inject;
++import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+ import java.util.stream.Collectors;
+@@ -233,6 +225,47 @@ public class UserShipmentDefaultsServiceImpl implements UserShipmentDefaultsServ
+         return JsonHelper.readObjectByNodeAsync(jsonNode, MyCustomsClearanceDto.class);
+     }
+ 
++    
++
++    /**
++     * TODO: MOCK! Replace with real call to admin tool (SU)
++     * @return
++     */
++    private Promise<List<KeyNameDto>> getIncotermsConfigurationFromAdt() {
++        return promiseFactory.esbPromise(() -> {
++            List<KeyNameDto> list = new ArrayList<>();
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_incoterm_cip"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_incoterm_cpt"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_incoterm_dap"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_incoterm_dat"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_incoterm_ddp"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_incoterm_exw"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_incoterm_fca"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_select_default"));
++
++            return list;
++        });
++    }
++
++    /**
++     * TODO: MOCK! Replace with real call to admin tool (SU)
++     * @return
++     */
++    private Promise<List<KeyNameDto>> getShipmentConfigurationFromAdt() {
++        return promiseFactory.esbPromise(() -> {
++            List<KeyNameDto> list = new ArrayList<>();
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_purpose_gift"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_purpose_sale"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_purpose_personal"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_purpose_sample"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_purpose_from_repair"));
++            list.add(new KeyNameDto("", "shipment-settings.customs_clearance_purpose_after_repair"));
++
++            return list;
++        });
++    }
++
++
+     @Override
+     public Promise<MyCustomsClearanceDto> updateCustomsClearance(final Long userId,
+                                                                  final MyCustomsClearanceDto myCustomsClearance) {
+diff --git a/play/modules/java/web/conf/evolutions/default/1.sql b/play/modules/java/web/conf/evolutions/default/1.sql
+index 7af0990..9143757 100644
+--- a/play/modules/java/web/conf/evolutions/default/1.sql
++++ b/play/modules/java/web/conf/evolutions/default/1.sql
+@@ -493,6 +493,12 @@ CREATE TABLE "USER_SHIPMENT_DEFAULTS" (
+     "COUNTRY_CODE" VARCHAR2(2),
+     "ZIP_OR_POST_CODE" VARCHAR2(12),
+     "CITY" VARCHAR2(45),
++    "CLEARANCE_INVOICE_TYPE" VARCHAR2(35),
++    "CLEARANCE_PURPOSE_KEY" VARCHAR2(255),
++    "CLEARANCE_SHIPMENT_DESCRIPTION" VARCHAR2(255),
++    "CLEARANCE_SHIPMENT_VALUE" VARCHAR2(255),
++    "CLEARANCE_CURRENCY" VARCHAR2(3),
++    "CLEARANCE_INCOTERM_KEY" VARCHAR2(255),
+     "STATE_OR_PROVINCE" VARCHAR2(35),
+     "PICKUP_LOC_TYPE"  VARCHAR2(255),
+     "PICKUP_LOC_OTHER"  VARCHAR2(255),
+diff --git a/play/modules/java/web/conf/evolutions/oracle/1.sql b/play/modules/java/web/conf/evolutions/oracle/1.sql
+index 26efdee..81ec5e8 100644
+--- a/play/modules/java/web/conf/evolutions/oracle/1.sql
++++ b/play/modules/java/web/conf/evolutions/oracle/1.sql
+@@ -769,6 +769,12 @@ CREATE TABLE "USER_SHIPMENT_DEFAULTS" (
+   "ZIP_OR_POST_CODE" VARCHAR2(12),
+   "CITY" VARCHAR2(45),
+   "STATE_OR_PROVINCE" VARCHAR2(35),
++  "CLEARANCE_INVOICE_TYPE" VARCHAR2(35),
++  "CLEARANCE_PURPOSE_KEY" VARCHAR2(255),
++  "CLEARANCE_SHIPMENT_DESCRIPTION" VARCHAR2(255),
++  "CLEARANCE_SHIPMENT_VALUE" VARCHAR2(255),
++  "CLEARANCE_CURRENCY" VARCHAR2(3),
++  "CLEARANCE_INCOTERM_KEY" VARCHAR2(255),
+   "PICKUP_LOC_TYPE"  VARCHAR2(255),
+   "PICKUP_LOC_OTHER"  VARCHAR2(255),
+   "PICKUP_INSTRUCTIONS" VARCHAR2(255),
