@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.dhl.components.helper.UrlParserTest
--------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.083 sec - in com.dhl.components.helper.UrlParserTest

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<workspaceFilter version="1.0">
-    <filter root="/apps/cq/i18n/translator/*" mode="update"/>
-    <filter root="/apps/cq/i18n/translator/html.jsp" mode="update"/>
-    <filter root="/apps/cq/i18n/translator/js/versions.js" mode="update"/>
-    <filter root="/apps/cq/i18n/translator/js/VersionDialog.js" mode="update"/>
-</workspaceFilter>

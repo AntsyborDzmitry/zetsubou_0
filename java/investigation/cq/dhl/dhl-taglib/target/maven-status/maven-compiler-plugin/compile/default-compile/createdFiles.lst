@@ -1,7 +1,0 @@
-com\dhl\taglib\nls\NlsAttrTag.class
-com\dhl\taglib\util\HtmlConst.class
-com\dhl\taglib\osgi\Activator.class
-com\dhl\taglib\components\RegisterComponent.class
-com\dhl\taglib\nls\NlsBundlesTag.class
-com\dhl\taglib\nls\NlsConstants.class
-com\dhl\taglib\nls\NlsTag.class

@@ -1,4 +1,0 @@
-#base=js
-
-fileUploadField.js
-checkColumn.js

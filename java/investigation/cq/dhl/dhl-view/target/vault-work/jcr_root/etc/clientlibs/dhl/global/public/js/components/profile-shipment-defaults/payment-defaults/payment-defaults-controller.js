@@ -1,8 +1,0 @@
-define(["exports", "module"], function (exports, module) {
-  "use strict";
-
-  module.exports = CustomClearanceController;
-
-  function CustomClearanceController() {}
-});
-//# sourceMappingURL=payment-defaults-controller.js.map

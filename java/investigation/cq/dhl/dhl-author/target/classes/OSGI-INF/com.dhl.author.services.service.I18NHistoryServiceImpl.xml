@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0" name="com.dhl.author.services.service.I18NHistoryServiceImpl">
-    <implementation class="com.dhl.author.services.service.I18NHistoryServiceImpl"/>
-    <service servicefactory="false">
-        <provide interface="com.dhl.author.services.service.I18NHistoryService"/>
-    </service>
-    <property name="service.pid" value="com.dhl.author.services.service.I18NHistoryServiceImpl"/>
-    <reference name="repository" interface="org.apache.sling.jcr.api.SlingRepository" cardinality="1..1" policy="static" bind="bindRepository" unbind="unbindRepository"/>
-</scr:component>

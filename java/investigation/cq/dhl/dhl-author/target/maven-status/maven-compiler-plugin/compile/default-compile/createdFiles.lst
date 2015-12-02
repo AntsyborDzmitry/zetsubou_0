@@ -1,7 +1,0 @@
-com\dhl\author\services\rest\NlsAuthorController.class
-com\dhl\author\services\service\I18NHistoryService.class
-com\dhl\author\model\DictionaryVersion$Entry.class
-com\dhl\author\services\rest\I18HistoryController.class
-com\dhl\author\services\service\I18NHistoryServiceImpl.class
-com\dhl\author\osgi\Activator.class
-com\dhl\author\model\DictionaryVersion.class
