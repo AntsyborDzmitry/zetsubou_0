@@ -9,9 +9,11 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,6 +25,7 @@ import static org.mockito.Mockito.*;
 /**
  * Created by Kiryl_Lutsyk on 12/2/2015.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class PersonServiceTest {
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
@@ -42,7 +45,7 @@ public class PersonServiceTest {
 
     @Before
     public void setupGeneralBehavior() {
-        MockitoAnnotations.initMocks(this);
+//        MockitoAnnotations.initMocks(this);
 
         personResource1 = mock(Resource.class);
         person1 = new Person(FIRST_NAME, LAST_NAME);
