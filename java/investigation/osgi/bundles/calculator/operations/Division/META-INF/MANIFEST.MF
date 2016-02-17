@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Built-By: Kiryl_Lutsyk
+Build-Jdk: 1.7.0_60
+Operation-name: +
+Operation-base-class: com.zetsubou_0.osgi.api.Operation
+Operation-class: com.zetsubou_0.osgi.operation.add.Add
+Operation-rank: 10
+Bundle-ManifestVersion: 2
+Bundle-Name: Add command
+Bundle-SymbolicName: com.zetsubou_0.osgi.operation.add
+Bundle-Version: 1.0.10
+Import-Package: com.zetsubou_0.osgi.api
