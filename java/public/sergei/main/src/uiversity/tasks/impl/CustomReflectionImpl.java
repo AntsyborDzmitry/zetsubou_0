@@ -39,7 +39,7 @@ public class CustomReflectionImpl implements CustomReflection {
     }
 
     @Override
-    public <T> List<String> methods(final T instance) {
+    public List<String> methods(final Object instance) {
         List<String> methods = new LinkedList<>();
         Class cl = instance.getClass();
         for (Method method : cl.getDeclaredMethods()) {
@@ -49,7 +49,7 @@ public class CustomReflectionImpl implements CustomReflection {
     }
 
     @Override
-    public <T> Object invoke(final T instance, final String methodName,
+    public Object invoke(final Object instance, final String methodName,
                              final Class[] types, final Object[] arguments) throws Exception {
         Class<?> cl = instance.getClass();
         Method method =cl.getMethod(methodName, types);
@@ -64,6 +64,7 @@ public class CustomReflectionImpl implements CustomReflection {
         for (Method method : methods) {
             String modifiers = Modifier.toString(method.getModifiers());
             StringBuilder methodString = new StringBuilder();
+            methodString.append("\t");
             methodString.append(modifiers);
             methodString.append(" ");
             methodString.append(method.getName());
@@ -84,6 +85,7 @@ public class CustomReflectionImpl implements CustomReflection {
             methodString.append(");");
             lines.add(methodString.toString());
         }
+        lines.add("");
     }
 
     private void appendConstructorInfo(final Class cl, final List<String> lines) {
@@ -91,6 +93,7 @@ public class CustomReflectionImpl implements CustomReflection {
         for (Constructor constructor : constructors) {
             String modifiers = Modifier.toString(constructor.getModifiers());
             StringBuilder constructorString = new StringBuilder();
+            constructorString.append("\t");
             constructorString.append(modifiers);
             constructorString.append(" ");
             constructorString.append(constructor.getName());
@@ -111,14 +114,16 @@ public class CustomReflectionImpl implements CustomReflection {
             constructorString.append(");");
             lines.add(constructorString.toString());
         }
+        lines.add("");
     }
 
     private void appendFieldInfo(final Class cl, final List<String> lines) {
         Field[] fields = cl.getDeclaredFields();
         for (Field field : fields) {
             String modifiers = Modifier.toString(field.getModifiers());
-            lines.add(modifiers + " " + field.getAnnotatedType().getType().getTypeName()
+            lines.add("\t" + modifiers + " " + field.getAnnotatedType().getType().getTypeName()
                     + " " + field.getName() + ";");
         }
+        lines.add("");
     }
 }

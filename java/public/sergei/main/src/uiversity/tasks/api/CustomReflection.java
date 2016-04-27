@@ -9,7 +9,7 @@ public interface CustomReflection {
 
     void createFile(String className) throws ClassNotFoundException, IOException;
 
-    <T extends Object> List<String> methods(T instance);
+    List<String> methods(Object instance);
 
-    <T extends Object> Object invoke(T instance, String methodName, Class[] types, Object[] arguments) throws Exception;
+    Object invoke(Object instance, String methodName, Class[] types, Object[] arguments) throws Exception;
 }
