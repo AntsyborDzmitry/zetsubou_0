@@ -3,10 +3,14 @@ package uiversity.tasks;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Task3 {
 
@@ -30,7 +34,8 @@ public class Task3 {
             return;
         }
 
-        Map<Integer, String> matrix = new TreeMap<>();
+        List<String> matrix = new ArrayList<>();
+        MaxMin maxMin = new MaxMin();
         while (matrixReader.hasNextLine()) {
             String line = matrixReader.nextLine();
             Scanner integerLine = new Scanner(line);
@@ -38,42 +43,55 @@ public class Task3 {
             while (integerLine.hasNextInt()) {
                 sum += integerLine.nextInt();
             }
-            matrix.put(sum, line);
+            matrix.add(line);
+            if (sum < maxMin.getMinValue()) {
+                maxMin.setMinIndex(matrix.size() - 1);
+                maxMin.setMinValue(sum);
+            } else if (sum > maxMin.getMaxValue()) {
+                maxMin.setMaxIndex(matrix.size() - 1);
+                maxMin.setMaxValue(sum);
+            }
         }
-
-        System.out.println(createMatrix(matrix));
+        Collections.swap(matrix, maxMin.getMinIndex(), maxMin.getMaxIndex());
+        System.out.println(matrix);
     }
 
     private static void createSpareMatrix() {
-        SpareMatrix matrix = null;
+        SpareMatrix matrix;
         try {
             matrix = SpareMatrix.build(new File(FILE_PATH_COORDINATES));
         } catch (Exception e) {
-            System.err.println("Error occurred while creating matrix.");
+            System.err.println("Error occurred while creating matrix." + e.getMessage());
+            return;
         }
         if (matrix == null) {
             System.err.println("Error occurred while creating matrix.");
             return;
         }
-        int[][] integerMatrix = new int[matrix.getWidth()][matrix.getHeight()];
-        for (Point point : matrix.getNotNullPoints()) {
-
+        Integer[][] integerMatrix = getIntegerMatrix(matrix);
+        List<String> resultMatrix = new ArrayList<>();
+        for (Integer[] anIntegerMatrix : integerMatrix) {
+            List<Integer> row = Arrays.asList(anIntegerMatrix);
+            String matrixLine = row.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(" "));
+            resultMatrix.add(matrixLine);
+        }
+        try {
+            Files.write(Paths.get(FILE_PATH_SPARSE), resultMatrix);
+        } catch (IOException e) {
+            System.err.println("Error occurred while creating result matrix." + e.getMessage());
         }
     }
 
-    private static List<String> createMatrix(final Map<Integer, String> inputMap) {
-        SortedMap<Integer, String> map = new TreeMap<>(inputMap);
-        Integer lastKey = map.lastKey();
-        Integer firstKey = map.firstKey();
-        String firstLine = map.get(lastKey);
-        String lastLine = map.get(firstKey);
-        map.remove(lastKey);
-        map.remove(firstKey);
-        List<String> result = new ArrayList<>();
-        result.add(firstLine);
-        result.addAll(map.values());
-        result.add(lastLine);
-        return result;
+    private static Integer[][] getIntegerMatrix(final SpareMatrix matrix) {
+        Integer[][] integerMatrix = new Integer[matrix.getWidth()][matrix.getHeight()];
+        for (Integer[] row : integerMatrix) {
+            Arrays.fill(row, 0);
+        }
+        matrix.getNotNullPoints().forEach(point ->
+                integerMatrix[(int) point.getX()][(int) point.getY()] = 1);
+        return integerMatrix;
     }
 
     private static final class SpareMatrix {
@@ -90,7 +108,7 @@ public class Task3 {
 
         private SpareMatrix() {}
 
-        public static SpareMatrix build(final File input) throws Exception {
+        private static SpareMatrix build(final File input) throws Exception {
             SpareMatrix matrix = new SpareMatrix();
             Scanner matrixReader = null;
             try {
@@ -103,12 +121,12 @@ public class Task3 {
             }
             while (matrixReader.hasNextLine()) {
                 String line = matrixReader.nextLine();
-                Matcher matcher = COORDINATE_PATTERN.matcher();
+                Matcher matcher = COORDINATE_PATTERN.matcher(line);
                 if (matcher.find()) {
                     int xPosition = Integer.parseInt(matcher.group(1));
                     int yPosition = Integer.parseInt(matcher.group(2));
-                    matrix.width = matrix.width > xPosition ? matrix.width : xPosition;
-                    matrix.height = matrix.height > yPosition ? matrix.height : yPosition;
+                    matrix.width = matrix.width > xPosition + 1 ? matrix.width : xPosition + 1;
+                    matrix.height = matrix.height > yPosition + 1 ? matrix.height : yPosition + 1;
                     matrix.notNullPoints.add(new Point(xPosition, yPosition));
                     continue;
                 }
@@ -117,16 +135,59 @@ public class Task3 {
             return matrix;
         }
 
-        public int getWidth() {
+        private int getWidth() {
             return width;
         }
 
-        public int getHeight() {
+        private int getHeight() {
             return height;
         }
 
-        public List<Point> getNotNullPoints() {
+        private List<Point> getNotNullPoints() {
             return notNullPoints;
+        }
+    }
+
+    private static final class MaxMin {
+
+        private int maxValue = Integer.MIN_VALUE;
+
+        private int maxIndex;
+
+        private int minValue = Integer.MAX_VALUE;
+
+        private int minIndex;
+
+        public int getMaxValue() {
+            return maxValue;
+        }
+
+        public void setMaxValue(final int maxValue) {
+            this.maxValue = maxValue;
+        }
+
+        public int getMaxIndex() {
+            return maxIndex;
+        }
+
+        public void setMaxIndex(final int maxIndex) {
+            this.maxIndex = maxIndex;
+        }
+
+        public int getMinValue() {
+            return minValue;
+        }
+
+        public void setMinValue(final int minValue) {
+            this.minValue = minValue;
+        }
+
+        public int getMinIndex() {
+            return minIndex;
+        }
+
+        public void setMinIndex(final int minIndex) {
+            this.minIndex = minIndex;
         }
     }
 }
