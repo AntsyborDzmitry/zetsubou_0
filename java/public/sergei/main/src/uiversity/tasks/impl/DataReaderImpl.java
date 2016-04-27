@@ -1,5 +1,6 @@
-package uiversity.tasks.model;
+package uiversity.tasks.impl;
 
+import uiversity.tasks.api.DataReader;
 import uiversity.tasks.api.DataRecord;
 import uiversity.tasks.exceptions.DataRecordException;
 import uiversity.tasks.factory.DataRecordFactory;
@@ -10,16 +11,17 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataReader<T extends DataRecord> {
+public class DataReaderImpl<T extends DataRecord> implements DataReader<T> {
+
     private static final String FILE_PATH = "in.txt";
 
     private List<String> records = new ArrayList<>();
 
-    public DataReader() {
+    public DataReaderImpl() {
         try {
             records = Files.readAllLines(Paths.get(FILE_PATH));
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Error occurred while reading file." + e.getMessage());
         }
     }
 
