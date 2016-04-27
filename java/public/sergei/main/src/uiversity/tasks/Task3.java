@@ -80,7 +80,7 @@ public class Task3 {
         try {
             Files.write(Paths.get(FILE_PATH_SPARSE), resultMatrix);
         } catch (IOException e) {
-            System.err.println("Error occurred while creating result matrix." + e.getMessage());
+            System.err.println("Error occurred while creating result matrix file." + e.getMessage());
         }
     }
 
@@ -158,35 +158,35 @@ public class Task3 {
 
         private int minIndex;
 
-        public int getMaxValue() {
+        private int getMaxValue() {
             return maxValue;
         }
 
-        public void setMaxValue(final int maxValue) {
+        private void setMaxValue(final int maxValue) {
             this.maxValue = maxValue;
         }
 
-        public int getMaxIndex() {
+        private int getMaxIndex() {
             return maxIndex;
         }
 
-        public void setMaxIndex(final int maxIndex) {
+        private void setMaxIndex(final int maxIndex) {
             this.maxIndex = maxIndex;
         }
 
-        public int getMinValue() {
+        private int getMinValue() {
             return minValue;
         }
 
-        public void setMinValue(final int minValue) {
+        private void setMinValue(final int minValue) {
             this.minValue = minValue;
         }
 
-        public int getMinIndex() {
+        private int getMinIndex() {
             return minIndex;
         }
 
-        public void setMinIndex(final int minIndex) {
+        private void setMinIndex(final int minIndex) {
             this.minIndex = minIndex;
         }
     }
