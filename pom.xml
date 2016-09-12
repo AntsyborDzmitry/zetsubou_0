@@ -15,7 +15,8 @@
 
         <!--investigation-->
         <module>java/investigation</module>
-        <module>java/investigation/dhl</module>
+        <module>java/investigation/source</module>
+        <module>java/investigation/auto-tests</module>
         <!--OSGI-->
             <!--Calculator-->
             <module>java/investigation/osgi/bundles/calculator/api</module>
