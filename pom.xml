@@ -12,7 +12,6 @@
     <modules>
         <!--aem-->
         <module>java/aem/aem.made</module>
-        <module>java/investigation/cq/cq-testproject</module>
 
         <!--investigation-->
         <module>java/investigation</module>
