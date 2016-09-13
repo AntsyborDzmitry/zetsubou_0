@@ -1,6 +1,7 @@
 import com.vi.ni.autotest.appium.SetUpTest;
 import io.appium.java_client.AppiumDriver;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -30,7 +31,9 @@ public class MyTest {
         WebElement equallButton = driver.findElement(By.id("com.android.calculator2:id/eq"));
         equallButton.click();
 
-
+        WebElement resultWindow = driver.findElement(By.id("com.android.calculator2:id/formula"));
+        String result = resultWindow.getAttribute("text");
+        Assert.assertEquals(11, result);
         System.out.println("Number sum result is : " + result);
 
        // st.shoutDown();

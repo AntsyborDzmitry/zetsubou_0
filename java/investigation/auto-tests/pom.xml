@@ -43,6 +43,20 @@
             <version>3.0</version>
         </dependency>
 
+        <!--HTML-->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+        <!--JSON-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.5</version>
+        </dependency>
+
         <!--Auto-test-->
         <dependency>
             <groupId>org.testng</groupId>
@@ -63,20 +77,6 @@
             <groupId>io.selendroid</groupId>
             <version>0.17.0</version>
             <artifactId>selendroid-client</artifactId>
-        </dependency>
-
-        <!--HTML-->
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.7.2</version>
-        </dependency>
-
-        <!--JSON-->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.5</version>
         </dependency>
 
         <!-- Test dependencies -->
