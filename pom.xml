@@ -52,9 +52,6 @@
 
         <!--public-->
 
-        <!--training-->
-        <module>java/training</module>
-
         <!--application-->
         <module>java/application/animeList</module>
         <module>java/application/mouseMover</module>

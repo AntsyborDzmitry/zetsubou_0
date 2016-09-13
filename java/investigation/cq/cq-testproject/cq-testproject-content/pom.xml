@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.zetsubou_0.cq.testproject</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>cq-testproject</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
