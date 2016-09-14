@@ -1,4 +1,4 @@
-package com.zetsubou_0.servlet;
+package com.zetsubou_0.rest;
 
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.ReferenceCardinality;
@@ -27,7 +27,7 @@ public class TestServler extends SlingAllMethodsServlet {
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-        ResourceBundle resourceBundle = resourceBundleProvider.getResourceBundle("dhl", new Locale("en"));
+        ResourceBundle resourceBundle = resourceBundleProvider.getResourceBundle("ddd", new Locale("en"));
         response.getWriter().write(resourceBundle.getString("common.edit"));
     }
 
