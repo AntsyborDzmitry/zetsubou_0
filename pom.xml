@@ -12,6 +12,7 @@
     <modules>
         <!--aem-->
         <module>java/aem/aem.made</module>
+        <module>java/aem/cqblueprint-test</module>
 
         <!--investigation-->
         <module>java/investigation</module>
