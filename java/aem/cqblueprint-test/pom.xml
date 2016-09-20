@@ -56,6 +56,45 @@
         <module>cqblueprint-test-all</module>
     </modules>
 
+    <repositories>
+        <repository>
+            <id>cqblueprints.releases</id>
+            <name>CQ Blueprints Release Repository</name>
+            <url>http://dev.cqblueprints.com/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>adobe</id>
+            <name>Adobe Repository</name>
+            <url>https://repo.adobe.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>adobe-plugins</id>
+            <name>Adobe Plugin Repository</name>
+            <url>https://repo.adobe.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

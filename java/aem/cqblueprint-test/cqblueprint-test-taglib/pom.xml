@@ -117,30 +117,30 @@
             <!--
                 site plugin for generating tag library docs
             -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <configuration>
-                    <reportPlugins>
-                        <plugin>
-                            <groupId>net.sourceforge.maven-taglib</groupId>
-                            <artifactId>maven-taglib-plugin</artifactId>
-                            <configuration>
-                                <srcDir>${project.build.outputDirectory}/META-INF</srcDir>
-                            </configuration>
-                            <reportSets>
-                                <reportSet>
-                                    <reports>
-                                        <report>tagreference</report>
-                                        <report>taglibdoc</report>
-                                        <report>validate</report>
-                                    </reports>
-                                </reportSet>
-                            </reportSets>
-                        </plugin>
-                    </reportPlugins>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-site-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<reportPlugins>-->
+                        <!--<plugin>-->
+                            <!--<groupId>net.sourceforge.maven-taglib</groupId>-->
+                            <!--<artifactId>maven-taglib-plugin</artifactId>-->
+                            <!--<configuration>-->
+                                <!--<srcDir>${project.build.outputDirectory}/META-INF</srcDir>-->
+                            <!--</configuration>-->
+                            <!--<reportSets>-->
+                                <!--<reportSet>-->
+                                    <!--<reports>-->
+                                        <!--<report>tagreference</report>-->
+                                        <!--<report>taglibdoc</report>-->
+                                        <!--<report>validate</report>-->
+                                    <!--</reports>-->
+                                <!--</reportSet>-->
+                            <!--</reportSets>-->
+                        <!--</plugin>-->
+                    <!--</reportPlugins>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
