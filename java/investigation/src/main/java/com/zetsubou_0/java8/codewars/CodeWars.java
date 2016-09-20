@@ -1,4 +1,4 @@
-package com.zetsubou_0.java8;
+package com.zetsubou_0.java8.codewars;
 
 import java.util.Arrays;
 import java.util.List;
