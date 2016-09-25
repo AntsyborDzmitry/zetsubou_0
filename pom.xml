@@ -15,6 +15,9 @@
         <module>java/aem/cqblueprint-test</module>
         <module>java/aem/aem6</module>
 
+        <!--Games-->
+        <module>java/games/golf-2d</module>
+
         <!--investigation-->
         <module>java/investigation</module>
         <module>java/investigation/source</module>
