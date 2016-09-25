@@ -51,7 +51,7 @@
         <module>cqblueprint-test-view</module>
         <module>cqblueprint-test-services</module>
         <module>cqblueprint-test-config</module>
-        <module>cqblueprint-test-taglib</module>
+        <!--<module>cqblueprint-test-taglib</module>-->
         <module>cqblueprint-test-content</module>
         <module>cqblueprint-test-all</module>
     </modules>
