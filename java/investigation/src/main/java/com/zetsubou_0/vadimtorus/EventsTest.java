@@ -31,7 +31,7 @@ public class EventsTest {
         List<Event> events = new LinkedList<>();
         events.add(new FirstEvent(new IntegerMark10(10), new IntegerMark10(10)));
         events.add(new FirstEvent(new IntegerMark10(2), new IntegerMark10(3)));
-        events.add(new FirstEvent(new IntegerMark10(11), new IntegerMark10(1)));
+        events.add(new FirstEvent(new IntegerMark10(10), new IntegerMark10(1)));
         events.add(new ThirdEvent(new DoubleMark10(8.5), new DoubleMark10(5), true));
         return events;
     }
