@@ -1,6 +1,6 @@
 package com.zetsubou_0.vadimtorus.kiryl.util;
 
-import com.zetsubou_0.vadimtorus.kiryl.eums.FileEventEnum;
+import com.zetsubou_0.vadimtorus.kiryl.eums.FileEventConverterEnum;
 import com.zetsubou_0.vadimtorus.kiryl.event.Event;
 import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
 
@@ -13,11 +13,15 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class EvetFileReader {
+public class EventFileReader {
 
     private static final Function<String, Event> EVENT_CONVERTER = str -> {
-        FileEventEnum fileEventEnum = FileEventEnum.fromFileRecord(str);
-        return event;
+        FileEventConverterEnum fileEventConverter = FileEventConverterEnum.fromFileRecord(str);
+        try {
+            return fileEventConverter.getEventConverterClass().newInstance().convert(str);
+        } catch (InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException("Error occurred while converting file record to event.", e);
+        }
     };
 
     private static final Predicate<Event> EVENT_FILTER = event -> {
