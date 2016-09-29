@@ -1,8 +1,8 @@
-package com.zetsubou_0.vadimtorus.util;
+package com.zetsubou_0.vadimtorus.kiryl.util;
 
-import com.zetsubou_0.vadimtorus.eums.FileEventEnum;
-import com.zetsubou_0.vadimtorus.event.Event;
-import com.zetsubou_0.vadimtorus.mark.exception.InvalidMarkValueException;
+import com.zetsubou_0.vadimtorus.kiryl.eums.FileEventEnum;
+import com.zetsubou_0.vadimtorus.kiryl.event.Event;
+import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
 
 import java.io.IOException;
 import java.nio.file.Files;

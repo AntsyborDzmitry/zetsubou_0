@@ -1,8 +1,8 @@
-package com.zetsubou_0.vadimtorus.event.impl;
+package com.zetsubou_0.vadimtorus.kiryl.event.impl;
 
-import com.zetsubou_0.vadimtorus.mark.Mark;
-import com.zetsubou_0.vadimtorus.mark.exception.InvalidMarkValueException;
-import com.zetsubou_0.vadimtorus.mark.impl.IntegerMark100;
+import com.zetsubou_0.vadimtorus.kiryl.mark.Mark;
+import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
+import com.zetsubou_0.vadimtorus.kiryl.mark.impl.IntegerMark100;
 
 public class FifthEvent extends AbstractOneExamEvent {
 

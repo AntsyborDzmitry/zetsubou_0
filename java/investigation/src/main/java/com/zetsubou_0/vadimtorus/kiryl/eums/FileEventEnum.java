@@ -1,7 +1,7 @@
-package com.zetsubou_0.vadimtorus.eums;
+package com.zetsubou_0.vadimtorus.kiryl.eums;
 
-import com.zetsubou_0.vadimtorus.event.Event;
-import com.zetsubou_0.vadimtorus.event.impl.*;
+import com.zetsubou_0.vadimtorus.kiryl.event.Event;
+import com.zetsubou_0.vadimtorus.kiryl.event.impl.*;
 
 public enum FileEventEnum {
 

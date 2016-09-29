@@ -1,11 +1,11 @@
 package com.zetsubou_0.vadimtorus;
 
-import com.zetsubou_0.vadimtorus.event.Event;
-import com.zetsubou_0.vadimtorus.event.impl.FirstEvent;
-import com.zetsubou_0.vadimtorus.event.impl.ThirdEvent;
-import com.zetsubou_0.vadimtorus.mark.exception.InvalidMarkValueException;
-import com.zetsubou_0.vadimtorus.mark.impl.DoubleMark10;
-import com.zetsubou_0.vadimtorus.mark.impl.IntegerMark10;
+import com.zetsubou_0.vadimtorus.kiryl.event.Event;
+import com.zetsubou_0.vadimtorus.kiryl.event.impl.FirstEvent;
+import com.zetsubou_0.vadimtorus.kiryl.event.impl.ThirdEvent;
+import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
+import com.zetsubou_0.vadimtorus.kiryl.mark.impl.DoubleMark10;
+import com.zetsubou_0.vadimtorus.kiryl.mark.impl.IntegerMark10;
 
 import java.util.LinkedList;
 import java.util.List;

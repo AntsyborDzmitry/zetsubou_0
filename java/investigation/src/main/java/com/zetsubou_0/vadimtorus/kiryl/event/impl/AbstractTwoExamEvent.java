@@ -1,7 +1,7 @@
-package com.zetsubou_0.vadimtorus.event.impl;
+package com.zetsubou_0.vadimtorus.kiryl.event.impl;
 
-import com.zetsubou_0.vadimtorus.event.Event;
-import com.zetsubou_0.vadimtorus.mark.Mark;
+import com.zetsubou_0.vadimtorus.kiryl.event.Event;
+import com.zetsubou_0.vadimtorus.kiryl.mark.Mark;
 
 public abstract class AbstractTwoExamEvent implements Event {
 

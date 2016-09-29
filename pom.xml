@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>java/investigation/dhl/json-converter</module>
         <!--aem-->
         <module>java/aem/aem.made</module>
         <module>java/aem/cqblueprint-test</module>

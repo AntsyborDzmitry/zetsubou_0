@@ -1,6 +1,6 @@
-package com.zetsubou_0.vadimtorus.mark.impl;
+package com.zetsubou_0.vadimtorus.kiryl.mark.impl;
 
-import com.zetsubou_0.vadimtorus.mark.exception.InvalidMarkValueException;
+import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
 
 public class IntegerMark100 extends AbstractIntegerMark {
 

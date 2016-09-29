@@ -1,6 +1,6 @@
-package com.zetsubou_0.vadimtorus.event;
+package com.zetsubou_0.vadimtorus.kiryl.event;
 
-import com.zetsubou_0.vadimtorus.mark.exception.InvalidMarkValueException;
+import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
 
 public interface Event {
 

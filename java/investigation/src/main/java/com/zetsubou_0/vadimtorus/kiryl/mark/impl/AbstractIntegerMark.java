@@ -1,7 +1,7 @@
-package com.zetsubou_0.vadimtorus.mark.impl;
+package com.zetsubou_0.vadimtorus.kiryl.mark.impl;
 
-import com.zetsubou_0.vadimtorus.mark.Mark;
-import com.zetsubou_0.vadimtorus.mark.exception.InvalidMarkValueException;
+import com.zetsubou_0.vadimtorus.kiryl.mark.Mark;
+import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
 
 public abstract class AbstractIntegerMark implements Mark {
 
