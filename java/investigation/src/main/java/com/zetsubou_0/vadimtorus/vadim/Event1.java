@@ -1,16 +1,27 @@
 package com.zetsubou_0.vadimtorus.vadim;
 
-public class Event1 implements EventCount {
-    static float a;
-    static float b;
+class Event1 implements EventCount 
+{
+ float a;
+ float b;
 
-    public Event1(float exam1, float exam2)
+	public Event1(float exam1, float exam2)
+	 {
+	  a = exam1;
+	  b = exam2;
+	 }
+	
+	public boolean result()
+	{
+	 return (a+b) >= 15;
+	}
+	
+	@Override
+	public String toString()
     {
-        a = exam1;
-        b = exam2;
+	  return "Event1:" + " " + "Exam1:" + a + " " + "Exam2:" + b;
     }
-    public boolean Result(){
-        return (a+b)>=15;
-    }
-
 }
+ 
+  
+ 

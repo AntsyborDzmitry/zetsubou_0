@@ -1,12 +1,26 @@
 package com.zetsubou_0.vadimtorus.vadim;
 
-public class Event5 extends Event3 {
-    boolean d;
-    public Event5(boolean exam2, boolean exam3, float exam1){
-        super(a, b);
-        d = exam3;
-    }
-    public boolean Result(){
-        return c==true&&d==true&&a>=70;
-    }
+class Event5 implements EventCount 
+{
+	boolean a;
+	boolean b;
+	float c;
+	   
+	   public Event5(boolean exam1, boolean exam2, float exam3)
+	   {
+		a = exam1;
+		b = exam2;
+		c = exam3;
+	   }
+	   
+	   public boolean result()
+	   {
+		return a == true && b == true && c >= 70;
+	   }
+	   
+	   @Override
+	   public String toString()
+	   {
+	    return "Event5:" + " " + "Exam1:" + a + " " + "Exam2:" + b + " " + "Exam3:" + c;
+       }
 }
