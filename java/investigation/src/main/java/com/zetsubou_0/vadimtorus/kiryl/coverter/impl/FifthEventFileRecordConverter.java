@@ -10,10 +10,10 @@ public class FifthEventFileRecordConverter implements FileRecordConverter {
 
     @Override
     public Event convert(final String record) {
-        String[] parameters = record.split(Constants.FileRecord.RECORD_DATA_SEPARATOR);
-        boolean mark1 = Boolean.parseBoolean(parameters[1]);
-        boolean mark2 = Boolean.parseBoolean(parameters[2]);
-        IntegerMark100 mark3 = new IntegerMark100(Integer.parseInt(parameters[3]));
+        String[] parameters = record.split(Constants.RECORD_DATA_SEPARATOR);
+        boolean mark1 = Boolean.valueOf(parameters[1]);
+        boolean mark2 = Boolean.valueOf(parameters[2]);
+        IntegerMark100<Integer> mark3 = new IntegerMark100<>(Integer.valueOf(parameters[3]));
         return new FifthEvent(mark1, mark2, mark3);
     }
 }

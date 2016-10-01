@@ -10,10 +10,10 @@ public class ThirdEventFileRecordConverter implements FileRecordConverter {
 
     @Override
     public Event convert(final String record) {
-        String[] parameters = record.split(Constants.FileRecord.RECORD_DATA_SEPARATOR);
-        DoubleMark10 mark1 = new DoubleMark10(Double.parseDouble(parameters[1]));
-        DoubleMark10 mark2 = new DoubleMark10(Double.parseDouble(parameters[2]));
-        boolean mark3 = Boolean.parseBoolean(parameters[3]);
+        String[] parameters = record.split(Constants.RECORD_DATA_SEPARATOR);
+        DoubleMark10<Double> mark1 = new DoubleMark10<>(Double.valueOf(parameters[1]));
+        DoubleMark10<Double> mark2 = new DoubleMark10<>(Double.valueOf(parameters[2]));
+        boolean mark3 = Boolean.valueOf(parameters[3]);
         return new ThirdEvent(mark1, mark2, mark3);
     }
 }

@@ -2,9 +2,9 @@ package com.zetsubou_0.vadimtorus.kiryl.mark.impl;
 
 import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
 
-public class DoubleMark20 extends AbstractDoubleMark {
+public class DoubleMark20<T extends Double> extends AbstractDoubleMark<T> {
 
-    public DoubleMark20(final double mark) {
+    public DoubleMark20(final T mark) {
         super(mark);
     }
 

@@ -1,8 +1,7 @@
 package com.zetsubou_0.vadimtorus.kiryl.util;
 
-import com.zetsubou_0.vadimtorus.kiryl.eums.FileEventConverterEnum;
+import com.zetsubou_0.vadimtorus.kiryl.eums.EventConverterEnum;
 import com.zetsubou_0.vadimtorus.kiryl.event.Event;
-import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,7 +15,7 @@ import java.util.stream.Stream;
 public class EventFileReader {
 
     private static final Function<String, Event> EVENT_CONVERTER = str -> {
-        FileEventConverterEnum fileEventConverter = FileEventConverterEnum.fromFileRecord(str);
+        EventConverterEnum fileEventConverter = EventConverterEnum.fromFileRecord(str);
         try {
             return fileEventConverter.getEventConverterClass().newInstance().convert(str);
         } catch (InstantiationException | IllegalAccessException e) {
@@ -24,15 +23,9 @@ public class EventFileReader {
         }
     };
 
-    private static final Predicate<Event> EVENT_FILTER = event -> {
-        try {
-            return event.isPassed();
-        } catch (InvalidMarkValueException e) {
-            throw new RuntimeException("Invalid mark.", e);
-        }
-    };
+    private static final Predicate<Event> EVENT_FILTER = Event::isPassed;
 
-    public static List<Event> readData(final String fileName) throws IOException {
+    public static List<Event> readPassedRecords(final String fileName) throws IOException {
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             return stream.map(EVENT_CONVERTER)
                     .filter(EVENT_FILTER)

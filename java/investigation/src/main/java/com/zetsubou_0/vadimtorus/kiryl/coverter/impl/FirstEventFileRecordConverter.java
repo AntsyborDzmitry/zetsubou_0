@@ -10,9 +10,9 @@ public class FirstEventFileRecordConverter implements FileRecordConverter {
 
     @Override
     public Event convert(final String record) {
-        String[] parameters = record.split(Constants.FileRecord.RECORD_DATA_SEPARATOR);
-        IntegerMark10 mark1 = new IntegerMark10(Integer.parseInt(parameters[1]));
-        IntegerMark10 mark2 = new IntegerMark10(Integer.parseInt(parameters[2]));
+        String[] parameters = record.split(Constants.RECORD_DATA_SEPARATOR);
+        IntegerMark10<Integer> mark1 = new IntegerMark10<>(Integer.valueOf(parameters[1]));
+        IntegerMark10<Integer> mark2 = new IntegerMark10<>(Integer.valueOf(parameters[2]));
         return new FirstEvent(mark1, mark2);
     }
 }
