@@ -5,15 +5,15 @@ import com.zetsubou_0.vadimtorus.kiryl.mark.Mark;
 
 public abstract class AbstractThreeExamsEvent implements Event {
 
-    Mark firstExamMark;
+    Mark firstParamExamMark;
 
-    Mark secondExamMark;
+    Mark secondParamExamMark;
 
-    Mark thirdExamMark;
+    Mark thirdParamExamMark;
 
-    public AbstractThreeExamsEvent(final Mark firstExamMark, final Mark secondExamMark, final Mark thirdExamMark) {
-        this.firstExamMark = firstExamMark;
-        this.secondExamMark = secondExamMark;
-        this.thirdExamMark = thirdExamMark;
+    public AbstractThreeExamsEvent(final Mark firstParamExamMark, final Mark secondParamExamMark, final Mark thirdParamExamMark) {
+        this.firstParamExamMark = firstParamExamMark;
+        this.secondParamExamMark = secondParamExamMark;
+        this.thirdParamExamMark = thirdParamExamMark;
     }
 }

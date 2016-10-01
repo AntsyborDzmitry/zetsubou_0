@@ -2,6 +2,7 @@ package com.zetsubou_0.vadimtorus.kiryl.event.impl;
 
 import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
 import com.zetsubou_0.vadimtorus.kiryl.mark.impl.IntegerMark10;
+import com.zetsubou_0.vadimtorus.kiryl.util.Constants;
 
 public class FirstEvent extends AbstractTwoExamEvent {
 
@@ -11,6 +12,6 @@ public class FirstEvent extends AbstractTwoExamEvent {
 
     @Override
     public boolean isPassed() throws InvalidMarkValueException {
-        return firstExamMark.getValue() + secondExamMark.getValue() >= PASSED_SUM;
+        return firstParamExamMark.getValue() + secondParamExamMark.getValue() >= Constants.Exam.PASSED_SUM;
     }
 }
