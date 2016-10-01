@@ -1,80 +1,109 @@
 package com.zetsubou_0.vadimtorus.vadim;
 
 import java.lang.*;
-import java.io.*;
 import java.util.*;
 import java.nio.file.*;
 import java.nio.charset.*;
 import java.io.IOException;
 
 
+
 public class Event
 {
-	public static void main (String[] args) throws IOException 
-  {
+    public static void main (String[] args) throws IOException
+    {
 
-		List<String> lines = Files.readAllLines(Paths.get(args[0]), StandardCharsets.UTF_8);
+        List<String> lines = Files.readAllLines(Paths.get(args[0]), StandardCharsets.UTF_8);
 
-	    String firstevent = lines.get(0);
-		String[] firstexams = firstevent.split(" ");
-		float firsteventexam1 = Float.valueOf(firstexams[1]);
-		float firsteventexam2 = Float.valueOf(firstexams[2]);
+        List<EventCount> list = new ArrayList<>();
 
-		String secondevent = lines.get(1);
-		String[] secondexams = secondevent.split(" ");
-		float secondeventexam1 = Float.valueOf(secondexams[1]);
-		float secondeventexam2 = Float.valueOf(secondexams[2]);
+        for (int i=0; i<lines.size(); i++)
+        {
+            String line = lines.get(i);
+            String[] exams = line.split(" ");
+            String eventName = String.valueOf(exams[0]);
 
-		String thirdevent = lines.get(2);
-		String[] thirdexams = thirdevent.split(" ");
-		float thirdeventexam1 = Float.valueOf(thirdexams[1]);
-		float thirdeventexam2 = Float.valueOf(thirdexams[2]);
-		boolean thirdeventexam3 = Boolean.valueOf(thirdexams[3]);
+            switch (Names.valueOf(eventName))
+            {
+                case FIRST_EVENT:
+                    float firsteventexam1 = Float.valueOf(exams[1]);
+                    float firsteventexam2 = Float.valueOf(exams[2]);
+                    EventCount eventpass1 = new Event1(firsteventexam1, firsteventexam2);
+                    fillList(list, eventpass1);
+                    break;
+                case SECOND_EVENT:
+                    float secondeventexam1 = Float.valueOf(exams[1]);
+                    float secondeventexam2 = Float.valueOf(exams[2]);
+                    EventCount eventpass2 = new Event2(secondeventexam1, secondeventexam2);
+                    fillList(list, eventpass2);
+                    break;
+                case THIRD_EVENT:
+                    float thirdeventexam1 = Float.valueOf(exams[1]);
+                    float thirdeventexam2 = Float.valueOf(exams[2]);
+                    boolean thirdeventexam3 = Boolean.valueOf(exams[3]);
+                    EventCount eventpass3 = new Event3(thirdeventexam1, thirdeventexam2, thirdeventexam3);
+                    fillList(list, eventpass3);
+                    break;
+                case FOURTH_EVENT:
+                    float fourtheventexam1 = Float.valueOf(exams[1]);
+                    float fourtheventexam2 = Float.valueOf(exams[2]);
+                    float fourtheventexam3 = Float.valueOf(exams[3]);
+                    EventCount eventpass4 = new Event4(fourtheventexam1, fourtheventexam2, fourtheventexam3);
+                    fillList(list, eventpass4);
+                    break;
+                case FIFTH_EVENT:
+                    boolean fiftheventexam1 = Boolean.valueOf(exams[1]);
+                    boolean fiftheventexam2 = Boolean.valueOf(exams[2]);
+                    float fiftheventexam3 = Float.valueOf(exams[3]);
+                    EventCount eventpass5 = new Event5(fiftheventexam1, fiftheventexam2, fiftheventexam3);
+                    fillList(list, eventpass5);
+                    break;
+            }
+        }
 
-		String fourthevent = lines.get(3);
-		String[] fourthexams = fourthevent.split(" ");
-		float fourtheventexam1 = Float.valueOf(fourthexams[1]);
-		float fourtheventexam2 = Float.valueOf(fourthexams[2]);
-		float fourtheventexam3 = Float.valueOf(fourthexams[3]);
+        System.out.println("Successfully passed events:");
 
-		String fifthevent = lines.get(4);
-		String[] fifthexams = fifthevent.split(" ");
-		boolean fiftheventexam1 = Boolean.valueOf(fifthexams[1]);
-		boolean fiftheventexam2 = Boolean.valueOf(fifthexams[2]);
-		float fiftheventexam3 = Float.valueOf(fifthexams[3]);
+        for (EventCount t: list)
+        {
+            System.out.println(t.toString());
+        }
+
+        list.sort((EventCount eventPass1, EventCount eventPass2) -> eventPass2.maxMark().compareTo(eventPass1.maxMark()));
 
 
+        System.out.println("\nSorted event list:");
 
-		EventCount eventpass1 = new Event1(firsteventexam1, firsteventexam2);
-		EventCount eventpass2 = new Event2(secondeventexam1, secondeventexam2);
-		EventCount eventpass3 = new Event3(thirdeventexam1, thirdeventexam2, thirdeventexam3);
-		EventCount eventpass4 = new Event4(fourtheventexam1, fourtheventexam2, fourtheventexam3);
-		EventCount eventpass5 = new Event5(fiftheventexam1, fiftheventexam2, fiftheventexam3);
 
-		ArrayList<EventCount> list = new ArrayList<>();
+        list.forEach(System.out::println);
 
-		if (eventpass1.result())
-		 {list.add(eventpass1);}
-		if (eventpass2.result())
-		 {list.add(eventpass2);}
-		if (eventpass3.result())
-		 {list.add(eventpass3);}
-		if (eventpass4.result())
-		 {list.add(eventpass4);}
-		if (eventpass5.result())
-		 {list.add(eventpass5);}
+     for (int i=list.size() - 1; i>=0; i--)
+     {
+         EventCount x = list.get(i);
+         if (x.maxMark()>=15)
+         {
+             System.out.println("\nEvent with mark >= 15:");
+             System.out.println(x);
+             break;
+         }
 
-		for (EventCount t: list)
-		 {
-			System.out.println(t);
-		 }
-	
-   }
-	
+     }
+
+
+    }
+
+    private static void fillList(List<EventCount> list, EventCount eventPass)
+    {
+        if (eventPass.result())
+            list.add(eventPass);
+    }
+
+
 
 }
-  
 
 
 
- 
+
+
+
+

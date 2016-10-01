@@ -19,8 +19,13 @@ class Event1 implements EventCount
 	@Override
 	public String toString()
     {
-	  return "Event1:" + " " + "Exam1:" + a + " " + "Exam2:" + b;
+	  return "Event1:" + " " + "Exam1 - " + a + " " + "Exam2 - " + b;
     }
+
+	public Float maxMark()
+	{
+		return a>b ? a:b;
+	}
 }
  
   

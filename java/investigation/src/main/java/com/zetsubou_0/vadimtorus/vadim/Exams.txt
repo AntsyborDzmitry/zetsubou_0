@@ -1,5 +1,5 @@
-FirstEvent 10 7
-SecondEvent 8 9
-ThirdEvent 8.5 9.5 true
-FourthEvent 6 8 13.5
-FifthEvent true true 82
+FIRST_EVENT 10 7
+SECOND_EVENT 8 9
+THIRD_EVENT 8.5 9.5 true
+FOURTH_EVENT 6 8 13.5
+FIFTH_EVENT true true 82

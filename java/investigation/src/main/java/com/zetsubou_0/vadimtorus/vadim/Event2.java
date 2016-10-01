@@ -17,6 +17,11 @@ class Event2 extends Event1
 	  @Override
 	  public String toString()
 	  {
-	  return "Event2:" + " " + "Exam1:" + a + " " + "Exam2:" + b;
+	  return "Event2:" + " " + "Exam1 - " + a + " " + "Exam2 - " + b;
       }
+
+	public Float maxMark()
+	{
+		return a>b ? a:b;
+	}
 }

@@ -15,12 +15,16 @@ class Event5 implements EventCount
 	   
 	   public boolean result()
 	   {
-		return a == true && b == true && c >= 70;
+		return a && b && c >= 70;
 	   }
 	   
 	   @Override
 	   public String toString()
 	   {
-	    return "Event5:" + " " + "Exam1:" + a + " " + "Exam2:" + b + " " + "Exam3:" + c;
+	    return "Event5:" + " " + "Exam1 - " + a + " " + "Exam2 - " + b + " " + "Exam3 - " + c;
        }
+
+	public Float maxMark() {
+		return c;
+	}
 }

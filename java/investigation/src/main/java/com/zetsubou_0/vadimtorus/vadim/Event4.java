@@ -1,8 +1,9 @@
 package com.zetsubou_0.vadimtorus.vadim;
 
-class Event4 extends Event1 
+class Event4 extends Event1
 {
 	   float c;
+
 	    
 		public Event4(float exam1, float exam2, float exam3)
 		{
@@ -18,6 +19,13 @@ class Event4 extends Event1
 	   @Override
 	   public String toString()
 	   {
-	    return "Event4:" + " " + "Exam1:" + a + " " + "Exam2:" + b + " " + "Exam3" + c;
+	    return "Event4:" + " " + "Exam1 - " + a + " " + "Exam2 - " + b + " " + "Exam3 - " + c;
        }
-} 
+
+	@Override
+	   public Float maxMark() {
+		Float max;
+		max = (a>b) ? a : b;
+		return max > c ? max : c;
+	}
+}
