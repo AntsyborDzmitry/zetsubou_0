@@ -10,8 +10,7 @@ public class DoubleMark20 extends AbstractDoubleMark {
 
     @Override
     public void isValid() throws InvalidMarkValueException {
-        int intValue = tenTimesMultiple();
-        if (intValue < 10 || intValue > 200 || !isWholeOrHalf()) {
+        if (mark.compareTo(1.0) < 0 || mark.compareTo(20.0) > 0 || !isWholeOrHalf()) {
             throw new InvalidMarkValueException("Out of bounds or not half value");
         }
     }

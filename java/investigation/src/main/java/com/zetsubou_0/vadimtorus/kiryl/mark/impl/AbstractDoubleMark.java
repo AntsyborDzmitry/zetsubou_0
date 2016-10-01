@@ -5,7 +5,7 @@ import com.zetsubou_0.vadimtorus.kiryl.mark.exception.InvalidMarkValueException;
 
 public abstract class AbstractDoubleMark implements Mark {
 
-    protected final double mark;
+    protected final Double mark;
 
     public AbstractDoubleMark(final double mark) {
         this.mark = mark;
@@ -23,7 +23,7 @@ public abstract class AbstractDoubleMark implements Mark {
         return tenTimesMultiple() % 5 == 0;
     }
 
-    protected int tenTimesMultiple() {
+    private int tenTimesMultiple() {
         return (int) Math.round(mark * 10);
     }
 }
