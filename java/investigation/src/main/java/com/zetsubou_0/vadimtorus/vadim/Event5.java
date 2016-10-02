@@ -2,29 +2,31 @@ package com.zetsubou_0.vadimtorus.vadim;
 
 class Event5 implements EventCount 
 {
-	boolean a;
-	boolean b;
-	float c;
+	private boolean mark1;
+	private boolean mark2;
+	private double mark3;
+    final double successMark3 = 70;
 	   
-	   public Event5(boolean exam1, boolean exam2, float exam3)
+	   Event5(boolean mark1, boolean mark2, double mark3)
 	   {
-		a = exam1;
-		b = exam2;
-		c = exam3;
+		this.mark1 = mark1;
+		this.mark2 = mark2;
+		this.mark3 = mark3;
 	   }
-	   
+	   @Override
 	   public boolean result()
 	   {
-		return a && b && c >= 70;
+		return mark1 && mark2 && mark3 >= successMark3;
 	   }
 	   
 	   @Override
 	   public String toString()
 	   {
-	    return "Event5:" + " " + "Exam1 - " + a + " " + "Exam2 - " + b + " " + "Exam3 - " + c;
+	    return "Event5:" + " " + "Exam1 - " + mark1 + " " + "Exam2 - " + mark2 + " " + "Exam3 - " + mark3;
        }
-
-	public Float maxMark() {
-		return c;
-	}
+       @Override
+	   public Double maxMark()
+	   {
+		return mark3;
+	   }
 }

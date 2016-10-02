@@ -12,82 +12,13 @@ public class Event
 {
     public static void main (String[] args) throws IOException
     {
+        List<String> fileLines = Files.readAllLines(Paths.get(args[0]), StandardCharsets.UTF_8);
 
-        List<String> lines = Files.readAllLines(Paths.get(args[0]), StandardCharsets.UTF_8);
+        List<EventCount> successEventList = new ArrayList<>();
 
-        List<EventCount> list = new ArrayList<>();
-
-        for (int i=0; i<lines.size(); i++)
-        {
-            String line = lines.get(i);
-            String[] exams = line.split(" ");
-            String eventName = String.valueOf(exams[0]);
-
-            switch (Names.valueOf(eventName))
-            {
-                case FIRST_EVENT:
-                    float firsteventexam1 = Float.valueOf(exams[1]);
-                    float firsteventexam2 = Float.valueOf(exams[2]);
-                    EventCount eventpass1 = new Event1(firsteventexam1, firsteventexam2);
-                    fillList(list, eventpass1);
-                    break;
-                case SECOND_EVENT:
-                    float secondeventexam1 = Float.valueOf(exams[1]);
-                    float secondeventexam2 = Float.valueOf(exams[2]);
-                    EventCount eventpass2 = new Event2(secondeventexam1, secondeventexam2);
-                    fillList(list, eventpass2);
-                    break;
-                case THIRD_EVENT:
-                    float thirdeventexam1 = Float.valueOf(exams[1]);
-                    float thirdeventexam2 = Float.valueOf(exams[2]);
-                    boolean thirdeventexam3 = Boolean.valueOf(exams[3]);
-                    EventCount eventpass3 = new Event3(thirdeventexam1, thirdeventexam2, thirdeventexam3);
-                    fillList(list, eventpass3);
-                    break;
-                case FOURTH_EVENT:
-                    float fourtheventexam1 = Float.valueOf(exams[1]);
-                    float fourtheventexam2 = Float.valueOf(exams[2]);
-                    float fourtheventexam3 = Float.valueOf(exams[3]);
-                    EventCount eventpass4 = new Event4(fourtheventexam1, fourtheventexam2, fourtheventexam3);
-                    fillList(list, eventpass4);
-                    break;
-                case FIFTH_EVENT:
-                    boolean fiftheventexam1 = Boolean.valueOf(exams[1]);
-                    boolean fiftheventexam2 = Boolean.valueOf(exams[2]);
-                    float fiftheventexam3 = Float.valueOf(exams[3]);
-                    EventCount eventpass5 = new Event5(fiftheventexam1, fiftheventexam2, fiftheventexam3);
-                    fillList(list, eventpass5);
-                    break;
-            }
-        }
-
-        System.out.println("Successfully passed events:");
-
-        for (EventCount t: list)
-        {
-            System.out.println(t.toString());
-        }
-
-        list.sort((EventCount eventPass1, EventCount eventPass2) -> eventPass2.maxMark().compareTo(eventPass1.maxMark()));
-
-
-        System.out.println("\nSorted event list:");
-
-
-        list.forEach(System.out::println);
-
-     for (int i=list.size() - 1; i>=0; i--)
-     {
-         EventCount x = list.get(i);
-         if (x.maxMark()>=15)
-         {
-             System.out.println("\nEvent with mark >= 15:");
-             System.out.println(x);
-             break;
-         }
-
-     }
-
+		successEventsPrint(fileLines, successEventList);
+        sortedListPrint(successEventList);
+        chosenEventPrint(successEventList);
 
     }
 
@@ -96,6 +27,85 @@ public class Event
         if (eventPass.result())
             list.add(eventPass);
     }
+	private static void successEventsPrint(List<String> lines, List<EventCount> list)
+	{
+		for (String t: lines)
+		{
+			String[] exams = t.split(" ");
+			String eventName = String.valueOf(exams[0]);
+
+			switch (Names.valueOf(eventName))
+			{
+				case FIRST_EVENT:
+					double firstEventExam1 = Double.valueOf(exams[1]);
+					double firstEventExam2 = Double.valueOf(exams[2]);
+					EventCount eventPass1 = new Event1(firstEventExam1, firstEventExam2);
+					fillList(list, eventPass1);
+					break;
+				case SECOND_EVENT:
+					double secondEventExam1 = Double.valueOf(exams[1]);
+					double secondEventExam2 = Double.valueOf(exams[2]);
+					EventCount eventPass2 = new Event2(secondEventExam1, secondEventExam2);
+					fillList(list, eventPass2);
+					break;
+				case THIRD_EVENT:
+					double thirdEventExam1 = Double.valueOf(exams[1]);
+					double thirdEventExam2 = Double.valueOf(exams[2]);
+					boolean thirdEventExam3 = Boolean.valueOf(exams[3]);
+					EventCount eventPass3 = new Event3(thirdEventExam1, thirdEventExam2, thirdEventExam3);
+					fillList(list, eventPass3);
+					break;
+				case FOURTH_EVENT:
+					double fourthEventExam1 = Double.valueOf(exams[1]);
+					double fourthEventExam2 = Double.valueOf(exams[2]);
+					double fourthEventExam3 = Double.valueOf(exams[3]);
+					EventCount eventPass4 = new Event4(fourthEventExam1, fourthEventExam2, fourthEventExam3);
+					fillList(list, eventPass4);
+					break;
+				case FIFTH_EVENT:
+					boolean fifthEventExam1 = Boolean.valueOf(exams[1]);
+					boolean fifthEventExam2 = Boolean.valueOf(exams[2]);
+					double fifthEventExam3 = Double.valueOf(exams[3]);
+					EventCount eventPass5 = new Event5(fifthEventExam1, fifthEventExam2, fifthEventExam3);
+					fillList(list, eventPass5);
+					break;
+
+			}
+		}
+        System.out.println("Successfully passed events:");
+          for (EventCount showEvent: list)
+            {
+             System.out.println(showEvent);
+            }
+
+	}
+
+    private static void sortedListPrint(List<EventCount> successEventList)
+    {
+        successEventList.sort((EventCount eventPass1, EventCount eventPass2) -> eventPass2.maxMark().compareTo(eventPass1.maxMark()));
+
+        System.out.println("\nEvent list sorted by maxmark:");
+        successEventList.forEach(System.out::println);
+    }
+
+    private static void chosenEventPrint (List<EventCount> successEventList)
+    {
+
+        for (int i=successEventList.size() - 1; i>=0; i--)
+        {
+            EventCount event = successEventList.get(i);
+            if (event.maxMark()>=15)
+            {
+                System.out.println("\nEvent with mark >= 15:");
+                System.out.println(event);
+                break;
+            }
+        }
+
+    }
+
+
+
 
 
 

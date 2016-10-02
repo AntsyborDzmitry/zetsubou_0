@@ -4,5 +4,5 @@ interface EventCount
 {
 	boolean result();
 
-	Float maxMark();
+	Double maxMark();
 }

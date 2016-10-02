@@ -1,29 +1,34 @@
 package com.zetsubou_0.vadimtorus.vadim;
 
-class Event3 extends Event2
-{
-		boolean c;
-	     
-		 public Event3(float exam1, float exam2, boolean exam3)
-		 {
-		  super(exam1, exam2);
-			c=exam3;
-		 }
-
-
-
-	public boolean result()
-		{
-		 return a >= 7.5 && b >= 8.5 && c==true;
-		}
-		
-		@Override
-		public String toString()
-		{
-	     return "Event3:" + " " + "Exam1 - " + a + " " + "Exam2 - " + b + " " + "Exam3 - " + c;
-        }
-	public Float maxMark()
+	class Event3 extends Event2
 	{
-		return a>b ? a:b;
+		private boolean mark3;
+        final double successMark1 =  7.5;
+        final double successMark2 =  8.5;
+
+		    Event3(double mark1, double mark2, boolean mark3)
+				 {
+				  super(mark1, mark2);
+
+					this.mark3 = mark3;
+				 }
+
+
+		    @Override
+			public boolean result()
+				{
+				 return getMark1() >= successMark1 && getMark2() >= successMark2 && mark3;
+				}
+
+			@Override
+			public String toString()
+				{
+				 return "Event3:" + " " + "Exam1 - " + getMark1() + " " + "Exam2 - " + getMark2() + " " + "Exam3 - " + mark3;
+				}
+
+		    @Override
+			public Double maxMark()
+			    {
+				 return getMark1() > getMark2() ? getMark1() : getMark2();
+			    }
 	}
-} 

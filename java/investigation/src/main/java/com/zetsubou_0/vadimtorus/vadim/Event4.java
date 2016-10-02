@@ -2,30 +2,31 @@ package com.zetsubou_0.vadimtorus.vadim;
 
 class Event4 extends Event1
 {
-	   float c;
+	   private double mark3;
+	   final double totalScore = 25;
 
 	    
-		public Event4(float exam1, float exam2, float exam3)
+		Event4(double mark1, double mark2, double mark3)
 		{
-		  super(exam1, exam2);
-		  c = exam3;
+		  super(mark1, mark2);
+		  this.mark3 = mark3;
 		}
-	    
+	    @Override
 		public boolean result()
 		{
-		  return (a+b+c) >= 25;
+		  return (getMark1() + getMark2() + mark3) >= totalScore;
 	    }
 	   
 	   @Override
 	   public String toString()
 	   {
-	    return "Event4:" + " " + "Exam1 - " + a + " " + "Exam2 - " + b + " " + "Exam3 - " + c;
+	    return "Event4:" + " " + "Exam1 - " + getMark1() + " " + "Exam2 - " + getMark2() + " " + "Exam3 - " + mark3;
        }
 
-	@Override
-	   public Float maxMark() {
-		Float max;
-		max = (a>b) ? a : b;
-		return max > c ? max : c;
+	   @Override
+	   public Double maxMark() {
+		Double max;
+		max = (getMark1() > getMark2()) ? getMark1() : getMark2();
+		return max > mark3 ? max : mark3;
 	}
 }
