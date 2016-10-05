@@ -30,8 +30,7 @@ public enum EventConverterEnum {
     }
 
     public static EventConverterEnum fromFileRecord(final String record) {
-        String type = record.substring(0,
-                record.indexOf(Constants.FileRecord.RECORD_DATA_SEPARATOR));
+        String type = record.substring(0, record.indexOf(Constants.RECORD_DATA_SEPARATOR));
         return EventConverterEnum.valueOf(type.toUpperCase());
     }
 }
