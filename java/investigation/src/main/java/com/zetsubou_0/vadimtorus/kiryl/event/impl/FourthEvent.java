@@ -17,9 +17,8 @@ public class FourthEvent extends AbstractThreeExamsEvent {
 
     @Override
     public boolean isPassed() {
-        return firstParamExamMark.getValue().intValue() >= Constants.PASSED_MARK
-                && secondParamExamMark.getValue().intValue() >= Constants.PASSED_MARK
-                && thirdParamExamMark.getValue().doubleValue() >= Constants.PASSED_MARK_BOUNDS_20;
+        return firstParamExamMark.getValue().intValue() + secondParamExamMark.getValue().intValue()
+                + thirdParamExamMark.getValue().doubleValue() >= Constants.PASSED_SUM_THREE_EXAMS;
     }
 
     @Override
