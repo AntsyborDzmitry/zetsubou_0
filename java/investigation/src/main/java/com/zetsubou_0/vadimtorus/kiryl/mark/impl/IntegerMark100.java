@@ -10,7 +10,7 @@ public class IntegerMark100<T extends Integer> extends AbstractIntegerMark<T> {
 
     @Override
     public void isValid() throws InvalidMarkValueException {
-        if (mark.intValue() < 1 || mark.intValue() > 100) {
+        if (mark.intValue() < 0 || mark.intValue() > 100) {
             throw new InvalidMarkValueException("Out of bounds");
         }
     }

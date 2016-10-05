@@ -10,7 +10,7 @@ public class DoubleMark20<T extends Double> extends AbstractDoubleMark<T> {
 
     @Override
     public void isValid() throws InvalidMarkValueException {
-        if (mark.compareTo(1.0) < 0 || mark.compareTo(20.0) > 0 || !isWholeOrHalf()) {
+        if (mark.compareTo(0.0) < 0 || mark.compareTo(20.0) > 0 || !isWholeOrHalf()) {
             throw new InvalidMarkValueException("Out of bounds or not half value");
         }
     }
