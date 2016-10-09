@@ -10,11 +10,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>java/investigation/dhl/json-converter</module>
         <!--aem-->
         <module>java/aem/aem.made</module>
         <module>java/aem/cqblueprint-test</module>
-        <module>java/aem/aem6</module>
+        <module>java/aem/sling-mock</module>
 
         <!--Games-->
 
@@ -22,6 +21,7 @@
         <module>java/investigation</module>
         <module>java/investigation/source</module>
         <module>java/investigation/auto-tests</module>
+        <module>java/investigation/json-converter</module>
         <!--OSGI-->
             <!--Calculator-->
             <module>java/investigation/osgi/bundles/calculator/api</module>

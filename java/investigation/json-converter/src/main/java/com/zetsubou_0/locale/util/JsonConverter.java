@@ -39,6 +39,9 @@ public class JsonConverter {
         for (Map.Entry<String, Dictionary> entry : dictionaries.entrySet()) {
             Dictionary dictionaryModel = entry.getValue();
             String dictionaryName = dictionaryModel.getName();
+            if (!"shipment-print".equals(dictionaryName)) {
+                continue;
+            }
             String path = getDictionaryPath(dictionaryName);
             try (InputStream in = new FileInputStream(path)) {
                 modifyXml(in, dictionaryModel.getMessages(), path);
