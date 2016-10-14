@@ -28,12 +28,12 @@ public class ConfigurationProperties {
         Properties properties = new Properties();
         try (FileInputStream input = new FileInputStream(fileName)) {
             properties.load(input);
-            host = properties.getProperty(PN_HOST, DEFAULT_HOST);
-            port = Integer.parseInt(properties.getProperty(PN_PORT, DEFAULT_PORT));
-            scheme = properties.getProperty(PN_SCHEME, DEFAULT_SCHEME);
-            userName = properties.getProperty(PN_USER_NAME, DEFAULT_USER_NAME);
-            userPassword = properties.getProperty(PN_PASSWORD, DEFAULT_PASSWORD);
-            locale = properties.getProperty(PN_LOCALE, DEFAULT_LOCALE);
+//            host = properties.getProperty(PN_HOST, DEFAULT_HOST);
+//            port = Integer.parseInt(properties.getProperty(PN_PORT, DEFAULT_PORT));
+//            scheme = properties.getProperty(PN_SCHEME, DEFAULT_SCHEME);
+//            userName = properties.getProperty(PN_USER_NAME, DEFAULT_USER_NAME);
+//            userPassword = properties.getProperty(PN_PASSWORD, DEFAULT_PASSWORD);
+//            locale = properties.getProperty(PN_LOCALE, DEFAULT_LOCALE);
         } catch (IOException e) {
             LOG.error("Error occurred while obtaining properties", e);
             fail = true;

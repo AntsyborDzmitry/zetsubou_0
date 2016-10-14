@@ -2,11 +2,23 @@ package com.zetsubou_0.java8.investigation.bean;
 
 public class Employee {
 
+    private static final String PRINT_INFO = "Name: %s, Age: %d, Position: %s";
+
     private String name;
 
     private Position position;
 
     private int age;
+
+
+    public Employee() {
+    }
+
+    public Employee(final String name, final Position position, final int age) {
+        this.name = name;
+        this.position = position;
+        this.age = age;
+    }
 
     public String getName() {
         return name;
@@ -32,7 +44,17 @@ public class Employee {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return String.format(PRINT_INFO, name, age, position);
+    }
+
     public enum Position {
         DEVELOPER, QA;
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase();
+        }
     }
 }
