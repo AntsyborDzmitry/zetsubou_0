@@ -7,7 +7,7 @@ public enum Mark {
 
     private static final String ERR_MESSAGE_NOT_HALF = "Mark should be half or whole value";
 
-    private static final String ERR_MESSAGE_OUT_OF_BOUNDS = "Mark out of bounds [%d;%d], value - %.2d";
+    private static final String ERR_MESSAGE_OUT_OF_BOUNDS = "Mark out of bounds [%.0f;%.0f], value - %.2f";
 
     private final Double leftValue;
 
