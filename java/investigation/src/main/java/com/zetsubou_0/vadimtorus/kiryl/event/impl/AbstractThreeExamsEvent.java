@@ -1,19 +1,24 @@
 package com.zetsubou_0.vadimtorus.kiryl.event.impl;
 
 import com.zetsubou_0.vadimtorus.kiryl.event.Event;
-import com.zetsubou_0.vadimtorus.kiryl.mark.Mark;
 
 public abstract class AbstractThreeExamsEvent implements Event {
 
-    Mark firstParamExamMark;
+    Double firstParamExamMark;
 
-    Mark secondParamExamMark;
+    Double secondParamExamMark;
 
-    Mark thirdParamExamMark;
+    Double thirdParamExamMark;
 
-    public AbstractThreeExamsEvent(final Mark firstParamExamMark, final Mark secondParamExamMark, final Mark thirdParamExamMark) {
+    public AbstractThreeExamsEvent(final double firstParamExamMark, final double secondParamExamMark,
+                                   final double thirdParamExamMark) {
         this.firstParamExamMark = firstParamExamMark;
         this.secondParamExamMark = secondParamExamMark;
         this.thirdParamExamMark = thirdParamExamMark;
+    }
+
+    @Override
+    public Double getMaxMark() {
+        return Math.max(firstParamExamMark, Math.max(secondParamExamMark, thirdParamExamMark));
     }
 }

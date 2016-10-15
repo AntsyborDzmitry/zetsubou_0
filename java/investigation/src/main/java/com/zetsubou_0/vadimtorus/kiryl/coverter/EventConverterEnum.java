@@ -1,6 +1,5 @@
-package com.zetsubou_0.vadimtorus.kiryl.eums;
+package com.zetsubou_0.vadimtorus.kiryl.coverter;
 
-import com.zetsubou_0.vadimtorus.kiryl.coverter.FileRecordConverter;
 import com.zetsubou_0.vadimtorus.kiryl.coverter.impl.*;
 import com.zetsubou_0.vadimtorus.kiryl.util.Constants;
 
