@@ -6,13 +6,13 @@ import java.util.Comparator;
 
 public class Constants {
 
-    public static final int PASSED_SUM = 9;
+    public static final double PASSED_SUM = 9;
 
     public static final double PASSED_SUM_THREE_EXAMS = 20.5;
 
-    public static final int PASSED_MARK = 4;
+    public static final double PASSED_MARK = 4;
 
-    public static final int PASSED_MARK_BOUNDS_100 = 45;
+    public static final double PASSED_MARK_BOUNDS_100 = 45;
 
     public static final double FILTER_BOUNDS = 15;
 

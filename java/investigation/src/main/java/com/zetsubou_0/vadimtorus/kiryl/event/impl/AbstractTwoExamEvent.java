@@ -1,16 +1,20 @@
 package com.zetsubou_0.vadimtorus.kiryl.event.impl;
 
 import com.zetsubou_0.vadimtorus.kiryl.event.Event;
-import com.zetsubou_0.vadimtorus.kiryl.mark.Mark;
 
 public abstract class AbstractTwoExamEvent implements Event {
 
-    Mark firstParamExamMark;
+    Double firstParamExamMark;
 
-    Mark secondParamExamMark;
+    Double secondParamExamMark;
 
-    public AbstractTwoExamEvent(final Mark firstParamExamMark, final Mark secondParamExamMark) {
+    public AbstractTwoExamEvent(final double firstParamExamMark, final double secondParamExamMark) {
         this.firstParamExamMark = firstParamExamMark;
         this.secondParamExamMark = secondParamExamMark;
+    }
+
+    @Override
+    public Double getMaxMark() {
+        return Math.max(firstParamExamMark, secondParamExamMark);
     }
 }

@@ -1,32 +1,23 @@
 package com.zetsubou_0.vadimtorus.kiryl.event.impl;
 
-import com.zetsubou_0.vadimtorus.kiryl.eums.EventConverterEnum;
-import com.zetsubou_0.vadimtorus.kiryl.mark.impl.IntegerMark10;
+import com.zetsubou_0.vadimtorus.kiryl.coverter.EventConverterEnum;
 import com.zetsubou_0.vadimtorus.kiryl.util.Constants;
 import com.zetsubou_0.vadimtorus.kiryl.util.Writer;
 
 public class FirstEvent extends AbstractTwoExamEvent {
 
-    public FirstEvent(final IntegerMark10<Integer> firstExamMark, final IntegerMark10<Integer> secondExamMark) {
+    public FirstEvent(final double firstExamMark, final double secondExamMark) {
         super(firstExamMark, secondExamMark);
     }
 
     @Override
     public boolean isPassed() {
-        return firstParamExamMark.getValue().intValue() + secondParamExamMark.getValue().intValue()
-                >= Constants.PASSED_SUM;
-    }
-
-    @Override
-    public Double getMaxMark() {
-        return firstParamExamMark.getValue().intValue() > secondParamExamMark.getValue().intValue()
-                ? firstParamExamMark.getValue().doubleValue()
-                : secondParamExamMark.getValue().doubleValue();
+        return new Double(firstParamExamMark + secondParamExamMark).compareTo(Constants.PASSED_SUM) >= 0;
     }
 
     @Override
     public String toString() {
-        return new Writer(System.out).buildEventToString(EventConverterEnum.E1.getType(), firstParamExamMark.getValue(),
-                secondParamExamMark.getValue());
+        return new Writer(System.out).buildEventToString(EventConverterEnum.E1.getType(), firstParamExamMark,
+                secondParamExamMark);
     }
 }
