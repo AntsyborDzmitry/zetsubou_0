@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspaceFilter version="1.0">
+    <filter root="/apps/training">
+        <exclude pattern="/apps/training/install.*"/>
+        <exclude pattern="/apps/training/runmodes.*"/>
+    </filter>
+    <filter root="/etc/clientlibs/training"/>
+	<filter root="/etc/designs/training">
+        <exclude pattern="/etc/designs/training/jcr:content.*"/>
+    </filter>
+</workspaceFilter>
