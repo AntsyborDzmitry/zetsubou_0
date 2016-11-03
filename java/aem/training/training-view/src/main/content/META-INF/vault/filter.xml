@@ -6,7 +6,7 @@
         <exclude pattern="/apps/training/runmodes.*"/>
     </filter>
     <filter root="/etc/clientlibs/training"/>
-	<filter root="/etc/designs/training">
+    <filter root="/etc/designs/training">
         <exclude pattern="/etc/designs/training/jcr:content.*"/>
     </filter>
 </workspaceFilter>

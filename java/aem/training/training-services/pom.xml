@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.zetsubou_0.aem.training</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>training</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
@@ -39,6 +39,30 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!--Servlet API-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+
+        <!--Sling-->
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.api</artifactId>
+        </dependency>
+
+        <!--I18-->
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.i18n</artifactId>
+        </dependency>
+
+        <!--String Utils-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
     </dependencies>
 
