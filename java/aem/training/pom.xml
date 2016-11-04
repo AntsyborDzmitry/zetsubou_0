@@ -53,7 +53,6 @@
         <module>training-view</module>
         <module>training-services</module>
         <module>training-config</module>
-        <module>training-taglib</module>
         <module>training-content</module>
         <module>training-all</module>
     </modules>
