@@ -15,16 +15,8 @@ public class TestModel {
     @Inject
     @Optional
     @Named("sling:resourceType")
-    private String resourceType;
-
-    @Inject
-    @Named("jcr:primaryType")
     private String type;
 
-
-    public String getResourceType() {
-        return resourceType;
-    }
 
     public String getType() {
         return type;
