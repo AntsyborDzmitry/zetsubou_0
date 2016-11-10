@@ -59,37 +59,36 @@
 
     <dependencyManagement>
         <dependencies>
-
             <!--Bleueprints-->
-            <dependency>
-                <groupId>com.cqblueprints</groupId>
-                <artifactId>cqdependencies</artifactId>
-                <version>${cq.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.squeakysand.jcr</groupId>
-                <artifactId>squeakysand-jcr-taglib</artifactId>
-                <version>0.3.0</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.squeakysand.jsp</groupId>
-                <artifactId>squeakysand-jsp</artifactId>
-                <version>0.4.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squeakysand.osgi</groupId>
-                <artifactId>squeakysand-osgi</artifactId>
-                <version>0.4.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squeakysand.sling</groupId>
-                <artifactId>squeakysand-sling-taglib</artifactId>
-                <version>0.3.0</version>
-                <scope>provided</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.cqblueprints</groupId>-->
+                <!--<artifactId>cqdependencies</artifactId>-->
+                <!--<version>${cq.version}</version>-->
+                <!--<type>pom</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>com.squeakysand.jcr</groupId>-->
+                <!--<artifactId>squeakysand-jcr-taglib</artifactId>-->
+                <!--<version>0.3.0</version>-->
+                <!--<scope>provided</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>com.squeakysand.jsp</groupId>-->
+                <!--<artifactId>squeakysand-jsp</artifactId>-->
+                <!--<version>0.4.0</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>com.squeakysand.osgi</groupId>-->
+                <!--<artifactId>squeakysand-osgi</artifactId>-->
+                <!--<version>0.4.0</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>com.squeakysand.sling</groupId>-->
+                <!--<artifactId>squeakysand-sling-taglib</artifactId>-->
+                <!--<version>0.3.0</version>-->
+                <!--<scope>provided</scope>-->
+            <!--</dependency>-->
 
             <!--Servlet API-->
             <dependency>
@@ -127,47 +126,55 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.0</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.adobe.aem</groupId>
+                <artifactId>uber-jar</artifactId>
+                <version>6.1.0</version>
+                <scope>provided</scope>
+                <classifier>obfuscated-apis</classifier>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <repositories>
         <repository>
-            <id>adobe</id>
+            <id>adobe-public-releases</id>
             <name>Adobe Public Repository</name>
-            <url>http://repo.adobe.com/nexus/content/groups/public/</url>
+            <url>https://repo.adobe.com/nexus/content/groups/public/</url>
             <layout>default</layout>
         </repository>
-        <repository>
-            <id>cqblueprints.releases</id>
-            <name>CQ Blueprints Release Repository</name>
-            <url>http://dev.cqblueprints.com/nexus/content/repositories/releases/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
+        <!--<repository>-->
+            <!--<id>cqblueprints.releases</id>-->
+            <!--<name>CQ Blueprints Release Repository</name>-->
+            <!--<url>http://dev.cqblueprints.com/nexus/content/repositories/releases/</url>-->
+            <!--<releases>-->
+                <!--<enabled>true</enabled>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>false</enabled>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
-            <id>adobe</id>
+            <id>adobe-public-releases</id>
             <name>Adobe Public Repository</name>
-            <url>http://repo.adobe.com/nexus/content/groups/public/</url>
+            <url>https://repo.adobe.com/nexus/content/groups/public/</url>
             <layout>default</layout>
         </pluginRepository>
-        <pluginRepository>
-            <id>cqblueprints.plugins.releases</id>
-            <name>CQ Blueprints Plugin Release Repository</name>
-            <url>http://dev.cqblueprints.com/nexus/content/repositories/releases/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
+        <!--<pluginRepository>-->
+            <!--<id>cqblueprints.plugins.releases</id>-->
+            <!--<name>CQ Blueprints Plugin Release Repository</name>-->
+            <!--<url>http://dev.cqblueprints.com/nexus/content/repositories/releases/</url>-->
+            <!--<releases>-->
+                <!--<enabled>true</enabled>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>false</enabled>-->
+            <!--</snapshots>-->
+        <!--</pluginRepository>-->
     </pluginRepositories>
 
     <build>

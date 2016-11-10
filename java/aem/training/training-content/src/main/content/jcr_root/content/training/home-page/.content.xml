@@ -5,11 +5,5 @@
         cq:designPath="/etc/designs/training"
         jcr:primaryType="cq:PageContent"
         jcr:title="Home Page"
-        sling:resourceType="training/components/pages/test-page">
-        <content jcr:primaryType="nt:unstructured">
-            <test jcr:primaryType="nt:unstructured"
-                sling:resourceType="training/components/content/test"
-                x="qwe"/>
-        </content>
-    </jcr:content>
+        sling:resourceType="training/components/pages/test-page"/>
 </jcr:root>

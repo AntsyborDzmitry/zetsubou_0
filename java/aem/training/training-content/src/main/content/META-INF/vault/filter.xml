@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <workspaceFilter version="1.0">
-    <filter root="/content/training"/>
+    <filter root="/content/training" mode="merge"/>
     <filter root="/content/dam/training">
         <!-- exclude pattern=".*/renditions.*"/ -->
     </filter>
     <filter root="/etc/designs/training/jcr:content">
         <include pattern="/etc/designs/training/jcr:content(/.*)+"/>
     </filter>
+    <filter root="/etc/clientlibs/training"/>
 </workspaceFilter>
