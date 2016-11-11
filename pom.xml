@@ -12,7 +12,7 @@
     <modules>
         <!--aem-->
         <module>java/aem/aem.made</module>
-        <module>java/aem/training</module>
+        <module>java/aem/training-project</module>
         <module>java/aem/sling-mock</module>
 
         <!--Games-->
