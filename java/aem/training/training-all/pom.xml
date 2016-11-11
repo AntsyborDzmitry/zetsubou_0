@@ -42,12 +42,6 @@
             <artifactId>training-services</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.cqblueprints.taglib</groupId>
-            <artifactId>cqblueprints-taglib-all</artifactId>
-            <version>5.5.1</version>
-            <type>zip</type>
-        </dependency>
     </dependencies>
 
     <build>
@@ -69,11 +63,6 @@
                                     <artifactId>training-services</artifactId>
                                     <filter>true</filter>
                                 </embedded>
-                                <embedded>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>training-taglib</artifactId>
-                                    <filter>true</filter>
-                                </embedded>
                             </embeddeds>
                             <subPackages>
                                 <subPackage>
@@ -84,11 +73,6 @@
                                 <subPackage>
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>training-view</artifactId>
-                                    <filter>true</filter>
-                                </subPackage>
-                                <subPackage>
-                                    <groupId>com.cqblueprints.taglib</groupId>
-                                    <artifactId>cqblueprints-taglib-all</artifactId>
                                     <filter>true</filter>
                                 </subPackage>
                             </subPackages>

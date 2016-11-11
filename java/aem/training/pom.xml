@@ -59,42 +59,37 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--Bleueprints-->
-            <!--<dependency>-->
-                <!--<groupId>com.cqblueprints</groupId>-->
-                <!--<artifactId>cqdependencies</artifactId>-->
-                <!--<version>${cq.version}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>com.squeakysand.jcr</groupId>-->
-                <!--<artifactId>squeakysand-jcr-taglib</artifactId>-->
-                <!--<version>0.3.0</version>-->
-                <!--<scope>provided</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>com.squeakysand.jsp</groupId>-->
-                <!--<artifactId>squeakysand-jsp</artifactId>-->
-                <!--<version>0.4.0</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>com.squeakysand.osgi</groupId>-->
-                <!--<artifactId>squeakysand-osgi</artifactId>-->
-                <!--<version>0.4.0</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>com.squeakysand.sling</groupId>-->
-                <!--<artifactId>squeakysand-sling-taglib</artifactId>-->
-                <!--<version>0.3.0</version>-->
-                <!--<scope>provided</scope>-->
-            <!--</dependency>-->
-
             <!--Servlet API-->
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
                 <version>2.5</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--OSGi-->
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.scr</artifactId>
+                <version>1.6.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.scr.annotations</artifactId>
+                <version>1.9.6</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.core</artifactId>
+                <version>4.2.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.compendium</artifactId>
+                <version>4.2.0</version>
                 <scope>provided</scope>
             </dependency>
 
@@ -111,6 +106,11 @@
                 <version>1.1.0</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.scr.annotations</artifactId>
+                <version>1.10.0</version>
+            </dependency>
 
             <!--I18-->
             <dependency>
@@ -125,6 +125,14 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.0</version>
+            </dependency>
+
+            <!--Logger-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.6</version>
+                <scope>provided</scope>
             </dependency>
 
             <dependency>

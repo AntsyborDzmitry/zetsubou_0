@@ -18,12 +18,12 @@ public class TestModel {
     @Inject
     private String x;
 
-//    @Self
+    @Self
     private Resource resource;
 
-    public TestModel(Resource resource) {
-        this.resource = resource;
-    }
+//    public TestModel(Resource resource) {
+//        this.resource = resource;
+//    }
 
     public String getType() {
         return type;
