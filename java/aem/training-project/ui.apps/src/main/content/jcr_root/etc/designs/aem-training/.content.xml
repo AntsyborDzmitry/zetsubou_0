@@ -9,7 +9,12 @@
             jcr:primaryType="nt:unstructured">
             <container
                 jcr:primaryType="nt:unstructured"
-                components="group:AEM Training"/>
+                jcr:lastModified="2016-11-14T17:11:58.149+03:00"
+                sling:resourceType="wcm/foundation/components/parsys"
+                components="group:AEM Training,group:AEM Training - Dynamic">
+                <section
+                    jcr:primaryType="nt:unstructured"/>
+            </container>
         </content-page>
     </jcr:content>
 </jcr:root>

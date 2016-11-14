@@ -5,4 +5,5 @@
     </filter>
     <filter root="/apps/sling" />
     <filter root="/etc/designs/aem-training"/>
+    <filter root="/etc/clientlibs/aem-training"/>
 </workspaceFilter>

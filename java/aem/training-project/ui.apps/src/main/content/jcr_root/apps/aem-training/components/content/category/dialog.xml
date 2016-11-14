@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    title="Category Fields"
+    xtype="panel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <categories
+            jcr:primaryType="cq:Widget"
+            name="categoryData"
+            xtype="multifield">
+            <fieldConfig
+                xtype="fieldset"
+                jcr:primaryType="cq:Widget">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <fieldName
+                        fieldLabel="Field name"
+                        name="fieldName"
+                        xtype="textfield"
+                        jcr:primaryType="cq:Widget"/>
+                    <fieldType
+                        fieldLabel="Field type"
+                        name="fieldType"
+                        xtype="selection"
+                        type="select"
+                        jcr:primaryType="cq:Widget">
+                        <options jcr:primaryType="cq:WidgetCollection">
+                            <string
+                                jcr:primaryType="nt:unstructured"
+                                value="string"
+                                qtip="String Filed"
+                                text="String"/>
+                            <long
+                                jcr:primaryType="nt:unstructured"
+                                value="long"
+                                qtip="Long Filed"
+                                text="Long"/>
+                        </options>
+                    </fieldType>
+                </items>
+            </fieldConfig>
+        </categories>
+    </items>
+</jcr:root>
