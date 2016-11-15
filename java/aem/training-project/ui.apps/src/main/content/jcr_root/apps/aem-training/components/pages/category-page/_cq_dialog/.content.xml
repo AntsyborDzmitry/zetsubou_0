@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Create category"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+                type="nav"/>
+        <items jcr:primaryType="nt:unstructured">
+            <field
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Category fields"
+                    sling:resourceType="granite/ui/components/foundation/section">
+                <layout
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <categoryField
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/multifield">
+                                <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <fieldName
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                fieldLabel="Field Name"
+                                                class="category-field-name"
+                                                required="{Boolean}true"
+                                                name="./fieldName"/>
+                                        <fieldType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/select"
+                                                fieldLabel="Field Type"
+                                                class="category-field-type"
+                                                required="{Boolean}true"
+                                                name="./fieldType">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <textField
+                                                        jcr:primaryType="nt:unstructured"
+                                                        value="textfield"
+                                                        text="Text Field"/>
+                                                <dateField
+                                                        jcr:primaryType="nt:unstructured"
+                                                        value="datefield"
+                                                        text="Date Field"/>
+                                                <pathField
+                                                        jcr:primaryType="nt:unstructured"
+                                                        value="pathfield"
+                                                        text="Path Field"/>
+                                            </items>
+                                        </fieldType>
+                                    </items>
+                                </field>
+                            </categoryField>
+                            <fieldData
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                    name="./fieldData"/>
+                        </items>
+                    </column>
+                </items>
+            </field>
+        </items>
+    </content>
+</jcr:root>

@@ -1,1 +1,0 @@
-window.console && window.console.log('aem.training');

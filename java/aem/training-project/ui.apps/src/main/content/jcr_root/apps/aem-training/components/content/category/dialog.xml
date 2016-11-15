@@ -4,12 +4,19 @@
     title="Category Fields"
     xtype="panel">
     <items jcr:primaryType="cq:WidgetCollection">
+        <categoryData
+            jcr:primaryType="cq:Widget"
+            xtype="hidden"
+            name="categoryData"
+            id="categoryData"/>
         <categories
             jcr:primaryType="cq:Widget"
-            name="categoryData"
+            name="category"
             xtype="multifield">
             <fieldConfig
                 xtype="fieldset"
+                getName="function() {return 'categorySet';}"
+                validate="function() {return true;}"
                 jcr:primaryType="cq:Widget">
                 <items jcr:primaryType="cq:WidgetCollection">
                     <fieldName
@@ -24,20 +31,24 @@
                         type="select"
                         jcr:primaryType="cq:Widget">
                         <options jcr:primaryType="cq:WidgetCollection">
-                            <string
+                            <text
                                 jcr:primaryType="nt:unstructured"
-                                value="string"
-                                qtip="String Filed"
-                                text="String"/>
-                            <long
+                                value="textfield"
+                                qtip="Text Field"
+                                text="Text"/>
+                            <path
                                 jcr:primaryType="nt:unstructured"
-                                value="long"
-                                qtip="Long Filed"
-                                text="Long"/>
+                                value="pathfield"
+                                qtip="Path Filed"
+                                text="Path"/>
                         </options>
                     </fieldType>
                 </items>
             </fieldConfig>
         </categories>
     </items>
+    <listeners
+        beforestatesave="funation() {console.log('beforestatesave');}"
+        statesave="funation() {console.log('statesave ');}"
+        jcr:primaryType="nt:unstructured"/>
 </jcr:root>
