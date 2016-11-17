@@ -1,0 +1,12 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientLib.all @ categories = ['aem.training']}"
+     data-sly-unwrap/>
+<div data-sly-use.dynamicDialog="com.zetsubou_0.aem.training.core.models.DynamicDialogModel"></div>
+<div data-sly-list.field="${dynamicDialog.fields}"
+    data-sly-unwrap>
+    <div data-sly-test="${field.name && field.type}"
+         data-product-field-name="${field.name}"
+         data-product-field-label="${field.label}"
+         data-sly-resource="${ @ resourceType=field.resourceType}"
+         class="dynamic-dialog-field"></div>
+</div>
