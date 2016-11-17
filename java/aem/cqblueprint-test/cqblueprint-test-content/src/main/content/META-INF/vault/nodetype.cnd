@@ -1,6 +1,0 @@
-<'zet'='http://www.dhl.com/ewf/1.0'>
-
-[zet:resource] > nt:hierarchyNode
-  orderable primaryitem zet:data
-  + zet:data (nt:base) = nt:unstructured
-  + * (nt:base) = nt:base version

@@ -3,9 +3,14 @@ package com.zetsubou_0.andrei.test;
 public class Test {
 
     public static void main(String[] args) {
-        sumPrint(1, 2);
-        sumPrint(2, 3);
-        sumPrint(3, 4);
+        Cat vaska = new Cat();
+        Person person = new Person();
+        vaska.owner = person;
+        vaska.owner.name = "God";
+
+        Cat chinko = vaska;
+        System.out.println(chinko.owner.name);
+
     }
 
     /*

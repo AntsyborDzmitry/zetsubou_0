@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    title="Category Fields"
+    xtype="panel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <categoryData
+            jcr:primaryType="cq:Widget"
+            xtype="hidden"
+            name="categoryData"
+            id="categoryData"/>
+        <categories
+            jcr:primaryType="cq:Widget"
+            name="category"
+            xtype="multifield">
+            <fieldConfig
+                xtype="fieldset"
+                getName="function() {return 'categorySet';}"
+                validate="function() {return true;}"
+                jcr:primaryType="cq:Widget">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <fieldName
+                        fieldLabel="Field name"
+                        name="fieldName"
+                        xtype="textfield"
+                        jcr:primaryType="cq:Widget"/>
+                    <fieldType
+                        fieldLabel="Field type"
+                        name="fieldType"
+                        xtype="selection"
+                        type="select"
+                        jcr:primaryType="cq:Widget">
+                        <options jcr:primaryType="cq:WidgetCollection">
+                            <text
+                                jcr:primaryType="nt:unstructured"
+                                value="textfield"
+                                qtip="Text Field"
+                                text="Text"/>
+                            <path
+                                jcr:primaryType="nt:unstructured"
+                                value="pathfield"
+                                qtip="Path Filed"
+                                text="Path"/>
+                        </options>
+                    </fieldType>
+                </items>
+            </fieldConfig>
+        </categories>
+    </items>
+    <listeners
+        beforestatesave="funation() {console.log('beforestatesave');}"
+        statesave="funation() {console.log('statesave ');}"
+        jcr:primaryType="nt:unstructured"/>
+</jcr:root>

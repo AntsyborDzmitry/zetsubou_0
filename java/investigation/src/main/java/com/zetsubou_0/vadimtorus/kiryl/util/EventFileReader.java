@@ -1,6 +1,6 @@
 package com.zetsubou_0.vadimtorus.kiryl.util;
 
-import com.zetsubou_0.vadimtorus.kiryl.eums.EventConverterEnum;
+import com.zetsubou_0.vadimtorus.kiryl.coverter.EventConverterEnum;
 import com.zetsubou_0.vadimtorus.kiryl.event.Event;
 
 import java.io.IOException;

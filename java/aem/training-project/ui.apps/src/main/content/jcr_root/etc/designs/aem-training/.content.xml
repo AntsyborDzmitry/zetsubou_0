@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Training Design"
+        sling:resourceType="wcm/core/components/designer">
+        <content-page
+            jcr:primaryType="nt:unstructured">
+            <container
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/parsys"
+                components="group:AEM Training - Dynamic">
+                <section
+                    jcr:primaryType="nt:unstructured"/>
+            </container>
+        </content-page>
+        <category-page
+            jcr:primaryType="nt:unstructured">
+            <container
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/parsys"
+                components="/apps/aem-training/components/content/category">
+                <section
+                    jcr:primaryType="nt:unstructured"/>
+                <category
+                    jcr:primaryType="nt:unstructured">
+                    <category-container
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/parsys"
+                            components="/apps/aem-training/components/content/category-field">
+                        <section
+                                jcr:primaryType="nt:unstructured"/>
+                    </category-container>
+                </category>
+            </container>
+        </category-page>
+    </jcr:content>
+</jcr:root>

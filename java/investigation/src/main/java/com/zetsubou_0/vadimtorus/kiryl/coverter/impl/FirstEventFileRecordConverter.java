@@ -3,7 +3,7 @@ package com.zetsubou_0.vadimtorus.kiryl.coverter.impl;
 import com.zetsubou_0.vadimtorus.kiryl.coverter.FileRecordConverter;
 import com.zetsubou_0.vadimtorus.kiryl.event.Event;
 import com.zetsubou_0.vadimtorus.kiryl.event.impl.FirstEvent;
-import com.zetsubou_0.vadimtorus.kiryl.mark.impl.IntegerMark10;
+import com.zetsubou_0.vadimtorus.kiryl.mark.Mark;
 import com.zetsubou_0.vadimtorus.kiryl.util.Constants;
 
 public class FirstEventFileRecordConverter implements FileRecordConverter {
@@ -11,8 +11,8 @@ public class FirstEventFileRecordConverter implements FileRecordConverter {
     @Override
     public Event convert(final String record) {
         String[] parameters = record.split(Constants.RECORD_DATA_SEPARATOR);
-        IntegerMark10<Integer> mark1 = new IntegerMark10<>(Integer.valueOf(parameters[1]));
-        IntegerMark10<Integer> mark2 = new IntegerMark10<>(Integer.valueOf(parameters[2]));
+        double mark1 = Mark.INTEGER10.valueOf(Integer.valueOf(parameters[1]));
+        double mark2 = Mark.INTEGER10.valueOf(Integer.valueOf(parameters[2]));
         return new FirstEvent(mark1, mark2);
     }
 }
